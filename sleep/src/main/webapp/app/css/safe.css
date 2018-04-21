@@ -1,0 +1,27 @@
+.aui-content{
+    margin-bottom: 0.5rem;
+}
+.aui-list .aui-list-item{
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+.aui-list .aui-list-item .aui-list-item-title{
+    font-size: 0.7rem;
+}
+.aui-list a:last-child .aui-list-item{
+    background-image: none;
+}
+.aui-btn.aui-btn-warning.aui-btn-block{
+    margin-top: 3rem;
+    font-size: 0.85rem;
+}
+.aui-list.aui-list-in .aui-list-item.aui-list-item{
+    background-position:0rem bottom;
+}
+.aui-list .aui-list-header{
+    background: #EFEFEF;
+    color: #ABABAB;
+}
+header .title{
+    font-size: 0.8rem;
+}

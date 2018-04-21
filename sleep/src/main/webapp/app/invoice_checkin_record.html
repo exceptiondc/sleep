@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发票入住记录</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/myorder.css"/>
+		<link rel="stylesheet" type="text/css" href="css/invoice_details.css"/>
+		<style type="text/css">
+			body{
+				background-color: #f2f2f2;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title" style="font-size: 0.85rem;">入住记录</div>
+		    <!--<a href="invoice.html" class="aui-pull-right aui-btn">
+		        	开发票
+		    </a>-->
+		</header>
+		
+		<div class="aui-content aui-content-padded main" id="orderList">
+		    <div class="aui-list">		
+				<div class="aui-list-item-inner time">
+					<div>入住时间：<span>2018-3-10 12:30</span>-<span>2018-12-04-05 12:30</span></div>
+				</div>
+				<div class="aui-list-item-inner">
+					<div>入住酒店：<span>$hotelName</span></div>
+				</div>
+				<div class="aui-list-item-inner">
+					<div>消费金额：<span class="money">￥107</span><!--<i class="bq tehui">特惠价</i><i class="bq quan">优惠券</i>--></div>
+				</div>
+		    </div>
+		    <div class="aui-list">		
+				<div class="aui-list-item-inner time">
+					<div>入住时间：<span>2018-3-10 12:30</span>-<span>2018-12-04-05 12:30</span></div>
+				</div>
+				<div class="aui-list-item-inner">
+					<div>入住酒店：<span>$hotelName</span></div>
+				</div>
+				<div class="aui-list-item-inner">
+					<div>消费金额：<span class="money">￥107</span><!--<i class="bq tehui">特惠价</i><i class="bq quan">优惠券</i>--></div>
+				</div>
+		    </div>
+		    <div class="aui-list-item-text over-tip">
+		    	没有更多数据了	
+		    </div>
+		</div>
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="tpl" id="list-item">
+		
+		</script>
+		
+	</body>
+</html>
+
+

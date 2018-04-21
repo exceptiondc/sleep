@@ -1,0 +1,382 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/system/appuser/appuser.js"></script>
+
+<script type="text/javascript">
+
+function deleteAppUser(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/appuser/delete?id="+id;
+		var listurl="${ctx}/appuser/list";
+		mydelete(_url,listurl);
+	}
+}
+
+//点击看大图
+$(document).unbind('click').on("click", ".sim", function() {
+    var me="<img style=\"height:1000px;width:1000px;\" alt=\"\" src=\""+$(this).attr("src")+"\">";
+    console.log(me);
+    //iframe层-多媒体
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '1000px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content:me
+        //content: "<img alt=\"\" class=\"sim\" width=\"200px\" height=\"200px\" src=\"http://layer.layui.com/images/tong.jpg\">"
+    });
+    layer.msg('点击任意处关闭');
+});
+
+initCity("localtion",null,"cityId");
+
+$(document).on("change", "#city", function() {
+    var cityId=jQuery("#city").val();
+    console.log(cityId);
+    jQuery("#search_cityId").val(cityId);
+
+});
+
+function add(id){
+    userId = id;
+    var list= "金额：<input type='text' id='money'  name='money' }'><input type='hidden' id='userId'  name='userId'value='"+userId+"' }'>";
+    list = list + "<button class='btn btn-success btn-info' data-last='Finish' onclick='submit()' style='float: left;margin-left: 24.4%;'>" +
+		"确定 </button>";
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-demo', //样式类名
+        closeBtn: 1, //显示关闭按钮
+        anim: 2,
+        id:'layerOpen',
+        resize :false,
+        area: ['300px', '150px'],
+        title:'添加天天存吧余额',
+        shadeClose: true, //开启遮罩关闭
+        content: list, //注意，如果str是object，那么需要字符拼接。
+        success: function(layero, index){
+
+//            open(index);
+        }
+    });
+}
+
+function submit(){
+    var userId=jQuery("#userId").val();
+    var money=jQuery("#money").val();
+    $.post('${ctx}/system/appuser/addYebBalance/json', {"userId":userId,"money":money}, function(str){
+//        console.log(str);
+		if("success" == str.status){
+            location.reload();
+        }
+    });
+}
+
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/appuser/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+	 		<label for="search_id"><b>用户ID:</b></label>
+	 			<input type="text" id="search_id"  name="id" placeholder="请填写用户ID"  value="${(returnDatas.queryBean.id)!''}">
+			<label for="search_phone"><b>手机号:</b></label>
+	 			<input type="text" id="search_phone"  name="phone" placeholder="请填写手机号"  value="${(returnDatas.queryBean.phone)!''}">
+			<label for="search_idCard"><b>身份证号:</b></label>
+	 			<input type="text" id="search_idCard"  name="idCard"   value="${(returnDatas.queryBean.idCard)!''}">
+			<label for="search_realName"><b>真实姓名:</b></label>
+	 			<input type="text" id="search_realName"  name="realName"   value="${(returnDatas.queryBean.realName)!''}">
+			 <label for="search_parentId"><b>邀请人ID:</b></label>
+				 <input type="text" id="search_parentId"  name="parentId"   value="${(returnDatas.queryBean.parentId)!''}">
+				 <label for="search_cityId" ><b>城市名称:</b></label>
+				 <span id="localtion" style="display: inline-block;">
+				 </span>
+	 		<input name="cityId" id="search_cityId" value="${(returnDatas.queryBean.cityId)!''}" style="display:none"  type="text"/>
+		
+			<a   onclick="$('#pageIndex').val(1)" href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+
+	 <label><b>总余额:</b></label>
+	 <span  style="display: inline-block;">
+	 ${(returnDatas.queryBean.totalBalance)!''}
+	 </span>
+	 
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/system/appuser/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/system/appuser/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/appuser/update" >
+				  <button onclick="myhref('${ctx}/appuser/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/appuser/delete" >
+			    |
+				  <button onclick="deleteAppUser();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row" style="overflow-x:scroll;">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover" style="width: 4200px" >
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                       <!-- <th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>-->
+                        <!----><th>操作</th>
+                        <!--first_end_no_export-->
+						<th id="th_id" >用户id</th>
+						<th id="th_phone" >手机号</th>
+						<th id="th_header" >头像</th>
+						<th id="th_sex" >性别</th>
+						<th id="th_name" >昵称</th>
+						<th id="th_inviteCode" >邀请码</th>
+						<th id="th_inviteCodeUrl" >邀请码网页</th>
+						<th id="th_wxCode" >微信号</th>
+						<th id="th_qqCode" >QQ号</th>
+						<th id="th_realName" >真实姓名</th>
+						<th id="th_idCard" >身份证号</th>
+						<th id="th_email" >email</th>
+						<th id="th_isIdCard" >是否实名认证</th>
+						<th id="th_balance" >账户余额</th>
+						<th id="th_dateline" >注册时间</th>
+						<th id="th_cardTime" >实名认证时间</th>
+						<th id="th_lastLogin" >最后登录时间</th>
+						<th id="th_totalInvestAmount" >余额1</th>
+						<th id="th_nowInvestAmount" >余额2</th>
+						<th id="th_isPush" >是否开启推送</th>
+						<th id="th_parentId" >邀请人</th>
+						<th id="th_isWeekSign" >是否一周免签到</th>
+						<th id="th_weekSignEndTime" >免费签到到期时间</th>
+	
+						<th id="th_osType" >Ios/android</th>
+						<th id="th_cityName" >所属城市</th>
+						<th id="th_cityId" >城市id</th>
+						<th id="th_bankId" >开户行行别ID</th>
+						<th id="th_bankNum" >银行卡号</th>
+						<th id="th_inviteNum" >邀请人数</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                                <!--<td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>-->
+						   <td>
+							   <div class="hidden-sm hidden-xs btn-group hidden-lg">
+
+							   </div>
+							   <div class="hidden-md ">
+								   <div class="inline position-relative">
+									   <@shiro.hasPermission name="/system/appuser/isPartner" >
+									   <#if _data.isPartner??>
+										   <#if (_data.isPartner)=='3'>
+											   <li>
+												   <button class="btn btn-mini  btn-info"
+														   onclick="mydelete('${ctx}/system/appuser/isPartner?type=2&id=${(_data.id)!''}','${ctx}/system/appuser/list',null,'确认取消？');">
+													   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+													   删除合伙人
+												   </button>
+											   </li>
+											   <li>
+												   <button class="btn btn-mini  btn-info"
+														   onclick="mydelete('${ctx}/system/appuser/isPartner?type=3&id=${(_data.id)!''}','${ctx}/system/appuser/list',null,'确认取消？');">
+													   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+													   终止合伙人
+												   </button>
+											   </li>
+									  	 <#elseif   (_data.isPartner)=='0' || (_data.isPartner)=='4'>
+										   	<li>
+											   <button class="btn btn-mini  btn-info"
+													   onclick="mydelete('${ctx}/system/appuser/isPartner?type=1&id=${(_data.id)!''}','${ctx}/system/appuser/list',null,'确认设置？');">
+												   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+												   设置合伙人
+											   </button>
+										   </li>
+										   </#if>
+				   						</#if>
+
+								   </@shiro.hasPermission>
+								   <@shiro.hasPermission name="/system/appuser/delete" >
+							   <#if (_data.isIdCard)=='否'>
+								   <li>
+									   <button class="btn btn-mini  btn-info"
+											   onclick="mydelete('${ctx}/system/appuser/delete?id=${(_data.id)!''}','${ctx}/system/appuser/list',null,'确认删除？');">
+										   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+										   删除
+									   </button>
+								   </li>
+							   </#if>
+						   </@shiro.hasPermission>
+							   <@shiro.hasPermission name="/system/appuser/addYebBalance" >
+							   <li>
+								   <button class="btn btn-mini  btn-info"
+										   onclick="add(${(_data.id)!''});">
+									   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+									   添加天天存吧余额
+								   </button>
+							   </li>
+						   </@shiro.hasPermission>
+								   </div>
+							   </div>
+						   </td>
+                                <!--end_no_export-->
+
+							<td >
+								${(_data.id)!''}
+							</td>
+							<td >
+								${(_data.phone)!''}
+							</td>
+							<!--<td >-->
+								<!--<img  class="sim" src="${(_data.header)!''}" height="100px;" width="100px;"/>-->
+							<!--</td>-->
+							   <td >
+								   ${(_data.header)!''}
+							   </td>
+							<td >
+								${(_data.sex)!''}
+							</td>
+							<td >
+								${(_data.name)!''}
+							</td>
+							<td >
+								${(_data.inviteCode)!''}
+							</td>
+	   						<td >
+								<!--<img  class="sim" src="${(_data.inviteCodeUrl)!''}" height="100px;" width="100px;"/>-->
+								${(_data.inviteCodeUrl)!''}
+							</td>
+							<td >
+								${(_data.wxCode)!''}
+							</td>
+							<td >
+								${(_data.qqCode)!''}
+							</td>
+							<td >
+								${(_data.realName)!''}
+							</td>
+							<td >
+								${(_data.idCard)!''}
+							</td>
+							<td >
+								${(_data.email)!''}
+							</td>
+							<td >
+								${(_data.isIdCard)!''}
+							</td>
+							<td >
+								${(_data.balance)!0}
+							</td>
+					
+							<td >
+								<!--日期型-->
+							${((_data.dateline)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.cardTime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.lastLogin)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+								${(_data.totalInvestAmount)!0}
+							</td>
+							<td >
+								${(_data.nowInvestAmount)!0}
+							</td>
+							<td >
+								${(_data.isPush)!''}
+							</td>
+							<td >
+								${(_data.parentId)!0}
+							</td>
+							<td >
+								${(_data.isWeekSign)!''}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.weekSignEndTime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+				
+							<td >
+								${(_data.osType)!''}
+							</td>
+							<td >
+								${(_data.cityName)!''}
+							</td>
+							<td >
+								${(_data.cityId)!0}
+							</td>
+							<td >
+								${(_data.bankId)!0}
+							</td>
+							<td >
+								${(_data.bankNum)!''}
+							</td>
+							<td >
+								${(_data.inviteNum)!0}
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

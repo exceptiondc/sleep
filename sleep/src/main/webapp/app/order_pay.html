@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的钱包</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/order_pay.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">订单支付</div>
+		</header>
+		
+		<div class="aui-content main">
+		   <div class="aui-row">
+		   		<div class="aui-col-xs-4">
+		   			<img src="img/touxiang.png" id="hotelImg"/>
+		   		</div>
+		   		<div class="aui-list aui-col-xs-8">
+		   			<div class="list" id="hotelName">
+		   				加载中
+		   			</div>
+		   			<div class="line"></div>
+		   			<div class="list">
+		   				您应支付 <span id="payamount">￥ 加载中元</span>
+		   			</div>
+		   		</div>
+		   </div>
+		</div>
+		<div class="aui-content coupon">
+			<div class="aui-list" id="chooseCoupon">
+				<div class="aui-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-title">
+						使用优惠券   <span id="cardNum">加载中张可用优惠券</span>
+					</div>
+					<div class="aui-list-item-right" id="cardText">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content pay-list">
+		    <ul class="aui-list aui-list-in">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/yue.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	我的余额<span class="yue">（￥加载中）</span>
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="1" checked>
+			                </div>
+			            </div>
+		            </label>
+		        </li>
+		        <li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-wx.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	微信支付
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="2">
+			                </div>
+			            </div>
+		            </label>
+		        </li>
+		        <li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-zfb.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	支付宝支付
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="3">
+			                </div>
+			            </div>
+		            </label>
+		        </li>
+		         <!--<li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-yhk.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	银行卡支付
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="4">
+			                </div>
+			            </div>
+		            </label>
+		        </li> -->
+		    </ul>
+		</div>
+		<div class="aui-content-padded help">
+			 <p class=""><a href="">扣款问题</a> | <a href="">信用卡使用问题</a> | <a href="">温馨提示</a></p>
+		</div>
+		<div class="aui-content-padded pay-btn">
+			<p><div class="aui-btn aui-btn-warning aui-btn-block" id="payBtn">立即支付</div></p>
+		</div>
+		
+		<!--遮罩-->
+		<div class="aui-mask"></div>
+		<!--余额支付-->
+		<div class="aui-content aui-content-padded yue-pay" id="yuePay" style="display: none;">
+			<div class="aui-list">
+				<header class="aui-bar aui-bar-nav">
+				    <a class="aui-pull-left aui-btn" onclick="closeShade()">
+				        <span class="aui-iconfont aui-icon-close"></span>
+				    </a>
+				    <div class="aui-title">确认支付</div>
+				</header>
+				
+				<div class="aui-list-item">
+					<div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/yue.png"/>
+		                </i>
+		            </div>
+		            <div class="aui-list-item-inner">
+		            	<div class="aui-list-item-title">
+		            		我的余额<span class="yue">（￥加载中）</span>
+		            	</div>
+		            </div>
+				</div>
+				<div class="aui-list-item pay-money">
+					<div class="aui-list-item-title" id="payamo">
+						￥0.00
+					</div>
+				</div>
+				<div class="aui-list-item pay-btn">
+					<p><div class="aui-btn aui-btn-warning aui-btn-block" onclick="closeShade()">立即支付</div></p>
+				</div>
+				
+			</div>
+		</div>
+		<div class="use-coupon">
+			
+		</div>
+		<!--<iframe class="iframe-coupon" src="mycoupon.html?t=1" width="100%" height="100%" style="position: absolute;top: 0;display: none;border: 0;z-index: 10;"></iframe>-->
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+
+		//隐藏最高立减
+		$('.activity').hide();
+
+		$('.yue').empty().append('（￥'+parseFloat(base.getUser().balance)+'元）');
+		if(queryString('orderId')){
+			 layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/AppOrdersLook/json',{id:queryString('orderId')},function(data){
+	    		layer.closeAll();
+	    		 appOrders=data.data;
+	    		
+	    		 params.id=  appOrders.id;
+	    		if(data.status=='success'){
+	    				$('#hotelName').empty().append(appOrders.hotel.name+'('+appOrders.hotel.addressDescr+')');
+	    				$('#hotelImg').attr('src',appOrders.hotel.img);
+	    				$('#payamount').empty().append('￥ '+appOrders.paymentAmount+'元');
+	    				$('#payamo').empty().append('￥ '+appOrders.paymentAmount+'元');
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		}
+
+
+		
+		<!--==============使用优惠券===============-->
+		base.jsonPost('/app/userCard/count/json',{userId:base.getUser().id},function(data){
+	    		if(data.status=='success'){
+	    			$('#cardNum').text(data.data.cardNum+'张可用优惠券');
+	    			if(data.data.cardNum > 0){
+	    				$("#chooseCoupon").on('click',function(){
+							$(".iframe-coupon").show();
+						})	   				
+	    			}
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		
+//			$($('body').find('.iframe-coupon')[0].contentWindow.document).on('.choose-btn','load',function(){
+//				$($('body').find('.iframe-coupon')[0].contentWindow.document).find('.choose-btn').show();
+//			});
+//		$(".iframe-coupon").on("load", function(event){
+//	        $("#confirmBtn",this.contentDocument).show().click(function(){
+//	            //alert("你倒是给点反应啊....");
+//	        });
+//	    });
+		
+		
+		
+		$("#payBtn").on('click',function(){
+			//如果选择的radio为余额，则弹出余额支付
+			if($('input:radio[name="pay"]:checked').val()==1){
+				$('.aui-mask').addClass('aui-mask-in');
+				$('#yuePay').show();
+			}else if($('input:radio[name="pay"]:checked').val()==2){
+				payment('wx');
+			}else if($('input:radio[name="pay"]:checked').val()==3){
+					payment('zfb');
+			}
+			
+		})
+		var params={};
+		function xz(cardId,cardText,amount){
+			params.cardId=cardId;
+
+			$('.iframe-coupon').hide()
+			$('#cardText').text(cardText);	
+			$('#payamount').empty().append('￥ '+accAdd(appOrders.paymentAmount,-amount)+'元');
+			$('#payamo').empty().append('￥ '+accAdd(appOrders.paymentAmount,-amount)+'元');
+		}
+		function closeShade(){
+			$('.aui-mask').removeClass('aui-mask-in');
+			layer.load(2,{offset:['50%','50%']});
+	    		base.jsonPost('/app/appOrders/yuePay/json',params,function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			base.refreshUser();
+	    			 layer.alert(data.message,function(){
+	    			 	/*location.href='index.html';*/
+	    			 });
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+
+			$('#yuePay').hide();
+		}
+		$("body").delegate('.aui-mask.aui-mask-in','click',function(e){
+			$(this).removeClass("aui-mask-in");
+			$('#yuePay').hide();
+			e.stopPropagation();   
+		})
+		
+			function payment(payType){
+			if(payType=='wx'){//微信支付
+			layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/wxPay/json',params,function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			data=data.data;
+	    			 var params = {
+					    partnerid : data.partnerid,
+					    prepayid : data.prepayid,
+					    noncestr : data.noncestr,
+					    timestamp : data.timestamp,
+					    sign : data.sign
+					};
+					Wechat.sendPaymentRequest(params, function () {
+					 	layer.alert('支付成功');
+                         base.refreshUser();
+					}, function (reason) {
+						layer.alert("发起支付请求失败，原因：" + reason);
+					});
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	
+			}else if(payType=='zfb'){//支付宝支付
+				layer.load(2,{offset:['50%','50%']});
+	    		base.jsonPost('/app/appOrders/aliPay/json',params,function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			  window.Alipay.Base.pay(data.data, function(successResults) {
+                            var payres = successResults.resultStatus;
+                            if (payres === "9000") {
+                                layer.alert('支付成功');
+                                base.refreshUser();
+                            } else if (payres == "6001") {
+                                layer.msg("已取消支付", {
+                                    time: 2000
+                                });
+                            } else if (payres == "6002") {
+                                layer.msg("网络连接出错", {
+                                    time: 2000
+                                });
+                            } else if (payres == "4000") {
+                                layer.msg("订单支付失败", {
+                                    time: 2000
+                                });
+                            } else if (payres == "8000") {
+                                layer.msg("正在处理中", {
+                                    time: 2000
+                                });
+                            }
+                        }, function(errorResult) {
+                            layer.msg("发起支付失败", {
+                                time: 2000
+                            });
+                        });
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+			}else if(payType=='yue'){//余额支付
+				
+			}
+		
+		}
+
+	</script>
+</html>

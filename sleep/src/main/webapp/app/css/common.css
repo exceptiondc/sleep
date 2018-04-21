@@ -1,0 +1,58 @@
+.headtop{
+	background: #ffd13f;
+}
+.headtop.aui-bar-nav.aui-bar-light .aui-iconfont{
+	color: #fff;
+}
+.headtop .aui-title.tit{
+	font-size: 0.8rem;
+	color: #fff;
+}
+.anniu{
+	height: 2.2rem;
+	text-align: center;
+}
+.anniu .btn{
+	width: 100%;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	background: #aaa;
+	color: #fff;
+}
+.anniu .btn.confirm{
+	background: #ffc81c;	
+}
+
+.clearfix:after{         
+	content: ".";     /**//*内容为“.”就是一个英文的句号而已。也可以不写。*/  
+	display: block;   /**//*加入的这个元素转换为块级元素。*/  
+	clear: both;     /**//*清除左右两边浮动。*/  
+	visibility: hidden;      /**//*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/  
+	line-height: 0;    /**//*行高为0；*/  
+	height: 0;     /**//*高度为0；*/  
+	font-size:0;    /**//*字体大小为0；*/  
+}  
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+
+
+ @font-face {font-family: "iconfont";
+      src: url('../iconfont/iconfont.eot'); /* IE9*/
+      src: url('../iconfont/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../iconfont/iconfont.woff') format('woff'), /* chrome, firefox */
+      url('../iconfont/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+    }
+
+    .iconfont {
+      font-family:"iconfont" !important;
+      font-size:16px;
+      font-style:normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0.2px;
+      -moz-osx-font-smoothing: grayscale;
+    }

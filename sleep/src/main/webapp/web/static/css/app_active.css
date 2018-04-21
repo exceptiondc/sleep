@@ -1,0 +1,120 @@
+body{
+	width: 100%;
+	background: #ff3c4a;
+}
+.active-first{
+	width: 100%;
+	background: url(../images/app_active_1.bg_02.jpg) no-repeat center;
+	background-size: cover;
+    padding-top: 60%;
+    text-align: center;
+    padding-bottom: 20%;
+}
+.active-first-btn{
+	width: 70%;
+	margin: 0 auto;
+}
+.active-first-btn img{
+	width: 100%;
+}
+.active-first-date{
+	color: #fff;
+	font-size: 1.4rem;
+}
+
+.active-second{
+	width: 100%;
+	position: relative;
+}
+.active-second h3{
+	text-align: center;
+	margin-top: 2rem;
+	font-size: 18px;
+	color: #FFFFFF;
+	height: 4rem;
+}
+.active-second h3 .title{
+	font-size: 20px;
+	color: #fcf640;
+}
+.active-second h3 .money{
+	color: #96000d;
+}
+
+.yellow-bg.s{
+	width: 80%;
+    top: 52px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    opacity: 0.3;
+}
+
+.yellow-bg.m{
+	width: 85%;
+    top: 60px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    opacity: .6;
+	
+}
+.yellow-bg{
+	width: 92%;
+    margin: 20px auto;
+    height: 500px;
+    background: #ffed7d;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+/*红包部分*/
+.hongbao-item .list{
+	width: 50%;
+	float: left;
+	margin-top: 2rem;
+	text-align: center;
+	position: relative;
+}
+.hongbao-item .list img{
+	width: 9rem;
+	position: relative;
+}
+.hongbao-item .list .hongbao-money{
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 15%;
+    font-size: 34px;
+    color: #fff;
+    font-weight: bold;	
+}
+.hongbao-item .list p{
+	font-size: 16px;
+	color: #96000d;
+	font-weight: bold;
+	line-height: 2rem;
+}
+.hongbao-item .list p .money{
+	color: #e52600;
+	font-size: 18px;
+}
+/*@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone5 */}*/
+@media only screen and (max-device-width :480px){
+	
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+
+	.hongbao-item .list p{
+		font-size: 14px;
+		color: #96000d;
+		font-weight: bold;
+		line-height: 2rem;
+	}
+	.hongbao-item .list p .money{
+		color: #e52600;
+		font-size: 16px;
+	}
+
+}

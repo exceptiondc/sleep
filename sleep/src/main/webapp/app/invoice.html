@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>开发票</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/myorder.css"/>
+		<style type="text/css">
+			body{
+				background-color: #f2f2f2;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">开发票</div>
+		    <!--<a href="invoice.html" class="aui-pull-right aui-btn">
+		        	开发票
+		    </a>-->
+		</header>
+		
+		<div class="aui-content aui-content-padded main" id="orderList">
+			
+		   
+		    
+		    
+		</div>
+		
+		<div class="aui-content fix-box" style="display: none;">
+			<div class="aui-list">
+				<div class="aui-list-item-title">
+					<span class="orderNum"> 0 </span>个订单，共<span class="orderTotal"> 0.00 </span>元
+				</div>
+				<div class="aui-list-item-inner">
+					<label><input type="checkbox" class="aui-radio" name="pay-list" id="payList" value="" />全选</label>
+					<div class="aui-list-item-right">
+						<a class="next" href="javaScript:next();">下一步</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="abc" id="ordersList">
+			
+			<label class="aui-list-item-inner">
+		        	<input type="checkbox" name="pay" class="aui-radio" value="" orderId="$orderId">
+		        	<div class="list-box">
+				
+						<div class="aui-list-item-inner time">
+							<div>入住时间：<span>$startTime</span>-<span>$endTime</span></div>
+						</div>
+						<div class="aui-list-item-inner">
+							<div>入住酒店：<span>$hotelName</span></div>
+						</div>
+						<div class="aui-list-item-inner">
+							<div>消费金额：<span class="money">￥$price</span></div>
+						</div>
+					</div>
+		        </label>
+
+		</script>
+
+			<script type="abc" id="dates">
+			    <div class="aui-list invoice">
+		    	<div class="aui-list-header">
+		           	<p><span class="yue">$month</span>月</p>
+		        </div>
+				<label class="aui-list-item-inner">
+		        	<input type="checkbox" name="pay" class="aui-radio" value="" orderId="$orderId">
+		        	<div class="list-box">
+				
+						<div class="aui-list-item-inner time">
+							<div>入住时间：<span>$startTime</span>-<span>$endTime</span></div>
+						</div>
+						<div class="aui-list-item-inner">
+							<div>入住酒店：<span>$hotelName</span></div>
+						</div>
+						<div class="aui-list-item-inner">
+							<div>消费金额：<span class="money">￥$price</span></div>
+						</div>
+					</div>
+		        </label>
+		        <div>
+		</script>
+
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	
+		<script type="tpl" id="list-item">
+		
+		</script>
+		
+		<script>
+			var user = base.getUser();
+
+			onLoadMore=function(){
+					base.jsonGet('/app/appOrders/list/app/json', 
+					{ userid: user.id, pageIndex: pageIndex, isInvoice: 0 }, function(data) {
+						
+						if(!data.data){							
+							$('#orderList').html("<p style='text-align: center;margin-top: 2rem'>暂无发票可开</p>")
+						}else{
+							$('.fix-box').show();
+							$.each(data.data,function(i,o){
+								var myDate = new Date(o.paymentTime);
+
+								if($('#orderList').find('.invoice').size()>0){
+									var month=$('#orderList').find('.invoice').last().find('.yue').text();
+								
+									if(myDate.getMonth()+1==month){
+									
+										$('#orderList').find('.invoice').last().append($('#ordersList').html().formatStr({hotelName:o.hotelName,price:o.paymentAmount,startTime:	new Date(o.checkTime).Format('yyyy-MM-dd hh:mm:ss'),endTime:new Date(o.checkOutTime).Format('yyyy-MM-dd hh:mm:ss'),orderId:o.id}));
+									}else{
+								
+										$('#orderList').append($('#dates').html().formatStr({hotelName:o.hotelName,price:o.paymentAmount,startTime:	new Date(o.checkTime).Format('yyyy-MM-dd hh:mm:ss'),endTime:new Date(o.checkOutTime).Format('yyyy-MM-dd hh:mm:ss'),month:myDate.getMonth()+1,orderId:o.id}));
+									}
+								}else{
+											$('#orderList').append($('#dates').html().formatStr({hotelName:o.hotelName,price:o.paymentAmount,startTime:	new Date(o.checkTime).Format('yyyy-MM-dd hh:mm:ss'),endTime:new Date(o.checkOutTime).Format('yyyy-MM-dd hh:mm:ss'),month:myDate.getMonth()+1,orderId:o.id}));
+								}
+
+							});
+						}
+						
+						
+
+						pageIndex++;
+						loadComplete(data.page.hasNext);
+				});
+			}
+		
+			
+			onLoadMore();
+			//计算订单 .金额
+			
+			var num = 0;
+			var total = 0;
+			
+				$("body").delegate('input[name="pay"]','click',function(){
+
+				 total = 0,num=0;
+				 $("input[name=pay]").each(function(){
+	                if($(this).is(':checked')){
+	                	  var Money = $(this).parent().find('.money').html();
+	               		 total =accAdd(total,Number(Money.replace('￥','')));   
+	               		 num++;       
+	                }
+	                   
+	            });
+
+				$(".orderNum").html(num);
+				$(".orderTotal").html(total);
+					if(num==$("input[name=pay]").length){
+						 $("#payList").prop('checked','checked');
+					}else{
+						$("#payList").removeProp('checked');
+					}
+					if(num>0){
+						$(".next").css('backgroundColor','#aaa');
+					}else{
+						$(".next").css('backgroundColor','#ddd');
+					}
+				});
+			
+			
+
+			//全选
+			 $("#payList").click(function(){
+	            var userids=this.checked;
+	          
+	             total = 0,num=0;
+
+
+	            $("input[name=pay]").each(function(){
+	                this.checked=userids;
+	                var Money = $(this).parent().find('.money').html();
+	           		num++;
+	                total =accAdd(total,Number(Money.replace('￥','')));                
+	            });
+	           	 if(userids){
+	            	$(".next").css('backgroundColor','#aaa')
+	            	$(".orderNum").html(num);
+					$(".orderTotal").html(total);
+	            }else{
+	            	$(".next").css('backgroundColor','#ddd');
+	            	$(".orderNum").html("0");
+					$(".orderTotal").html("0.00");
+	            }
+	        });
+	    	function next(){
+	    		
+	    		if($("input[name=pay]:checked").size()>0){
+	    			var orders='';
+	    			$("input[name=pay]:checked").each(function(i,o){
+	    				if(i==$("input[name=pay]:checked").length-1){
+	    					orders+=$(this).attr('orderId');	
+	    				}else{
+	    					orders+=$(this).attr('orderId')+'-';
+	    				}
+	    				
+	    			});
+	    			location.href='invoice_info.html?orderIds='+orders+'&amount='+$('.orderTotal').text();	
+	    		}
+	    		
+	    	}
+		</script>
+	</body>
+</html>
+
+

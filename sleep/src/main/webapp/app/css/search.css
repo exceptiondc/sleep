@@ -1,0 +1,399 @@
+html,body{
+	background: #fff;
+	width: 100%;
+	height: 100%;
+}
+.banner{
+	width: 100%;
+	height: auto;
+	position: relative;
+	z-index: 1;
+}
+.banner .pre{
+	display: block;
+	position: absolute;
+	width: 1.5rem;
+	height: 1.5rem;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+}
+
+
+.tip{
+	color: #aaa;
+	font-size: 0.5rem;
+}
+.dingwei{
+	display: block;
+	width: 37px;
+	height: 52px;
+	background: url(../img/icon-dingwei.png) no-repeat center;
+	background-size: 50%;
+}
+.dingwei2{
+	background: url(../img/icon-dingwei.png) no-repeat center;
+	background-size: 80%;
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+	.aui-content.aui-content-padded.project{
+		margin-top: 0.75rem;
+	}
+}
+@media only screen and (min-width: 360px) and (max-width: 375px) {
+	.aui-content.aui-content-padded.project{
+		margin-top: 2rem;
+	}
+}
+@media only screen and (min-width: 375px) and (max-width: 414px) {
+	.aui-content.aui-content-padded.project{
+		margin-top:3rem;
+	}
+}
+
+/*日历相关插件*/
+	/* .mask_calendar {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0,0,0,.4);
+		display: none;
+	}
+	.calendar {
+		height: 400px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+	} */
+	.Date_lr{width:50%;text-align:center;}
+	
+	#checkinout{
+		height: 50px;
+		line-height: 50px;
+		position: relative;
+		margin: 10px;
+		padding: 2px 0;
+		display: -webkit-box;
+		display: flex;
+		border: 1px solid #e5e5e5;
+		border-radius: .02rem;
+		background-color: #fff;
+	}
+	#firstSelect p{line-height:25px;color: #999;font-size:12px;}
+	/*#startDate{border:0;position: absolute;left: 0;margin: 0 auto;width: 50%;font-size: 16px;color: #05c0ad;text-align: center;}*/
+	/*#endDate{border:0;position: absolute;right: 0;margin:auto 0;width:50%;font-size: 16px;color: #05c0ad;text-align: center;}*/
+	.mask_calendar {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0,0,0,.4);
+		display: none;
+		z-index: 9999;
+	}
+	.calendar {
+		height: 400px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+	}
+	.animated {
+		animation-duration: 1s;
+		animation-fill-mode: both;
+	}
+	@keyframes slideInDown {
+		from {
+			transform: translate3d(0, -100%, 0);
+			visibility: visible;
+		}
+
+		to {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	.slideInDown {
+		animation-name: slideInDown;
+	}
+	
+input[type='text']{
+	height: 1.1rem;
+	font-size: 0.75rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #aaa; opacity:1; font-size: 14px;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #aaa;opacity:1;font-size: 14px;
+}
+
+input:-ms-input-placeholder{
+    color: #aaa;opacity:1;font-size: 14px;
+}
+
+input::-webkit-input-placeholder{
+    color: #aaa;opacity:1;font-size: 14px;
+}
+#startDate,#endDate{
+	font-size: 14px;
+}
+.aui-btn.search{
+	margin-right: 2rem;
+}
+.aui-content.chaxun{
+	margin: 0;
+	padding: 0.75rem;
+	background: #f2f2f2;
+}
+.aui-list-item.last,
+.aui-content.chaxun .aui-list-item{
+	background: none;
+	/*background-image: linear-gradient(0,#f2f2f2,#f2f2f2 50%,transparent 50%);
+    background-image: -webkit-linear-gradient(90deg,#f2f2f2,#f2f2f2 50%,*/
+}
+.aui-content.project .aui-list,
+.aui-content.project .aui-list-item{
+	background: none;
+}
+.aui-list-item{
+	padding-left: 0.5rem;
+}
+.aui-content.project .tit{
+	font-size: 0.75rem;
+	color: #000;
+}
+.aui-content.project .detail{
+	font-size: 0.6rem;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.aui-list.aui-form-list #price{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.aui-list .aui-list-item-input{
+	padding-right: 0.3rem;
+}
+.price-xingji{
+	
+	width: 100%;
+	height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+   /* padding: 0 0.5rem;*/
+    z-index: 999;
+    opacity: 0;
+    -webkit-transition: opacity .3s,-webkit-transform .3s;
+    transition: opacity .3s,transform .3s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+   margin: 0;
+  /* padding: 0.75rem;*/
+   background: #fff;
+}
+.price-xingji.active{
+	opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.priceC{
+	margin-bottom: 0;
+}
+.price-range{
+	width: 88%;
+	margin: 0.75rem auto;
+	margin-bottom: 1.5rem;
+}
+.price-range input.single-slider{
+	width: 100%;
+}
+.aui-content.priceC .tit{
+	font-size: 15px;
+	color: #000;
+	height: 1.5rem;
+}
+.aui-content.priceC .tit span{
+	font-size: 14px;
+	color: #3d88ff;
+}
+.theme-green .back-bar .pointer{
+	width: 40px;
+	height: 40px;
+	background: url(../img/icon-price.png) no-repeat center;
+	background-size: cover;
+	border: none;
+	top: -14px;
+}
+.theme-green .back-bar .selected-bar{
+	background: #3d88ff;
+}
+.xingji{
+	text-align: center;
+}
+.xingji label input{
+	display: none;
+}
+.xingji label{
+	width: 4rem;
+	height: 2rem;
+	display:inline-block;
+	line-height: 2rem;
+	background: #f7f6fb;
+	font-size: 13px;
+	border-radius: 6px;
+}
+.xingji label.active{
+	background-color: #e7f3ff;
+	background-image: url(../img/checked.png);
+	background-position: right bottom; 
+	background-repeat: no-repeat;
+	background-size: 20%;
+	color: #3f8cff;
+}
+@media screen and (max-width: 320px) {
+	.xingji label{
+		width: 3.4rem;
+		height: 2rem;
+		display:inline-block;
+		line-height: 2rem;
+		background: #f7f6fb;
+		font-size: 13px;
+		border-radius: 6px;
+	}
+	#startDate,#endDate{
+		font-size: 12px;
+	}
+}
+@media screen and (max-width: 360px) {
+	.xingji label{
+		width: 3.8rem;
+		height: 2rem;
+		display:inline-block;
+		line-height: 2rem;
+		background: #f7f6fb;
+		font-size: 13px;
+		border-radius: 6px;
+	}
+}
+
+.priceC .aui-list-inner{
+	margin-bottom: 1rem;
+}
+
+/*豪华酒店*/
+.shehuajiudian{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.shehuajiudian img{
+	width: 48%;
+	height: 2.1rem;
+	border-radius: 6px;
+}
+.shehuajiudian label input{
+	display: none;
+}
+.shehuajiudian label{
+	width: 48%;
+	height: 2.1rem;
+	display: inline-block;
+	vertical-align: middle;
+	background: #f7f6fb;
+	border-radius: 6px;
+}
+
+.shehuajiudian label.active{
+	background-color: #e7f3ff;
+	background-image: url(../img/checked.png);
+	background-position: right bottom; 
+	background-repeat: no-repeat;
+	background-size: 12%;
+}
+.clearfix:after{         
+	content: ".";     /**//*内容为“.”就是一个英文的句号而已。也可以不写。*/  
+	display: block;   /**//*加入的这个元素转换为块级元素。*/  
+	clear: both;     /**//*清除左右两边浮动。*/  
+	visibility: hidden;      /**//*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/  
+	line-height: 0;    /**//*行高为0；*/  
+	height: 0;     /**//*高度为0；*/  
+	font-size:0;    /**//*字体大小为0；*/  
+}  
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.shehuajiudian .tb{
+	display: block;
+	width: 28px;
+	height: 25px;
+	
+	margin-top: 8px;
+	margin:9px 10px 9px 20px;
+}
+.shehuajiudian .tb.jinzuan{
+	background: url(../img/jinzuan-icon.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian .tb.tujia{
+	background: url(../img/tujia-icon.png) no-repeat center;
+	background-size: cover;
+}
+
+.shehuajiudian label.active .tb.jinzuan{
+	background: url(../img/jinzuan-on.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian label.active .tb.tujia{
+	background: url(../img/tujia-on.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian label p{
+	text-align: left;
+	line-height: 16px;
+	color: #333;
+	font-size: 12px;
+}
+
+.shehuajiudian label.active p{
+	text-align: left;
+	line-height: 16px;
+	color: #3f8cff;
+	font-size: 12px;
+}
+.shehuajiudian label p:nth-child(1){
+	font-size: 14px;
+}
+.shehuajiudian label .name{
+	margin-top: 6px;
+}
+
+.anniu{
+	height: 2.2rem;
+	text-align: center;
+}
+.anniu .btn{
+	width: 100%;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	background: #aaa;
+	color: #fff;
+}
+.anniu .btn.confirm{
+	background: #ffc81c;
+	
+}

@@ -1,0 +1,41 @@
+body{
+    background: #ffffff;
+}
+.aui-bar-nav{
+    background:#FFD961;
+}
+.bbgx{
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 30px;
+}
+.bbgx img{
+    display: inline;
+}
+.aui-content-padded {
+    margin: 1.75rem;
+    background: #F4F4F4;
+}
+.aui-content{
+    margin:1rem;
+    padding-top: 1rem;
+}
+.aui-btn{
+    margin: 20px;
+    height: 35px;
+    width: 90px;
+    color: #ffffff;
+}
+.aui-content p{
+    color:#72B6EA ;
+}.aui-content p span{
+     color:#F19C49 ;
+ }
+.aui-content .btn1{
+    background: #C8C8C8;
+}
+.aui-content .btn2{
+    background: #FEA044;
+}
+

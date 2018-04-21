@@ -1,0 +1,264 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/user/user.js"></script>
+<script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	
+	$('td[type="phone"]').each(function(){
+		if($(this).text()!=''){
+			if($(this).text().indexOf('15976054375')){
+					$(this).text($(this).text().substring(8));
+			}else if($(this).text().indexOf('18056355661')){
+					$(this).text($(this).text().substring(8));
+			}else if($(this).text().indexOf('13714437917')){
+					$(this).text($(this).text().substring(8));
+			}
+			}
+	});
+
+	$('td[type="tphone"]').each(function(){
+		if($(this).text()!=''){
+			if($(this).text().indexOf('15976054375')){
+					$(this).text().replace('15976054375','A1');
+			}else if($(this).text().indexOf('18056355661')){
+					$(this).text().replace('18056355661','A2');
+			}else if($(this).text().indexOf('13714437917')){
+					$(this).text().replace('13714437917','A3');
+			}
+			}
+	});
+});
+
+function deleteUser(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/user/delete?id="+id;
+		var listurl="${ctx}/userproject/userlist";
+		mydelete(_url,listurl);
+	}
+}
+$('.date-picker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    language: 'zh-CN',
+    todayBtn: 'linked',
+    startDate:new Date(2014,10,27),
+    endDate:'+6000d',
+    startDate: '-6000d',
+}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+});
+
+
+function daochu(formid,url){
+	
+	
+
+	var a = $('#'+formid).attr('action');
+	$('#' + formid).attr('action',url).submit();
+	setTimeout(function() {
+		$('#' + formid).attr('action', a);
+	}, 500);
+}
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/userproject/userlist" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			<label for="search_loginname"><b>手机号:</b></label>
+			 <input type="text" id="search_phone"  name="phone" placeholder="请填写手机号"  value="${(returnDatas.map.phone)!''}"/>
+			
+			<label for="search_qixian"><b>投资期限:</b></label>
+			 <input type="text" id="search_qixian"  name="qixian" placeholder="请填写投资期限"  value="${(returnDatas.map.qixian)!''}"/ >
+			
+
+			 <label for="search_yaoqingma"><b>邀请人手机:</b></label>
+			 <input type="text" id="search_yaoqingma"  name="yaoqingma" placeholder="请填写邀请人手机"   value="${(returnDatas.map.yaoqingma)!''}"/ >
+			
+
+			  <label for="search_isbangding"><b>是否绑定:</b></label>
+	 		<select id="search_isbangding" name="isbangding" class="col-10" >
+				<option value="0" >全部</option>
+				<option value="1" <#if (((returnDatas.map.isbangding)!'') == '1')>selected</#if> value="1">已绑定</option>
+		 		<option value="2" <#if (((returnDatas.map.isbangding)!'') == '2')>selected</#if> value="2">未绑定</option>
+	 		</select>
+
+	 		<label for="search_istouzi"><b>是否投资:</b></label>
+	 		<select id="search_istouzi" name="istouzi" class="col-10" >
+				<option value="0">全部</option>
+				<option value="1" <#if (((returnDatas.map.istouzi)!'') == '1')>selected</#if> value="1">已投资</option>
+		 		<option value="2" <#if (((returnDatas.map.istouzi)!'') == '2')>selected</#if> value="2">未投资</option>
+	 		</select>
+	 		<label for="search_isshoucitouzi"><b>是否首次投资:</b></label>
+	 		<select id="search_isshoucitouzi" name="isshoucitouzi" class="col-10" >
+				<option value="0">全部</option>
+				<option value="1" <#if (((returnDatas.map.isshoucitouzi)!'') == '1')>selected</#if> value="1">是</option>
+		 		<option value="2" <#if (((returnDatas.map.isshoucitouzi)!'') == '2')>selected</#if> value="2">否</option>
+	 		</select>
+	 		
+	 		<label for="type_invest"><b>投资方式:</b></label>
+	 		<select id="type_invest" name="type_invest" class="col-10" >
+				<option value="">全部</option>
+				<option value="1" <#if (((returnDatas.map.type_invest)!'') == '1')>selected</#if> value="1">投资1</option>
+		 		<option value="2" <#if (((returnDatas.map.type_invest)!'') == '2')>selected</#if> value="2">投资2</option>
+	 		</select>
+
+	 		 <label for="search_registerstartTime"><b>注册时间:</b></label>
+				 <input name="registerstartTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"   value="${(returnDatas.map.registerstartTime)!''}"  style="width:100px;" id="search_registerstartTime" type="text"/>
+				 -
+			 <label for="search_registerendTime"><b></b></label>
+	 			<input name="registerendTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"   value="${(returnDatas.map.registerendTime)!''}" style="width:100px;" id="search_registerendTime" type="text"/>
+
+	 			 <label for="search_touzistartTime"><b>投资时间:</b></label>
+				 <input name="touzistartTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"  value="${(returnDatas.map.touzistartTime)!''}"   style="width:100px;" id="search_touzistartTime" type="text"/>
+				 -
+			 <label for="search_registerendTime"><b></b></label>
+	 			<input name="touziendTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly" value="${(returnDatas.map.touziendTime)!''}"  style="width:100px;" id="search_touziendTime" type="text"/>
+
+	 			
+	 			
+			 <label ><b></b></label>
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+			<#if (returnDatas.map.isadmin)?? && (returnDatas.map.isadmin) == '是'>
+
+			
+					 <button onclick="daochu('searchForm','${ctx}/system/userproject/uexport/json');" class="btn  btn-sm  btn-primary">
+                        导出
+                    </button>
+			</#if>
+		</form>
+	</div>
+	
+</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                      
+                  
+                        <!--first_end_no_export-->
+                        
+						<th id="th_name" >姓名</th>
+						<th id="th_account" >手机号</th>
+						<th  >是否绑定</th>
+						<th  >是否投资</th>
+						<th  >是否首次投资</th>
+						<th  >邀请人</th>
+						<th  >来源</th>
+						<th  >注册时间</th>
+						<th  >投资时间</th>
+						<th  >投资金额</th>
+						<th  >项目期限	</th>
+						<th  >投资项目</th>
+						<th  >还款日期</th>
+						<th> 年化</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                               
+                                <!--end_no_export-->
+
+						
+							<td >
+								${(_data.realName)!''}
+							</td>
+							<td type="phone">
+							${(_data.phone)!''}
+							</td>
+							<td >
+								${(_data.isIdCard)!''}
+							</td>
+							<td  >
+							  <#if  (_data.nh)=='0'>
+							     否
+							     <#else>  
+							     是
+							</#if>  
+
+							</td>
+							<td>
+								${(_data.isFirstProject)!''}
+								
+							</td>
+							<td  type="tphone">
+								${(_data.parentname)!''}--${(_data.tphone)!''}
+								
+							</td>
+							<td >
+								${(_data.osType)!''}
+							</td>
+						
+							<td >
+								${(_data.dl)!''}
+							</td>
+							<td >
+								${(_data.createTime)!''}
+							</td>
+							<td >
+								${(_data.money)!0}
+							</td>
+							<td >
+								${(_data.deadLine)!''}
+							</td>
+							<td >
+								${(_data.productname)!''}
+							</td>
+							<td >
+								${(_data.repaymentTime)!''}
+							</td>
+							<td >						
+								${(_data.nh)}
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <span>总金额:${(returnDatas.map.totol)!'0'}</span><br/>
+                <span>总年化:${(returnDatas.map.nhtotol)!'0'}</span>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

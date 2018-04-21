@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>交易明细</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/transaction.css"/>
+	</head>
+	<body style="background: #fff;">
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">交易明细</div>
+		</header>
+		
+		<div class="aui-content">
+			<div class="aui-list">
+				<div class="aui-list-item transaction">
+					<div class="aui-list-item-inner">
+	                    <div class="aui-list-item-title">金额</div>
+	                    <div class="aui-list-item-right" id="jine">￥100.00</div>
+	               </div>
+				</div>
+				<div class="details">
+					<div class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">类      型</div>
+							<div class="aui-list-item-right" id="type">支出</div>
+						</div>
+					</div>
+					<div class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">时      间</div>
+							<div class="aui-list-item-right" id="time">2018-03-22  12:09:24</div>
+						</div>
+					</div>
+					<div class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">交易单号</div>
+							<div class="aui-list-item-right" id="tradNo">100000000254984545738768764</div>
+						</div>
+					</div>
+					<div class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">备      注</div>
+							<div class="aui-list-item-right" id="remark">西安希尔顿酒店（长安店）-消费</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+				if(queryString('datas')){
+			
+					var types=['账户充值' ,'账户提现','押金充值','押金退还','邀请奖励'];
+					var datas=JSON.parse(queryString('datas'));
+					$('#jine').empty().append(queryString('money'));
+					$('#type').empty().append(types[queryString('type')-1]);
+					$('#time').empty().append(timetrans(queryString('createtime')));
+					$('#tradNo').empty().append(queryString('tradeNo'));
+					$('#remark').empty().append(decodeURIComponent(queryString('remarkers')));
+				}
+
+				function timetrans(date){
+				    var date = new Date(date);//如果date为13位不需要乘1000
+				    var Y = date.getFullYear() + '-';
+				    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+				    var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+				    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+				    var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+				    var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+				    return Y+M+D+h+m+s;
+				}
+		</script>
+			
+		
+	</body>
+</html>
+
+

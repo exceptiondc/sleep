@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>支付方式</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="iconfont/iconfont.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/pay_style.css"/>
+	</head>
+	
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">支付方式</div>
+		</header>
+		<div class="aui-content content">
+			<div class="aui-title tit">
+				选择支付方式
+			</div>
+			<ul class="aui-list">
+				<li class="aui-list-item paystyle-list">
+					<label class="aui-list-item-inner">
+						<div class="style-name">
+							<p>微信支付</p>
+							<img src="img/weixin.png"/>
+						</div>
+						<div class="aui-list-item-right">
+							<input type="radio" name="pstyle" id="wx" value="" checked=""/>
+							<label class="paylist" for="wx"></label>
+						</div>
+					</label>
+				</li>
+				<li class="aui-list-item paystyle-list">
+					<label class="aui-list-item-inner">
+						<div class="style-name">
+							<p>支付宝支付</p>
+							<img src="img/pay-style-zfb.png"/>
+						</div>
+						<div class="aui-list-item-right">
+							<input type="radio" name="pstyle" id="zfb" value="" />
+							<label class="paylist" for="zfb"></label>
+						</div>
+					</label>
+				</li>
+				<li class="aui-list-item paystyle-list">
+					<label class="aui-list-item-inner" id="selectBank">
+						<div class="style-name">
+							<p>银行卡</p>
+							<img src="img/pay-style-yhk.png"/>
+						</div>
+						<div class="bind-card">
+							<div class="aui-list-item-arrow pay-card">
+								<p>选择银行卡</p>
+							</div>
+						</div>
+						
+						<div class="aui-list-item-right">
+							<input type="radio" name="pstyle" id="yhk" value="" />
+							<label class="paylist" for="yhk"></label>
+						</div>
+					</label>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="aui-mask"></div>
+		<div class="bank-card">
+			<div class="aui-list-item title">
+				<a class="aui-pull-left" id="close">
+			        <span class="aui-iconfont aui-icon-close"></span>
+			    </a>
+			    <div class="aui-title">
+			    	选择银行卡
+			    </div>
+			</div>
+			<ul class="aui-list" id="bankLists">
+				<li class="aui-list-item">
+					<label class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							<svg class="icon" aria-hidden="true">
+		                        <use xlink:href="#icon-zhaoshangyinhang-"></use>
+		                    </svg>
+							<span class="bank">中国招商银行(3210)</span>
+						</div>
+						<div class="aui-list-item-right">
+							<input type="radio" name="cardlist" id="zsBank" value="" />
+							<label class="paylist" for="zsBank"></label>
+						</div>
+					</label>
+				</li>
+				<li class="aui-list-item">
+					<label class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							<svg class="icon" aria-hidden="true">
+		                        <use xlink:href="#icon-nongyeyinhang-"></use>
+		                    </svg>
+							<span class="bank">中国农业银行(3210)</span>
+						</div>
+						<div class="aui-list-item-right">
+							<input type="radio" name="cardlist" id="nyBank" value="" />
+							<label class="paylist" for="nyBank"></label>
+						</div>
+					</label>
+				</li>
+			</ul>
+			<div class="aui-list add-card">
+				<a href="#">
+				<div class="aui-list-item">
+					<div class="aui-list-item-title">
+		            	<span class="icon add"></span> 添加银行卡 +
+					</div>	
+				</div>
+				</a>
+			</div>
+		</div>
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#selectBank").on('click',function(){
+				$(".aui-mask").addClass('aui-mask-in');
+				$(".bank-card").addClass('active');
+			});
+			
+			function cardHide(){
+				$(".aui-mask").removeClass('aui-mask-in');
+				$(".bank-card").removeClass('active');
+			}
+			$(".aui-mask").on('click',function(){
+				cardHide();
+			});
+			$("#close").on('click',function(){
+				cardHide();
+			})
+			
+			$('body').delegate('#bankLists .aui-list-item label','click',function(){
+				$('.bind-card').html($(this).find('.aui-list-item-title').html());
+				cardHide();
+			})
+			
+		});
+		
+	</script>
+</html>

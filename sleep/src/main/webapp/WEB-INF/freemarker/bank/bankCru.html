@@ -1,0 +1,88 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+
+/**
+ * 上传图片
+ */
+function lunboImages(){
+    jQuery("#filed").click();
+}
+
+$(document).on("change", "#filed", function() {
+    //...
+
+    $.ajaxFileUpload({
+        url : '/yingpu/adminFileUpload',
+        secureuri : false,
+        fileElementId : 'filed',
+        dataType : 'text',
+        data : {},
+        success : function(data, status) {
+
+            jQuery("#logoI").attr('src',data);
+            jQuery("#logoI").attr('value',data);
+            jQuery("#image").val(data);
+        },
+        error : function(data, status, e) {
+            myalert("上传出错");
+        }
+    })
+
+    return false;
+});
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/system/bank/update" >
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="image" >logo</label>
+				<div class="col-xs-12 col-sm-9">
+					<img  name="logoI" style="height: 200px;width: 200px;" onclick="lunboImages();" id="logoI" value="${(returnDatas.data.image)!''}" src="${(returnDatas.data.image)!''}">
+					<input type="file" id="filed" name="filed" style="display:none">
+					<input name="logo" class="col-xs-12 col-sm-6" id="image" value="${(returnDatas.data.logo)!''}" style="display:none"  type="text" />
+				</div>
+			</div>
+			<div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/system/bank/list');" style="float: left;margin-left: 25.4%;">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

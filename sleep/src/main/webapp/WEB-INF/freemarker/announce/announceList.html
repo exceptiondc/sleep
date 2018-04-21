@@ -1,0 +1,360 @@
+<#escape x as x?html>
+
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="${ctx}/js/My97DatePicker/WdatePicker.js"></script>
+
+    <script type="text/javascript">
+
+        var listurl='${ctx}/system/announce/list';
+
+        var ue = UE.getEditor('editor'),
+        
+        	urlTpls = {
+       	    	   list : '/system/{TYPE}/list/json',
+       	    	   look : '/system/{TYPE}/look/json',
+       	    	   del : '/system/{TYPE}/delete',
+       	    	   add : '/system/{TYPE}/save',
+       	    	   update : '/system/{TYPE}/update'
+        	},
+        	
+        	OP = {
+        		LIST : 'list',
+        		LOOK : 'look',
+        		DEL : 'del',
+        		ADD : 'add',
+        		UPDATE : 'update'
+        	},
+        	
+        	types = [ 'announce', 'companystate', 'news', 'contractsample', 'serviceintroduce' ],
+        	
+        	currentType = '${type!""}' || 'announce';
+        
+        	
+        function getURLByType(url, type) {
+        	return '${ctx}' + url.replace('{TYPE}', type);
+        }
+        
+        
+        function getURLByOperation(operation) {
+        	var url = urlTpls[operation];
+        	return getURLByType(url, currentType);
+        }
+        
+        
+        function loadList(_url) {
+        	jQuery.ajax({
+                url : _url,
+                type : "post",
+                dataType : "json",
+                success : function(_json) {
+                    if(_json.status=="success"){
+                        showdata(_json);
+                    }
+                }
+            });
+        }
+        
+        
+        function toPage(a, b) {
+        	location.href = location.href.replace(/&pageIndex=\d*/g, '') + '&pageIndex=' + b;
+        	location.reload();
+        }
+
+
+        jQuery(document).ready(function(){
+            $(".widget-main tbody tr").click(function() {
+                $(".sub_left_menu tbody tr.active").removeClass("active");
+                $(this).attr("class", "active");
+                var _url=getURLByOperation(OP.LOOK) + '?id='+ $(this).attr("id");
+
+                jQuery.ajax({
+                    url : _url,
+                    type : "post",
+                    dataType : "json",
+                    success : function(_json) {
+                        if(_json.status=="success"){
+                            showdata(_json);
+                        }
+                    }
+                });
+                return false;
+            });
+            
+            $('#type-tab a').click(function() {
+            	currentType = $(this)[0].id;	
+            	location.href = location.href.replace(/\?type=.+?$/, '') + '?type=' + currentType;
+            	location.reload();
+            });
+            
+            
+            if (currentType != 'announce') {
+            	$('#icon-div').hide();
+            	$('#pic-div').show();
+            }
+            else {
+            	$('#icon-div').show();
+            	$('#pic-div').hide();
+            }
+        });
+
+        function headOnc(){
+            div = $(event.target || event.srcElement).parents('div.form-group');
+            $('#filed').click();
+        }
+
+
+ 
+     
+        $(document).on("change", "#filed", function() {
+            //...
+
+	       
+           $.ajaxFileUpload({
+               url : '${ctx}/adminFileUpload',
+               secureuri : false,
+               fileElementId : 'filed',
+               dataType : 'text',
+               data : {},
+               success : function(data, status) {
+            	   if (data.indexOf('出错') != -1) {
+            		   layer.alert(data);
+            		   return;
+            	   }
+                   jQuery(".iconI").attr('src',data);
+                   jQuery(".iconI").attr('value',data);
+                   jQuery(".icon").val(data);
+               },
+               error : function(data, status, e) {
+                   console.log(data);
+                   alert('上传出错');
+               }
+           })
+           return true;
+
+
+        });
+
+
+        function showdata(result) {
+        	$('#createDate').val('');
+        	$('#createTime').val('');
+            var fixed=result.data['fixed'];
+            if(fixed==1){
+                $("#btn_role_del").attr("onclick","").hide();
+            }else{
+                $("#btn_role_del").attr("onclick","deleteRole();").show();
+            }
+            $("#btn_add").hide();
+
+            $("#btn_update").show();
+            $("#btn_reload").show();
+            for (var s in result.data) {
+                set_val(s, result.data[s]);
+            }
+            
+            console && console.log(result.data);
+            $(".iconI").attr('src',result.data.icon || "") ;
+            ue.setContent(result.data.content) ;
+        }
+
+
+
+
+        function deleteRole(){
+            var id=jQuery("#id").val();
+            if(!id||id==""){
+                myalert("请选择你要删除的记录");
+                return;
+            }else{
+                var _url=getURLByOperation(OP.DEL) + "?id="+id;
+                mydelete(_url,listurl + '?type=' + currentType,null,"确定删除？");
+            }
+        }
+
+        function doupdate(){
+            jQuery("#content").val(UE.getEditor('editor').getContent()) ;
+            commonUpdateForm("updateForm",listurl  + '?type=' + currentType,'更新成功！');
+        }
+
+        function dosave(){
+            jQuery("#content").val(UE.getEditor('editor').getContent()) ;
+            commonSaveForm("updateForm",listurl + '?type=' + currentType,'添加成功！');
+        }
+		
+        $(function() {
+        	$('#updateForm').attr('action', $('#updateForm').attr('action').replace('TYPE', currentType));
+        });
+
+
+        //-->
+    </script>
+
+    <form class="form-horizontal" method="post"  action="${ctx}/system/${(type)!'announce'}/list"  name="searchForm" id="searchForm">
+        <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" />
+        <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"  />
+        <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"  />
+    </form>
+    <div class="operate panel panel-default" style="height:65px;" >
+        <div class="panel-body">
+        	<div class="pull-left" style="margin-top: 10px;	">
+        		<div id="type-tab" style="heigth: 100%;">
+        			<!-- <a id="serviceintroduce" style="padding: 8px 15px; background: #428BCA; color: #fff;">法律法规</a> -->
+        			<a id="news" style="padding: 8px 15px; background: #428BCA; color: #fff;">行业新闻</a>
+<!--         			<a id="contractsample" style="padding: 8px 15px; background: #428BCA; color: #fff;">合同范本</a>
+        			<a id="announce" style="padding: 8px 15px; background: #428BCA; color: #fff;">平台公告</a>
+        			<a id="companystate" style="padding: 8px 15px; background: #428BCA; color: #fff;">贾克斯动态</a>
+ -->        		</div>
+        	</div>
+            <div class="pull-right">
+                <a id="btn_reload" href="javascript:location.reload();"
+                   class="btn  btn-sm  btn-primary" style="display: none;" >
+                    跳转至新增 >>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <@shiro.hasPermission
+                name="/system/announce/update" >
+
+                <a  id="btn_add"   href="javascript:dosave();"
+                    class="btn  btn-sm  btn-primary">
+                    <img src="${ctx}/images/btn_save.png"  />保存新增
+                </a>
+                <a id="btn_update" style="display: none;"    onclick="doupdate()"
+                   class="btn  btn-sm  btn-primary">
+                    <img src="${ctx}/images/btn_save.png" />保存修改	
+                </a>
+
+           </@shiro.hasPermission>
+            <@shiro.hasPermission name="/system/announce/delete" >
+            <a onclick="" id="btn_role_del"   class="btn btn-sm btn-danger" style="display: none;">删除</a>
+        </@shiro.hasPermission>
+    </div>
+    </div>
+    </div>
+    <!-- 功能操作区域结束 -->
+    <!-- 列表显示区域  -->
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title">列表</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <table  class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>发布时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+                                <#list returnDatas.data as _data>
+                                    <tr id="${(_data.id)!''}">
+                                        <td>${(_data.title)!''}</td>
+                                        <td>
+                                        	<#if (_data.postTime)??>
+                                          		${(_data.postTime)!''}
+                                          	</#if>
+                                        </td>
+                                    </tr>
+                                </#list>
+                            </#if>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>		
+			
+        </div>
+        <div class="col-sm-8 last">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title">详细内容</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form id="updateForm" name="updateForm"  action="${ctx}/system/TYPE/update"    method="post" class="form-horizontal clearfix">
+					        <input type="hidden" name="createTime" id="createTime" />
+					        <input type="hidden" name="createDate" id="createDate" />
+                            <input type="hidden" name="id" id="id">
+                            <input type="hidden" id="content" name="content" value=""/>
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="title">标题*：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="title" name="title"  datatype="*"   nullmsg="标题不能为空" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="title">权重：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="weight" name="weight" />
+                                </div>
+                            </div>
+                                   <input type="file" id="filed" name="filed" style="display:none">
+                            <div class="form-group col-xs-9" id="icon-div">
+                                <label class="col-sm-4 control-label" for="title">图标：</label>
+                                <div class="col-sm-8">
+                                    <div class="site-demo-upload" style="border-radius: 0; width: auto;">
+                                         <img  name="iconI" onclick="headOnc();" class="iconI"  src="" style="width:auto; min-width: 200px;border-radius: 0;">
+                                        <input name="icon" class="col-xs-12 col-sm-6 icon"  style="display:none"  type="text" />
+                                    </div>
+
+                                </div>
+                            </div>
+                             <div id="pic-div" class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="title">配图：</label>
+                                <div class="col-sm-8">
+                                    <div class="site-demo-upload" style="border-radius: 0; width: auto;">
+                                        <img  name="iconI" onclick="headOnc();" class="iconI"  src="" style="width:auto; min-width: 200px;border-radius: 0;">
+                                        <input name="pic" class="col-xs-12 col-sm-6 icon"  style="display:none"  type="text" />
+                                    </div>
+
+                                </div>
+                            </div>
+                             <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="descr">关键词*：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="keyword" name="keyword"   datatype="*"   nullmsg="关键词不能为空" />
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="descr">描述*：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="descr" name="descr"   datatype="*"   nullmsg="描述不能为空"   />
+                                </div>
+                            </div>
+                             <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="descr">发布时间：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="postTime" name="postTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"   value="${(returnDatas.map.registerendTime)!''}" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="content" >内容：</label>
+                                <div class="col-sm-8" >
+                                    <script id="editor" type="text/plain" style="width:200px;height:500px;">
+                                    </script>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <#if returnDatas.page??> <@h.pagetoolbar page=returnDatas.page formId='searchForm' /> </#if>
+    </div>
+
+
+
+    <div id="div_menuMultiSelectTree" >
+        <ul id="menuMultiSelectTree" class="ztree"></ul>
+    </div>
+
+
+</#escape>

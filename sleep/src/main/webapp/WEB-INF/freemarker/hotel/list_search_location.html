@@ -1,0 +1,172 @@
+<#escape x as x?html>
+
+<script type="text/javascript">
+
+function deleteActivity(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/activity/delete?id="+id;
+		var listurl="${ctx}/activity/list";
+		mydelete(_url,listurl);
+	}
+}
+
+function daochu(formid,url){
+	var a = $('#'+formid).attr('action');
+	$('#' + formid).attr('action',url).submit();
+	setTimeout(function() {
+		$('#' + formid).attr('action', a);
+	}, 500);
+}
+
+
+$(function() {
+	$('.img-cell img[_src!=""]').each(function(i, e) {
+		var src = $(this).attr('_src');
+		$(this).attr('src', src.split(';')[0]);
+	});
+});
+
+function go(url) {
+    location.href = location.href.replace(/href=.+/, 'href=' + url);
+    location.reload();
+}
+</script>
+
+<style>
+	.ellipsis {
+		width: auto;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/hotel/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			<!--<label for="name"><b>酒店名称:</b></label>
+	 		<input type="text" id="name"  name="name" placeholder="请填写酒店名称"  value="${(returnDatas.map.name)!''}">
+	 		
+			 <label for="phone"><b>联系电话:</b></label>
+	 		<input type="text" id="phone"  name="phone" placeholder="请填写联系电话"  value="${(returnDatas.map.phone)!''}">
+	 			 		
+	 		<label for="startTime"><b>入驻时间:</b></label>
+	 			<input name="startTime"  class="date-picker"  style="width:100px;" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"
+	 			 id="search_startTime" value="${(returnDatas.map.startTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 				-
+	 		<label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"
+	 			 id="search_endTime" value="${(returnDatas.map.endTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 		<label ><b></b></label>
+	 		
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+				 <button onclick="daochu('searchForm','${ctx}/system/hotel/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                       导出
+                   </button>-->
+
+</form>
+		</div>
+		<div class="pull-right">
+
+            <a id="btn_reload" href="javascript:void(myhref('${ctx}/system/hotel/search_location/edit'))"
+               class="btn  btn-sm  btn-primary" style="" >
+                新增位置
+            </a>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <th>操作</th>
+                         <!--first_end_no_export-->
+						<th id="">位置名称</th>
+						<th id="">经度</th>
+						<th id="">维度</th>
+                        <th>分类</th>
+                        <th id="">创建时间</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+
+                            <tr class="">
+                                <!--start_no_export-->
+                                <td>
+                                    <div class="hidden-sm hidden-xs btn-group">
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="myhref('${ctx}/system/hotel/search_location/edit?id=${(_data.id)!''}');">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </button>
+                                        <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/system/hotel/search_location/delete?id=${(_data.id)!''}','${ctx}/system/search_location/list',null,'确认删除？');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                    </div>
+                                    
+                                </td>
+                                <!--end_no_export-->
+
+							<td >
+								${(_data.name)!''}
+							</td>
+								<td >
+								${(_data.longitude)!''}
+							</td>
+							<td >
+								${(_data.latitude)!''}
+							</td>
+
+                            <td >
+                                ${(_data.categoryName)!''}
+                            </td>
+                            <td >
+                                 ${(_data.createTime)!''}
+                            </td>
+
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    
+    <title>营普金服新手大礼包</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+   <!-- <link rel="stylesheet" type="text/css" href="css/active.css"/>-->
+   	<style type="text/css">
+   		body{
+   			width: 100%;
+   			background: #efefef;
+   			/*padding: 10px;*/
+   			overflow: hidden;
+   		}
+   		.title{
+   			width: 100%;
+   			height: 4rem;
+   			background: #fff;
+   		}
+   		.title h3{
+   			font-size: 17px;
+   			line-height: 4rem;
+   			height: 4rem;
+   		}
+   		.title h3 a{
+   			display: inline-block;
+		    width: 14px;
+		    height: 24px;
+		    vertical-align: middle;
+		    margin-right: 33%;
+		    margin-left: 1.5rem;
+   		}
+   		.title h3 a img{
+   			width: 100%;
+   			display: block;
+   		}
+   		.borrow-box{
+   			width: 100%;
+   			padding: 10px;
+   			height: 90%;
+   			text-align: center;
+   			overflow: hidden;
+   		}
+   		.borrow-box-main{
+   			width: 100%;
+   			background: #fff;
+   			height: 94%; 
+   			position: relative; 
+   			padding-top: 4rem;			
+   			/*margin: 20px auto;*/
+   		}
+   		.header{
+   			text-align: center;
+   		}
+   		.header img{
+   			width: 15rem;
+   		}
+   		.message-box{
+   			width: 90%;
+    		margin: 4rem auto;
+    		position: relative;
+   		}
+   		.message-box input{
+   			width: 100%;
+   			height: 4rem;
+   			background: #efefef;
+   			line-height: 4rem;
+   			margin-bottom: 10px;
+   			padding-left: 10px;
+   		}
+   		#submitBtn{
+   			width: 90%;
+   			height: 4rem;
+   			line-height: 4rem;
+   			background: #E52600;
+   			box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.5);
+   			font-size: 1.8rem;
+   			color: #fff;
+   			font-weight: bold;
+   		}
+   		.message-box img{
+   			position: absolute;
+		    width: 6rem;
+		    top: 77%;
+		    right: 2%;
+   		}
+   		.dialog-box{
+   			position: absolute;
+   			width: 21rem;
+   			height: 12.5rem;
+   			top: 50%;
+   			left: 0;
+    		right: 0;
+   			background: #fff;
+		    margin: 0 auto;
+		    border-radius: 6px;
+		    box-shadow: 0 0 12px 1px rgba(0,0,0,.2);
+		    padding: 0 20px;
+		    display: none;
+		}
+		.dialog-box h5{
+			font-size: 1.6rem;
+			margin-top: 2rem;
+		}
+		.dialog-box p{
+			font-size: 1.4rem;
+			text-align: justify;
+			margin-top: 5px;
+		}
+		.close-btn{
+			position: absolute;
+		    width: 12px;
+		    height: 12px;
+		    right: 3%;
+		    top: 4%;
+		}
+		.close-btn img{
+			display: block;
+    		width: 100%;
+		}
+   	</style>
+</head>
+<body>
+	<div class="title">
+		<h3><a href=""><img src="img/go-back.png"/></a><span>我要借款</span></h3>	
+	</div>
+	<div class="borrow-box">
+		<div class="borrow-box-main">
+			<div class="header">
+				<img src="img/borrow-logo.png"/>
+			</div>
+			
+			<div class="message-box">
+				<input type="text" id="" placeholder="请输入您的姓名" />
+				<input type="text" id="" placeholder="请输入您的手机号码" name="phoneNum"  maxlength="11"/>
+				<input type="text" id="" placeholder="请输入您所在的省市" />
+				<input type="text" id="" placeholder="请输入图中的验证码" />
+				<img src="img/code.png"/>
+			</div>
+			<input type="submit" id="submitBtn" name="立即提交" value="立即提交" onclick="$('#dialogBox').css('display','block')"/>
+		</div>
+		
+		<div class="dialog-box" id="dialogBox">
+			<h5>温馨提示</h5>
+			<p>已收到您的借款申请，营普金服工作人员将会在3个工作日内与您联系。</p>
+			<div class="close-btn" id="closeBtn" onclick="$('#dialogBox').css('display','none')">
+				<img src="img/close.png"/>
+			</div>
+		</div>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</body>
+</html>

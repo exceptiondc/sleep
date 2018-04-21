@@ -1,0 +1,219 @@
+<#escape x as x?html>
+
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
+    <script type="text/javascript">
+
+        var listurl='${ctx}/system/commonproblem/list';
+
+        var ue = UE.getEditor('editor');
+
+        jQuery(document).ready(function(){
+            $(".widget-main tbody tr").click(function() {
+                $(".sub_left_menu tbody tr.active").removeClass("active");
+                $(this).attr("class", "active");
+                var _url=ctx + "/system/commonproblem/look/json?id="+ $(this).attr("id");
+
+                jQuery.ajax({
+                    url : _url,
+                    type : "post",
+                    dataType : "json",
+                    success : function(_json) {
+                        if(_json.status=="success"){
+                            showdata(_json);
+                        }
+                    }
+                });
+                return false;
+            })
+        });
+
+        function showdata(result) {
+            var fixed=result.data['fixed'];
+            if(fixed==1){
+                $("#btn_role_del").attr("onclick","").hide();
+            }else{
+                $("#btn_role_del").attr("onclick","deleteRole();").show();
+            }
+            $("#btn_add").hide();
+
+            $("#btn_update").show();
+            $("#btn_reload").show();
+            for (var s in result.data) {
+                set_val(s, result.data[s]);
+            }
+
+            ue.setContent(result.data.content) ;
+        }
+
+
+
+
+        function deleteRole(){
+            var id=jQuery("#id").val();
+            if(!id||id==""){
+                myalert("请选择你要删除的记录");
+                return;
+            }else{
+                var _url="${ctx}/system/commonproblem/delete?id="+id;
+                var listurl="${ctx}/system/commonproblem/list";
+                mydelete(_url,listurl,null,"确定删除吗？");
+            }
+        }
+
+        function doupdate(){
+                jQuery("#content").val(UE.getEditor('editor').getContent()) ;
+            commonUpdateForm("updateForm",listurl,'更新成功！');
+        }
+
+        function dosave(){
+            jQuery("#content").val(UE.getEditor('editor').getContent()) ;
+            commonSaveForm("updateForm",listurl,'添加成功！');
+        }
+
+
+
+        //-->
+    </script>
+
+    <form class="form-horizontal" method="post"  action="${ctx}/system/commonproblem/list"  name="searchForm" id="searchForm">
+        <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}" />
+        <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"  />
+        <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"  />
+    </form>
+    <div class="operate panel panel-default" style="height:65px;" >
+        <div class="panel-body">
+            <div class="pull-right">
+                <@shiro.hasPermission
+                name="/system/commonproblem/update" >
+                <a id="btn_reload" href="javascript:location.reload();"
+                   class="btn  btn-sm  btn-primary" style="display: none;" >
+                    跳转至新增 >>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <a  id="btn_add"   href="javascript:dosave();"
+                    class="btn  btn-sm  btn-primary">
+                    <img src="${ctx}/images/btn_save.png"  />保存新增
+                </a>
+                <a id="btn_update" style="display: none;"    onclick="doupdate()"
+                   class="btn  btn-sm  btn-primary">
+                    <img src="${ctx}/images/btn_save.png" />保存修改
+                </a>
+
+            </@shiro.hasPermission>
+            <@shiro.hasPermission name="/system/commonproblem/delete" >
+            <a onclick="" id="btn_role_del"   class="btn btn-sm btn-danger" style="display: none;">删除</a>
+        </@shiro.hasPermission>
+    </div>
+    </div>
+    </div>
+    <!-- 功能操作区域结束 -->
+    <!-- 列表显示区域  -->
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title">列表</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <table  class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>创建时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+                                <#list returnDatas.data as _data>
+                                    <tr id="${(_data.id)!''}">
+                                        <td>${(_data.title)!''}</td>
+                                        <td>${(_data.createTime)!''}</td>
+                                    </tr>
+                                </#list>
+                            </#if>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-8 last">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title">详细内容</h4>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form id="updateForm" name="updateForm"  action="${ctx}/system/commonproblem/update"    method="post" class="form-horizontal clearfix">
+                            <input type="hidden" name="id" id="id">
+                            <input type="hidden" id="content" name="content" value=""/>
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="title">标题*：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="title" name="title"  datatype="*"   nullmsg="标题不能为空" />
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="rank">排序*：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control"  type="text" id="rank" name="rank"  datatype="*"   nullmsg="排序不能为空" />
+                                </div>
+                            </div>
+
+                        <!--    <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="pid">权限菜单：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <input name="menuNames" class="form-control val" id="menuNames" type="text"    readonly="readonly"/>
+                                        <input name="menuIds"  id="menuIds" type="hidden"  />
+                                        <span class="input-group-btn">
+											<a onclick="showZtreeMenu();" class="btn btn-sm btn-primary">
+																		<i class="fa fa-search"></i>
+											</a>
+									 </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="is_del">是否可用</label>
+                                <div class="col-sm-8">
+                                    <select  class="form-control" name="state" id="state">
+                                        <option  value="是">是</option>
+                                        <option value="否">否</option>
+                                    </select>
+                                </div>
+                            </div>-->
+                            <div class="form-group col-xs-9">
+                                <label class="col-sm-4 control-label" for="content" >内容：</label>
+                                <div class="col-sm-8" >
+                                    <script id="editor" type="text/plain" style="width:200px;height:500px;">
+				                    </script>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <#if returnDatas.page??> <@h.pagetoolbar page=returnDatas.page formId='searchForm' /> </#if>
+    </div>
+
+
+
+    <div id="div_menuMultiSelectTree" >
+        <ul id="menuMultiSelectTree" class="ztree"></ul>
+    </div>
+
+
+</#escape>

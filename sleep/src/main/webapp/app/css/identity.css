@@ -1,0 +1,171 @@
+.headtop{
+	font-size: 0.85rem;
+	color: #666;
+	position: fixed;
+}
+.aui-bar-nav.aui-bar-light .aui-iconfont{
+	color: #666;
+}
+.aui-content{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	margin-bottom: 0.5rem;
+}
+.aui-content .identity{
+	width: 88%;
+	height: 9rem;
+	margin: 1.1rem auto 0.5rem;
+	background: url(../img/renzheng-bg.png) no-repeat center;
+	background-size: contain;	
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.aui-content .identity .tit{
+	font-size: 0.75rem;
+	color: #FFA200;
+	text-align: left;
+}
+.aui-content .identity .realform label{
+	display: inline-block;
+	width: 5.5rem;
+	height: 3.4rem;
+	text-align: center;
+	border: 1px dashed #8a9ff0;
+	margin: 0.5rem 0.2rem 1.2rem;
+	padding: 0.5rem;
+	background: url(../img/identify-1.png) no-repeat center;
+	background-size: 90%;
+	position: relative;
+	
+}
+.aui-content .identity .realform label:last-child{
+	background: url(../img/identify-2.png) no-repeat center;
+	background-size: 90%;
+}
+.aui-content .identity .realform input{
+	display: none;
+}
+.realform label img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	z-index: 9;
+}
+.realform label .badge{
+	position: absolute;
+	width: 0.75rem;
+	height: 0.75rem;
+	background: url(../img/identify-ok.png) no-repeat center;
+	background-size: contain;
+	right: -7px;
+	bottom: -7px;
+	z-index: 10;
+	opacity: 0;
+	
+}
+.realform label p.add{
+	font-size: 1.8rem;
+	color: #8a9ff0;
+	line-height: 1.6rem;
+}
+.realform label p.des{
+	font-size: 0.5rem;
+	color: #3a8bf0;
+}
+.identity-btn input{
+	padding: 5px 10px;
+	background: #ffc81c;
+	color: #fff;
+	font-size: 0.7rem;
+	border-radius: 6px;
+}
+/*认证中*/
+.realname.pass .identity-btn input.process{
+	background: #aaaaaa;
+}
+/*认证成功*/
+.realname.pass .identity-btn input.success{
+	background: #54c748;
+}
+.identity-tip{
+	padding-bottom: 1rem;
+	padding-left: 2rem;
+	
+}
+.identity-tip p{
+	font-size: 0.6rem;
+	color: #666;
+}
+
+.realname.pass label img,.realname.pass label .badge{
+	opacity: 1;
+}
+
+
+/*人脸识别*/
+.aui-content .identity .faceform label.face-id{
+	width: 9.275rem;
+	height: 4.95rem;
+	background: url(../img/face-id.png) no-repeat center;
+	background-size: contain;
+	border: none;
+	margin-bottom: -0.5rem;
+}
+.aui-content .identity .faceform label .badge{
+	right: 27%;
+	bottom: 0.7rem;
+}
+.aui-content .identity.pass .badge{
+	opacity: 1;
+}
+.identity.pass .identity-btn input.success{
+	background: #54c748;
+}
+
+
+/*押金缴纳*/
+.aui-content .identity.cashpay{
+	width: 85%;
+	height: auto;
+	background: #f7f6fb;
+	border-radius: 10px;
+}
+.aui-content .identity.cashpay .identity-btn{
+	margin: 0.5rem auto;
+}
+.aui-content .identity.cashpay p{
+	font-size: 0.55rem;
+	text-align: left;
+	line-height: 1rem;
+	padding-left: 0.5rem;
+}
+.aui-content .identity.cashpay p:last-child{
+	text-align: right;
+}
+.aui-content .identity.cashpay p:last-child a{
+	color: #aaa;
+}
+.anniu{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	height: 2.2rem;
+	text-align: center;
+}
+.anniu .btn{
+	width: 100%;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	background: #aaa;
+	color: #fff;
+}
+.anniu .btn.next{
+	background: #ffc81c;	
+}
+.unfinished-tip{
+	padding: 1.3rem;
+}

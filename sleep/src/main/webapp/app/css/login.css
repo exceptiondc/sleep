@@ -1,0 +1,215 @@
+
+html,body{
+	width: 100%;
+	height: 100%;
+	background:url("../img/login3/bg.png") no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+	overflow-y: hidden;/*为了兼容普通PC的浏览器*/
+	position: fixed;
+}
+.aui-bar.aui-bar-light.headtop{
+	top: 10px;
+	font-size: #666;
+	background-image: none;
+	background-color: rgba(0,0,0,0.0);
+
+}
+.login{
+	text-align: center;
+	margin-bottom:30px;
+}
+.login img{
+	display: inline;
+	width: 70px;
+	height: 70px;
+}
+.aui-bar-nav.aui-bar-light .aui-iconfont{
+	color: #666;
+	padding: 0 0.3rem;
+	font-size: 17px;
+}
+.aui-pull-right.aui-btn{
+	color: #666;
+	padding: 0 0.75rem;
+}
+.form-login{
+	margin-top: 1.75rem;
+}
+.aui-list-item-input input{
+	background: #f5f5f5;
+	padding-left: 0.5rem;
+	border-radius: 6px;
+	margin-bottom: 0.75rem;
+	height: 2.25rem;
+}
+.btn-login{
+	margin-top:0.5rem;
+}
+.help-login{
+	margin-top: 0.75rem;
+}
+.help-login a{
+	color: #F0981C;
+}
+
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #aaa; opacity:1; font-size: 15px;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #aaa;opacity:1;font-size: 15px;
+}
+
+input:-ms-input-placeholder{
+    color: #aaa;opacity:1;font-size: 15px;
+}
+
+input::-webkit-input-placeholder{
+    color: #aaa;opacity:1;font-size: 15px;
+}
+
+.other-login{
+	width: -moz-calc(100% - 1.5rem);
+    width: -webkit-calc(100% - 1.5rem);
+    width: calc(100% - 1.5rem);
+	position: relative;
+	/*margin-top: 7.5rem;*/
+}
+.other-login .aui-list-header{
+	text-align: center;
+	margin-bottom: 1.6rem;
+	color: #9c9c9c;
+}
+.other-login .aui-list-header span{
+	display: inline-block;
+	width: 20%;
+	height: 1px;
+	background: #ddd;
+	vertical-align: middle;
+}
+.aui-row .aui-col-xs-3{
+	text-align: center;
+}
+.aui-row .aui-col-xs-3 .aui-iconfont{
+	display: inline-block;
+	width: 2.2rem;
+	height: 2.2rem;
+}
+.aui-row .aui-col-xs-3 .aui-iconfont.zhifubao{
+	background: url(../img/zhifubao.png) no-repeat center;
+	background-size: cover;
+}
+.aui-row .aui-col-xs-3 .aui-iconfont.weixin{
+	background: url(../img/weixin.png) no-repeat center;
+	background-size: cover;
+}
+.aui-row .aui-col-xs-3 .aui-iconfont.qq{
+	background: url(../img/qq.png) no-repeat center;
+	background-size: cover;
+}
+.aui-row .aui-col-xs-3 .aui-iconfont.weibo{
+	background: url(../img/weibo.png) no-repeat center;
+	background-size: cover;
+}
+.other-login .aui-list-item-inner{
+	padding: 0 1rem;
+	margin-bottom: 1.5rem;
+}
+
+
+/*短信验证登录*/
+.aui-row .aui-col-xs-6:nth-child(2){
+	text-align: right;
+}
+.aui-row .aui-col-xs-6:nth-child(2) .send,.aui-row .aui-col-xs-6:nth-child(2) .imgcode{
+	width: 90%;
+	margin-left: 10%;
+	height: 2.25rem;
+	background: #3C3838;
+	line-height: 2.5rem;
+	text-align: center;
+	font-size: 0.85rem;
+	border-radius: 6px;
+	color: #AAA9A8;
+	overflow: hidden;
+	-webkit-appearance: none;
+	border: none;
+}
+.aui-row .aui-col-xs-6:nth-child(2) .imgcode img{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/*注册*/
+.aui-radio{
+	width: 0.8rem;
+	height: 0.8rem;
+	margin:3px 3px;
+}
+.aui-radio:checked{
+	background-color: #FFA200;
+	border: #FFA200;
+}
+.aui-row .agree{
+	font-size: 0.7rem;
+	color: #666;
+	text-align: justify;
+}
+.aui-row .agree span {
+	color: #F0981C;
+}
+.aui-radio:checked:before, .aui-radio.aui-checked:before, .aui-checkbox:checked:before, .aui-checkbox.aui-checked:before, .aui-radio:checked:after, .aui-radio.aui-checked:after, .aui-checkbox:checked:after, .aui-checkbox.aui-checked:after {
+    content: '';
+    width: 0.4rem;
+    height: 0.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.2rem;
+    margin-top: -0.2rem;
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-top: none;
+    border-right: none;
+    z-index: 2;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.aui-list-item-input input {
+	background: rgba(0,0,0,0.5);
+}
+.aui-list-item-inner .phone{
+	position: relative;
+}
+.aui-list-item-inner .phone img{
+	height: 2.25rem;
+	display: inline;
+
+}
+.aui-list-item-inner .phone .iput1{
+	display:inline;
+	width: 81%;
+	color: #AAAAAA;
+	position: absolute;
+	!important;
+}
+.aui-col-xs-6 .aui-list-item-input .tx{
+	color: #aaaaaa;
+}
+#reg-btn{
+border-radius: 1.2rem;
+width: 54%;
+margin: 0 auto;
+}
+.aui-radio:checked {
+	background-color: #FFC81C;
+	border: #FFC81C;
+
+    /*transform: rotate(-45deg);
+    transform: rotate(-45deg);*/
+    }

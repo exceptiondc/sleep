@@ -1,0 +1,342 @@
+.borrow-main{
+	width: 100%;
+}
+.borrow-main .borrow-banner{
+	width: 100%;
+	height: 375px;
+	background: url(../img/images/borrow-banner_02.jpg) no-repeat center;
+	/*position: relative;*/
+	background-size: cover;
+}
+.borrow-banner .center{
+	position: relative;
+}
+.borrow-banner .banner-text{
+	position: absolute;
+	left: 204px;
+	top: 124px;
+}
+.borrow-banner .banner-text p:first-child{
+	width: 100px;
+	height: 6px;
+	background: #4a96de;
+}
+.borrow-banner .banner-text p:nth-child(2){
+	font-size: 26px;
+	color: #265b8d;
+	margin-top: 10px;
+	line-height: 50px;
+}
+.borrow-banner .banner-text p:nth-child(3){
+	font-size: 20px;
+	line-height: 50px;
+	color: #265b8d;
+}
+
+/*借款产品*/
+.borrow-pro,.borrow-flow,.borrow-ques{
+	margin-top: 68px;
+}
+.borrow-pro h3,.borrow-flow h3,.borrow-ques h3{
+	font-size: 20px;
+	margin-left: 18px;
+	border-left: 3px solid #333;
+	padding-left: 10px;
+	height: 21px;
+	line-height: 21px;
+	color: #333;
+}
+.borrow-pro ul,.borrow-flow ul,.borrow-ques ul{
+	width: 1140px;
+	margin: 40px auto 0;
+}
+.borrow-pro ul li{
+	float: left;
+	width: 306px;
+	/*border: 1px solid #ddd;*/
+	text-align: center;
+	font-size: 16px;
+}
+.borrow-pro ul li:nth-child(2){
+	margin: 0 111px;
+}
+.borrow-pro ul li:hover{
+	box-shadow: 5px 5px 5px #bdbdbd;
+	cursor: pointer;
+}
+.borrow-pro ul li .list-t{
+	border: 1px solid #ddd;
+	border-bottom: none;
+	padding-bottom: 16px;
+}
+.borrow-pro ul li .title{
+	margin: 23px 0 40px 0;
+	font-size: 20px;
+}
+.borrow-pro ul li img{
+	margin-bottom: 16px;
+}
+.borrow-pro ul li p{
+	line-height: 26px;
+}
+.borrow-pro ul li .list-b span{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	width: 306px;
+	color: #FFFFFF;
+	background: #FF7F01;
+}
+
+/*借款流程*/
+.borrow-flow ul li{
+	float: left;
+	text-align: center;
+}
+.borrow-flow ul li:nth-child(even) img{
+	margin: 50px 13px;
+}
+.borrow-flow ul li p{
+	font-size: 16px;
+	line-height: 50px;
+	height: 50px;
+}
+
+/*常见问题*/
+.borrow-ques{
+	position: relative;
+	height: 720px;
+}
+.borrow-ques ul{
+	position: absolute;
+	z-index: 2;
+	margin-left: 30px;
+} 
+.borrow-ques .m-line{
+	position: absolute;
+	width: 4px;
+	height: 556px;
+	border-left: 2px dotted #50648d;
+	left: 50%;	
+	top: 78px;
+	z-index: 1;
+}
+.borrow-ques ul li{
+	width: 596px;
+	overflow: hidden;
+	margin-bottom: 11px;
+	/*position: absolute;
+	z-index: 2;*/
+}
+.borrow-ques ul li .text{
+	width: 510px;
+	text-align: right;
+	float: left;	
+}
+.borrow-ques ul li .text h6{
+	font-size: 20px;
+	color: #4c89ad;
+	line-height: 36px;
+}
+.borrow-ques ul li .text p{
+	font-size: 13px;
+	line-height: 20px;
+	/*text-align: left;*/
+	color: #666;
+}
+.borrow-ques ul li .icon{
+	float: left;
+	margin-left: 32px;
+	width: 54px;
+	height: 46px;
+	text-align: center;
+	line-height: 46px;
+	font-size: 30px;
+	color: #4c89ad;
+	font-weight: bold;
+	background: url(../img/borrow-3.2.png) no-repeat center;
+}
+.borrow-ques ul li:nth-child(even){
+	margin-left: 542px;
+}
+.borrow-ques ul li:nth-child(even) .icon{
+	margin-left: 0;
+	margin-right: 32px;
+	width: 54px;
+	height: 46px;
+	text-align: center;
+	line-height: 46px;
+	font-size: 30px;
+	color: #ff6600;
+	font-weight: bold;
+	background: url(../img/borrow-3.1.png) no-repeat center;
+}
+.borrow-ques ul li:nth-child(even) .text{
+	text-align: left;
+}
+.borrow-ques ul li:nth-child(even) .text h6{
+	color: #ff6600;
+}
+
+/*弹出对话框*/
+/*遮罩层*/
+.black-overlay{
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.2;
+	opacity:.20;
+	filter: alpha(opacity=20);
+}
+.borrow-apply{
+	display: none;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	/*margin-top: -268px;*/
+	margin-left: -383px;
+	width: 766px;
+	height: 536px;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+	box-shadow: 5px 5px 5px 0 #b5acac;
+}
+.borrow-apply-t{
+	width: 100%;
+	height: 60px;
+	background: #ff7f01;
+	color: #FFFFFF;
+	font-size: 26px;
+}
+.borrow-apply-t h3{
+	line-height: 60px;
+	float: left;
+	margin-left: 332px;
+	font-size: 26px;
+	font-weight: normal;
+}
+.borrow-apply-t span{
+	float: right;
+	width: 21px;
+	height: 21px;
+	background: url(../img/borrow-close.png) no-repeat center;
+	margin-top: 19px;
+	margin-right: 19px;
+	cursor: pointer;
+}
+.borrow-msg{
+	width: 100%;
+}
+.borrow-apply-l{
+	width: 50%;
+	height: 476px;
+	font-size: 14px;
+	background: #fffaf5;
+	color: #666;	
+}
+.borrow-apply-l ul{
+	margin: 33px;
+}
+.borrow-apply-l ul li{
+	margin-bottom: 30px;
+}
+.borrow-apply-l ul li h4{
+	font-size: 16px;
+	color: #000;
+	height: 34px;
+}
+.borrow-apply-l ul li p{
+	line-height: 20px
+}
+.app-code{
+	width: 115px;
+	text-align: center;
+	margin-top: -30px;
+	margin-right: 30px;
+}
+
+.borrow-apply-r{
+	width: 50%;
+}
+.borrow-apply-r form{
+	margin: 34px;
+	/*text-align: center;*/
+}
+.borrow-apply-r form p{
+	font-size: 14px;
+	color: #666666;
+	height: 40px;
+	line-height: 40px;
+}
+.borrow-apply-r form input[type="text"]{
+	background: #fffaf5;
+	width: 286px;
+	height: 38px;
+	outline: none;
+	padding: 0 10px;
+	border: 1px solid #ddd;
+	margin-bottom: 5px;
+	font-size: 14px;
+} 
+.borrow-apply-r form input[type="button"]{
+	width: 168px;
+	height: 50px;
+	font-size: 20px;
+	color: #fff;
+	line-height: 50px;
+	background: #ff984c; /* 一些不支持背景渐变的浏览器 */  
+    background:-moz-linear-gradient(top, #ff984c, rgba(255, 92, 2, 1));  
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ff984c), to(rgba(255, 92, 2, 1)));  
+    background:-o-linear-gradient(top, #ff984c, rgba(255, 92, 2, 1)); 
+	outline: none;
+	border: none;
+	margin-top: 18px;
+	margin-left: 60px;
+	cursor: pointer;
+}
+.borrow-tip{
+	position: absolute;
+	top: 170px;
+	left: 50%;
+	margin-left: -173px;
+	width: 346px;
+	height: 174px;
+	z-index: 1003;
+	background: #fff;
+	border: 1px solid #ddd;
+	text-align: center;
+	box-shadow: 5px 5px 5px 0 #ddd;
+	display: none;
+}
+.borrow-tip p{
+	margin: 0 36px;
+	color: #000;
+}
+.borrow-tip p:first-child{
+	text-align: right;
+	margin-top:20px;
+	margin-right: 16px;
+}
+.borrow-tip p span{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background: url(../img/tip-close.png) no-repeat center;
+	cursor: pointer;
+}
+.borrow-tip p:nth-child(2){
+	font-size: 20px;
+	line-height: 40px;
+	height: 40px;
+}
+.borrow-tip p:nth-child(3){
+	font-size: 16px;
+	line-height: 30px;
+	text-align: left;
+}

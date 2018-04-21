@@ -1,0 +1,148 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/user/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name" >姓名</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="name" class="col-xs-12 col-sm-6" id="name" value="${(returnDatas.data.name)!''}"  type="text" />
+					</div><div class="help-block" for="name"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="account" >账号</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="account" class="col-xs-12 col-sm-6" id="account" value="${(returnDatas.data.account)!''}"  type="text" />
+					</div><div class="help-block" for="account"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="password" >密码</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="password" class="col-xs-12 col-sm-6" id="password" value="${(returnDatas.data.password)!''}"  type="text" />
+					</div><div class="help-block" for="password"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sex" >性别</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="sex" class="col-xs-12 col-sm-6" id="sex" value="${(returnDatas.data.sex)!''}"  type="text" />
+					</div><div class="help-block" for="sex"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="mobile" >手机号码</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="mobile" class="col-xs-12 col-sm-6" id="mobile" value="${(returnDatas.data.mobile)!''}"  type="text" />
+					</div><div class="help-block" for="mobile"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email" >邮箱</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="email" class="col-xs-12 col-sm-6" id="email" value="${(returnDatas.data.email)!''}"  type="text" />
+					</div><div class="help-block" for="email"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="weixinId" >微信Id</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="weixinId" class="col-xs-12 col-sm-6" id="weixinId" value="${(returnDatas.data.weixinId)!''}"  type="text" />
+					</div><div class="help-block" for="weixinId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="userType" >0后台管理员|/system/,1借款人</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="userType" class="col-xs-12 col-sm-6" id="userType" value="${(returnDatas.data.userType)!''}"  type="text" />
+					</div><div class="help-block" for="userType"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state" >是否有效,是/否</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="state" class="col-xs-12 col-sm-6" id="state" value="${(returnDatas.data.state)!''}"  type="text" />
+					</div><div class="help-block" for="state"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="borrowerId" >借款人ID</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="borrowerId" class="col-xs-12 col-sm-6" id="borrowerId" value="${(returnDatas.data.borrowerId)!''}"  type="text" />
+					</div><div class="help-block" for="borrowerId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="isOpenFuiou" >是否开通金账户</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="isOpenFuiou" class="col-xs-12 col-sm-6" id="isOpenFuiou" value="${(returnDatas.data.isOpenFuiou)!''}"  type="text" />
+					</div><div class="help-block" for="isOpenFuiou"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/user/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

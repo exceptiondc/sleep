@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的邀请</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/myinvite.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的邀请</div>
+		</header>
+		<div class="aui-content">
+		    <ul class="aui-list" style="background: none;">
+		    	<a href="">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-title">我的现金奖励</div>
+		                <div class="aui-list-item-right" id="jiangli">
+		                    ￥0.00元
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		        <a href="mycoupon.html">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title">我的优惠券奖励</div>
+		                <div class="aui-list-item-right">
+		                   立即查看
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		     </ul>
+		</div>
+		<div class="aui-list-item-title tit">
+			我的邀请记录
+		</div>
+		<div class="aui-content record">
+			<ul class="aui-list" id="content">
+				<!-- <li class="aui-list-item aui-row">
+					<div class="aui-col-xs-4">
+						<img src="img/touxiang.png"/>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>2018.1.24</p>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>已注册</p>
+					</div>
+				</li>
+				<li class="aui-list-item aui-row">
+					<div class="aui-col-xs-4">
+						<img src="img/touxiang.png"/>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>2018.1.24</p>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>已充值</p>
+					</div>
+				</li>
+				<li class="aui-list-item aui-row">
+					<div class="aui-col-xs-4">
+						<img src="img/touxiang.png"/>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>2018.1.24</p>
+					</div>
+					<div class="aui-col-xs-4">
+						<p>已完成首单</p>
+					</div>
+				</li> -->
+			</ul>
+		</div>
+		<div class="aui-content-padded invite-friends">
+			<a href="invite_friends.html"><div class="aui-btn aui-btn-block aui-btn-warning">
+				邀请好友
+			</div>
+			</a>
+		</div>
+	</body>
+
+
+	<script type="aaa" id="tel">
+		<li class="aui-list-item aui-row">
+			<div class="aui-col-xs-4">
+				<img src="$headImg"/>
+			</div>
+			<div class="aui-col-xs-4">
+				<p>$createTime</p>
+			</div>
+			<div class="aui-col-xs-4">
+				<p>$zhuce</p>
+			</div>
+		</li>
+	</script>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	 $('#jiangli').empty().append('￥'+base.getUser().totalInvestAmount ? base.getUser().totalInvestAmount : 0.00+'元'); 
+
+		layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appUsers/list/app/json',{parentId:base.getUser().id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			var str='';
+	    			$.each(data.data,function(i,o){
+	    				 str='已注册';
+	    				 if(o.isRecharge=='是'){
+	    				 	str='已充值';
+	    				 }
+	    				 if(o.isFirstOrder=='是'){
+	    				 	str='已完成首单';
+	    				 }
+	    				$('#content').append($('#tel').html().formatStr({headImg:o.header,createTime:o.dateline,zhuce:str}));
+	    				
+	    			});
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	</script>
+</html>

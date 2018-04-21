@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    
+    <title>营普金服2016年数据报告</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/app_data.css"/>
+   
+</head>
+<body>
+	<div class="data-title-page">
+		<img src="img/images/data_title_page_02.jpg"/>
+	</div>
+	
+	<div class="data-first">
+		<img src="img/data_16.1.png"/>
+	</div>
+	
+	<div class="data-second">
+		<img src="img/images/data-16.2_04.jpg"/>
+	</div>
+	
+	<div class="data-thrid">
+		<img src="img/data-16.3.png"/>
+	</div>
+	<div class="data-fourth">
+		<img src="img/images/data-16.4_06.jpg"/>
+	</div>
+	<div class="data-fifth">
+		<img src="img/data-16.5.png"/>
+	</div>
+	<div class="data-sixth">
+		<img src="img/images/data_16.6_08.jpg"/>
+	</div>
+	<div class="data-seventh">
+		<img src="img/data_16.7.png"/>
+	</div>
+	<div class="data-eighth" style="height: 350px;overflow: hidden;">
+		<img src="img/images/data_16.8_10.jpg"/>
+		<div class="map" id="main" style="width: 30rem;height: 25rem;">
+			
+		</div>
+	</div>
+	
+	<div class="data-foot">
+		<p class="num">联系电话：400-969-1811</p>
+		<p class="text">营普金服，2017年，我们在路上，愿你我继续同行！</p>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/echarts.js"></script>
+
+    	
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/map' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+               var option = {
+					tooltip : {
+					    trigger: 'item'
+					},
+					legend: {
+					    orient: 'vertical',
+					    x:'left',
+					    data:['投资人(人数)']
+					},
+					dataRange: {
+					    min: 0,
+					    max: 300,
+					    x: 'right',
+					    y: 'bottom',
+					    text:['高','低'],           // 文本，默认为数值文本
+					    calculable : false
+					},
+					series : [
+					    {
+					        name: '投资人数',
+					        type: 'map',
+					        mapType: 'china',
+					        roam: false,
+					        itemStyle:{
+					            normal:{label:{show:false}},
+					            emphasis:{
+					            	label:{show:true},
+					            	areaStyle:{color:"#0d93f9"}
+					            }
+					        },
+					        data:[
+					            {name: '北京',value: 527},
+					            {name: '天津',value: 407},
+					            {name: '上海',value: 873},
+					            {name: '重庆',value: 387},
+					            {name: '河北',value: 125},
+					            {name: '河南',value: 253},
+					            {name: '云南',value: 0},
+					            {name: '辽宁',value: 65},
+					            {name: '黑龙江',value: 177},
+					            {name: '湖南',value: 32},
+					            {name: '安徽',value: 80},
+					            {name: '山东',value: 455},
+					            {name: '新疆',value: 42},
+					            {name: '江苏',value: 362},
+					            {name: '浙江',value: 455},
+					            {name: '江西',value: 119},
+					            {name: '湖北',value: 131},
+					            {name: '广西',value: 0},
+					            {name: '甘肃',value: 48},
+					            {name: '山西',value: 87},
+					            {name: '内蒙古',value: 23},
+					            {name: '陕西',value: 80},
+					            {name: '吉林',value: 64},
+					            {name: '福建',value: 32},
+					            {name: '贵州',value: 10},
+					            {name: '广东',value: 399},
+					            {name: '青海',value: 80},
+					            {name: '西藏',value: 1},
+					            {name: '四川',value: 16},
+					            {name: '宁夏',value: 16},
+					            {name: '海南',value: 81},
+					            {name: '台湾',value: 0},
+					            {name: '香港',value: 0},
+					            {name: '澳门',value: 0}
+					        ]
+					    },      
+					]
+				};
+        
+               // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+        </script>
+</body>
+</html>

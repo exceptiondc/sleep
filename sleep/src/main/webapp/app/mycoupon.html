@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的优惠券</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mycoupon.css"/>
+	</head>
+	<body>
+		<div class="fix-box">
+			<header class="aui-bar aui-bar-nav aui-bar-light headtop">
+			    <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title tit">我的优惠券</div>
+			    <a class="aui-pull-right aui-btn" style="font-size: 0.7rem;" tapmode id="useRule">
+			        	使用规则
+			    </a>
+			</header>
+			
+			<div class="aui-tab" id="tab">
+		        <div class="aui-tab-item aui-active">平台优惠券（<span id="numC">0</span>）</div>
+		        <div class="aui-tab-item">店家优惠券（0）</div>
+		    </div>
+		</div>
+		
+	    
+	    <div class="item" id="itemCoupon">
+	    	<div class="list" id="platformC"></div>
+	    	<div class="list" id="hotelC" style="display: none;text-align: center;padding-top: 5rem;">暂无可用店家优惠券</div>
+	    </div>
+		
+		<div class="aui-btn aui-btn-block aui-btn-warning confirm" id="confirmBtn">确定</div>
+		<!--==============如果没有优惠券=================-->
+		
+		
+	<script type="tpl" id="teps">
+		<div class="aui-content">
+			<div class="aui-list yh">
+				<div class="aui-row coupon">
+					<div class="aui-col-xs-3">
+						<div class="tit">
+							优惠券
+						</div>
+					</div>
+					<div class="aui-col-xs-9 info">
+						<div class="aui-list-item-title">
+							$name<span>满$limitMoney</span>
+						</div>
+						<div class="aui-row">
+							<div class="aui-col-xs-4">
+								<div class="money">
+									￥$money
+								</div>
+							</div>
+							<ul class="aui-col-xs-8">
+								<li><span class="dot"></span><span class="manjian">满$limitMoney元减$money元</span></li>
+								<li><span class="dot"></span>$startTime-$endTime</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<input class="aui-radio choose-btn" amount="$money" type="radio" name="cp" id="" value="$cardId" />
+			</div>
+		</div>
+	</script>	
+
+		<script type="tpl" id="my">
+			
+		<div class="aui-content no-coupon">
+			<div class="aui-list">
+				<img src="img/return-logo.png"/>
+				<div class="aui-list-item-title">
+					暂无可用优惠券哦，邀请好友注册就有了！~
+				</div>
+				
+				<a href="invite_friends.html"><div class="aui-btn aui-btn-block aui-btn-warning">
+					立即邀请
+				</div></a>
+				
+			</div>
+		</div>
+
+		</script>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-dialog.js" ></script>
+	<script src="aui/script/aui-tab.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		 apiready = function () {
+	        api.parseTapmode();
+	     }
+
+		  var tab = new auiTab({
+		        element:document.getElementById("tab"),
+		    },function(ret){
+		        console.log(ret.index)
+				$('#itemCoupon .list').hide();
+				$('#itemCoupon .list').eq(ret.index-1).show();
+		    });
+	    var dialog = new auiDialog();
+	    
+		$("#useRule").on('click',function(){
+			dialog.alert({
+				title:"优惠券使用规则",
+                msg:"<p>1.优惠券使用规则优惠券使用规则<p><p>2.优惠券使用规则<p>",
+                buttons:['我知道了']
+			});
+		})
+		$('.no-coupon').height($(window).height()-40);
+		onLoadMore=function(){
+			layer.load(2,{offset:['50%','50%']});
+			    	base.jsonPost('/app/userCard/list/app/json',{userId:base.getUser().id,pageIndex:pageIndex,pageSize:8,status:1041},function(data){
+			    		layer.closeAll();
+			    		if(data.status=='success'){
+			    			$("#numC").text(data.data.length);
+			    				if(data.data.length<=0){
+			    					$('#platformC').after($('#my').html());
+			    				}else{
+			    						$.each(data.data,function(i,o){
+			    							$('#platformC').append($('#teps').html().formatStr({limitMoney:o.limitMoney,money:o.money,startTime:o.startTime,endTime:o.endTime,name:o.name,cardId:o.id}));
+			    						});
+			    				}
+			    			pageIndex++;
+			    			loadComplete(data.page.hasNext);
+
+			    			if(queryString('t')){
+			    				$('input[name="cp"]').show();
+			    			}
+			    		}else{
+			    			layer.alert(data.message);
+			    		}
+			    	});
+				
+		}
+	
+	    	onLoadMore();
+	    	$('#confirmBtn').click(function(e){
+	    		top.window.xz($('input[name="cp"]').val(),$('input[name="cp"]:checked').prev('div').find('span.manjian').text(),$('input[name="cp"]:checked').attr('amount'));
+ 	
+	    	});
+	</script>	
+	</body>
+</html>

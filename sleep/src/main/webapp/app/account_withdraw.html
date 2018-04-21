@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>账户提现</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/order_pay.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">账户提现</div>
+		</header>
+		
+		<div class="aui-content main account-recharge">
+		   <div class="aui-list account withdraw">
+		   		<div class="aui-list-item-inner">
+	                <div class="aui-list-item-label">
+						提现金额：
+	                </div>
+	                <div class="aui-list-item-input">
+	                   	 ￥ <input id="limit" type="text" placeholder="0" onkeyup="value=test(value)?value:''"> 元
+	                </div>
+	            </div>
+			   <div style="height: 20px;width: 100%;display:none" id="dd"><!--限制金额提醒-->
+				   <p style="color: red;text-align: center;font-size: 0.6rem;">*可提现最大金额100元*</p>
+			   </div>
+	            <div class="aui-list-item">
+
+	                <p >可用余额为<span id="yue">0.00</span>元</p>
+	            	<div class="withdraw-all" id="qbtx">全部提现</div>
+	            </div>
+	            <div class="aui-row aui-row-padded tip">
+					<p>*提现金额为您实际充值金额，平台赠送额度无法提现。</p>
+	            </div>
+		   </div>
+		</div>
+		
+		
+		<div class="aui-content pay-list">
+		    <ul class="aui-list aui-list-in">
+		        <!--<li class="aui-list-item">
+		            <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/yue.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	我的余额<span class="yue">（￥4.8元）</span>
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="1" checked>
+			                </div>
+			            </div>
+		            </label>
+		        </li>-->
+		        <li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-wx.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	微信账户
+			                	<!--<p><span class="activity">最高立减20元</span></p>-->
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="2">
+			                </div>
+			            </div>
+		            </label>
+		        </li>
+		        <li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-zfb.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	支付宝账户
+			                	<!--<p><span class="activity">最高立减20元</span></p>-->
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" checked="checked" class="aui-radio" value="3">
+			                </div>
+			            </div>
+		            </label>
+		        </li>
+		      <!--   <li class="aui-list-item">
+		           <div class="aui-list-item-label-icon">
+		                <i class="aui-iconfont">
+		                	<img src="img/pay-yhk.png"/>
+		                </i>
+		            </div>
+		            <label>
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	银行卡账户
+			                	<p><span class="activity">最高立减20元</span></p>
+			                </div>
+			                <div class="aui-list-item-right">
+			                    <input type="radio" name="pay" class="aui-radio" value="4">
+			                </div>
+			            </div>
+		            </label>
+		        </li> -->
+		    </ul>
+		</div>
+		<div class="aui-content-padded help">
+			 <p class=""><a href="">扣款问题</a> | <a href="">信用卡使用问题</a> | <a href="">温馨提示</a></p>
+		</div>
+		<div class="aui-content-padded pay-btn">
+			<p><div class="aui-btn aui-btn-block pb" id="payBtn">确认提现</div></p>
+		</div>
+		
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-toast.js" ></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*金额限制*/
+		function test(num){
+			var reg=/^((?!0)\d{1,2}|100)$/;
+			if(!num.match(reg)){
+				$(function(){
+					$("#dd").show();
+				});
+			}else{
+				$(function(){
+					$("#dd").hide();
+				});
+				return true;
+			}
+		};
+       
+       		
+		$('#yue').text(base.getUser().balance);
+		
+		$('#qbtx').click(function(){
+
+			$('#limit').val($('#yue').text());
+		});
+		$('#payBtn').click(function(data){
+			if(isNaN($('#limit').val())){
+				layer.alert('提现金额必须为数字格式');
+				return false;
+			}
+
+
+
+			if($('#limit').val()<=0){
+				layer.alert('提现金额不能小于0');
+				return false;
+			}
+		
+
+			if($('input:radio[name="pay"]:checked').val()==2){
+				//showDefault();
+//				$('.aui-mask').addClass('aui-mask-in');
+//				$('#yuePay').show();
+				layer.alert("微信提现暂未开通");
+			}else{
+				payment('zfb');	
+			}
+			
+			
+		});
+		function payment(payType){
+			if(payType=='wx'){//微信支付
+			layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/cashPledgeGoPay/json',{userid:base.getUser().id,payType:payType,amount:$('#limit').val()},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){	
+	 
+	    			layer.alert(data.message);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	
+			}else if(payType=='zfb'){//支付宝支付
+				layer.load(2,{offset:['50%','50%']});
+	    		base.jsonPost('/app/appOrders/withdrawDeposit/json',{userid:base.getUser().id,payType:payType,amount:$('#limit').val()},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			layer.alert(data.message);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+			}else if(payType=='yue'){//余额支付
+				
+			}
+		
+		}
+
+		
+	</script>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!--STATUS OK-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type='text/javascript' src="images/base.js"></script>
+<script>
+function connectWebViewJavascriptBridge(callback) {
+	if (window.WebViewJavascriptBridge) {
+		callback(WebViewJavascriptBridge)
+	} else {
+		document.addEventListener('WebViewJavascriptBridgeReady', function() {
+			callback(WebViewJavascriptBridge)
+		}, false)
+	}
+}
+function appsend(data){
+data='{"type":28,"subtype":"","itemid":"400-927800","name":""}'
+           
+connectWebViewJavascriptBridge(function(bridge) {
+	/* Init your app here */
+	bridge.init(function(message, responseCallback) {
+		alert('Received message: ' + message)   
+		if (responseCallback) {
+			responseCallback("Right back atcha")
+		}
+	})
+	bridge.send(data)
+})
+	android.appsend(data)
+}
+
+</script>
+<style>
+body{margin:0; background:#eaeaea;font-size:small; font-family:"微软雅黑"; text-align:center}
+</style>
+</head>
+
+<body>
+<div style="height:2em; background:#000; font-size:small; color:#FFF; text-align:center; font-family:'微软雅黑';line-height:2em">付款结果</div>
+<div style="background:#fff; height:10em; color:#696969; font-size:small; font-family:'微软雅黑'; margin:1em auto">
+<div style="height:10em; line-height:10em;text-align:center;">
+<img src="../images/1.png" style="vertical-align:middle ;width: 40px;" />&nbsp;&nbsp;&nbsp;&nbsp;成功
+</div>
+</div>
+<div style="margin:2em auto; background:#F05151; height:4em; width:90%; color:#FFF;line-height:4em"  onclick="javascript: appsend('');">返回APP</div>
+
+</body>
+</html>
+

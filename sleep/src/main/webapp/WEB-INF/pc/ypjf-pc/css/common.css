@@ -1,0 +1,253 @@
+.center{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+
+.clearfix:after{         
+	content: ".";     /**//*内容为“.”就是一个英文的句号而已。也可以不写。*/  
+	display: block;   /**//*加入的这个元素转换为块级元素。*/  
+	clear: both;     /**//*清除左右两边浮动。*/  
+	visibility: hidden;      /**//*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/  
+	line-height: 0;    /**//*行高为0；*/  
+	height: 0;     /**//*高度为0；*/  
+	font-size:0;    /**//*字体大小为0；*/  
+}  
+
+/*header部分*/
+.header{
+	width: 100%;
+	overflow: hidden;
+}
+
+.header-top{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	/*border-bottom: 1px solid #eee;*/
+}
+.header-top p{
+	float: left;
+}
+.header-top .contact a{
+	float: left;
+	margin-left: 12px;
+	margin-top: 4px;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ff7f01;
+	border-radius: 11px;
+	vertical-align: middle;
+	line-height: 22px;
+	text-align: center;
+}
+.header-top .contact .tel{
+	border: 1px solid #ff7f01;
+}
+.header-top .contact .weixin{
+	border: 1px solid #80d640;
+}
+.header-top .contact .weibo{
+	border: 1px solid #ff2a2a;
+}
+
+.nav-item li{
+	float: left;
+	padding: 0 10px;
+	height: 13px;
+	margin-top: 9px;
+	line-height: 13px;	
+}
+.nav-item li.app{
+	height: 20px;
+	width: 70px;
+	border: 1px solid #FF7F01;
+	margin-top: 5px;
+	line-height: 20px;
+	text-align: center;
+	margin-right: 12px;
+}
+
+.nav-item li a{
+	display: block;
+	color: #666;
+}
+.nav-item li a.org{
+	color: #FF7F01;
+}
+
+.nav-item li a img{
+	vertical-align: -2px;
+}
+.nav-item li a .pull{
+	vertical-align: middle;
+}
+.nav-item li+li{
+	border-left: 1px solid #666;
+}
+
+.nav-item li a.bold{
+	color: #000000;
+	font-weight: bolder;
+}
+
+/*主导航*/
+.header-nav{
+	width: 100%;
+	height: 120px;
+	background: url(../img/nav-bg.jpg) no-repeat center;
+}
+.header-nav .logo{
+	margin-top: 35px;
+	padding-right: 20px;
+	border-right: 2px solid #aaa;
+}
+.header-nav .logo-text{
+	margin-top: 35px;
+	padding-left: 20px;
+}
+.header-nav .logo-text .red{
+	color: #cb0900;
+	font-size: 20px;
+	font-family: "Kaiti";
+	font-weight: bolder;
+	margin: 4px 0;
+}
+.header-nav .logo-text .black{
+	color: #000;
+	font-size: 15px;
+	font-family: "KaiTi";
+	font-weight: bolder;
+}
+.nav .nav-list{
+	margin-top: 37px;
+}
+.nav .nav-list li{
+	float: left;
+	height: 44px;
+	line-height: 44px;
+}
+.nav .nav-list li+li{
+	margin-left: 58px;
+}
+.nav .nav-list li a{
+	font-size: 18px;
+	color: #000000;	
+	font-family: inherit;
+	display: block;
+}
+
+.nav .nav-list li a:hover,.nav .nav-list li a:active{
+	color: #FF7F01;
+}
+
+.nav .nav-list li a.active{
+	color: #FF7F01;
+}
+.nav .nav-list li a.account{
+	width: 112px;
+	height: 30px;
+	border: 1px solid #AAAAAA;
+	border-radius: 3px;
+	box-shadow: 0 0 1px 0px rgba(134, 124, 124, 0.6);
+    line-height: 30px;
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.nav .nav-list li a.account img{
+	vertical-align: -4px;
+}
+
+
+/*footer*/
+.footer{
+	width: 100%;
+	height: 178px;
+	background: #ebebeb;
+}
+.footer-nav .list{
+	margin-top: 30px;	
+}
+
+.footer-nav .list li{
+	float: left;
+	width: 66px;
+	padding: 0 40px;
+	font-size: 16px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+.footer-nav .list li ul li{
+	float: none;
+	padding: 0;
+	font-size: 14px;
+	font-weight:normal;
+	text-align: center;
+}
+
+.footer .line{
+	width: 2px;
+	height: 66px;
+	background: #aaa;
+	margin: 50px 56px 57px;
+}
+
+.footer-contact{
+	margin-top: 35px;
+	width: 158px;
+	text-align: center;
+	line-height: 33px;
+}
+.footer-contact .title{
+	font-size: 16px;
+	font-weight: bold;
+}
+.footer-contact .num{
+	font-size: 22px;
+}
+.footer-contact .time{
+	font-size: 14px;
+}
+
+.footer-code li{
+	float: left;
+	margin-top: 35px;
+	font-size: 14px;
+	text-align: center;
+	/*font-weight: bold;*/
+}
+.footer-code li+li{
+	margin-left: 36px;
+}
+.footer-code li img{
+	display: block;
+	width: 80px;
+	height: 80px;
+	background: #fff;
+	margin: 10px auto;
+}
+
+.footer-bottom{
+	width: 100%;
+	height: 112px;
+	background: #333;
+	text-align: center;
+	padding-top: 23px;
+	color: #FFFFFF;
+}
+.footer-bottom-pic a{
+	display: inline-block;
+	margin: 0 27px;
+}
+.footer-bottom-txt{
+	margin-top: 16px;
+	line-height: 18px;
+}

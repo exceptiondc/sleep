@@ -1,0 +1,115 @@
+.aui-content{
+	padding: 0.5rem;
+	background: #fff;
+	margin-bottom: 0.5rem;
+}
+.aui-list-item-media{
+	width: 6.25rem;
+	height: 5rem;
+	overflow: hidden;
+}
+.aui-list-item-media img{
+	width: 100%;
+	height: 100%;
+}
+.aui-list-item-inner{
+	margin-left: 10px;
+}
+.aui-list-item-title{
+	font-size: 0.9rem;
+	color: #000;
+	font-weight: bold;
+	height: 2rem;
+}
+.aui-list-item-inner .aui-list-item-text p{
+	font-size: 0.65rem;
+}
+
+/*#score{line-height: 60px;padding: 17px 0 22px 26px;border-bottom: 1px solid #e5e5e5;}*/
+#score .aui-list-item-title{height: 1.8rem;padding-left: 0.5rem;} 
+#score li{line-height: 1.5rem;position: relative;padding-left: 1.5rem;font-size: 0.75rem;color: #737373;}
+#score nav{
+	position: absolute;
+    right: 2.25rem;
+    top: 0.4rem;
+}
+#score nav a{
+	float: left;
+    width: 0.775rem;
+    height: 0.725rem;
+    background: url(../img/star-xiaojiao.png) no-repeat 0px -1.5rem;
+    margin-right: 0.95rem;
+    transition: .3s;
+    background-size: cover;
+}
+#score nav a.active{background-position: 0 0;}
+#score ul li input.fenshu{
+	width: 2rem;
+    position: absolute;
+    right: 0;
+    font-size: 0.75rem;
+    color: #737373;
+}
+
+.aui-content.pinglun{
+	padding: 0;
+	width: 100%;
+	height: calc(100% - 17rem);
+	background: #fff;
+}
+.aui-content.pinglun .aui-list{
+	padding: 0.5rem 0.75rem;
+	border-bottom: 1px solid #ddd;
+}
+.aui-content.pinglun .aui-list img{
+	width: 0.85rem;
+}
+.aui-list-item textarea{
+	height: 3rem;
+	line-height: 1rem;
+	font-size: 0.65rem;
+}
+/*上传照片*/
+.aui-row {
+	padding: 0.3rem 0.75rem 0.5rem;
+}
+.aui-row .anniu{
+	width: 2rem;
+    height: 2rem;
+    background: #ffd13f;
+    font-size: 0.6rem;
+    padding: 3px;
+    border-radius: 6px;
+    color: #fff;
+}
+.aui-row .anniu.over{
+	 background: #ddd;	 
+}
+.aui-row .anniu input{
+	display: none;
+}
+.aui-row .tupian{
+	width: 87%;
+	padding-left: 6px;
+}
+.aui-row .tupian img{
+	width: 2rem;
+	height: 2rem;
+	margin-left: 2px;
+	display: inline-block;
+}
+.pinglun .aui-title{
+	height: 2rem;
+	line-height: 2rem;
+	background: #F2F2F2;
+	padding-left: 1rem;
+}
+.tijiao {
+	margin: 5% auto;
+	text-align: center;
+}
+.tijiao .aui-btn.aui-btn-warning{
+	padding: 0 2.2rem;
+	height: 2rem;
+	line-height: 2rem;
+}

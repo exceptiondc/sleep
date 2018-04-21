@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发票详情</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/invoice_info.css"/>
+		<link rel="stylesheet" type="text/css" href="css/invoice_details.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">发票详情</div>
+		</header>
+		<div class="aui-content">
+			<div class="aui-list aui-padded-t-5 aui-padded-b-5">
+				<a href="">
+				<div class="aui-list-item aui-list-item-middle">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title">查看电子发票图片</div>
+		            </div>
+		        </div>
+		        </a>
+			</div>
+		</div>
+		
+		<div class="aui-content">
+			<ul class="aui-list aui-form-list details">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    发票抬头
+		                </div>
+		                <div class="aui-list-item-input">
+		                    西安贾克斯软件科技有限公司
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item" id="shuihao">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   税号
+		                </div>
+		                <div class="aui-list-item-input">
+		                  9161 0131 MA6U 1DJK 0F
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   发票内容
+		                </div>
+		                <div class="aui-list-item-input">
+		                   *住宿费
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   发票金额
+		                </div>
+		                <div class="aui-list-item-input money">
+		                    180.70元
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   开票时间
+		                </div>
+		                <div class="aui-list-item-input">
+		                   2017-03-21 13:21:45
+		                </div>
+		            </div>
+		        </li>
+			</ul>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   接受邮箱
+		                </div>
+		                <div class="aui-list-item-input">
+		                    798776770@qq.com
+		                </div>
+		            </div>
+		        </li>
+		  	</ul>
+		</div>
+		<div class="aui-content">
+			<div class="aui-list aui-padded-t-5 aui-padded-b-5">
+				<a href="invoice_checkin_record.html">
+				<div class="aui-list-item aui-list-item-middle">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title">1张发票，含3次入住记录</div>
+		                <div class="aui-list-item-right">查看</div>
+		            </div>
+		        </div>
+		        </a>
+			</div>
+		</div>	
+		  	
+		
+		<div class="aui-content-padded">
+			 <p><div class="aui-btn aui-btn-warning aui-btn-block" id="apply">再次发送电子发票</div></p>
+		</div>
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+
+			$('#apply').on('click',function(){
+				layer.open({
+				    content:'电子邮箱已发送至您的邮箱请注意查收，谢谢！',
+				    style:'width:75%',
+				    btn: '我知道了',
+				    yes:function(){
+				    	location.href='invoice_submited.html'
+				    }
+				});
+				$('.layui-m-layercont').css('padding','30px');
+			})
+		</script>
+		
+	</body>
+</html>
+
+

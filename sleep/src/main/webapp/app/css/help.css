@@ -1,0 +1,79 @@
+.aui-content{
+	margin-top: 0.5rem;
+}
+.aui-content .aui-list{
+	padding: 0 0.75rem;
+	background-image: none;
+}
+.aui-content .aui-list .aui-list-item{
+	height: 2.5rem;
+    line-height: 2.5rem;
+    padding-left: 0;
+}
+.aui-list .aui-list-item-inner{
+	padding-right: 0;
+}
+.aui-list .aui-list-item-inner .aui-list-item-title{
+	font-size: 0.7rem;
+}
+.aui-collapse .aui-list-item:active{
+	background: #fff;
+}
+.aui-collapse-header.aui-active{
+	background: #fff;
+}
+.icon{
+	display: inline-block;
+	width: 0.85rem;
+	height: 0.8rem;
+	vertical-align: middle;
+	margin-right: 0.3rem;
+}
+.icon.ques{
+	background: url(../img/icon-question.png) no-repeat center;
+	background-size: contain;
+}
+.icon.coop{
+	background: url(../img/icon-coop.png) no-repeat center;
+	background-size: contain;
+}
+.icon.comp{
+	background: url(../img/icon-comp.png) no-repeat center;
+	background-size: contain;
+}
+.icon.tel{
+	background: url(../img/icon-tel.png) no-repeat center;
+	background-size: contain;
+}
+.icon.help{
+	background: url(../img/icon-help.png) no-repeat center;
+	background-size: contain;
+}
+.icon.msg{
+	background: url(../img/icon-message.png) no-repeat center;
+	background-size: contain;
+}
+.aui-collapse-content p{
+	font-size: 0.65rem;
+	color: #aaa;
+}
+.aui-list .aui-list-item-right.call{
+	font-size: 0.7rem;
+	color: #FFA200;
+}
+
+
+/*======常见问题======*/
+.aui-content.faq{
+	margin-top: 0;
+}
+.aui-content.faq .aui-title{
+	font-size: 0.8rem;
+	color: #000;
+	height: 2.25rem;
+	line-height: 2.25rem;
+	padding-left: 1rem;
+}
+.aui-content .aui-list .aui-collapse-item:last-child .aui-list-item{
+	background-image: none;
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>当前订单</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cur_order.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">订单结算</div>
+		</header>
+		
+			<div class="aui-content aui-content-padded main jiudian">
+			<div class="aui-list">				
+				<div class="aui-list-item-inner">
+	                <div class="aui-list-item-media" style="width: 3rem;">
+	                    <img src="img/touxiang.png" class="aui-img-round aui-list-img-sm" >
+	                </div>
+	                <div class="aui-list-item-title">
+	                    <div class="aui-list-item-text">
+	                    	<p class="jdmc">加载中</p>
+	                    </div>
+	                    <div class="aui-list-item-text" style="text-align: center;">
+	                    	<p id="hotelDe">加载中/p>
+	                    </div>
+	                </div>
+	                <div class="aui-list-item-right jddh">
+	                	<a href="tel://89366245"><img src="img/tel2.png"/></a>
+	                </div>
+	            </div>
+			</div>  
+		</div>
+		
+		<div class="aui-content aui-content-padded main">
+			<div class="aui-list close">
+				<!--<p class="tijiao"><span class="ok"></span>您的订单已成功提交!</p>-->
+				<p class="xiaofei-tip">当前订单已累计消费</p>
+				<p class="xiaofei"><span class="jine">￥加载中</span> 元</p>
+			</div>  
+		</div>
+		<div class="aui-content aui-content-padded main feiyong">
+			<div class="aui-list">				
+				<p class="tit">费用明细</p>
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<span class="order xdsj"></span>
+						下单时间：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="xiadan">
+						加载中
+					</div>
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<span class="order rzsj"></span>
+						入住时间：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="ruzhu">
+						
+					</div>
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<span class="order tfsj"></span>
+						退房时间：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong">
+						<p class="status" id="tuifang">加载中</p>
+					</div>
+				</div>
+				<div class="aui-row" style="text-align: center;margin-top: 0.5rem;color: #FFA200;">
+					<p style="color: #FFA200;" id="more">查看更多详情<span>&gt;</span></p>
+				</div>
+				<div class="aui-row" style="display:none;">
+					<div class="aui-col-xs-6">
+						<span class="order rzsc"></span>
+						入住时长：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="shichang">
+						加载中
+					</div>
+				</div>
+				<div class="aui-row" style="display:none;">
+					<div class="aui-col-xs-6">
+						<span class="order fsdj"></span>
+						分时单价：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="danjia">
+						加载中
+					</div>
+				</div>
+				<div class="aui-row" style="display:none;">
+					<div class="aui-col-xs-6">
+						<span class="order dqfy"></span>
+						当前费用：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="feiyong">
+						加载中
+					</div>
+				</div>
+
+				<div class="aui-row" style="display:none;">
+					<div class="aui-col-xs-6">
+						<span class="order yhfy"></span>
+						优惠费用：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="yhfy">
+						加载中
+					</div>
+				</div>
+				<div class="aui-row" style="display:none;">
+					<div class="aui-col-xs-6">
+						<span class="order sjzf"></span>
+						实际支付：                     
+					</div>
+					<div class="aui-col-xs-6 juzhong" id="sjzf">
+						加载中
+					</div>
+				</div>
+				</div>
+				
+				
+			</div>  
+		</div>
+		
+		<div class="aui-content aui-content-padded main">
+			<div class="aui-list">				
+				<div class="aui-row">
+					<div class="aui-col-xs-6" id="deblock">
+						<div class="btn" onclick="deblocking()">
+							<p><span class="caozuo js"></span>解锁入住</p>
+							<!--<p><span class="caozuo js"></span>临时锁门</p>-->
+						</div>
+					</div>
+					<div class="aui-col-xs-6">
+						<div class="btn" >
+							<p><span class="caozuo kf"></span>客房服务</p>
+						</div>
+					</div>
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-6" id="zf">
+						<div class="btn" onclick="zhifu(queryString('orderId'))">
+							<p><span class="caozuo tf"></span>立即支付</p>
+						</div>
+					</div>
+					<div class="aui-col-xs-6">
+						<div class="btn">
+							<p><span class="caozuo lx"></span>联系客服</p>
+						</div>
+					</div>
+				</div>
+			</div>  
+		</div>
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-dialog.js" ></script>
+
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+
+
+
+			if(queryString('orderId')){
+			 layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/AppOrdersLook/json',{id:queryString('orderId')},function(data){
+	    		layer.closeAll();
+	    		 appOrders=data.data;
+	    		if(data.status=='success'){
+	    			$('.jine').empty().append('￥'+appOrders.amount+'');
+	    			$('.jdmc').empty().append(appOrders.hotel.name);
+	    			$('.aui-list-img-sm').attr('src',appOrders.hotel.img.split(';')[0]);
+	    			$('#hotelDe').empty().append(appOrders.hotelHouse.houseName);
+	    			$('#xiadan').empty().append(appOrders.hotelUser.createTime);
+	    			
+	    			$('#ruzhu').empty().append(appOrders.hotelUser.checkTime ? appOrders.hotelUser.checkTime : '尚未入住');
+
+	    			$('#tuifang').empty().append(appOrders.hotelUser.checkOutTime ? appOrders.hotelUser.checkOutTime : appOrders.hotelUser.checkTime ? '入住中' : '尚未入住');
+	    			$('#shichang').empty().append(appOrders.hotelUser.checkTime ? appOrders.hotelUser.checkTime : '尚未入住');
+	    			$('#danjia').empty().append(appOrders.hotelHouse.hourPrice+'元/h');
+	    			$('#feiyong').empty().append(appOrders.amount);
+	    			$('#youhui').empty().append(appOrders.cardPrice);
+	    			$('#zhifu').empty().append(appOrders.paymentAmount <=0  ? '尚未结算' : appOrders.paymentAmount);
+	    			
+	    			$('#yhfy').empty().append(appOrders.cardPrice);
+	    			$('#sjzf').empty().append(appOrders.paymentAmount);
+
+
+	    			if(appOrders.hotelUser.status==1021||appOrders.hotelUser.status==1023){
+	    				$('#deblock').empty().append('<div class="btn unable" onclick="deblocking()"><p><span class="caozuo js"></span>解锁入住</p></div>');
+	    			}else if(appOrders.hotelUser.status==1022){
+	    				$('#deblock').empty().append('<div class="btn unable" onclick="suomen()"><p><span class="caozuo js"></span>临时锁门</p></div>');
+	    			}
+	    			if(appOrders.status=='1030'){
+	    					$('#zf').empty().append('<div class="btn unable" onclick="checkOut()"><p><span class="caozuo tf"></span>现在退房</p></div>');
+	    			}else if(appOrders.status=='1031'){
+	    				$('#zf').empty().append('<div class="btn" onclick="zhifu(queryString(\'orderId\'))"><p><span class="caozuo tf"></span>立即支付</p></div>');
+	    			}else if(appOrders.status=='1033'){
+	    				$('#deblock').hide();
+	    				$('#zf').hide();
+	    			}
+	    			
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		}
+
+
+		$("#more").on('click',function(){
+			$('.aui-row').show();
+			$(this).parent().hide();
+			
+		})
+		
+		function zhifu(orderId){
+			location.href = 'order_pay.html?orderId='+orderId;
+			//payment('zfb');
+		}
+
+	function suomen(){
+		layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/stepOut/json',{id:appOrders.id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			layer.alert(data.message);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	}
+
+function deblocking(){
+
+			layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/deblocking/json',{id:appOrders.id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			layer.alert(data.message);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		}
+
+
+		function checkOut(){
+			layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/checkOut/json',{id:appOrders.id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			layer.alert(data.message);
+	    			  location.href='order_pay.html?orderId='+queryString('orderId');
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		}
+
+	</script>
+</html>

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>酒店列表</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.range.css"/>
+		<link rel="stylesheet" type="text/css" href="css/hotel_lists.css"/>
+
+	</head>
+	
+	<body>
+		<div class="headfix">
+			<header class="aui-bar aui-bar-nav headtop">
+		        <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		            <span class="aui-iconfont aui-icon-left"></span>
+		        </a>
+		        <div class="aui-title" style="left:2rem; right: 2rem;">
+		            <div class="aui-searchbar" id="search">
+		                <div class="aui-searchbar-input aui-border-radius">
+		                    <i class="aui-iconfont aui-icon-search"></i>
+		                    <input type="search" placeholder="酒店名/地名/关键词" id="search-input">
+		                    <div class="aui-searchbar-clear-btn">
+		                        <i class="aui-iconfont aui-icon-close"></i>
+		                    </div>
+		                </div>
+		                <div class="aui-searchbar-btn" tapmode>取消</div>
+		            </div>
+		        </div>
+		        <a class="aui-pull-right aui-btn">
+		            <img src="img/dingwei2.png"/>
+		        </a>
+		    </header>
+			<div class="aui-content aui-content-padded main">
+				<div class="aui-row">
+					<div class="aui-col-xs-3 menu" id="menuXf">
+						在线选房
+					</div>
+					<div class="aui-col-xs-3 menu" id="menuWz">
+						位置距离
+					</div>
+					<div class="aui-col-xs-3 menu" id="menuJg">
+						价格星级
+					</div>
+					<div class="aui-col-xs-3 menu" id="menuHp">
+						好评优先
+					</div>
+				</div>
+			</div>
+			
+			<!--下拉菜单-->
+			<div class="aui-content" id="auiContent" style="display: none;">
+				<div class="tab-menu xuanfang">
+		        	<div class="aui-row">
+		            <div class="aui-col-xs-3 aui-border-r" id="left">
+		                <ul class="aui-list aui-list-noborder aui-margin-b-0 lefttab" id="leftTab">
+		                    <li data-id="1" class="aui-list-item active">
+		                        <div class="aui-list-item-inner">
+		                            酒店类型
+		                        </div>
+		                    </li>
+		                    <li data-id="2" class="aui-list-item">
+		                        <div class="aui-list-item-inner">
+		          	床型                  
+		                        </div>
+		                    </li>
+		                    <li data-id="3" class="aui-list-item">
+		                        <div class="aui-list-item-inner">
+		                           服务设施
+		                        </div>
+		                    </li>
+		                </ul>
+		            </div>
+		            <div class="aui-col-xs-9" id="right">
+		                <div class="aui-list aui-list-in rightcontent" id="content">
+		                	<ul class="menu-list">
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">公寓</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType" value="公寓" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">钟点房</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType"  value="钟点房" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">高端连锁</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType"  value="高端连锁" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">快捷连锁</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType"  value="快捷连锁" class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">经济型宾馆</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType"  value="经济型宾馆" class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">青年旅社</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelType" value="青年旅社"  class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                	</ul>
+		                	<ul class="menu-list" style="display: none;">
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">大床</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="bedType" value="大床" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">多床</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="bedType"  value="多床" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">单人床</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="bedType"  value="单人床" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">双人床</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="bedType" value="双人床" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                	</ul>
+		                	<ul class="menu-list" style="display: none; " id="fwss"></ul>
+		                </div>
+		        	</div>
+		    		</div>
+		    		<div class="aui-row anniu">
+						<div class="aui-col-xs-6">
+							<div class="btn clear" id="clear">
+								清除
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="btn confirm" onclick="confirm()">
+								确定
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-menu juli" style="display: none;">
+		        	<div class="aui-row">
+		            <div class="aui-col-xs-3 aui-border-r" id="juliLeft">
+		                <ul class="aui-list aui-list-noborder aui-margin-b-0 lefttab" id="julileftTab">
+		                    <li data-id="1" class="aui-list-item active">
+		                        <div class="aui-list-item-inner">
+		                            热门
+		                        </div>
+		                    </li>
+		                    <li data-id="2" class="aui-list-item">
+		                        <div class="aui-list-item-inner">
+		          	直线距离                  
+		                        </div>
+		                    </li>
+		                    <li data-id="3" class="aui-list-item">
+		                        <div class="aui-list-item-inner">
+		                           商业区
+		                        </div>
+		                    </li>
+		                </ul>
+		            </div>
+		            <div class="aui-col-xs-9" id="juliRight">
+		                <div class="aui-list aui-list-in rightcontent" id="juliContent">
+		                	<ul class="menu-list">
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">西安北火车站</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal" value="西安北火车站" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">咸阳国际机场</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal"  value="咸阳国际机场" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">西安火车站</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal"  value="西安火车站" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">高新技术开发区</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal"  value="高新技术开发区" class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">临潼区</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal"  value="临潼区" class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">未央区</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="hotelLocal" value="未央区"  class="aui-checkbox" >
+						                </div>
+						            </label>
+		                		</li>
+		                	</ul>
+		                	<ul class="menu-list" style="display: none;">
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">500米内</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="distance" value="500米内" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">1公里内</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="distance"  value="1公里内" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">2公里内</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="distance"  value="2公里内" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">4公里内</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="distance" value="4公里内" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                	</ul>
+		                	<ul class="menu-list" style="display: none;">
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">钟楼商业圈</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="business" value="钟楼商业区" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">小寨商业圈</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="business"  value="小寨商业圈" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">新城商业圈</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="business"  value="新城商业圈" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                		<li class="aui-list-item">
+		                			<label class="aui-list-item-inner">
+						                <div class="aui-list-item-title">高新商业圈</div>
+						                <div class="aui-list-item-right">
+						                    <input type="checkbox" name="business" value="高新商业圈" class="aui-checkbox">
+						                </div>
+						            </label>
+		                		</li>
+		                	</ul>
+		                </div>
+		        	</div>
+		    		</div>
+		    		<div class="aui-row anniu">
+						<div class="aui-col-xs-6">
+							<div class="btn clear" id="clear">
+								清除
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="btn confirm" onclick="confirm()">
+								确定
+							</div>
+						</div>
+					</div>
+				</div>
+	    		<div class="tab-menu price" style="display: none;">
+	    			<div class="price-xingji">
+						<div class="aui-content aui-content-padded priceC" id="priceC">
+							<div class="aui-list-inner">
+								 <p class="tit">价格：<span id="value-1">￥500以下</span></p>
+								 <div class="aui-row" style="padding: 0 5px;"> 
+								 	<p class="aui-col-xs-6" style="text-align: left;">￥0</p>
+								 	<p class="aui-col-xs-6" style="text-align: right;">￥500以上</p>
+								 </div>
+								 <div class="price-range">
+								 	<input type="hidden" name="price_range" class="single-slider" value="500" />
+								 </div>
+							</div>
+							<div class="aui-list-inner">
+								<p class="tit">星级</p>
+								<div class="xingji">
+									<label class="on">
+									<input class="aui-checkbox" value="2" type="checkbox"  name="star_level" checked="">经济型</label>
+					    			<label><input class="aui-checkbox" value="3" type="checkbox" name="star_level"> 三星/舒适</label>
+					    			<label><input class="aui-checkbox" value="4" type="checkbox" name="star_level"> 四星/高档</label>
+					    			<label><input class="aui-checkbox" value="5" type="checkbox" name="star_level"> 五星/豪华</label>
+								</div>
+							</div>
+							<!--<div class="aui-list-inner">
+								<p class="tit">奢华酒店</p>
+								<div class="shehuajiudian">
+									<label class="clearfix on"><input class="aui-checkbox" type="checkbox" value="6" name="star_level" checked="">
+										<div class="left">
+											<span class="tb jinzuan"></span>
+										</div>
+										<div class="name">
+											<p>金钻酒店</p>
+											<p>超高品质酒店</p>
+										</div>
+									</label>
+					    			<label class="tujia"><input class="aui-checkbox" value="7" type="checkbox" name="star_level"> 
+					    				<div class="left">
+											<span class="tb tujia"></span>
+										</div>
+										<div class="name">
+											<p>途家豪宅</p>
+											<p>高端奢华民宿</p>
+										</div>
+					    			</label>
+								</div>
+							</div>-->
+						</div>
+						<div class="aui-row anniu">
+							<div class="aui-col-xs-6">
+								<div class="btn clear" onclick="clearPricechose()">
+									清除
+								</div>
+							</div>
+							<div class="aui-col-xs-6">
+								<div class="btn confirm" onclick="confirm()">
+									确定
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-menu comment" style="display: none;">
+					<ul class="aui-list">
+						
+							<label class="aui-list-item aui-list-item-inner on">
+								<div class="aui-list-item-title">
+									好评优先
+								</div>
+								<div class="aui-list-item-right">
+									<input type="radio" name="goodCom" id="" class="aui-checkbox" checked="" value="好评优先" />
+								</div>
+							</label>
+							<label class="aui-list-item aui-list-item-inner">
+								<div class="aui-list-item-title">
+									点评数 高~低
+								</div>
+								<div class="aui-list-item-right">
+									<input type="radio" name="goodCom" id="" class="aui-checkbox" value="点评数" />
+								</div>
+							</label>
+							<label class="aui-list-item aui-list-item-inner">
+								<div class="aui-list-item-title">
+									低价优先
+								</div>
+								<div class="aui-list-item-right">
+									<input type="radio" name="goodCom" id="" class="aui-checkbox" value="低价优先" />
+								</div>
+							</label>
+							<label class="aui-list-item aui-list-item-inner">
+								<div class="aui-list-item-title">
+									高价优先
+								</div>
+								<div class="aui-list-item-right">
+									<input type="radio" name="goodCom" id="" class="aui-checkbox" value="高价优先" />
+								</div>
+							</label>
+							<label class="aui-list-item aui-list-item-inner">
+								<div class="aui-list-item-title">
+									距离 近~远
+								</div>
+								<div class="aui-list-item-right">
+									<input type="radio" name="goodCom" id="" class="aui-checkbox" value="距离" />
+								</div>
+							</label>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content aui-content-padded hotel-list">
+			<div class="ad">
+				<img src="img/ad-px.png"/>
+			</div>
+			
+			<div class="list-item">
+				<div class="aui-col-xs-6 left-list" id="leftDiv">
+
+				</div>
+				<div class="aui-col-xs-6 right-list" id="rightDiv">
+					
+				   
+				</div>
+			</div>
+			
+		</div>
+		<div class="aui-mask"></div>
+		<div class="go-top" id="goTop">
+			<img src="img/go-top.png"/>
+		</div>
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="weui/lib/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-dialog.js" ></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.range.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uC0793rpmWrTwO0l5NdD4gpXBPfjk2ri"></script>
+	<script type="text/javascript">
+	
+
+	var params={};
+	if(queryString('s')){
+		params=JSON.parse(queryString('s'));
+		params.priceAndLevel=decodeURIComponent(params.priceAndLevel);
+		params.name=decodeURIComponent(params.destination);
+		params.serchKey=decodeURIComponent(params.keyword);
+
+	}
+
+	var currentLocation;
+	locate(function(o){
+					params.longitude=o.lng;
+					params.latitude=o.lat;
+				
+					currentLocation=o;
+					});
+			
+			function contentShow(){
+				if($('#auiContent').css('display')=='none'){
+					$('#auiContent').show();
+				}
+			}
+			
+			$menu = $(".main .menu");
+			$tabMenu = $("#auiContent .tab-menu");
+
+			$menu.on('click',function(){
+				$('.aui-mask').addClass('aui-mask-in');
+				contentShow();
+				$this = $(this);
+				$index = $this.index();
+				$menu.removeClass('active');
+				$this.addClass('active');
+				$tabMenu.css('display','none');
+				$tabMenu.eq($index).css('display','block');
+			});
+			
+			$('input[name="goodCom"]').change(function(e){
+				$('.aui-mask').removeClass('aui-mask-in');
+				$("#auiContent").hide();
+				$menu.removeClass('active');
+				$('#menuHp').text($(this).val());
+				params.goodCom = getInputValue('goodCom');
+				pageIndex=1;
+				$('#leftDiv').empty();
+				$('#rightDiv').empty();
+				if(params.goodCom=='距离'){
+						
+
+						onLoadMore();
+				}else{
+					onLoadMore();
+				}
+			
+			});
+			
+			$('.aui-mask').on('click',function(){
+				$('.aui-mask').removeClass('aui-mask-in');
+				$("#auiContent").hide();
+				$menu.removeClass('active');
+			})
+//			$("#menuXf").on("click",function(){
+//				$("#auiContent").toggle();
+//				$(".aui-mask").toggleClass("aui-mask-in");
+//			})
+//			
+//			$("#menuWz").on("click",function(){
+//				$("#auiContent").hide();
+//				
+//				//按照距离排序
+//			})
+//			
+//			$("#menuJg").on("click",function(){
+//				$("#auiContent").hide();
+//				
+//				//按照价格排序
+//			})
+//			
+//			$("#menuHp").on("click",function(){
+//				$("#auiContent").hide();
+//				
+//				//按照好评排序
+//			})
+			
+		//在线选房
+			var $litab = $('#julileftTab li');
+			var $itemlist = $('#juliContent .menu-list');
+						
+			$litab.click(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$litab.removeClass('active');
+				$this.addClass('active');
+				$itemlist.css('display','none');
+				$itemlist.eq($t).css('display','block');
+			});
+			
+			$(".aui-checkbox").on('click',function(){
+				$(this).parent().prev().toggleClass("active");
+			});
+		
+		//位置距离
+		    var $li = $('#leftTab li');
+			var $item = $('#content .menu-list');
+						
+			$li.click(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass('active');
+				$this.addClass('active');
+				$item.css('display','none');
+				$item.eq($t).css('display','block');
+			});
+		
+		
+		//酒店价格
+		var widthRange = $('body').width()*0.80;
+		$('.price-range .single-slider').jRange({ 
+	        from: 0, //滑动范围的最小值，数字，如0 
+	        to: 600, //滑动范围的最大值，数字，如100 
+	        step: 50,//步长值，每次滑动大小 
+	        scale: [0, 600],//滑动条下方的尺度标签，数组类型，如[0,50,100] 
+	        format: '%s',//数值格式 
+	        width: widthRange, //滑动条宽度 
+	        showLabels: false,// 是否显示滑动条下方的尺寸标签 
+	        showScale: false, //是否显示滑块上方的数值标签 
+	        isRange: true //是否显示区间
+	    }); 
+	    
+		$(".pointer").on("touchend",function (e) {
+			var priceRange = $(".single-slider").val();
+//			console.log(priceRange)
+			if(parseInt(priceRange.split(",",2)[0])>0){
+				$("#value-1").html("￥"+priceRange.split(",",2)[0]+"-"+"￥"+priceRange.split(",",2)[1]);
+			}else{
+				$("#value-1").html("￥"+priceRange.split(",",2)[1]+"以下");
+			}	
+	    });	
+		
+		//酒店星级选择
+	   $('#priceC label').each(function(){
+	   		var isClick = true;
+			$(this).on('touchstart', function(e){  
+			      isClick = true;  
+			});  
+			$(this).on('touchmove', function(e){  
+			      isClick = false;  
+			});  
+			$(this).on('touchend', function(e){  
+			      if (isClick == true){  
+			        console.log("触发点击事件");
+			        $(this).toggleClass('on');
+			      }
+			});
+	   });
+	   
+	    $('.comment label').on('click',function(){
+	    	$('.comment label').removeClass('on');
+	    	$(this).addClass('on');
+	    });
+		
+	
+		function confirm(){
+			$('.aui-mask.aui-mask-in').attr('class','aui-mask');
+				pageIndex=1;
+				$('#leftDiv').empty();
+				$('#rightDiv').empty();
+					params.priceAndLevel=getInputValue('price_range');
+					params.starLevel=getInputValue('star_level');
+			onLoadMore();
+		
+			
+			$('#auiContent').hide();
+		//	$(".aui-mask.aui-mask-in").removeClass("aui-mask-in");
+		}
+		
+		
+		$("#clear").on('click',function(){
+			$(".aui-checkbox").attr("checked",false);
+			$("#right .aui-list-item-title").removeClass("active");
+		})
+		
+		
+		onLoadMore =function(){
+				$('#emp').remove();
+				params.pageIndex=pageIndex;
+				params.pageSize=8;
+				if(getInputValue('hotelType')!=''){
+					params.hotelType=getInputValue('hotelType');
+				}
+				if(getInputValue('bedType')!=''){
+					params.bedType=getInputValue('bedType');
+				}
+				if(getInputValue('hotelFacility')!=''){
+					params.hotelFacility=getInputValue('hotelFacility');
+				}
+				console.log(JSON.stringify(params));
+				layer.load(2,{offset:['50%','50%']});
+				base.jsonPost('/app/hotel/list/app/json', params,function(data){
+					   		layer.closeAll();
+
+			   		if(!data.data){
+			   			$('.list-item').append('<span  id="emp"style="text-align:center;">没有找到酒店哦！</span>');
+			   			return;
+			   		}
+
+					if(data.status=='success'){
+							var leftHtml='',rightHtml='';
+							$.each(data.data,function(i,o){
+								if(i%2==0){
+									leftHtml+='<div class="aui-card-list">';
+									if(i==0){
+										leftHtml+='<div class="aui-card-list-content first">';
+									}else{
+										leftHtml+='<div class="aui-card-list-content ">';
+									}
+									leftHtml+='<img src="'+o.img.split(';')[0]+'">';
+									leftHtml+=' </div>';
+									leftHtml+='  <div class="aui-list">';
+									leftHtml+='<div class="aui-list-item-inner">';
+									leftHtml+='<div class="aui-list-item-text">';
+									leftHtml+='<div class="aui-list-item-title">'+o.name+'</div>';
+									leftHtml+='  <div class="aui-list-item-right grade">'+o.score+'分</div>';
+									leftHtml+=' </div></div>';
+									leftHtml+='    <div class="aui-list-item-inner">';
+									leftHtml+='	<p>距您'+parseInt(new BMap.Map().getDistance(
+       														 new BMap.Point(o.longitude, o.latitude), currentLocation)) +'m...</p>';
+									leftHtml+='	</div>';
+							/*		leftHtml+='<div class="aui-list-item-inner biaoqian">';
+									leftHtml+='<div class="bq">免费早餐</div>';
+									leftHtml+='<div class="bq">新人立减</div>';
+									leftHtml+='	</div>';*/
+									leftHtml+='<div class="aui-list-item-inner">';
+									leftHtml+='<div class="aui-list-item-text">';
+									leftHtml+='<div class="aui-list-item-title new"></div>';
+									//最新预订1小时前
+									leftHtml+='<div class="aui-list-item-right price"><span>￥'+o.avgPrice+'</span>起</div>';
+									leftHtml+=' </div>';
+									leftHtml+='</div>';
+									leftHtml+='<div class="aui-list-item-inner qiangding">';
+									leftHtml+='<a href="hotel_details.html?hotelId='+o.id+'">立即抢订</a>';
+									leftHtml+='</div></div></div>';
+								}else{
+									rightHtml+='<div class="aui-card-list">';
+									rightHtml+='   <div class="aui-card-list-content">';
+									rightHtml+='  <img src="'+o.img.split(';')[0]+'" /> </div>';
+									rightHtml+=' <div class="aui-list">';
+									rightHtml+='<div class="aui-list-item-inner">';
+									rightHtml+='<div class="aui-list-item-text">';
+									rightHtml+=' <div class="aui-list-item-title">'+o.name+'</div>';
+									rightHtml+='  <div class="aui-list-item-right grade">'+o.score+'分</div>';
+									rightHtml+='   </div>   </div>';
+									rightHtml+='<div class="aui-list-item-inner">';
+									rightHtml+='	<p>距您'+parseInt(new BMap.Map().getDistance(
+       														 new BMap.Point(o.longitude, o.latitude), currentLocation)) +'m...</p>';
+									rightHtml+='</div>';
+									rightHtml+='	<div class="aui-list-item-inner biaoqian">';
+								//	rightHtml+='<div class="bq">免费早餐</div>';
+								//	rightHtml+='<div class="bq">新人立减</div></div>';
+									rightHtml+='	<div class="aui-list-item-inner">';
+									rightHtml+='<div class="aui-list-item-text">';
+									rightHtml+='  <div class="aui-list-item-title new"></div>';
+									//最新预订1小时前
+									rightHtml+=' <div class="aui-list-item-right price"><span>￥'+o.avgPrice+'</span>起</div>';
+									rightHtml+='  </div>  </div>';
+									rightHtml+='	<div class="aui-list-item-inner qiangding">';
+									rightHtml+='<a href="hotel_details.html?hotelId='+o.id+'">立即抢订</a>	</div> </div> </div>';
+								}
+								
+							});
+							$('#leftDiv').append(leftHtml);
+							$('#rightDiv').append(rightHtml);
+							pageIndex++;
+	    				loadComplete(data.page.hasNext);
+	    				var html='';
+	    				$.each(data.queryBean,function(i,o){
+	    					if(o.level==1){
+		    					html+='<li class="aui-list-item">';
+		    					html+='<div class="aui-list-item-inner">';
+		    					html+='  <div class="aui-list-item-title">'+o.name+'</div>';
+		    					html+='  <div class="aui-list-item-right">';
+		    					html+=' <input type="checkbox" class="aui-checkbox" name="hotelFacility" value="'+o.id+'"> </div> </div>	</li>';
+	    					}
+	    				});
+
+	                	if($('#fwss').html()==''){
+	                		$('#fwss').empty().append(html);	
+	                	}
+	    				
+					}
+
+				});
+		}
+
+
+			onLoadMore();
+			
+			
+	//  返回顶部
+	    
+	    $(window).scroll(function(){
+			if($(window).scrollTop()>300){
+				$("#goTop").css('display','block');
+				$("#goTop").on('click',function(){
+					$(window).scrollTop(0);
+				});
+			}else{
+				$("#goTop").css('display','none');
+			}
+		});
+
+
+
+		  function handleLocateError(error) {
+    var msg = "";
+    switch(error.code) {
+        case 0:
+          msg = "获取位置信息出错！";
+          break;
+        case 1:
+          msg = "您设置了阻止该页面获取位置信息！";
+          break;
+        case 2:
+          msg = "浏览器无法确定您的位置！";
+          break;
+        case 3:
+          msg = "获取位置信息超时！";
+          break;
+    }
+
+   if (msg) {
+      layer.closeAll();
+      showMsg(msg);
+   }
+}
+
+
+function geoLocate(success) {
+   if (!"geolocation" in navigator) {
+      showMsg("您的浏览器不支持定位！");
+      return;
+   }
+   
+   navigator.geolocation.getCurrentPosition(success, handleLocateError, {
+      maximumAge : 60000,
+      timeout : 50000,
+      enableHighAccuracy : true
+   });
+}
+
+
+function covertPosition(lng, lat, callback) {
+   var convertor = new BMap.Convertor();
+       convertor.translate([new BMap.Point(lng, lat)], 1, 5,
+              callback && callback || function() {});
+}
+
+
+function locateCallback(pos, success, error) {
+   var point = new BMap.Point(pos.coords.longitude, pos.coords.latitude);
+   covertPosition(point.lng, point.lat, function(data) {
+      if (data.status == 0) {
+          success && success(data.points[0]);
+      }
+      else {
+         error && error();
+         base.debug(data);
+      }
+   });
+}
+
+
+function locate(onSuccess) {
+   geoLocate(function(pos) {
+      locateCallback(pos, onSuccess);
+   });
+}
+ 
+	</script>
+</html>

@@ -1,0 +1,75 @@
+body{
+    background: #ffffff;
+}
+.aui-btn.aui-btn-warning.aui-btn-block{
+    margin-top: 3rem;
+    font-size: 0.85rem;
+}
+.bgbanner{
+    background: url(../img/info-bg.png);
+    height: 8.7rem;;
+    width:100%;
+    background-size:100% 100%;
+    position: relative;
+    text-align: center;
+}
+.bgbanner img{
+    display: inline;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
+.bgbanner p{
+ position: relative;
+    top: 1rem;
+}
+.bgbanner span{
+    color: #fff;
+}
+.aui-dot{
+    width: 5px;
+    height: 5px;
+    left: 0px;
+}
+.bgbanner .bq1{
+     position: absolute;
+     right: 0px;
+     top: 2rem;
+    width: 3rem;
+    background-color: rgba(0,0,0,0.5);
+    color: #EFBB1B;
+    padding: 4px;
+    border-radius: 5px;
+ }
+.bgbanner .bq2{
+    position: absolute;
+    right: 0px;
+    top: 4rem;
+    width: 3rem;
+    background-color: rgba(0,0,0,0.5);
+    color: #EFBB1B;
+    padding: 4px;
+    border-radius: 5px;
+}
+.bgbanner .bq2 .yq{
+    background: #CB15B8;
+}
+.aui-row{
+    color:#fff;
+    text-align: center;
+    position: relative;
+    bottom: -2.9rem;
+}
+.aui-row .aui-col-xs-4{
+    border-right: 1px solid #494542;
+    font-size: 2px;
+    background-color: rgba(0,0,0,0.5);
+}
+.aui-row .lc{
+    font-size: 2px;
+    background-color: rgba(0,0,0,0.5);
+}
+.aui-list-header .dd{
+    background-color: #F0EFF7
+}
+

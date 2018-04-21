@@ -1,0 +1,51 @@
+body{
+	background: #fff;
+}
+.headtop{
+	background: #ffd13f;
+}
+.main{
+	margin:0;
+    padding: 0 0.85rem;
+    background: #fff;
+}
+.main .icon{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: -5px;
+	margin-right: 8px;
+}
+/*.main .icon.yue{
+	background: url(../img/yue.png) no-repeat center;
+	background-size: cover;
+}*/
+.main .icon.Balance{
+	background: url(../img/rmb.png) no-repeat center;
+	background-size: cover;
+}
+.main .icon.zhifu{
+	background: url(../img/zhifufangshi.png) no-repeat center;
+	background-size: cover;
+}
+
+.main .icon.youhuiquan{
+	background: url(../img/youhuiquan.png) no-repeat center;
+	background-size: cover;
+}
+.main .icon.fapiao{
+	background: url(../img/fapiao.png) no-repeat center;
+	background-size: cover;
+}
+.main .icon.presents{
+	background: url(../img/presents.png) no-repeat center;
+	background-size: cover;
+}
+.main .aui-list-item-right{
+	font-size: 14px;
+	color: #757575;
+}
+.main .aui-list-item{
+	padding-left: 0.5rem;
+}
+

@@ -1,0 +1,48 @@
+.aui-content .aui-list{
+	margin: 0.75rem 0.75rem 0;
+	height: 7.3rem;
+}
+.aui-content .aui-list.green{
+	background: url(../img/quan-hotel-3.png) no-repeat center;
+	background-size: 100%;
+}
+.aui-content .aui-list.purple{
+	background: url(../img/quan-hotel-2.png) no-repeat center;
+	background-size: 100%;
+}
+.aui-content .aui-list.blue{
+	background: url(../img/quan-hotel-1.png) no-repeat center;
+	background-size: 100%;
+}
+.aui-row .aui-col-xs-6 img.hotel-img{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	margin: 0.75rem 0 0.3rem 1.5rem;
+}
+.aui-row .aui-col-xs-6 .aui-list-item-title{
+	padding-left: 0.75rem;
+	font-size: 0.7rem;
+	color: #fff;
+}
+.aui-row .aui-col-xs-6.right{
+	padding-right: 1rem;
+    color: #fff;
+    padding-left: 20%;
+    text-align: center;
+}
+.aui-row .aui-col-xs-6.right .money{
+	font-size: 1.75rem;
+	margin-top: 0.75rem;
+	height: 2.2rem;
+}
+.aui-row .aui-col-xs-6.right .tip{
+	font-size: 0.55rem;
+}
+.aui-list .coupon-des{
+	padding: 0.75rem;
+}
+.aui-list .coupon-des p{
+	color: #666;
+	font-size: 0.55rem;
+}

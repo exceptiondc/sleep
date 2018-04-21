@@ -1,0 +1,75 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/system/user/modifiypwd/save" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+			<div class="form-group">
+				<label class="control-label col-xs-5 col-sm-3 no-padding-right" for="oldpassword" >原始密码*</label>
+				<div class="col-xs-4 col-sm-4">
+					<div class="clearfix">
+						<input type="text" id="oldpassword" name="oldpassword" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+					</div><div class="help-block" for="oldpassword"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-5 col-sm-3 no-padding-right" for="newpwd" >新密码*</label>
+				<div class="col-xs-4 col-sm-4">
+					<div class="clearfix">
+						<input type="password" id='password' name="newpwd" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+					</div><div class="help-block" for="newpwd"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-5 col-sm-3 no-padding-right" for="renewpwd" >重复新密码*</label>
+				<div class="col-xs-4 col-sm-4">
+					<div class="clearfix">
+						<input type="password" id="repassword" name="renewpwd" datatype="*" nullmsg="不能为空" errormsg="不能为空！" autocomplete="off" class="layui-input">
+					</div><div class="help-block" for="renewpwd"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/system/syssysparam/update/kefuphone');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

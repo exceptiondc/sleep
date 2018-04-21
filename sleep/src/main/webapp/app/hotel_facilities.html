@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>酒店设施</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/hotel_facilities.css"/>
+	</head>
+	
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">希尔顿酒店</div>
+		</header>
+		<div class="aui-content aui-content-padded main">
+			<div class="hotel_des">
+				希尔顿酒店以“微笑服务”为理念，以打造“宾至如归”的奢华舒适体验为目标，遍及90个国家和地区的 于4000家酒店 ，包括 希尔顿酒店，华尔道夫酒店，康莱德酒店
+希尔顿逸林和希尔顿花园酒店等10大品牌（后台上传文章，如果有图片，图片展示，如果没有图片，文字展示）
+			</div>
+		</div>
+		<div class="aui-content aui-content-padded main" id="fuwu">
+			<div class="tit">
+				服务设施
+			</div>
+			<!-- <div class="aui-list wifi">
+				<div class="faci-tit">
+					<span></span>网络
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						客房WiFi免费
+					</div>
+					<div class="aui-col-xs-4">
+						客房WiFi免费
+					</div>
+					<div class="aui-col-xs-4">
+						客房WiFi免费
+					</div>
+					<div class="aui-col-xs-4">
+						客房WiFi免费
+					</div>					
+				</div>
+			</div>
+			<div class="aui-list traffic">
+				<div class="faci-tit">
+					<span></span>交通服务
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						接机服务
+					</div>
+					<div class="aui-col-xs-4">
+						交车服务
+					</div>
+					<div class="aui-col-xs-4">
+						
+					</div>
+				</div>
+			</div>
+			<div class="aui-list reception">
+				<div class="faci-tit">
+					<span></span>前台服务
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						行李寄存
+					</div>
+					<div class="aui-col-xs-4">
+						24小时前台
+					</div>
+					<div class="aui-col-xs-4">
+						免费旅游交通图
+					</div>
+					<div class="aui-col-xs-4">
+						旅游票务
+					</div>
+					<div class="aui-col-xs-4">
+						叫醒服务
+					</div>
+				</div>
+			</div>
+			<div class="aui-list business">
+				<div class="faci-tit">
+					<span></span>商务服务
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						行李寄存
+					</div>
+					<div class="aui-col-xs-4">
+						24小时前台
+					</div>
+					<div class="aui-col-xs-4">
+						免费旅游交通图
+					</div>
+					<div class="aui-col-xs-4">
+						旅游票务
+					</div>
+					<div class="aui-col-xs-4">
+						叫醒服务
+					</div>
+				</div>
+			</div>
+			<div class="aui-list offsite">
+				<div class="faci-tit">
+					<span></span>通用设施
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						暖气
+					</div>
+					<div class="aui-col-xs-4">
+						电梯
+					</div>
+					<div class="aui-col-xs-4">
+						非经营性休息区
+					</div>
+					
+				</div>
+			</div> -->
+		</div>
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-dialog.js" ></script>
+
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		if(queryString('hotelId')){
+			 layer.load(2,{offset:['50%','50%']});
+			base.jsonPost('/app/hotel/look/app/json',{id:queryString('hotelId')},function(data){
+				layer.closeAll();
+				if(data.status=='success'){
+					hotel=data.data;
+					$('.aui-title').empty().append(hotel.name);
+					$('.hotel_des').empty().append(hotel.descr);
+
+					var par=new Array();
+
+					$.each(hotel.hotelFacilities,function(i,o){
+
+						if(par.length==0){
+							var child=new Array();
+							for(var z=0;z<hotel.hotelFacilities.length;z++){
+
+									
+									if(hotel.hotelFacilities[z].parentId==o.parentId){
+						
+										child.push(hotel.hotelFacilities[z]);
+									}
+							}
+								o.child=child;
+							par.push(o);
+							return true;
+						}else{
+								for(var j=0;j<par.length;j++){
+									if(par[j].parentId==o.parentId){
+											return true;
+										}
+								}
+							var child=new Array();
+								for(var z=0;z<hotel.hotelFacilities.length;z++){
+
+									
+									if(hotel.hotelFacilities[z].parentId==o.parentId){
+						
+										child.push(hotel.hotelFacilities[z]);
+								    }
+								}
+							o.child=child;
+							par.push(o);
+						}
+					});
+						var html='';
+						$.each(par,function(i,o){
+								html+='<div class="aui-list">';
+								html+='<div class="faci-tit"><span><img src="'+o.img+'"/></span>'+o.parentName+'';
+								html+='	</div><div class="aui-row">';
+								
+
+								$.each(o.child,function(j,k){
+									html+='<div class="aui-col-xs-4">'+k.name+'</div>';
+								})
+								html+='</div></div>';
+								
+				
+						});
+						$('#fuwu').append(html);
+				}
+			});
+		}
+	</script>
+</html>

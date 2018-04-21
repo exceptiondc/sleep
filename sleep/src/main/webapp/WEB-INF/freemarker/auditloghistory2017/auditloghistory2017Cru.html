@@ -1,0 +1,119 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/auditloghistory2017/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="operationType" >操作类型</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="operationType" class="col-xs-12 col-sm-6" id="operationType" value="${(returnDatas.data.operationType)!''}"  type="text" />
+					</div><div class="help-block" for="operationType"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="operatorName" >操作人姓名</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="operatorName" class="col-xs-12 col-sm-6" id="operatorName" value="${(returnDatas.data.operatorName)!''}"  type="text" />
+					</div><div class="help-block" for="operatorName"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="preValue" >旧值</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="preValue" class="col-xs-12 col-sm-6" id="preValue" value="${(returnDatas.data.preValue)!''}"  type="text" />
+					</div><div class="help-block" for="preValue"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="curValue" >新值</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="curValue" class="col-xs-12 col-sm-6" id="curValue" value="${(returnDatas.data.curValue)!''}"  type="text" />
+					</div><div class="help-block" for="curValue"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+					<!--日期型-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="operationTime" >操作时间</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+					 <div class="input-group col-xs-12 col-sm-6">
+						<input name="operationTime"  class="form-control date-picker"  id="operationTime" readonly="readonly" value="${(returnDatas.data.operationTime)!''}"  type="text" />
+					        <span class="input-group-addon">
+								<i class="fa fa-calendar bigger-110"></i>
+							</span>
+					   </div>
+					
+					</div><div class="help-block" for="operationTime"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="operationClass" >操作类</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="operationClass" class="col-xs-12 col-sm-6" id="operationClass" value="${(returnDatas.data.operationClass)!''}"  type="text" />
+					</div><div class="help-block" for="operationClass"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="operationClassID" >记录ID</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="operationClassID" class="col-xs-12 col-sm-6" id="operationClassID" value="${(returnDatas.data.operationClassID)!''}"  type="text" />
+					</div><div class="help-block" for="operationClassID"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/auditloghistory2017/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

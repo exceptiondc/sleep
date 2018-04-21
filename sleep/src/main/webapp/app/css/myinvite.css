@@ -1,0 +1,57 @@
+.aui-content{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	margin: 0.5rem 0;
+}
+.aui-content .aui-list{
+	background-image: none;
+}
+.aui-content .aui-list .aui-list-item:last-child{
+	background-image: none;
+}
+.aui-content .aui-list-item p{
+	height: 2.4rem;
+	line-height: 2.4rem;
+	font-size: 0.7rem;
+	color: #333;
+	text-align: center;
+}
+.aui-list .aui-list-item-title{
+	font-size: 0.7rem;
+	color: #333;
+}
+.aui-list-item-title.tit{
+	height: 2.4rem;
+	line-height: 2.4rem;
+	padding-left: 0.75rem;
+	font-size: 0.7rem;
+	color: #333;
+}
+.aui-content.record{
+	margin-top: 0;
+}
+.aui-content.record .aui-list{
+	padding: 0 0.75rem;
+}
+.aui-content .aui-list-item p:last-child{
+	text-align: right;
+}
+.aui-content .aui-list-item img{
+	width: 1.6rem;
+	height: 1.6rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0.4rem;
+}
+.invite-friends{
+	position: fixed;
+	bottom: 1rem;
+	width: 80%;
+	left: 50%;
+	margin-left: -40%;		
+}
+.invite-friends .aui-btn.aui-btn-block{
+	font-size: 0.75rem;
+	line-height: 2.25rem;
+}

@@ -1,0 +1,76 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/userorg/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="userId" >用户编号</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="userId" class="col-xs-12 col-sm-6" id="userId" value="${(returnDatas.data.userId)!''}"  type="text" />
+					</div><div class="help-block" for="userId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="orgId" >机构编号</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="orgId" class="col-xs-12 col-sm-6" id="orgId" value="${(returnDatas.data.orgId)!''}"  type="text" />
+					</div><div class="help-block" for="orgId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="manager" >是否主管,是/否</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="manager" class="col-xs-12 col-sm-6" id="manager" value="${(returnDatas.data.manager)!''}"  type="text" />
+					</div><div class="help-block" for="manager"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/userorg/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

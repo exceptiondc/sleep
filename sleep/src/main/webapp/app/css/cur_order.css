@@ -1,0 +1,158 @@
+.headtop{
+	background: #ffd13f;
+}
+.main{
+	margin: 0.75rem 0;
+}
+.main .aui-list{
+	padding: 0.75rem;
+	text-align: center;
+	background-image: none;
+}
+.main .aui-list .tijiao{
+	font-size: 18px;
+	color: #ffa200;
+}
+.main .aui-list .tijiao .ok{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background: url(../img/ok.png) no-repeat center;
+	background-size: 60%;
+	vertical-align: -11px;
+}
+.main .aui-list .daoda{
+	font-size: 14px;
+	color: #FF0000;
+}
+.main .aui-list .xiaofei{
+	font-size: 16px;
+	color: #333;
+}
+.main .aui-list .xiaofei .jine{
+	font-size: 20px;
+	color: #ff9800;
+}
+.aui-list-item-right.jddh{
+	width: 1.5rem;
+	height: 1.5rem;
+}
+.aui-list-item-text .jdmc{
+	font-size: 16px;
+	color: #333;
+}
+.main.jiudian .aui-list{
+	padding: 0.3rem 0.75rem;
+}
+.main.feiyong .aui-list{
+	text-align: left;
+}
+.main.feiyong .order{
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	vertical-align: middle;
+	margin:0 0.25rem 0 0.75rem;
+}
+.main.feiyong .order.xdsj{
+	background: url(../img/xdsj.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.rzsj{
+	background: url(../img/rzsj.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.tfsj{
+	background: url(../img/tfsj.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.rzsc{
+	background: url(../img/rzsc.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.fsdj{
+	background: url(../img/fsdj.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.dqfy{
+	background: url(../img/dqfy.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.yhfy{
+	background: url(../img/yhfy.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .order.sjzf{
+	background: url(../img/sjzf.png) no-repeat center;
+	background-size: contain;
+}
+.main.feiyong .tit{
+	font-size: 16px;
+	color: #333;
+	height: 1.5rem;
+}
+.main.feiyong .aui-row{
+	font-size: 14px;
+	height: 1.2rem;
+}
+.main.feiyong .aui-row .juzhong{
+	text-align: center;
+}
+.main.feiyong .aui-row .juzhong .status{
+	color: #54c748;
+}
+.main .aui-row .btn{
+	padding: 4px 1.3rem;
+	background: #ffd75b;
+	display: inline-flex;
+	color: #fff;
+	font-size: 0.7rem;	
+}
+.main .aui-row:nth-child(1) .btn{
+	margin-bottom: 10px;
+}
+.main .aui-row .btn.unable{
+	background: #aaa;
+}
+.main .aui-row .btn p{
+	color: #fff;
+	font-size: 0.7rem;	
+}
+.main .aui-row .btn .caozuo{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	vertical-align: -10px;
+}
+.main .aui-row .btn .caozuo.js{
+	background: url(../img/order-suo.png) no-repeat center;
+	background-size: 43%;
+}
+.main .aui-row .btn .caozuo.kf{
+	background: url(../img/order-suo.png) no-repeat center;
+	background-size: 43%;
+}
+.main .aui-row .btn .caozuo.tf{
+	background: url(../img/order-tui.png) no-repeat center;
+	background-size: 52%;
+}
+.main .aui-row .btn .caozuo.lx{
+	background: url(../img/order-kefu.png) no-repeat center;
+	background-size: 52%;
+}
+
+
+
+/*订单结算页面*/
+
+.close .xiaofei-tip{
+	font-size: 0.8rem;
+	color: #333;
+}
+.main .aui-list.close p.xiaofei{
+	font-size: 0.8rem;
+	color: #FFA200;
+}
+.main .aui-list.close p.xiaofei .jine{
+	font-size: 2rem;
+}

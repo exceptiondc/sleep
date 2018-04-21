@@ -1,0 +1,82 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+
+function submitContent(){
+	var content = $("#content").val();
+	console.log(content);
+	jQuery.post("${ctx}/system/sms/sendMessage/json",{ content: content},
+			function(_json) {
+				if (_json.status == "success") {
+					myalert("发送成功");
+					return false;
+				} else {
+					myalert("发送失败");
+					return false;
+				}
+	});
+}
+
+
+jQuery(document).ready(function(){
+
+    $('#uploadFile').on('click',function(e){
+        $('#file').click();
+
+    });
+    $('#file').on('change',function(e){
+        $.ajaxFileUpload({
+            url: '/yingpu/adminFileUpload',
+            type: 'post',
+            secureuri: false, //一般设置为false
+            fileElementId: 'file', // 上传文件的id、name属性名
+            dataType: 'application/json', //返回值类型，一般设置为json、application/json
+            success: function(result){
+                $('#fileUrl').show();
+                jQuery("#fileUrl").val(result);
+                $('#file').hide();
+                $('#uploadFile').hide();
+
+            }
+
+        });
+    });
+
+
+});
+	
+	
+//-->
+</SCRIPT>
+
+<div class="row">
+	<div class="col-xs-12">
+        <div>
+			<h3><a style="padding-top: 0px;">短信内容：</a>
+			<br>
+			<textarea id="content" style="height: 200px;width: 20%;margin-left: 5.9%;"></textarea></h3>
+			<br>
+		</div>
+		<div class="space-2"></div>
+		<div class="form-group" id="uploadDiv" >
+			<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="file" >excel文件</label>
+			<div class="col-xs-12 col-sm-9">
+				<div class="clearfix">
+					<input name="file" class="col-xs-12 col-sm-6" id="file" style="display: none" type="file" />
+					<input name="fileUrl" class="col-xs-12 col-sm-6" id="fileUrl" style="display: none" type="text" />
+				</div>
+				<span id="uploadFile" class="btn btn-mini btn-inverse"   style="float: left; margin-left: 1%;margin-top: 5px;">
+						上传文件
+					</span><div class="help-block" for="file"></div>
+			</div>
+		</div>
+		<div class="wizard-actions">
+		
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="submitContent()" style="float: left; margin-left: 5.5%;">
+				发送
+			</button>
+		</div>
+	</div>
+</div>
+
+</#escape>

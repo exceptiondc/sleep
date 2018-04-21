@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head >
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+	<!--<style type="text/css">-->
+	<!--img{-->
+		 <!--display: block;-->
+         <!--margin: 0 0;-->
+         <!--data-height:435;-->
+         <!--width: 100%;-->
+	<!--}-->
+	<!--</style>-->
+		<script type="text/javascript" src="jquery-1.4.min.js"></script>
+		<script type="text/javascript">
+            var data = {} ;
+
+//            window.onbeforeonload(ss());
+
+            jQuery(document).ready(function(){
+              var userId = get_url_param("userId") ;
+              if(null!=userId){
+                  data = {userId:userId};
+			  }
+                $.post('http://wap.yingpuwealth.com/yingpu/app/appuser/getInfo/json', data, function(result){
+					console.log(result) ;
+                    $('#protocolTemplate').html(result.data.protocolTemplate) ;
+                    if(undefined!=result.data.realName ){
+                        $('#realName').html(result.data.realName) ;
+					}
+                    if(undefined!=result.data.idCard){
+                        $('#idCard').html(result.data.idCard) ;
+					}
+                });
+//				console.log($('#template').val()) ;
+//                $('#protocolTemplate').html($('#template').val()) ;
+            }) ;
+
+            function get_url_param(name){
+                var reg = new RegExp( "(^|&)" + name + "=([^&]*)(&|$)", "i" );
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+
+
+		</script>
+	</head>
+	<body>
+		<div style="height:100%;">
+			<img src="CCI20170718.png" style="position:absolute; top:10px; left:240px; width:100px; height:100px; z-index: 999" alt="xxx" />
+			甲方（出借人）：	<span id="realName"></span>
+			<br/>
+			证件类型：	身份证
+			<br/>
+			证件号码：	<span id="idCard"></span>
+			<br/>
+			乙方（服务方）：上海营夏财富投资管理有限公司
+			<br/>
+			地址：上海市上海市浦东新区龙阳路2277号602室
+		</div>
+		<div id="protocolTemplate" style="height:100%;">
+			<input type="hidden" id="template"/>
+		</div>
+	</body>
+</html>

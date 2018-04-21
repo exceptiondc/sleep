@@ -1,0 +1,146 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/fwloghistory2017/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+					<!--日期型-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="startDate" >访问时间</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+					 <div class="input-group col-xs-12 col-sm-6">
+						<input name="startDate"  class="form-control date-picker"  id="startDate" readonly="readonly" value="${(returnDatas.data.startDate)!''}"  type="text" />
+					        <span class="input-group-addon">
+								<i class="fa fa-calendar bigger-110"></i>
+							</span>
+					   </div>
+					
+					</div><div class="help-block" for="startDate"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="strDate" >访问时间(毫秒)</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="strDate" class="col-xs-12 col-sm-6" id="strDate" value="${(returnDatas.data.strDate)!''}"  type="text" />
+					</div><div class="help-block" for="strDate"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="tomcat" >Tomcat</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="tomcat" class="col-xs-12 col-sm-6" id="tomcat" value="${(returnDatas.data.tomcat)!''}"  type="text" />
+					</div><div class="help-block" for="tomcat"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="userCode" >登陆账号</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="userCode" class="col-xs-12 col-sm-6" id="userCode" value="${(returnDatas.data.userCode)!''}"  type="text" />
+					</div><div class="help-block" for="userCode"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="userName" >姓名</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="userName" class="col-xs-12 col-sm-6" id="userName" value="${(returnDatas.data.userName)!''}"  type="text" />
+					</div><div class="help-block" for="userName"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sessionId" >sessionId</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="sessionId" class="col-xs-12 col-sm-6" id="sessionId" value="${(returnDatas.data.sessionId)!''}"  type="text" />
+					</div><div class="help-block" for="sessionId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="ip" >IP</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="ip" class="col-xs-12 col-sm-6" id="ip" value="${(returnDatas.data.ip)!''}"  type="text" />
+					</div><div class="help-block" for="ip"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="fwUrl" >访问菜单</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="fwUrl" class="col-xs-12 col-sm-6" id="fwUrl" value="${(returnDatas.data.fwUrl)!''}"  type="text" />
+					</div><div class="help-block" for="fwUrl"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="menuName" >菜单名称</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="menuName" class="col-xs-12 col-sm-6" id="menuName" value="${(returnDatas.data.menuName)!''}"  type="text" />
+					</div><div class="help-block" for="menuName"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="isqx" >是否有权限访问</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="isqx" class="col-xs-12 col-sm-6" id="isqx" value="${(returnDatas.data.isqx)!''}"  type="text" />
+					</div><div class="help-block" for="isqx"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/fwloghistory2017/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

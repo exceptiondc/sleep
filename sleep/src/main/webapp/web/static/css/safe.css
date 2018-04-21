@@ -1,0 +1,176 @@
+
+@media screen and (min-width: 320px) {
+    html {font-size: 8px;}
+}
+ 
+@media screen and (min-width: 360px) {
+    html {font-size: 10px;}
+}
+ 
+@media screen and (min-width: 400px) {
+    html {font-size: 12px;}
+}
+ 
+@media screen and (min-width: 440px) {
+    html {font-size: 14px;}
+}
+ 
+@media screen and (min-width: 480px) {
+    html {font-size: 16px;}
+}
+ 
+@media screen and (min-width: 640px) {
+    html {font-size: 18px;}
+}
+
+body{
+	width: 100%;
+	font-family: inherit;
+	height: 100%;
+	background: #efefef;
+	/*overflow: hidden;*/
+}
+.safe-banner{
+	width: 100%;
+}
+.safe-banner img{
+	width: 100%;
+	display: block;
+}
+.safe-content{
+	width: 100%;
+}
+.safe-content ul{
+	margin-bottom: 1rem;
+}
+.safe-content ul li{
+	width: 100%;
+	background: #fff;
+	margin-top: 1rem;
+}
+.safe-content ul li a{
+	display: block;
+	padding: 1.2rem 1.4rem;
+}
+.safe-content ul li a div.text{
+	float: left;
+	font-size: 1.7rem;
+	color: #333;
+	font-weight: bold;
+	padding-top: 2rem;
+}
+.safe-content ul li a div.text p:nth-child(2){
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+.safe-content ul li a div.pic{
+	float: right;
+}
+.safe-content ul li a div.pic img{
+	display: inline-block;
+	width: 7.8rem;	
+}
+.safe-content ul li a div.pic span{
+	display:inline-block;
+	width: 1rem;
+	height: 1.7rem;
+	vertical-align: 3rem;
+	background: url(../img/safe/safe-pull.png) no-repeat center;
+	background-size: contain;
+	margin-left: 16px;
+}
+
+
+/*安全保障详情页*/
+.safe-details{
+	width: 100%;
+	background: #fff;
+	margin: 15px auto;
+	padding: 15px 0;
+	height: 100%;
+}
+.d-title{
+	margin-left: 1rem;
+    height: 2.5rem;
+    /*line-height: 26px;
+    */
+    margin-bottom: 1rem;
+}
+.d-title p{
+	font-size: 1.6rem;
+	color: #fff;
+	padding-left: 24px;
+}
+.d-main{
+	padding: 0 3.4rem;
+}
+.d-main dl{
+	margin-bottom: 1.5rem;
+}
+.d-main dl dt{
+	font-size: 1.5rem;
+	color: #333;
+	height: 2.5rem;
+	font-weight: bolder;
+}
+.d-main dl dd{
+	font-size: 1.4rem;
+	color: #666;
+	text-align: justify;
+}
+.d-pic{
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
+.d-pic img{
+	width: 12rem;
+	height: 12rem;
+	padding: 2rem;
+	box-sizing: content-box;
+}
+.d-title.dep{
+	/*width: 226px;*/
+	background: url(../img/safe/images/safe-d4_02.png) no-repeat left;
+	background-size: contain;
+}
+.d-pic.dep-pic{
+	margin: 5rem auto 0;
+}
+.d-title.law{
+	/*width: 182px;*/
+	background: url(../img/safe/safe-d5.png) no-repeat left;
+	background-size: contain;
+}
+.d-pic.law-pic{
+	margin: auto;
+}
+.d-title.bank{
+	/*width: 260px;*/
+	background: url(../img/safe/safe-d6.png) no-repeat left;
+	background-size: contain;
+}
+.d-pic.bank-pic{
+	margin: auto;
+}
+.d-title.check{
+	/*width: 226px;*/
+	background: url(../img/safe/safe-d1.png) no-repeat left;
+	background-size: contain;
+}
+.d-pic.check-pic{
+	margin: auto;
+}
+.d-title.fact{
+	/*width: 226px;*/
+	background: url(../img/safe/safe-d2.png) no-repeat left;
+	background-size: contain;
+}
+/*.d-pic.fact-pic img{
+	margin:2rem auto 0;
+}*/
+.d-title.pro{
+	/*width: 226px;*/
+	background: url(../img/safe/safe-d3.png) no-repeat left;
+	background-size: contain;
+}

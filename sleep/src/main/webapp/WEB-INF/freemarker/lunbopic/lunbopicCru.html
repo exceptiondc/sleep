@@ -1,0 +1,284 @@
+<#escape x as x?html>
+
+	<SCRIPT type="text/javascript">
+        <!--
+
+        jQuery(document).ready(function(){
+            //回选 下拉框
+            //jQuery("#search_state option[value='是']").prop("selected",true);
+
+			/*
+			 $('.date-picker').datepicker({
+			 autoclose: true,
+			 format: 'yyyy-mm-dd',
+			 language: 'zh-CN'
+			 //,todayBtn: 'linked',
+			 //startDate:new Date(2014,10,27),
+			 //endDate:'+60d',
+			 //startDate: '+1d',
+			 }).next().on(ace.click_event, function(){
+			 $(this).prev().focus();
+			 });
+			 */
+
+			//编辑时元素的默认
+			//跳转类型
+			var skipTypeCode = $('#skipType').attr('code') ;
+			if(skipTypeCode !=0){
+                $('#skipType').val(skipTypeCode) ;
+			}
+			//位置
+			var positionCode = $('#position').attr('code') ;
+            if( positionCode!=0){
+                $('#position').val(positionCode) ;
+            }
+
+        });
+
+
+        //-->
+
+        /**
+		 * 上传图片
+         */
+        function lunboImages(){
+            jQuery("#filed").click();
+        }
+
+        $(document).on("change", "#filed", function() {
+            //...
+
+            $.ajaxFileUpload({
+                url : '/jaxwebsite/adminFileUpload',
+                secureuri : false,
+                fileElementId : 'filed',
+                dataType : 'text',
+                data : {},
+                success : function(data, status) {
+                    
+                    jQuery("#lunboI").attr('src',data);
+                    jQuery("#lunboI").attr('value',data);
+                    jQuery("#image").val(data);
+                },
+                error : function(data, status, e) {
+                    myalert("上传出错");
+                }
+            })
+
+            return false;
+        });
+
+
+
+        var type = $("#inputType").val();
+        if(1 == type){
+            $("#itemIdDiv").hide();
+            $("#urlDiv").show();
+        }else{
+            $("#itemIdDiv").show();
+            $("#urlDiv").hide();
+        }
+         $("#itemIdDiv").hide();
+        $("#urlDiv").show();
+//
+//        $("#skipType").on('change',function(){
+//            if(1 == $("#skipType").val()){
+//                $("#itemIdDiv").hide();
+//                $("#urlDiv").show();
+//            }else{
+//                $("#itemIdDiv").show();
+//                $("#urlDiv").hide();
+//            }
+//
+//            jQuery("#skipType").attr('value',$("#skipType").val());
+//        });
+
+        //修改跳转类型下拉框默认选中
+
+        //修改展示位置默认选中
+        var position = $("#position").val();
+
+
+//        if(4 == position){
+//            $("#positionDiv").hide();
+//            $("#itemIdDiv").hide();
+//            $("#urlDiv").hide();
+//        }else{
+//            $("#name").removeAttr("disabled");
+//            $("#itemIdDiv").show();
+//            $("#urlDiv").hide();
+//        }
+
+
+        $("#skipType").on('change',function(){
+            if(1 == $("#skipType").val()){
+                $("#itemIdDiv").hide();
+                $("#urlDiv").show();
+            }else{
+                $("#itemIdDiv").show();
+                $("#urlDiv").hide();
+            }
+//            jQuery("#position").attr('value',$("#inputPosition").val());
+
+            //加载链接目标
+            jQuery.ajax({
+                url : ctx+"/system/lunbopic/position/list/json?skipType="+$("#skipType").val(),
+                type : "post",
+                dataType : "json",
+                success : function(_json) {
+                    if(_json.status=="error"){
+                        return;
+                    }
+                    //先清除原来的数据
+                    $("#item").empty();
+                    jQuery(_json.data).each(function(i,_obj){
+                        if(_obj.name){
+                            jQuery("#item").append("<option value='"+_obj.id+"'>"+_obj.name+"</option>");
+                        }else if (_obj.title){
+                            jQuery("#item").append("<option value='"+_obj.id+"'>"+_obj.title+"</option>");
+
+						}
+                    });
+
+                    jQuery("#item").select2();
+                }
+            });
+
+        });
+
+        //加载链接目标
+        jQuery.ajax({
+            url : ctx+"/system/lunbopic/position/list/json?skipType="+$("#inputType").val(),
+            type : "post",
+            dataType : "json",
+            success : function(_json) {
+                if(_json.status=="error"){
+                    return;
+                }
+                jQuery(_json.data).each(function(i,_obj){
+                    if(_obj.name){
+                        jQuery("#item").append("<option value='"+_obj.id+"'>"+_obj.name+"</option>");
+                    }else if (_obj.title){
+                        jQuery("#item").append("<option value='"+_obj.id+"'>"+_obj.title+"</option>");
+
+                    }
+                });
+
+                jQuery("#item").select2();
+                console.log($('#item').attr("code"));
+//                $('#item').val($('#item').attr("code")) ;
+                $('#item').select2('val',$('#item').attr("code")) ;
+            }
+        });
+
+
+
+
+        function updateLunbo(position){
+            var listUrl = "";
+            listUrl = "${ctx}/system/lunbopic/list";
+            commonUpdateForm('validation-form',listUrl);
+        }
+
+
+	</SCRIPT>
+
+
+
+	<div class="row">
+		<div class="col-xs-12">
+			<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/system/lunbopic/update" >
+				<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>
+				<!--input  hidden  End-->
+				<div class="form-group">
+					<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="image" >图片</label>
+					<div class="col-xs-12 col-sm-9">
+						<img  name="lunboI" style="height: 200px;width: 200px;" onclick="lunboImages();" id="lunboI" value="${(returnDatas.data.image)!''}" src="${(returnDatas.data.image)!''}">
+						<input type="file" id="filed" name="filed" style="display:none">
+						<input name="image" class="col-xs-12 col-sm-6" id="image" value="${(returnDatas.data.image)!''}" style="display:none"  type="text" />
+					</div>
+				</div>
+				<div class="space-2"></div>
+
+
+				<div class="form-group"  id="positionDiv">
+					<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="position" >展示位置</label>
+					<div class="col-xs-12 col-sm-9">
+						<div class="clearfix">
+							<select id="position" name="position" code="${(returnDatas.data.position)!'0'}">
+								<!-- <option value="1" >app首页</option>
+								<option value="2" >站内公告</option> -->
+                                <option value="3" >pc首页</option>
+							</select>
+						</div><div class="help-block" for="position"></div>
+					</div>
+				</div>
+				<div class="space-2"></div>
+<div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="title">公告标题</label>
+                    <input type="text" class="col-xs-12 col-sm-6" value="" name="type" style="display: none;">
+                    <div class="col-xs-12 col-sm-9">
+                        <div class="clearfix">
+                           <input name="title" class="col-xs-12 col-sm-6" id="title" value="${(returnDatas.data.title)!''}"  type="text" />
+                        </div><div class="help-block" for="title"></div>
+                    </div>
+                </div>
+				<div class="form-group" >
+					<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="skipType" >跳转类型</label>
+					<input type="text" class="col-xs-12 col-sm-6" value="${(returnDatas.data.skipType)!''}" id="inputType" name="type" style="display: none;"/>
+					<div class="col-xs-12 col-sm-9">
+						<div class="clearfix">
+							<select id="skipType" name="skipType" code="${(returnDatas.data.skipType)!'0'}">
+								<!-- <option value="2">投资产品</option>
+								<option value="3" >站内公告</option> -->
+								<option value="1" >url</option>
+							</select>
+						</div><div class="help-block" for="type"></div>
+					</div>
+				</div>
+				<div class="space-2"></div>
+
+
+				<!--  <div class="form-group" id="itemIdDiv">
+                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="itemId" >链接目标</label>
+                     <div class="col-xs-12 col-sm-9">
+                         <div class="clearfix">
+                             <input name="itemId" class="col-xs-12 col-sm-6" id="itemId" value="${(returnDatas.data.itemId)!''}"  type="text" />
+                         </div><div class="help-block" for="itemId"></div>
+                     </div>
+                 </div> -->
+				<div class="space-2"></div>
+
+				<div class="form-group" id="urlDiv">
+					<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="url" >链接url</label>
+					<div class="col-xs-12 col-sm-9">
+						<div class="clearfix">
+							<input name="url" class="col-xs-12 col-sm-6" id="url" value="${(returnDatas.data.item)!''}"  type="text" />
+						</div><div class="help-block" for="url"></div>
+					</div>
+				</div>
+
+				<div class="form-group" id="itemIdDiv">
+					<label class="col-sm-3 control-label no-padding-right" for="item"> 链接目标</label>
+					<div class="col-sm-9">
+						<select  id="item" name="item" code="${(returnDatas.data.item)!''}"   class="form-control">
+						</select>
+					</div>
+				</div>
+
+				<div class="space-2"></div>
+
+			</form>
+			<div class="wizard-actions">
+				<!-- <button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/system/lunbopic/list');" style="float: left;margin-left: 25.4%;">
+                    保存
+                </button> -->
+				<button class="btn btn-success btn-info" data-last="Finish" onclick="updateLunbo(${(returnDatas.data.position)!''})" style="float: left;margin-left: 25.4%;">
+					保存
+				</button>
+			</div>
+		</div>
+	</div>
+
+
+</#escape>

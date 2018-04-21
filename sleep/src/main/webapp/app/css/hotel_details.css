@@ -1,0 +1,357 @@
+.headfix{
+	position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 11rem;
+}
+.headtop .aui-pull-right.aui-btn img{
+	width: 1rem;
+}
+.headtop .aui-pull-right.aui-btn.share{
+	padding: 0 0.75rem;
+}
+.headtop .aui-pull-right.aui-btn.collect{
+	padding: 0;
+	width: 1rem;
+	background: url(../img/collect-icon.png) no-repeat center !important;
+	background-size: contain !important;
+	vertical-align: middle;
+}
+.aui-pull-right.aui-btn.collect.ok{
+	background: url(../img/collect-icon-ok.png) no-repeat center !important;
+	background-size: contain !important;
+}
+.banner{
+	width: 100%;
+	height: 8.75rem;
+	position: relative;
+}
+.banner .swiper-container{
+	width: 100%;
+	height: 100%;
+}
+.banner .swiper-container .swiper-wrapper{
+	width: 100%;
+	height: 100%;
+}
+.banner .swiper-container .swiper-wrapper img{
+	width: 100%;
+	height: 100%;
+}
+.hotel-name{
+	width: 100%;
+	min-height: 44px;
+	/*height: 44px;*/
+	background: rgba(255,255,255,.5);
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+	margin: 0;
+	padding: 0.3rem 0.75rem 0;
+	color: #333;
+}
+.hotel-name p.name{
+	color: #333;
+	font-size: 0.75rem;
+}
+.hotel-name p.distance{
+	color: #666;
+	font-size: 0.7rem;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.aui-content.hotel-address{
+	margin-top: 11rem;
+}
+.aui-list-item-inner.aui-list-item-arrow{
+	padding-right: 1.2rem;
+}
+.aui-list{
+	padding: 0.5rem 0;
+	background-image: none;
+}
+.aui-list .address{
+	color: #333;
+}
+.aui-list-item-right.view,.aui-list-item-right.remark{
+	font-size: 13px;
+	color: #17c0a5;
+	margin-left: 0;
+}
+.aui-list-item-arrow:before{
+	border: 1px solid #666;
+    border-top: none;
+    border-right: none;
+}
+.hotel-address .aui-list-item{
+	background-image: none;
+}
+.hotel-faci,.hotel-room{
+	margin-top: 0.5rem;
+}
+.hotel-faci .aui-list,.hotel-room .aui-list{
+	padding: 0.5rem 0.75rem;
+}
+.hotel-faci .aui-list .aui-list-item{
+	padding-left: 0;
+}
+.hotel-room .aui-list .aui-list-item{
+	padding-left: 0.2rem;
+}
+.hotel-faci .aui-list .aui-list-item-arrow:before{
+	border: 1px solid #666;
+    border-top: none;
+    border-right: none;
+    right: 0.2rem;
+}
+.hotel-faci .aui-list .aui-list-item-inner.aui-list-item-arrow{
+	padding-right: 0.75rem;
+}
+.hotel-faci .grade{
+	color: #ff8c00;
+	font-size: 15px;
+}
+.hotel-faci .grade span{
+	font-size: 20px;
+	font-weight: bold;
+}
+.faci .aui-row{
+	width: 100%;
+	padding: 0.5rem 0;
+}
+.faci .aui-row .aui-col-xs-3{
+	text-align: center;
+}
+.faci .aui-grid-label{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.aui-iconfont.icon-faci{
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    overflow: hidden;
+}
+.aui-iconfont.icon-faci img{
+	width: 100%;
+	height: 100%;
+}
+.aui-iconfont.wxsw:before{
+    background: url(../img/wuxianshangwang.png) no-repeat center;
+    background-size: cover;
+}
+.aui-iconfont.cs:before{
+    background: url(../img/chashi.png) no-repeat center;
+    background-size: cover;
+}
+.aui-iconfont.qps:before{
+    background: url(../img/qipaishi.png) no-repeat center;
+    background-size: cover;
+}
+.aui-iconfont.zcfw:before{
+    background: url(../img/zuchefuwu.png) no-repeat center;
+    background-size: cover;
+}
+.hotel-faci .aui-list-item:last-child{
+	background: none;
+}
+
+
+.hotel-room .aui-list-item-input{
+	padding-right: 0;
+}
+.hotel-room .aui-list-item-input input{
+	height: 1.5rem;
+}
+.hotel-room .aui-list-item-inner{
+	padding-right: 0;
+}
+.hotel-room .aui-list-item-right{
+	text-align: right;
+}
+.aui-list.aui-media-list{
+	padding: 0 0.75rem;
+}
+.aui-list .aui-list-item-media{
+	padding: 0.5rem 0.2rem;
+	width: 4.5rem;
+	height: 6rem;
+	overflow: hidden;
+	border-radius: 26px;
+}
+.aui-list .aui-list-item-media img{
+	width: 100%;
+	height: 100%;
+}
+
+/*房间*/
+.aui-media-list.room .aui-list-item-inner{
+	margin-left: 5px;
+}
+.aui-media-list.room .aui-list-item-inner .aui-list-item-text{
+	display: block;
+	line-height: 1.2rem;
+}
+.aui-media-list.room .aui-list-item-inner .aui-list-item-text.biaoqian span{
+	/*display: inline-block;*/
+	font-size: 0.5rem;
+	color: #FFA200;
+	padding: 0px 4px;
+	border: 1px solid #FFA200;
+	border-radius: 4px;
+	transform: scale(0.9);
+	margin-right: 5px;
+}
+.room .room-msg{
+	width: 50%;
+}
+.room .room-num .aui-list-item-title{
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 360px) {
+	.room .room-num .aui-list-item-title{
+		font-size: 0.75rem;
+	}
+}
+.room .room-num .aui-list-item-title .jiantou{
+	/*font-style: normal;*/
+	/*font-family: cursive;*/
+}
+.room .room-num span.fanghao{
+	font-size: 0.75rem;
+	color: #54c748;
+	margin-left: 0.75rem;
+}
+.room .room-num span.jiantou:before{
+	content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.2rem;
+    background: transparent;
+    border: 1px solid #aaa;
+    border-top: none;
+    border-right: none;
+    z-index: 2;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+	
+}
+.room .aui-list-item-right{
+	text-align: left;
+}
+.room .aui-list-item-right .aui-list-item-inner{
+	margin-left: 0;
+}
+.room .price{
+	margin-top: 1rem;
+	color: #ffa200;
+	font-size: 0.75rem;
+	text-align: center;
+}
+.room .price span{
+	font-size: 1.1rem;
+}
+.room .qd-btn{
+	padding: 3px 10px;
+	background: #ffc81c;
+	color: #fff;
+	text-align: center;
+	border-radius: 4px;
+}
+
+.room-lists{
+	margin-top: 0.3rem;
+}
+.room-lists .room .aui-media-list-item-inner{
+	border-bottom: 1px solid #ddd;
+	padding-top: 0.4rem;
+}
+.room-lists .room .aui-list-item-media{
+	height: 4.7rem;
+}
+.room-lists .room .price{
+	margin-top: 0.4rem;
+}
+
+
+/*分享*/
+.hotel-share{
+	width: 100%;
+	height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+   /* padding: 0 0.5rem;*/
+    z-index: 999;
+    opacity: 0;
+    -webkit-transition: opacity .3s,-webkit-transform .3s;
+    transition: opacity .3s,transform .3s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+   margin: 0;
+  /* padding: 0.75rem;*/
+   background: #fff;
+}
+.hotel-share.active{
+	opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.hotel-share .aui-list-header{
+	text-align: center;
+	min-height: 2.25rem;
+	border-bottom: 1px solid #ddd;
+	line-height: 2.25rem;
+	
+}
+.hotel-share .aui-list-header.cancel{
+	background: #ecedf2;
+}
+.hotel-share .aui-list-item-inner{
+	padding: 1.5rem 1.2rem;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3{
+	text-align: center;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 i.aui-iconfont{
+	display: block;
+	width: 2.25rem;
+	height: 2.25rem;
+	border: 1px solid #ddd;
+	margin: 0 auto 10px;
+	border-radius: 10px;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 i.aui-iconfont.weixin{
+	background: url(../img/share-wx.png) no-repeat center;
+	background-size: 60%;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 i.aui-iconfont.pengyouquan{
+	background: url(../img/share-pyq.png) no-repeat center;
+	background-size: 60%;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 i.aui-iconfont.qq{
+	background: url(../img/share-qq.png) no-repeat center;
+	background-size: 60%;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 i.aui-iconfont.weibo{
+	background: url(../img/share-wb.png) no-repeat center;
+	background-size: 60%;
+}
+.hotel-share .aui-list-item-inner .aui-col-xs-3 .aui-grid-label{
+	font-size: 0.6rem;
+	color: #666;
+}

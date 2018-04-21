@@ -1,0 +1,49 @@
+.main{
+	margin:0 0 0.5rem;
+    padding: 0.75rem;
+    background: #fff;
+}
+.main .hotel_des{
+	font-size: 0.7rem;
+}
+.main .aui-list{
+	background-image: none;
+}
+.main .tit{
+	font-size: 0.8rem;
+}
+.aui-list .faci-tit{
+	line-height: 1.5rem;
+	margin-top: 0.5rem;	
+	font-size: 0.75rem;
+}
+.aui-list .faci-tit span{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: -4px;
+	margin-right: 10px;
+}
+.aui-list.wifi .faci-tit span{
+	background: url(../img/wifi.png) no-repeat center;
+	background-size: contain;
+}
+.aui-list .aui-row{
+	font-size: 0.7rem;
+}
+.aui-list.traffic .faci-tit span{
+	background: url(../img/traffic.png) no-repeat center;
+	background-size: contain;
+}
+.aui-list.reception .faci-tit span{
+	background: url(../img/service.png) no-repeat center;
+	background-size: contain;
+}
+.aui-list.business .faci-tit span{
+	background: url(../img/shangwufuwu.png) no-repeat center;
+	background-size: contain;
+}
+.aui-list.offsite .faci-tit span{
+	background: url(../img/tongyongsheshi.png) no-repeat center;
+	background-size: contain;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的余额</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mybalance.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">我的余额</div>
+		   
+		</header>
+		<div class="aui-content balance">
+			<div class="aui-list card">
+				<div class="aui-list-item-title">
+					当前余额(元)
+				</div>
+				<div class="aui-list-item-title money" id="yue">
+					0.00
+				</div>
+				<div class="aui-list-item-arrow aui-list-item-right">
+						<a href="transaction_record.html" class="record">交易记录</a>
+				</div>
+			</div>
+			<div class="aui-list" style="background-image: none;">
+				<a href="account_recharge.html">
+				<div class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title">充值</div>
+		            </div>
+				</div>
+				</a>
+				<a href="account_withdraw.html">
+				<div class="aui-list-item" style="background-image: none;">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title">提现</div>
+		            </div>
+				</div>
+				</a>
+			</div>
+		</div>
+		<div class="aui-content balance cash">
+			<div class="aui-list card">
+				<div class="aui-list-item-title">
+					我的押金(元)
+				</div>
+				<div class="aui-list-item-title money" id="yajin">
+					0.00
+				</div>
+				<div class="aui-list-item-arrow aui-list-item-right" id="tuiyajin">
+					<a href="cash_pay.html" class="record">交纳押金</a>
+				</div>
+			</div>
+			<div class="aui-list-item-right question">
+				<a href="#">常见问题？</a>
+			</div>
+		</div>
+		
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$('#yue').empty().append(base.getUser().balance);
+			$('#yajin').empty().append(base.getUser().cashPledge);
+
+			if(base.getUser().cashPledge==200){
+				$('#tuiyajin').empty().append('<a href="cash_return.html" class="record">退押金</a>');
+			}
+		</script>
+		
+	</body>
+</html>
+
+

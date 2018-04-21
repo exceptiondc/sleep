@@ -1,0 +1,424 @@
+body{
+	background: #f2f2f2;
+}
+.headfix{
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	z-index: 99;
+    background: #f6f5fb;
+}
+.headfix .main{
+	margin: 0.5rem 0.75rem;
+}
+.aui-searchbar {
+    background: transparent;
+}
+.headtop .aui-pull-right.aui-btn img{
+	width: 1rem;
+}
+.main .menu{
+	position: relative;
+	font-size: 0.7rem;
+	/*text-align: center;*/
+}
+.main .menu.active{
+	color: #ffa200;
+}
+.main .menu:after{
+	content: "";
+    width: 0px;
+    height: 0px;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    right: 16px;
+    top: 30%;
+    border-top: 6px solid #666;
+    border-right: 6px solid transparent;
+    transform: rotate(-135deg);
+}
+.main .menu.active:after{
+	border-top: 6px solid #ffa200;
+	transform: rotate(45deg);
+	top: 50%;
+}
+@media screen and (max-width: 320px) {
+	.main .menu:after{
+		right:5px;
+	}
+}
+@media screen and (max-width: 360px) {
+	.main .menu:after{
+		right:13px;
+	}
+}
+.aui-list-item-inner{
+	font-size: 0.7rem;
+}
+.aui-list-item-inner,.aui-list .aui-list-item-title{
+	font-size: 0.70rem;
+}
+#leftTab{
+	background: #f6f5f5;
+}
+#content{
+	background-image: none;
+}
+.aui-list-item.active{
+	background: #fff;
+    color: #ffa200;
+}
+#content .aui-checkbox,#juliContent .aui-checkbox{
+	width: 1rem;
+	height: 1rem;
+}
+#content .aui-checkbox:checked{
+	background-color: #ffc81c;
+    border: solid 1px #ffc81c;
+}
+#content .aui-list-item-title.active{
+	color: #FFA200;
+}
+#right{
+	max-height: 13.2rem;
+	overflow-y: scroll;
+}
+.btn.clear{
+	background: #fff;
+	color: #333;
+}
+.hotel-list{
+	margin: 4.35rem 0 0.5rem;
+	padding: 0.5rem 0.75rem;
+	background: #fff;
+}
+.hotel-list .ad{
+	width: 100%;
+	height: 2.75rem;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.hotel-list .ad img{
+	width: 100%;
+	height: 100%;
+}
+.list-item{
+	margin-top: 0.5rem;
+}
+.left-list{
+	padding-right: 5px;
+}
+.right-list{
+	padding-left: 5px;
+}
+.aui-card-list-content.first{
+	width: 100%;
+	height: 6rem;
+}
+.aui-card-list-content{
+	width: 100%;
+	height: 8rem;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.aui-card-list-content img{
+	width: 100%;
+	height: 100%;
+}
+.list-item .aui-list-item-inner{
+	padding: 0 0 0 4px;
+	min-height: 1rem;
+}
+.list-item .aui-list-item-text{
+	width: 100%;
+}
+.list-item .aui-list-item-text .aui-list-item-title{
+	width: 75%;
+	font-size: 0.75rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.list-item .aui-list-item-text .aui-list-item-right.grade{
+	font-size: 0.75rem;
+	color: #ffa200;
+	margin-left: 0;
+} 
+.left-list .aui-list,.right-list .aui-list{
+	margin: 8px 0;
+	background-image: none;
+}
+.list-item .aui-list-item-inner p{
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.aui-list-item-inner.biaoqian{
+	width: 100%;
+	display: block;
+	padding: 0;
+}
+.aui-list-item-inner.biaoqian .bq{
+	display: inline-block;
+	font-size: 0.5rem;
+	color: #FFA200;
+	padding: 0px 4px;
+	border: 1px solid #FFA200;
+	border-radius: 4px;
+	transform: scale(0.9);
+}
+.list-item .aui-list-item-text .aui-list-item-title.new{
+	width: 57%;
+}
+.list-item .aui-list-item-text .aui-list-item-right.price{
+	font-size: 0.5rem;
+	margin-left: 0;
+	/*transform: scale(0.9);*/
+}
+.list-item .aui-list-item-text .aui-list-item-right.price span{
+	font-size: 0.85rem;
+	color: #FF0000;
+}
+.aui-list-item-inner.qiangding a{
+	display: block;
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	background: #ffc81c;
+	padding: 4px;
+	color: #fff;
+	font-size: 0.75rem;
+	border-radius: 6rem;
+}
+
+
+/*-----价格选择模块----=*/
+.price-xingji{
+	
+	width: 100%;
+	height: auto;
+    z-index: 999;
+    opacity: 1;
+    /*-webkit-transition: opacity .3s,-webkit-transform .3s;
+    transition: opacity .3s,transform .3s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);*/
+   margin: 0;
+   padding-top: 0.75rem;
+   background: #fff;
+}
+/*.price-xingji.active{
+	opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}*/
+.priceC{
+	margin-bottom: 0;
+	margin-top:0
+}
+.price-range{
+	width: 88%;
+	margin: 0.75rem auto;
+	margin-bottom: 1.5rem;
+}
+.price-range input.single-slider{
+	width: 100%;
+}
+.aui-content.priceC .tit{
+	font-size: 15px;
+	color: #000;
+	height: 1.5rem;
+}
+.aui-content.priceC .tit span{
+	font-size: 14px;
+	color: #3d88ff;
+}
+.slider-container.theme-green{
+	width: 100%;
+}
+.theme-green .back-bar .pointer{
+	width: 40px;
+	height: 40px;
+	background: url(../img/icon-price.png) no-repeat center;
+	background-size: cover;
+	border: none;
+	top: -14px;
+}
+.theme-green .back-bar .selected-bar{
+	background: #3d88ff;
+}
+.xingji{
+	text-align: center;
+}
+.xingji label input{
+	display: none;
+}
+.xingji label{
+	width: 4rem;
+	height: 2rem;
+	display:inline-block;
+	line-height: 2rem;
+	background: #f7f6fb;
+	font-size: 13px;
+	border-radius: 6px;
+}
+.xingji label.on{
+	background-color: #e7f3ff;
+	background-image: url(../img/checked.png);
+	background-position: right bottom; 
+	background-repeat: no-repeat;
+	background-size: 20%;
+	color: #3f8cff;
+}
+@media screen and (max-width: 320px) {
+	.xingji label{
+		width: 3.4rem;
+		height: 2rem;
+		display:inline-block;
+		line-height: 2rem;
+		background: #f7f6fb;
+		font-size: 13px;
+		border-radius: 6px;
+	}
+	#startDate,#endDate{
+		font-size: 12px;
+	}
+}
+@media screen and (max-width: 360px) {
+	.xingji label{
+		width: 3.8rem;
+		height: 2rem;
+		display:inline-block;
+		line-height: 2rem;
+		background: #f7f6fb;
+		font-size: 13px;
+		border-radius: 6px;
+	}
+}
+
+.priceC .aui-list-inner{
+	margin-bottom: 1rem;
+}
+
+/*豪华酒店*/
+.shehuajiudian{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.shehuajiudian label input{
+	display: none;
+}
+.shehuajiudian label{
+	width: 48%;
+	height: 2.1rem;
+	display: inline-block;
+	vertical-align: middle;
+	background: #f7f6fb;
+	border-radius: 6px;
+}
+
+.shehuajiudian label.on{
+	background-color: #e7f3ff;
+	background-image: url(../img/checked.png);
+	background-position: right bottom; 
+	background-repeat: no-repeat;
+	background-size: 12%;
+}
+.clearfix:after{         
+	content: ".";     /**//*内容为“.”就是一个英文的句号而已。也可以不写。*/  
+	display: block;   /**//*加入的这个元素转换为块级元素。*/  
+	clear: both;     /**//*清除左右两边浮动。*/  
+	visibility: hidden;      /**//*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/  
+	line-height: 0;    /**//*行高为0；*/  
+	height: 0;     /**//*高度为0；*/  
+	font-size:0;    /**//*字体大小为0；*/  
+}  
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.shehuajiudian .tb{
+	display: block;
+	width: 28px;
+	height: 25px;
+	
+	margin-top: 8px;
+	margin:9px 10px 9px 20px;
+}
+.shehuajiudian .tb.jinzuan{
+	background: url(../img/jinzuan-icon.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian .tb.tujia{
+	background: url(../img/tujia-icon.png) no-repeat center;
+	background-size: cover;
+}
+
+.shehuajiudian label.on .tb.jinzuan{
+	background: url(../img/jinzuan-on.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian label.on .tb.tujia{
+	background: url(../img/tujia-on.png) no-repeat center;
+	background-size: cover;
+}
+.shehuajiudian label p{
+	text-align: left;
+	line-height: 16px;
+	color: #333;
+	font-size: 12px;
+}
+
+.shehuajiudian label.on p{
+	text-align: left;
+	line-height: 16px;
+	color: #3f8cff;
+	font-size: 12px;
+}
+.shehuajiudian label p:nth-child(1){
+	font-size: 14px;
+}
+.shehuajiudian label .name{
+	margin-top: 6px;
+}
+
+
+/*-----好评优先-----*/
+.comment .aui-list{
+	padding: 0 0.75rem;
+}
+.comment .aui-list .aui-list-item{
+	padding-left: 0;
+	padding-right: 0;
+}
+.comment .aui-list .aui-list-item .aui-radio,.comment .aui-list .aui-list-item .aui-checkbox{
+	background: none; 
+    border: 0;
+}
+.comment .aui-list .aui-list-item .aui-checkbox:checked{
+	background: none; 
+    border: 0;
+}
+.comment .aui-list .aui-list-item .aui-checkbox:checked:before,.comment .aui-list .aui-list-item .aui-checkbox:checked:after{
+	border: 1px solid #FFA200;
+	border-top: 0;
+	border-right: 0;
+}
+.comment .aui-list .aui-list-item.on .aui-list-item-title{
+	color: #FFA200;
+}
+.go-top{
+	position: fixed;
+	right: 0.75rem;
+	bottom: 1rem;
+	width: 2rem;
+	height: 2rem;
+	z-index: 10;
+	display: none;
+}

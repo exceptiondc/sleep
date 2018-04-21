@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head >
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+	<style type="text/css">
+	img{
+
+         data-height:435;
+         width: 100%;
+	}
+	</style>
+		<script type="text/javascript" src="jquery-1.4.min.js"></script>
+		<script type="text/javascript">
+            var data = {} ;
+
+//            window.onbeforeonload(ss());
+
+            jQuery(document).ready(function(){
+              var id = get_url_param("id") ;
+              if(null!=id){
+                  data = {id:id};
+			  }
+                $.post('http://wap.yingpuwealth.com//yingpu/system/activity/look/json', data, function(result){
+					console.log(result) ;
+                    jQuery("#image").attr('src',result.data.image);
+                });
+//				console.log($('#template').val()) ;
+//                $('#protocolTemplate').html($('#template').val()) ;
+            }) ;
+
+            function get_url_param(name){
+                var reg = new RegExp( "(^|&)" + name + "=([^&]*)(&|$)", "i" );
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+
+
+		</script>
+	</head>
+	<body>
+			<img   id="image"  src="">
+	</body>
+</html>

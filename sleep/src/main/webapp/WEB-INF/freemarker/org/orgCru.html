@@ -1,0 +1,139 @@
+<#escape x as x?html>
+
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	
+	
+	
+	});
+	
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/org/update" > 
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name" >名称</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="name" class="col-xs-12 col-sm-6" id="name" value="${(returnDatas.data.name)!''}"  type="text" />
+					</div><div class="help-block" for="name"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="comcode" >代码</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="comcode" class="col-xs-12 col-sm-6" id="comcode" value="${(returnDatas.data.comcode)!''}"  type="text" />
+					</div><div class="help-block" for="comcode"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pid" >上级部门ID</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="pid" class="col-xs-12 col-sm-6" id="pid" value="${(returnDatas.data.pid)!''}"  type="text" />
+					</div><div class="help-block" for="pid"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="managerId" >主管Id</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="managerId" class="col-xs-12 col-sm-6" id="managerId" value="${(returnDatas.data.managerId)!''}"  type="text" />
+					</div><div class="help-block" for="managerId"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sysid" >子系统ID</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="sysid" class="col-xs-12 col-sm-6" id="sysid" value="${(returnDatas.data.sysid)!''}"  type="text" />
+					</div><div class="help-block" for="sysid"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="type" >0,组织机构 1.部门</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="type" class="col-xs-12 col-sm-6" id="type" value="${(returnDatas.data.type)!''}"  type="text" />
+					</div><div class="help-block" for="type"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="leaf" >叶子节点(0:树枝节点;1:叶子节点)</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="leaf" class="col-xs-12 col-sm-6" id="leaf" value="${(returnDatas.data.leaf)!''}"  type="text" />
+					</div><div class="help-block" for="leaf"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sortno" >排序号</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="sortno" class="col-xs-12 col-sm-6" id="sortno" value="${(returnDatas.data.sortno)!''}"  type="text" />
+					</div><div class="help-block" for="sortno"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="description" >描述</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="description" class="col-xs-12 col-sm-6" id="description" value="${(returnDatas.data.description)!''}"  type="text" />
+					</div><div class="help-block" for="description"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="state" >是否有效(否/是)</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="state" class="col-xs-12 col-sm-6" id="state" value="${(returnDatas.data.state)!''}"  type="text" />
+					</div><div class="help-block" for="state"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/org/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

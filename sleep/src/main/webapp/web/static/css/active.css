@@ -1,0 +1,80 @@
+html{
+	font-size: 62.5%;
+}
+body{
+	width: 100%;
+	height: auto;
+	background: #ff3c4a;
+}
+.active-first img,.active-second img,.active-three img,.active-four img,.active-five img{
+	width: 100%;
+	height: auto;
+	display: block;
+}
+.active-second,.active-three,.active-four{
+	padding: 2rem 1rem 0;
+}
+
+
+
+.active-second{
+	width: 100%;
+	position: relative;
+}
+.hongbao h3{
+	text-align: center;
+	font-size: 19px;
+	color: #FFFFFF;
+	height: 4rem;
+}
+.hongbao h3 .title{
+	font-size: 22px;
+	color: #fcf640;
+}
+.hongbao h3 .money{
+	font-size: 22px;
+	color: #96000d;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 375px){
+
+	.active-second{
+		width: 100%;
+		position: relative;
+	}
+	.hongbao h3{
+		text-align: center;
+		font-size: 16px;
+		color: #FFFFFF;
+		height: 4rem;
+	}
+	.hongbao h3 .title{
+		font-size: 19px;
+		color: #fcf640;
+	}
+	.hongbao h3 .money{
+		font-size: 19px;
+		color: #96000d;
+	}
+}
+
+.active-four{
+	position: relative;
+	margin-bottom: 2rem;
+}
+.active-four a{
+	width: 16rem;
+    height: 3.5rem;
+    background: url(../img/active-btn.png) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 78%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 3.5rem;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+}

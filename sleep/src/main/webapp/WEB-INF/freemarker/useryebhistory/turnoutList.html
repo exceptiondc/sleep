@@ -1,0 +1,194 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/system/useryebhistory/useryebhistory.js"></script>
+
+<script type="text/javascript">
+
+function deleteUserYebHistory(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/useryebhistory/delete?id="+id;
+		var listurl="${ctx}/useryebhistory/list";
+		mydelete(_url,listurl);
+	}
+}
+
+$('.date-picker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    language: 'zh-CN',
+    todayBtn: 'linked',
+    startDate:new Date(2014,10,27),
+    endDate:'+6000d',
+    startDate: '-6000d',
+}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+});
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/useryebhistory/turnout/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			<label for="search_userName"><b>用户昵称:</b></label>
+	 				<input type="text" id="search_userName"  name="userName"   value="${(returnDatas.queryBean.userName)!''}">
+			 <label for="search_phone"><b>用户手机号:</b></label>
+					<input type="text" id="search_phone"  name="userPhone"   value="${(returnDatas.queryBean.userPhone)!''}">
+			 <label for="search_startTime"><b>交易时间:</b></label>
+				 <input name="startTime"  class="date-picker"  style="width:100px;" id="search_startTime" value="${(returnDatas.queryBean.startTime)!''}"  type="text"/>
+				 -
+			 <label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" id="search_endTime" value="${(returnDatas.queryBean.endTime)!''}"  type="text"/>
+			 <label ><b></b></label>
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/useryebhistory/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/useryebhistory/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/useryebhistory/update" >
+				  <button onclick="myhref('${ctx}/useryebhistory/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/useryebhistory/delete" >
+			    |
+				  <button onclick="deleteUserYebHistory();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                       <!-- <th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>-->
+                        <!--<th>操作</th>-->
+                        <!--first_end_no_export-->
+						<th id="th_userName" >用户</th>
+						<th id="th_userPhone" >用户账号</th>
+						<th id="th_money" >金额</th>
+						<th id="th_createTime" >时间</th>
+						<th id="th_nowBalance" >现有余额</th>
+						<th id="th_rate" >当时利率</th>
+						<th id="th_tradeNo" >交易号</th>
+						<th id="th_orderId" >订单</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                               <!-- <td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>-->
+                                <!--<td>-->
+                                    <!--<div class="hidden-sm hidden-xs btn-group">-->
+                                       <!--<button class="btn btn-mini  btn-info"-->
+											   <!--onclick="mydelete('${ctx}/system/useryebhistory/turnOut?id=${(_data.id)!''}','${ctx}/system/project/applyturnout/list',null,'确认通过？');">-->
+														<!--&lt;!&ndash;<i class="ace-icon fa fa-pencil bigger-120"></i>&ndash;&gt;-->
+											<!--通过-->
+										<!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="hidden-md  hidden-lg">-->
+                                        <!--<div class="inline position-relative">-->
+                                            <!--<button class="btn btn-minier btn-primary dropdown-toggle"-->
+                                                    <!--data-toggle="dropdown" data-position="auto">-->
+                                                <!--<i class="ace-icon fa fa-cog icon-only bigger-110"></i>-->
+                                            <!--</button>-->
+                                            <!--<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">-->
+
+												<!--<li>-->
+
+												<!--</li>-->
+
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                                <!--end_no_export-->
+
+							<td >
+								${(_data.name)!''}
+							</td>
+							<td >
+								${(_data.phone)!''}
+							</td>
+							<td >
+								${(_data.money)!0}
+							</td>
+								<td >
+								<!--日期型-->
+							${((_data.createTime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+								<td >
+								${(_data.nowBalance)!0}
+							</td>
+								<td >
+								${(_data.rate)!0}
+							</td>
+							<td >
+								${(_data.tradeNo)!''}
+							</td>
+							<td >
+								${(_data.orderId)!0}
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

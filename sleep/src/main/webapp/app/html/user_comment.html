@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>用户评价</title>
+		<link rel="stylesheet" type="text/css" href="../aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/user_comment.css"/>
+    </head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">用户评价</div>
+		</header>
+		
+		<div class="aui-content hotel-grade">
+			<div class="aui-list">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-label">
+						4.6分 很好
+					</div>
+					<div class="hotel-des">
+						<p>高于70%同城舒适型酒店</p>
+						<p>97%住客推荐 卫生4.6 环境4.7 服务4.6 设施4.5</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content menu">
+			<div class="aui-tab" id="tab">
+			    <div class="aui-tab-item aui-active" tab_id="all">全部(<span id="all_comment_count">0</span>)</div>
+			    <div class="aui-tab-item" tab_id="has-image">有图(<span id="comment_with_pic_count">0</span>)</div>
+			    <div class="aui-tab-item" tab_id="need-improve">待改善(<span id="need_improve_count">0</span>)</div>
+			</div>	
+			<div class="aui-list">
+				<div class="aui-row" id="tag-list">
+
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-content comments comments-list">
+            <div id="all"></div>
+            <div id="has-image"></div>
+            <div id="need-improve"></div>
+		</div>
+
+        <script type="x-type" id="list-item">
+            <div class="aui-card-list">
+	            <div class="aui-card-list-header aui-card-list-user">
+	                <div class="aui-card-list-user-avatar">
+	                    <img src="../img/touxiang.png" class="aui-img-round">
+	                </div>
+	                <div class="aui-card-list-user-name">
+	                    <div class="aui-text-info">$userName</div>
+	                    <div class="aui-font-size-14 text-light">发布于 $postTime</div>
+	                </div>
+	            </div>
+	            <div class="aui-card-list-content-padded aui-padded-t-5 aui-padded-b-5">
+	              $content
+	            </div>
+	            <div class="aui-card-list-content">
+	                <div class="aui-row aui-row-padded">
+	                    $imageContent
+	                </div>
+	            </div>
+	            <div class="aui-card-list-footer text-light aui-font-size-14">
+					<div>
+						浏览$viewTimes次
+					</div>
+					<div class="comments-fuc">
+						 <span><i class="aui-iconfont aui-icon-comment"></i> 评论</span>
+						 <span c_id="$id" class="thumbup"><i class="aui-iconfont aui-icon-laud $isThumbup"></i>
+						 <i class="count">$thumbupCount</i></span>
+	                </div>
+			    </div>
+	        </div>
+        </script>
+
+        <script type="x-tpl" id="image-item">
+            <div class="aui-col-xs-3">
+                <img src="$imageSrc" />
+            </div>
+        </script>
+
+        <script type="x-tpl" id="tag-item">
+            <div class="aui-col-xs-4">
+                <a tag_id="$id">$name</a>
+            </div>
+        </script>
+
+	</body>
+	<script src="../aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../aui/script/aui-toast.js" ></script>
+    <script src="../layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+
+        var gParam = {},
+            curType = 'all',
+            gXDragStart,
+            gYDragStart,
+            gValidDragStartOffsetRate = 0.3,
+            gStartScrollLeft = 0,
+            gEndScrollLeft = 0,
+            gMoveDistance = 0,
+            gListIndex = 0,
+            gIsSwipeAnimation = false,
+            gIsSwiping = false,
+            gTabMap = {
+                all : 'all_comment_count',
+                'has-image' : 'comment_with_pic_count',
+                'need-improve' : 'need_improve_count'
+            },
+            gSelectedTags = {},
+            gCurScrollLeft = 0,
+            gMenuOffsetTop = $('.menu').offset().top,
+            gHotelId = queryString('hotelId')
+            ;
+
+
+        function onTouchStart(e, ele) {
+            gIsSwiping = true;
+            gXDragStart = e.clientX || e.touches[0].clientX;
+            gYDragStart = e.clientY || e.touches[0].clientY;
+            gStartScrollLeft = $(ele).parent().offset().left;
+        }
+
+        function onTouchMove(e, ele) {
+            var x = e.clientX || e.changedTouches[0].clientX,
+                y = e.clientY || e.changedTouches[0].clientY;
+            gMoveDistance = Math.abs(gXDragStart - x);
+            if (gMoveDistance < $(ele).width() && Math.abs(gYDragStart - y) <= 20) {
+                onSwipeMove(ele, -(x - gXDragStart));
+            }
+        }
+
+        function onTouchEnd(e, ele) {
+            var x = e.changedTouches && e.changedTouches[0].clientX || e.clientX,
+                y = e.changedTouches && e.changedTouches[0].clientY || e.clientY,
+                swipeDistance = Math.abs(gStartScrollLeft - (gEndScrollLeft = $(ele).parent().offset().left)),
+                direction = gXDragStart < x ? 'right' : 'left',
+                left = $(ele).parent().offset().left;
+
+
+            if (swipeDistance >= $(window).width() * gValidDragStartOffsetRate
+                    && left <= 0 && -left <= $(ele).parent().width() - $('body').width()) {
+                onSwipeEnd(ele, swipeDistance, direction);
+            }
+            else {
+                var offLeft = $(ele).offset().left;
+                $(ele).parent().animate({
+                    left : $(ele).parent().offset().left
+                                        - (offLeft < 0 ? offLeft : -($(ele).width() - $(ele).width() - offLeft))
+                });
+            }
+            gIsSwiping = false;
+        }
+
+
+        function onSwipeMove(ele, distance) {
+            var left = $(ele).parent().offset().left;
+            $(ele).parent().offset({left: gStartScrollLeft - distance});
+        }
+
+
+        function onSwipeEnd(ele, distance, dir) {
+            var eleW = $(ele).width(),
+                eleScrollLeft = $(ele).parent().offset().left,
+                parentW = $(ele).parent().width(),
+                eleOffsetLeft = $(ele).offset().left,
+                willScrollDistance = 0,
+                isSwipeValid = true;
+
+            if (dir == 'right') {
+                willScrollDistance = -(eleW - eleOffsetLeft);
+            }
+            else if (dir == 'left') {
+                willScrollDistance = (eleW + eleOffsetLeft);
+            }
+
+            doSwipeAnimate(ele, eleScrollLeft - willScrollDistance, dir);
+        }
+
+
+        function doSwipeAnimate(ele, end, dir, isTabClick) {
+            if (gIsSwipeAnimation) {
+                $(ele).parent().stop();
+            }
+
+            $(ele).parent().animate({left : end}, 'fast', function() {
+                gIsSwipeAnimation = false;
+                if (!isTabClick) {
+                    onSwipeToNext(ele, dir);
+                }
+
+                onTagChange();
+                gCurScrollLeft = end;
+            });
+            gIsSwipeAnimation = true;
+        }
+
+
+        function onSwipeToNext(ele, dir) {
+            gListIndex += dir == 'left' ? 1 : -1;
+            curType = $('#tab>div').removeClass('aui-active').eq(gListIndex)
+                    .addClass('aui-active').attr('tab_id');
+        }
+
+
+        function onTagChange() {
+            var tags = (gSelectedTags[curType] || '').split(',');
+            $('#tag-list').find(' a.selected').removeClass('selected');
+            $.each(tags, function(i, id) {
+                $('#tag-list').find('a[tag_id=' + id + ']').addClass('selected').end().fadeIn('slow');
+            });
+
+            $(window).scrollTop(gParam[curType].scrollTop || 0);
+            $('.comments-list').css('height', $('#' + curType).height());
+            setHasMore(true);
+            onLoadMore = loadComment.bind(this, null, curType, false, true);
+        }
+
+
+        function loadTags() {
+            base.jsonGet('/app/comment/tags/json', {hotelRoomId : 0}, function(data) {
+                var tpl = $('#tag-item').html();
+                $.each(data.data || [], function(i, v) {
+                    $('#tag-list').append(tpl.formatStr(v));
+                });
+            });
+        }
+
+        function loadCommentByTagId(id) {
+            var ele = event.target || event.srcElement,
+                selected = $(ele).toggleClass('selected').hasClass('selected'),
+                tagIds = $('#tag-list').find('a.selected')
+                               .map(function(i, e) { return $(e).attr('tag_id'); }).get().join(',');
+
+            setHasMore(true);
+            gSelectedTags[curType] = tagIds;
+            loadComment({tags : tagIds, pageIndex : 1}, curType, true);
+        }
+
+
+        function loadComment(param, container, clear, more) {
+            var defaultParam = {
+                    hotelId : gHotelId,
+                    userId : base.user.id,
+                    type : container
+                },
+                allParam = defaultParam,
+                curParam = gParam[container] ? gParam[container] : gParam[container] = {};
+
+            if (param) {
+                allParam = mergeMap(param, defaultParam);
+            }
+            for (var k in allParam) {
+                curParam[k] = allParam[k];
+            }
+
+            if (clear) {
+                showLoading('加载中', 20);
+            }
+            base.jsonGet('/app/comment/list/json', curParam, function(data) {
+                var listItemTpl = $('#list-item').html(),
+                    $container = $('#' + container);
+                    imageItemTpl = $('#image-item').html();
+
+                if (clear) {
+                    $container.empty();
+                }
+                curParam.pageIndex += 1;
+
+                $.each(data.data || [], function(i, v) {
+                    v.imageContent = '';
+                    $.each((v.images || '').split(';'), function(i, img) {
+                        if (img) {
+                            v.imageContent += imageItemTpl.formatStr({imageSrc: img});
+                        }
+                    });
+
+                    v.isThumbup = v.isThumbup ? 'orange' : '';
+                    v.postTime = new Date(v.createTime).Format("yyyy-MM-dd hhhh:mm:ss");
+                    v.userName = v.name || v.phone;
+                    $container.append($(listItemTpl.formatStr(v)).hide().fadeIn());
+                });
+
+                var page = data.page || {};
+                loadComplete(page.hasNext);
+                $('#' + gTabMap[container]).html(page.totalCount);
+                if ($container.index() == 0 || clear) {
+                    $container.parent().css('height', $container.height());
+                }
+            });
+
+        }
+
+
+        var lastClick = 0;
+        // 评论列表滑动切换
+        $(document).on('touchstart touchmove touchend mousedown mousemove mouseup', '.comments-list>div', function(e) {
+            e = event || e;
+            switch(e.type) {
+                case 'touchstart':
+                case 'mousedown':
+                    onTouchStart(e, this);
+                    break;
+
+                case 'touchmove':
+                case 'mousemove':
+                    onTouchMove(e, this);
+                    break;
+
+                case 'touchend':
+                case 'mouseup':
+                    onTouchEnd(e, this);
+                    break;
+            }
+        })
+
+        // 点击标签加载评论
+        .on('touchend', '#tag-list a', loadCommentByTagId)
+
+        // 点击点赞按钮
+        .on('touchend', '.aui-card-list .thumbup', function(e) {
+            var self = this;
+            if (new Date().getTime() - lastClick < 1000) {
+                showMsg('您的点赞频率过快！');
+                return;
+            }
+
+            base.jsonGet('/app/comment/thumbup/json', {
+                userId : base.user.id,
+                commentId : $(self).attr('c_id')
+            }, function(data) {
+                var $i = $(self).find('i.aui-icon-laud'),
+                    isThumbup = false;
+                if (data.status == 'success') {
+                    isThumbup = data.data;
+                }
+                else {
+                    showMsg(data.message || '好评操作失败！');
+                }
+                $i.toggleClass('orange');
+                $(self).find('.count').html(Math.max(0, parseInt($(self).find('.count').html()) + (isThumbup ? 1 : -1)));
+            });
+            lastClick = new Date().getTime();
+        })
+
+        .on('click','#tab .aui-tab-item', function(e) {
+            e = e || event;
+            $('.comments-list>div').show().parent().scrollLeft(gCurScrollLeft);
+            $('.aui-tab-item').removeClass('aui-active');
+            $(this).addClass('aui-active');
+
+            var index = $(this).index(),
+                dstScrollLeft = index * $('body').width();
+
+            if (gListIndex != index) {
+                doSwipeAnimate($('.comments-list>div:eq(' + index + ')'), -dstScrollLeft, '', true);
+                gListIndex = index;
+                curType = $(this).attr('tab_id');
+            }
+        })
+
+        window.onscroll =  function(e) {
+            if ($(window).scrollTop() >= gMenuOffsetTop) {
+                $('.menu').css({position: 'fixed', top: 0, zIndex: 999, width: $(window).width() });
+            }
+            else {
+                $('.menu').css({position: 'relative'});
+            }
+            gParam[curType].scrollTop = $(window).scrollTop();
+        };
+
+        loadTags();
+        loadComment({ pageIndex : 1 }, 'all');
+        loadComment({ pageIndex : 1 }, 'has-image');
+        loadComment({ pageIndex : 1 }, 'need-improve');
+        onLoadMore = loadComment.bind(this, null, curType, false, true);
+
+        $('.comments-list>div').width($('body').width());
+        $('.comments-list').css('width', $('.comments-list>div').size() * $('body').width());
+	</script>
+</html>

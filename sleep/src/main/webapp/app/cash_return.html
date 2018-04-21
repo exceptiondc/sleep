@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的钱包</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="weui/lib/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="weui/css/jquery-weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/order_pay.css"/>
+		<style type="text/css">
+			.weui-toast .weui-toast_content{
+				font-size: 0.8rem;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body ontouchstart>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">押金退回</div>
+		</header>
+		
+		<div class="aui-content main">
+		   <div class="aui-row cash return-cash">
+		   		<div class="aui-list-item-title tit">
+		   			退押金后
+		   		</div>
+		   		<p>您将无法享受宜睡“想睡就睡，随时入住“特权。</p>
+		   		<div class="aui-list-item-title money">
+		   			200元
+		   		</div>
+		   </div>
+		</div>
+		
+		
+		<div class="aui-content pay-list return">
+		    <div class="aui-list">
+		    	<img src="img/return-cash.png"/>
+		    	<div class="aui-list-item-title">
+		    		<span class="logo"></span>宜睡科技
+		    	</div>
+		    	<ul class="des">
+		    		<li>提交申请后，平台会在5个工作日内审核，通过后，按照资金来源，原路全额返回。</li>
+		    		<li>请您及时关注押金退回进度。</li>
+		    	</ul>
+		    </div>
+		    
+		    <div class="aui-content-padded btn">
+				<p><div class="aui-btn aui-btn-block confirm" id="confirm">确认并退回押金</div></p>
+				
+			</div>
+			<div class="aui-content-padded btn">
+				<p><div class="aui-btn aui-btn-warning aui-btn-block" id="giveUp">算了</div></p>
+			</div>
+		    
+		</div>
+		
+		
+		
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-toast.js" ></script>
+	<script type="text/javascript">
+		
+		$(document).on("click", "#confirm", function() {
+				layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/cashPledgeRefund/json',{userid:base.getUser().id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			  $.toast("操作成功", function() {
+		          console.log('close');
+		        }); 
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+
+	      
+	      })
+		.on("click","giveUp",function(){
+			location.href = '#'
+		})
+
+		
+		
+	
+		
+	</script>
+</html>

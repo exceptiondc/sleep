@@ -1,0 +1,82 @@
+.aui-content{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	padding: 0.75rem;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+.aui-content .aui-list-item-title{
+	margin: 1.75rem auto 0.75rem;
+	font-size: 0.75rem;
+	color: #333;
+}
+.aui-content .code{
+	width: 13.8rem;
+	height: 7.2rem;
+	background: url(../img/invite_code_bg.png) no-repeat center;
+	background-size: contain;
+	padding-top: 1px;
+	margin: 0 auto;
+}
+.aui-content .code img{
+	display: block;
+	width: 3.5rem;
+	height: 3.5rem;
+	margin: 0.75rem auto;
+}
+.aui-content .notice{
+	color: #FFA200;
+}
+.aui-content .aui-btn{
+	font-size: 0.75rem;
+	
+}
+.aui-content .aui-btn.aui-btn-block{
+	width: 60%;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+.aui-content .aui-row{
+	padding: 0.75rem;
+}
+.aui-content .aui-row .aui-col-xs-6{
+	height: 4.75rem;
+	width: 49%;
+}
+.aui-content .aui-row .aui-col-xs-6:last-child{
+	border-left: 1px solid #ddd;
+}
+.aui-content .aui-row .aui-col-xs-6 img{
+	width: 4.5rem;
+    /* height: 3rem; */
+    margin: 1.5rem auto;
+}
+.aui-content .aui-row .aui-col-xs-6 .tit{
+	font-size: 0.75rem;
+	color: #333;
+	height: 1rem;
+	line-height: 1rem;
+}
+.aui-content .aui-row .aui-col-xs-6 .money{
+	font-size: 1.1rem;
+	color: #FFA200;
+	height: 2.5rem;
+}
+.aui-content .aui-row .aui-col-xs-6 .money span{
+	font-size: 1.5rem;
+}
+.aui-content .aui-row .aui-col-xs-6 a{
+	 color: #666;
+	 font-size: 0.7rem;
+}
+.aui-content .aui-row .aui-col-xs-6.info{
+	padding-top: 0.5rem;
+}
+.aui-content .aui-row .aui-col-xs-6.info .tit{
+	font-size: 0.75rem;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	text-align: left;
+	padding-left: 0.75rem;
+}

@@ -1,0 +1,300 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.aui-content.main{
+	width: 100%;
+	height: 20%;
+	background: #fff;
+	padding: 0 0.75rem;
+}
+.aui-content.main .aui-col-xs-4,.aui-content.main .aui-list.aui-col-xs-8{
+	height: 100%;
+	text-align: center;
+}
+.aui-content.main .aui-col-xs-4 img{
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	margin: 34% auto;
+}
+.aui-content.main .aui-list{
+	background-image: none;
+}
+.aui-content.main .aui-list.aui-col-xs-8{
+	padding-top: 10%;
+}
+.aui-content.main .aui-list.aui-col-xs-8  .line{
+	width: 7rem;
+	height: 1px;
+	background: #eee;
+	margin: 8px auto;
+}
+.aui-list.aui-col-xs-8 .list{
+	font-size: 0.75rem;
+	color: #000;
+}
+.aui-list.aui-col-xs-8 .list span{
+	font-size: 23px;
+	color: #FFA200;
+	font-weight: bold;
+}
+
+.pay-list{
+	margin-top: 0.75rem;
+}
+.pay-list .aui-list{
+	background-image: none;
+}
+.pay-list .aui-list .aui-list-item{
+	padding-right: 0.75rem;
+	background-image: none;
+}
+.pay-list .aui-list .aui-list-item .aui-list-item-inner{
+	border-bottom: 1px solid #ddd;
+	padding-right: 0;
+	padding: 0.5rem 0 0.5rem 0.2rem;	
+}
+.pay-list .aui-list .aui-list-item:last-child .aui-list-item-inner{
+	border-bottom: none;
+}
+.pay-list .aui-list label{
+	width: 100%;
+}
+.pay-list .aui-list .aui-list-item i.aui-iconfont{
+	display: block;
+	width: 1.3rem;
+	height: 1rem;
+}
+.pay-list .aui-list .aui-list-item i.aui-iconfont img{
+	width: 100%;
+	height: 100%;
+}
+.aui-radio:checked, .aui-radio.aui-checked, .aui-checkbox:checked, .aui-checkbox.aui-checked {
+    background-color: #ffc81c;
+    border: solid 1px #ffc81c;
+    text-align: center;
+    background-clip: padding-box;
+}
+.pay-list .aui-list-item label p{
+	line-height: 0.8rem;
+    font-size: 0.6rem;
+    margin-top: -4px;
+}
+.pay-list .aui-list-item label p span{
+	display: inline-block;
+    background: #ff807c;
+    color: #fff;
+    border-radius: 4px;
+    padding: 1px 0.2rem;
+    position: relative;
+    margin-top: 4px;
+}
+.pay-list .aui-list-item label p span:after{
+	display: block;
+    content: '';
+    border-width: 4px 4px 4px 4px;
+    border-style: solid;
+    border-color: transparent transparent #ff807c transparent;
+    position: absolute;
+    left: 46%;
+    top: -8px;	
+}
+
+.pay-list .aui-list-item label .aui-list-item-inner .aui-list-item-title span.yue{
+	font-size: 0.7rem;
+	color: #666;
+}
+.aui-content-padded.help{
+	text-align: right;
+}
+.aui-content-padded.help p a{
+	color: #666;
+}
+.aui-content-padded.pay-btn{
+	margin-top: 2rem;
+}
+
+/*余额支付*/
+#yuePay{
+	position: absolute;
+    width: 80%;
+    left: 35%;
+    top: 50%;
+    margin-left: -25%;
+    margin-top: -25%;
+    z-index: 999;
+    border-radius: 10px;	
+}
+#yuePay .aui-list{
+	border-radius: 10px;
+	padding-bottom: 0.1rem;
+}
+#yuePay .aui-bar.aui-bar-nav{
+	height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 0.9rem;
+    color: #000;
+    background-color: #f5f5f5;
+}
+#yuePay .aui-bar.aui-bar-nav a span.aui-iconfont{
+	color: #000;
+}
+#yuePay .aui-list .aui-list-item{
+	margin: 0.5rem 0.75rem;
+}
+#yuePay .aui-list .aui-list-item.pay-money,#yuePay .aui-list .aui-list-item.pay-btn{
+	text-align: center;
+	padding-left: 0;
+}
+#yuePay .aui-list .aui-list-item.pay-money{
+	background-image: none;
+}
+#yuePay .aui-list .aui-list-item.pay-money .aui-list-item-title{
+	font-size: 1.7rem;
+	color: #000;
+}
+#yuePay .aui-list .aui-list-item.pay-money .aui-list-item-title,#yuePay .aui-list .aui-list-item.pay-btn .aui-list-item-title{
+	margin: 0 auto;
+}
+#yuePay .aui-list .aui-list-item.pay-btn{
+	
+}
+
+
+/*----交纳押金-----*/
+.main .cash{
+	padding: 0.75rem;
+}
+.main .cash .tit{
+	margin-top: 0.5rem;
+	font-size: 1.2rem;
+	color: #333;
+}
+.main .cash .money{
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: #333;
+}
+
+
+/*----账户充值-----*/
+.aui-content.account-recharge{
+	height: auto;
+	padding: 0.5rem 0.75rem;
+}
+.account .aui-row{
+	padding: 0.3rem 0;
+}
+.account .aui-list-item-inner{
+	padding-right: 0;
+	padding: 0.5rem 0;
+	border-bottom: 1px solid #ddd;
+}
+.account .aui-list-item-inner .aui-list-item-input{
+	text-align: center;
+	padding-right: 0;
+}
+.account .aui-list-item-inner .aui-list-item-input input{
+	width: 82%;
+	display: inline-block;
+	height: 2rem;
+	background: #f2f2f2;
+	text-align: center;
+}
+.account-recharge .aui-row .aui-col-xs-4 .money{
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	background: #f2f2f2;
+}
+.account-recharge .aui-row .aui-col-xs-4.active .money{
+	background: #ffc81c;
+	color: #fff;
+}
+
+/*--------账户提现---------*/
+.account.withdraw .aui-list-item-inner{
+	border-bottom: none;
+	padding-bottom: 0.3rem;
+}
+.account.withdraw .aui-list-item{
+	min-height: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 5.5rem;
+}
+.account.withdraw .aui-list-item p{
+	font-size: 0.6rem;
+}
+.account.withdraw .aui-list-item .withdraw-all{
+	font-size: 0.7rem;
+	color: #FFA200;
+}
+.account.withdraw .aui-row.tip p{
+	font-size: 0.5rem;
+}
+
+/*-----押金退回------*/
+.aui-row.return-cash{
+	padding: 0.5rem;
+}
+.aui-content.pay-list.return{
+	/*padding: 0.75rem;*/
+	background: #fff;
+}
+.aui-content.pay-list.return .aui-list{
+	padding: 0.75rem;
+	text-align: center;
+}
+.aui-content.pay-list.return .aui-list img{
+	width: 10rem;
+	height: 7.5rem;
+	margin: 0.75rem auto;
+}
+.aui-content.pay-list.return .aui-list .aui-list-item-title{
+	color: #666;
+	margin-bottom: 5px;
+}
+.aui-content.pay-list.return .aui-list .aui-list-item-title .logo{
+	display: inline-block;
+    width: 1.8rem;
+    height: 1.1rem;
+    background: url(../img/return-logo.png) no-repeat center;
+    background-size: contain;
+    vertical-align: -5px;
+    margin-right: 6px;
+}
+.aui-content.pay-list.return .aui-list ul.des{
+	width: 89%;
+    margin: 0 auto;
+    padding-left: 1rem;
+}
+.aui-content.pay-list.return .aui-list ul.des li{
+	font-size: 0.5rem;
+	color: #666;
+	text-align: left;
+	list-style: initial;
+	margin-bottom: 5px;
+} 
+.btn .confirm{
+	background: #aaa;
+	color: #fff;
+}
+
+
+
+/*优惠券使用*/
+.coupon .aui-list-item-inner{
+	padding-left: 2rem;
+}
+.coupon .aui-list-item-inner .aui-list-item-title span{
+	font-size: 0.65rem;
+	padding-left: 0.5rem;
+	vertical-align: middle;
+	color: #666;
+}
+.pay-btn .pb{
+	background: #FFD13F;
+	color: #ffffff;
+}

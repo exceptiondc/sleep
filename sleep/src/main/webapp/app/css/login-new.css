@@ -1,0 +1,129 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.login-content{
+	width: 100%;
+	height: 100%;
+	background: url(../img/login-bg.jpg) no-repeat center;
+	background-size: cover;
+}
+.login-content .aui-content .go-watch{
+	text-align: right;
+}
+.login-content .aui-content .go-watch a{
+	display: inline-block;
+	margin-top: 2rem;
+	padding-right: 2rem;
+	color: #999;
+	text-decoration: underline;
+}
+.login-content .aui-content .logo{
+	width: 4.25rem;
+	height: 4.25rem;
+	margin: 3rem auto 2.45rem;
+}
+.form-login .aui-list-item-inner{
+	width: 74%;
+	margin: 0 auto;
+}
+.form-login .aui-list-item-inner .aui-list-item-input{
+	position: relative;
+}
+.form-login .aui-list-item-inner .aui-list-item-input input{
+	background: rgba(0,0,0,.6);
+	padding-left: 2rem;
+	height: 2.25rem;
+	font-size: 0.7rem;
+	color: #fff;
+}
+input:-ms-input-placeholder{
+    color: #fff;opacity:1;font-size: 14px;
+}
+
+input::-webkit-input-placeholder{
+    color: #fff;opacity:1;font-size: 14px;
+}
+.form-login{
+	margin-top: 0;
+}
+.form-login .aui-list-item-inner .aui-list-item-input:first-child{
+	margin-bottom: 1.75rem;
+}
+.help-login{
+	height: 1rem;
+	margin-bottom: 4.5rem;
+}
+.help-login a{
+	color: #fff;
+	font-size: 0.7rem;
+}
+.form-login .aui-list-item-inner .aui-list-item-input .icon{
+	display: inline-block;
+	position: absolute;
+	width: 0.8rem;
+	height: 1.3rem;
+	top: 0.47rem;
+	left: 0.5rem;
+}
+.form-login .aui-list-item-inner .aui-list-item-input .icon.icon-shouji{
+	background: url(../img/login-shouji.png) no-repeat center;
+	background-size: cover;
+}
+.form-login .aui-list-item-inner .aui-list-item-input .icon.icon-suo{
+	height: 1.1rem;
+	top: 0.57rem;
+	background: url(../img/login-suo.png) no-repeat center;
+	background-size: cover;
+}
+
+.form-login .aui-list-item-inner.btn-login{
+	margin-top: 20%;
+	width: 53%;
+}
+.form-login .aui-list-item-inner.btn-login .aui-btn{
+	height: 2.25rem;
+	font-size: 0.7rem;
+	border-radius: 30px;
+}
+.register{
+	text-align: center;
+    margin-top: 0.5rem;
+}
+.register a{
+	color: #fff;
+}
+.form-login .aui-list-item-inner .aui-row:last-child{
+	height: 2.5rem;
+}
+
+/*=========验证码登录的页面=========*/
+.form-login .aui-list-item-inner .aui-list-item-input.code-input{
+	margin-bottom: 1rem;	
+}
+.aui-row .aui-col-xs-6:nth-child(2) .send, .aui-row .aui-col-xs-6:nth-child(2) .imgcode{
+	height: 2.25rem;
+	line-height: 2.25rem;
+	border-radius: 6px;
+	text-align: center;
+	width: 90%;
+	margin-left: 10%;
+	font-size: 0.7rem;
+}
+.form-login .aui-list-item-inner .aui-list-item-input .icon.icon-code{
+	width: 0.9rem;
+	height: 0.8rem;
+	top: 0.75rem;
+	background: url(../img/login-code.png) no-repeat center;
+	background-size: cover;
+}
+.form-login .aui-list-item-inner .aui-list-item-input .icon.icon-code-img{
+	width: 1rem;
+	height: 1rem;
+	top: 0.5rem;
+	left: ;
+	background: url(../img/login-code-img.png) no-repeat center;
+	background-size: cover;
+}
+
+

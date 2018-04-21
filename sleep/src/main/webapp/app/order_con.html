@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>订单确认</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<link rel="stylesheet" type="text/css" href="css/order_con.css"/>
+	</head>
+	
+	<body>	
+		<div class="banner">
+
+			<a class="pre" onclick="javascript:history.go(-1);"><img src="img/pre.png"/></a>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			  <!--  <div class="swiper-slide"><img src="img/banner-pic.png"/></div>
+			      <div class="swiper-slide"><img src="img/banner-pic.png"/></div>
+			      <div class="swiper-slide"><img src="img/banner-pic.png"/></div> -->
+			    </div>
+			    <!-- Add Pagination -->
+			   <!-- <div class="swiper-pagination"></div>-->
+			    <!-- Add Arrows -->
+			    <!--<div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>-->
+			</div>
+			<!-- 	<a href="hotel_photo.html"></a> -->
+		</div>
+		<div class="aui-content order-msg">
+			<div class="aui-list">
+				<div class="aui-list-item">
+					<div class="aui-col-xs-6">
+						<p id="hotelName"></p>
+					</div>
+					<div class="aui-col-xs-6">
+						<p><span class="hotel-load"><img src="img/icon-dingwei.png"/></span>大学城求学路附近</p>
+					</div>
+				</div>
+			<!-- 	<div class="aui-list-item time">				
+					<div class="aui-col-xs-6 clearfix">
+						<img class="left" src="img/time.png"/>
+						<div class="left">
+							<p>预计入住时间</p>
+							<p>2017-1-30 20:35</p>
+						</div>
+					</div>
+					<div class="aui-col-xs-6 clearfix">
+						
+						<div class="left">
+							<p>预计退房时间</p>
+							<p>2017-2-1 20:35</p>
+						</div>
+					</div> 
+			
+	           </div>-->
+	            
+				<div class="aui-list-item des">
+					<div class="aui-col-xs-6">
+						<p id="biaoqian"></p>
+					</div>
+					<div class="aui-col-xs-6">
+						<p><a href="hotel_facilities.html" id="sheshi">查看更多酒店服务设施</a></p>
+					</div>
+				</div>
+				<div class="aui-list-item price">
+					<div class="aui-col-xs-6">
+						<div class="aui-list-item-title">
+							预订房价
+						</div>
+						<p>分时、全日，两种计费方式。</p>
+						<p>精打细算好选择，真正实惠！</p>
+					</div>
+					<div class="aui-col-xs-6">
+						<div class="aui-list-item-title" id="zifei">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content order-btn">
+			<div class="aui-list">
+				<div class="aui-list-item-title">
+					<p><span class="tip"></span>预定后，立即为您锁定房源！</p>
+					<p>无需支付，先入住，退房时结算</p>
+				</div>
+				 <p><div class="aui-btn aui-btn-warning aui-btn-block" onclick="yuding(queryString('hotelHousesId'))">立即预订</div></p>
+			</div>
+		</div>
+		
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/fastclick.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script>
+	  $(function() {
+	    FastClick.attach(document.body);
+	  });
+	</script>
+	<script src="weui/js/jquery-weui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../layer-v3.0.3/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+
+
+		 if(queryString('hotelHousesId')){
+
+
+		 	layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/hotelHouse/look/app/json',{id:queryString('hotelHousesId')},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			var hotelHouse=data.data[0];
+	    			 	$('#sheshi').attr('href','hotel_facilities.html?hotelId='+hotelHouse.hotelid);	
+	    			var html='';
+	    			$.each(hotelHouse.imgs.split(';'),function(i,o){
+	    				if(hotelHouse.imgs.split(';').length-1==i){
+							return false;
+						}
+	    				html+='<div class="swiper-slide" style="width: 414px;height:175px;"><img style="height:100%;width:100%;" src="'+o+'"></div>';
+
+	    			});
+	    			$('.swiper-wrapper').append(html);
+	    			$('#hotelName').append('<span class="hotel-pic"><img src="'+hotelHouse.img+'"/></span>'+hotelHouse.hotelName+'');
+
+	    			$('#biaoqian').append('<span>'+hotelHouse.bedType+'</span><span>'+hotelHouse.houseNumber+'房间</span>');
+	    			$('#zifei').append('分时房：'+hotelHouse.hourPrice+'元/小时');
+
+	    			var swiper = new Swiper('.swiper-container', {
+				      navigation: {
+				        nextEl: '.swiper-button-next',
+				        prevEl: '.swiper-button-prev',
+				      },
+				    });
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		 }
+
+		
+
+
+		function yuding(hotelHousesId){
+			base.isIdentity();
+			 layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appOrders/placeAnOrder/json',{userid:base.getUser().id,hotelHouseId:hotelHousesId,orderType:4},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			location.href='cur_order.html?orderId='+data.data;
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+		}
+	</script>
+</html>

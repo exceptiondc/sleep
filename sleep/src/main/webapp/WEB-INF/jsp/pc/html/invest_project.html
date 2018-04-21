@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=1220" />
+		<title>营普金服-我要投资</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/jquery.lineProgressbar.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.4.2.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/invest_project.css"/>
+		
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>-->
+		
+	</head>
+	<body>
+		<!--顶部-->
+		<div class="header">
+			<div class="header-top">
+				<div class="center">
+					<div class="contact left">
+						<p>服务热线：400-9690-900</p>
+						<a href="#" class="tel"><img src="../img/images/head-tel_03.png"/></a>
+						<a href="#" class="weixin"><img src="../img/images/head-weixin_03.png"/></a>
+						<a href="#" class="weibo"><img src="../img/images/head-weibo_03.png"/></a>
+					</div>
+					
+					<div class="nav right">
+						<ul class="nav-item clearfix">
+							<li class="app"><a href="" class="org"><img src="../img/head-phone.png"/> 手机APP</a></li>
+							<li><a href="#" class="org"><img src="../img/head-vip.png"/> 个人中心 <img class="pull" src="../img/head-pull.png" /></a></li>
+							<li><a href="#">帮助中心</a></li>
+							<li><a href="#">活动中心</a></li>
+							<li><a href="#" class="bold">登录</a></li>
+							<li><a href="#" class="bold">注册</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="header-nav">
+				<div class="center clearfix">
+					<div class="logo left">
+						<img src="../img/logo.png"/>					
+					</div>
+					<div class="logo-text left">
+						<p class="red">新金融倡导者</p>
+						<p class="black">营创智慧金融，普享财富人生</p>
+					</div>
+					
+					<div class="nav right">
+						<ul class="nav-list">
+							<li><a href="../index.html">首页</a></li>
+							<li><a href="invest.html" class="active">我要投资</a></li>
+							<li><a href="#">我要借款</a></li>
+							<li><a href="#">安全保障</a></li>
+							<li><a href="#">信息披露</a></li>
+							<li><a href="#" class="account"><img src="../img/account.png"/> 我的账户</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--主体-->
+		<div class="invest-main">
+			<div class="center">
+				<!--项目情况-->
+				<div class="clearfix">
+					<!--项目情况左上部分-->
+					<div class="invest-project left">
+						<h3>【车贷融】20170922002</h3>
+						<img src="../img/invest-project_1.png"/>
+						<div class="project-msg left">
+							<ul class="clearfix">
+								<li>
+									<p>预期年化收益率</p>
+									<p class="large">10%</p>
+								</li>
+								<li>
+									<p>借款额度</p>
+									<p class="large">10%</p>
+								</li>
+								<li>
+									<p>借款期限</p>
+									<p class="large">1个月</p>
+								</li>
+							</ul>
+							<div class="progress clearfix">
+								<p class="left">项目进度</p>
+								<div id="progressBar1" class="progress-bar left"></div>
+							</div>
+							<div class="project-txt clearfix">
+								<p class="time">发标时间：</p>
+								<p class="sum">起投金额：</p>
+								<p class="rate">计息方式：</p>
+								<p class="repay">还款方式：</p>
+							</div>
+						</div>
+					</div>
+				
+				<!--项目投资 右上部分-->
+					<div class="invest-operation left">
+						<ul>
+							<li class="">
+								<p>我的可用金额:</p>
+								<span>元</span>
+							</li>
+							<li class="">
+								<p>我的可用金额:</p>
+								<span>元</span>
+							</li>
+							<li class="" style="height: 42px;line-height: 42px;">
+								<input type="text" name="" class="invest-money" id="" value="请输入您要投资的金额" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#aaa'}" style="color:#aaa"/>
+								<span>元</span>
+							</li>
+							<li class="">
+								<p>我的可用金额:</p>
+								<span>元</span>
+							</li>
+							<li class="" style="height: 52px;">
+								<a href="#" class="invest-btn">立即投资</a>
+							</li>
+							<li class="agree">
+								<input type="checkbox" name="" id="agreeText" value="agree" />
+								<lable for="agreeText">我已阅读并同意《网络借贷风险和禁止性行为提示书》、《资金来源合法承诺书》</lable>
+							</li>
+							<li class="lr">
+								<a href="#" class="on">立即登录</a>
+								<a href="#">免费注册</a>
+							</li>
+						</ul>	
+					</div>
+			
+				</div>
+				<!--tab切换页-->
+				<div class="project-tab">
+					<div class="tab-menu" id="menu">
+						<ul class="clearfix">
+							<li class="active">项目信息</li>
+							<li>安全保障</li>
+							<li>投资记录</li>
+						</ul>
+					</div>
+					
+					<div class="tab-main" id="content">
+						
+						<!--项目信息部分的内容-->
+						<div class="item project-info" id="item1">
+							<div class="info-one">
+								<h3>借款人信息</h3>
+								<div class="info">
+									<ul class="clearfix">
+										<li><p>姓名：刘某某</p></li>
+										<li><p>性别：男</p></li>
+										<li><p>年龄：32</p></li>
+										<li><p>婚姻状况：未婚</p></li>
+										<li><p>证件号码：******************</p></li>
+										<li><p>籍贯：陕西省西安市雁塔区5645号</p></li>
+									</ul>
+								</div>
+								
+							</div>
+							<div class="info-two">
+								<h3>借款描述</h3>
+								<div class="borrow">
+									<p>我国最新实时行人检测识别系统首曝光！可以实时监测区分出机动车、非机动车和行人，并能准确识别出机动车和非机动车的种类，以及行人的年龄、性别、穿着。系“中国天网”工程的重要组成部分。我国最新实时行人检测识别系统首曝光！可以实时监测区分出机动车、非机动车和行人，并能准确识别出机动车和非机动车的种类，以及行人的年龄、性别、穿着。系“中国天网”工程的重要组成部分。我国最新实时行人检测识别系统首曝光！可以实时监测区分出机动车、非机动车和行人，并能准确识别出机动车和非机动车的种类，以及行人的年龄、性别、穿着。系“中国天网”工程的重要组成部分。我国最新实时行人检测识别系统首曝光！可以实时监测区分出机动车、非机动车和行人，并能准确识别出机动车和非机动车的种类，以及行人的年龄、性别、穿着。系“中国天网”工程的重要组成部分。</p>
+								</div>
+								
+							</div>
+							<div class="info-three">
+								<h3>项目资料</h3>
+								<div class="banner">
+									<div class="swiper-container" >
+									    <div class="swiper-wrapper" >
+									        <div class="swiper-slide"><img src="../img/images/代替图片_03.png"/></div>
+									        <div class="swiper-slide"><img src="../img/images/代替图片_03.png"/></div>
+									        <div class="swiper-slide"><img src="../img/images/代替图片_03.png"/></div>
+									        <div class="swiper-slide"><img src="../img/images/代替图片_03.png"/></div>
+									       
+									    </div> 	  
+									</div>
+								  <!-- 如果需要导航按钮 -->
+								    <div class="swiper-button-prev"></div>
+								    <div class="swiper-button-next"></div>
+									
+								</div>
+							</div>
+							<div class="info-four">
+								<h3>隐私保护</h3>
+								<div class="protection">
+									<p>根据国家法律法规及行业相关规范要求，营普金服对借款人隐私给予保护，对借款人部分信息进行了符合监管要求的脱敏处理。</p>
+								</div>
+							</div>
+						</div>
+						
+						<!--安全保障部分的内容-->
+						<div class="item project-insur" id="item2" style="display: none;">
+							<ul class="clearfix">
+								<li class="list">
+									<p class="pic"><span></span>项目筛选</p>
+									<p class="des">从个人征信、反欺诈、身份交叉验证、实地尽调、资产评估、还款能力评估等多个维度进行评估审核，风控委员会二次风控、一票否决制，从源头上把控项目质量。</p>
+								</li>
+								
+								<li class="list">
+									<p class="pic"><span></span>足额足值</p>
+									<p class="des">借款人必须提供足额足值的抵（质）押物，并按照风控要求办理抵（质）押手续，而借款项目融资额度的抵押率一般在60%-80%，确保风险完全覆盖。</p>
+								</li>
+								
+								<li class="list">
+									<p class="pic"><span></span>电子合同</p>
+									<p class="des">电子合同是受国家法律保护的债权证明，具有不可修改、合法、真实的特点，对借款人和投资人的权利、义务进行明晰，确保借贷两端的权益均受到保障。</p>
+								</li>
+								
+								<li class="list">
+									<p class="pic"><span></span>交易安全</p>
+									<p class="des">个人账户通过实名认证、同卡进出、银行预留手机号验证等手段保证所有交易均为本人操作。营普金服对用户信息进行了加密传输，有效保障用户隐私信息不会外泄。</p>
+								</li>
+								
+								<li class="list">
+									<p class="pic"><span></span>银行存管</p>
+									<p class="des">营普金服目前已经和重庆富民银行签订资金存管协议，实行自身资金与出借人和借款人资金的隔离管理，合规、安全，更进一步。</p>
+								</li>
+								
+								<li class="list">
+									<p class="pic"><span></span>贷后管理</p>
+									<p class="des">项目放款后，资金用途不得改变，监控还款能力，还款提前电话通知和跟踪，确保成功还款；对有可能逾期或已逾期项目，启动逾期催收机制。</p>
+								</li>
+							</ul>
+						</div>
+						
+						<!--投资记录部分的内容-->
+						<div class="item project-record" id="item3" style="display: none;">
+							<table border="0" cellspacing="20" cellpadding="20">
+								<tr class="title">
+									<th>序号</th>
+									<th>投标人</th>
+									<th>投标金额（元）</th>
+									<th>投标时间</th>
+									<th>优惠券使用情况</th>
+									<th>投标端口</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>柒**</td>
+									<td>10000</td>
+									<td>2017-9-21</td>
+									<td class="yuan5"><span>5元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>郭**</td>
+									<td>50000</td>
+									<td>2017-9-21</td>
+									<td class="yuan3"><span>3元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>刘**</td>
+									<td>30000</td>
+									<td>2017-9-21</td>
+									<td class="yuan5"><span>5元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>赵**</td>
+									<td>60000</td>
+									<td>2017-9-21</td>
+									<td class="yuan3"><span>3元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>柒**</td>
+									<td>10000</td>
+									<td>2017-9-21</td>
+									<td class="yuan5"><span>5元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>郭**</td>
+									<td>50000</td>
+									<td>2017-9-21</td>
+									<td class="yuan3"><span>3元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>刘**</td>
+									<td>30000</td>
+									<td>2017-9-21</td>
+									<td class="yuan5"><span>5元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>赵**</td>
+									<td>60000</td>
+									<td>2017-9-21</td>
+									<td class="yuan3"><span>3元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>刘**</td>
+									<td>30000</td>
+									<td>2017-9-21</td>
+									<td class="yuan5"><span>5元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>赵**</td>
+									<td>60000</td>
+									<td>2017-9-21</td>
+									<td class="yuan3"><span>3元抵现券</span></td>
+									<td>PC</td>
+								</tr>
+							</table>
+							
+							<!--投资记录翻页-->
+							<div class="record-page">
+								<div class="record-page-list">
+									<a href="#" class="on">首页</a>
+									<a href="#">上一页</a>
+									<a href="#" class="active">1</a>
+									<a href="#" onclick="$(this).parent().find('a').removeClass('active');$(this).addClass('active');">2</a>
+									<a href="#">3</a>
+									<a href="#">...</a>
+									<a href="#">下一页</a>
+									<a href="#">尾页</a>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--tab切换-->
+		<script type="text/javascript">
+			window.onload = function()
+				{
+					var $li = $('#menu li');
+					var $item = $('#content .item');
+								
+					$li.click(function(){
+						var $this = $(this);
+						var $t = $this.index();
+						$li.removeClass();
+						$this.addClass('active');
+						$item.css('display','none');
+						$item.eq($t).css('display','block');
+					})
+				}
+		</script>
+		
+		<!--底部导航-->
+		<div class="footer">
+			<div class="center clearfix">
+				<div class="footer-nav left">
+					<ul class="list">
+						<li>关于营普
+							<ul>
+								<li><a href="#">平台简介</a></li>
+								<li><a href="#">高管团队</a></li>
+								<li><a href="#">运营报告</a></li>
+							</ul>
+						</li>
+						<li>安全保障
+							<ul>
+								<li><a href="#">风控措施</a></li>
+								<li><a href="#">银行存管</a></li>
+								<li><a href="#">政策法规</a></li>
+							</ul>
+						</li>
+						<li>帮助中心
+							<ul>
+								<li><a href="#">新手引导</a></li>
+								<li><a href="#">常见问题</a></li>
+								<li><a href="#">网站地图</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="line left"></div>
+				<div class="footer-contact left">
+					<p class="title">全国免费电话</p>
+					<p class="num">400-969-1811</p>
+					<p class="time">(工作时间:9:00-20:00)</p>
+				</div>
+				<div class="line left"></div>
+				<div class="footer-code left">
+					<ul>
+						<li>营普金服服务号
+							<img src=""/>
+						</li>
+						<li>营普金服APP
+							<img src=""/>
+						</li>
+						<li>营普金服客服微信
+							<img src=""/>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-bottom-pic">
+					<a href="#"><img src="../img/footer-2.1.png"/></a>
+					<a href="#"><img src="../img/footer-2.2.png"/></a>
+					<a href="#"><img src="../img/footer-2.3.png"/></a>
+				</div>
+				<div class="footer-bottom-txt">
+					<p>© 2016-2017上海营夏财富投资管理有限公司 All rights reserved | 沪ICP备15044282号-1</p>
+					<p>市场有风险，投资需谨慎</p>
+				</div>
+			</div>
+		</div>
+		
+		<!--加载js文件-->
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.lineProgressbar.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.slimscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){				
+				//表示项目进度的进度条
+				$('#progressBar1').LineProgressbar({
+				  percentage: 75,
+				  fillBackgroundColor: '#ff8f3d',
+				  height: '14',
+				  radius: '7px'
+				});
+								
+				
+				//下面轮播图
+				var swiper = new Swiper('.swiper-container', {
+			        pagination: '.swiper-pagination',
+			        nextButton: '.swiper-button-next',
+			        prevButton: '.swiper-button-prev',
+			        slidesPerView: 4,
+			        paginationClickable: true,
+			        spaceBetween: 0,
+			        loop: true,
+			        autoplay: 3000,
+			        autoplayDisableOnInteraction: false
+			    });
+			})
+		</script>
+
+		
+	</body>
+</html>

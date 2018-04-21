@@ -1,0 +1,211 @@
+<#escape x as x?html>
+<script type="text/javascript" src="${ctx}/js/DatePicker/WdatePicker.js"></script>
+<SCRIPT type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+	//回选 下拉框
+	//jQuery("#search_state option[value='是']").prop("selected",true);
+	
+	/*
+	$('.date-picker').datepicker({
+		    autoclose: true,
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN'
+		    //,todayBtn: 'linked',
+		    //startDate:new Date(2014,10,27),
+			//endDate:'+60d',
+		    //startDate: '+1d',
+		}).next().on(ace.click_event, function(){
+			$(this).prev().focus();
+		});
+	*/
+	$('.date-picker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    language: 'zh-CN',
+    todayBtn: 'linked',
+    startDate:new Date(2014,10,27),
+    endDate:'+6000d',
+    startDate: '-6000d',
+}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+});
+	if($('#isCq').attr('code')=='是'){
+		$("#isCq option[value='是']").prop("selected",true);
+	}
+	
+	if($('#starttime').val()!=''){
+		$('#starttime').val($('#starttime').val()+':00');
+	}
+	if($('#endtime').val()!=''){
+		$('#endtime').val($('#endtime').val()+':00');
+	}
+	});
+
+/**
+ * 上传图片
+ */
+function lunboImages(){
+    jQuery("#filed").click();
+}
+
+$(document).on("change", "#filed", function() {
+    //...
+
+    $.ajaxFileUpload({
+        url : '/yingpu/adminFileUpload',
+        secureuri : false,
+        fileElementId : 'filed',
+        dataType : 'text',
+        data : {},
+        success : function(data, status) {
+
+            jQuery("#lunboI").attr('src',data);
+            jQuery("#lunboI").attr('value',data);
+            jQuery("#image").val(data);
+        },
+        error : function(data, status, e) {
+            myalert("上传出错");
+        }
+    })
+
+    return false;
+});
+	
+	
+
+
+/**
+ * 上传图片
+ */
+function lunboImages1(){
+    jQuery("#filed1").click();
+}
+
+$(document).on("change", "#filed1", function() {
+    //...
+
+    $.ajaxFileUpload({
+        url : '/yingpu/adminFileUpload',
+        secureuri : false,
+        fileElementId : 'filed1',
+        dataType : 'text',
+        data : {},
+        success : function(data, status) {
+
+
+
+            jQuery("#pcimg").attr('src',data);
+            jQuery("#pcimg").attr('value',data);
+            jQuery("#pcimgval").val(data);
+        },
+        error : function(data, status, e) {
+            myalert("上传出错");
+        }
+    })
+
+    return false;
+});
+	
+//-->
+</SCRIPT>
+
+
+
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" id="validation-form" method="POST" novalidate="novalidate" action="${ctx}/system/activity/update" >
+			<input type="hidden" id="id" name="id" value="${(returnDatas.data.id)!''}"/>	
+<!--input  hidden  End-->
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name" >活动名称</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="name" class="col-xs-12 col-sm-6" id="name" value="${(returnDatas.data.name)!''}"  type="text" />
+					</div><div class="help-block" for="name"></div>
+				</div>
+			</div>
+
+				<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="miaoshu" >活动描述</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="miaoshu" class="col-xs-12 col-sm-6" id="name" value="${(returnDatas.data.miaoshu)!''}"  type="text" />
+					</div><div class="help-block" for="miaoshu"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pcdetails" >pc图片跳转链接</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="pcdetails" class="col-xs-12 col-sm-6" id="pcdetails" value="${(returnDatas.data.pcdetails)!''}"  type="text" />
+					</div><div class="help-block" for="pcdetails"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pcurl" >pc跳转链接</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<input name="pcurl" class="col-xs-12 col-sm-6" id="pcurl" value="${(returnDatas.data.pcurl)!''}"  type="text" />
+					</div><div class="help-block" for="pcurl"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+	        	<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="isCq" >是否长期有效</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<select id="isCq" name="isCq" code="${(returnDatas.data.isCq)!''}">
+							<option value="否">否</option>
+							<option value="是">是</option>
+						</select>
+					</div><div class="help-block" for="pcurl"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+	        	<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pcurl" >开始日期-结束日期</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+
+							<input name="starttime"  class="form-control"  id="starttime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});"  style="width:200px;"  readonly="readonly" value="${(returnDatas.data.starttime)!''}"  type="text" />
+							-	<input name="endtime"  class="form-control "  id="endtime" readonly="readonly"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});"  style="width:200px;" value="${(returnDatas.data.endtime)!''}"  type="text" />
+					</div><div class="help-block" for="pcurl"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="image" >活动图片</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<img  name="lunboI" style="height: 200px;width: 200px;" onclick="lunboImages();" id="lunboI" value="${(returnDatas.data.image)!''}" src="${(returnDatas.data.image)!''}">
+						<input type="file" id="filed" name="filed" style="display:none">
+						<input name="image"  style="display:none"  class="col-xs-12 col-sm-6" id="image" value="${(returnDatas.data.image)!''}"  type="text" />
+					</div><div class="help-block" for="image"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+
+	        <div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pcimg" >pc图片</label>
+				<div class="col-xs-12 col-sm-9">
+					<div class="clearfix">
+						<img  name="pcimg" style="height: 200px;width: 200px;" onclick="lunboImages1();" id="pcimg" value="${(returnDatas.data.pcimg)!''}" src="${(returnDatas.data.pcimg)!''}">
+						<input type="file" id="filed1" name="filed1" style="display:none">
+						<input name="pcimg"  style="display:none"  class="col-xs-12 col-sm-6" id="pcimgval" value="${(returnDatas.data.pcimg)!''}"  type="text" />
+					</div><div class="help-block" for="pcimg"></div>
+				</div>
+			</div>
+	        <div class="space-2"></div>
+		</form>
+		<div class="wizard-actions">
+			<button class="btn btn-success btn-info" style="float: left;margin-left: 25.4%;" data-last="Finish" onclick="commonUpdateForm('validation-form','${ctx}/system/activity/list');">
+				保存
+			</button>
+		</div>
+	</div>
+</div>
+
+
+</#escape>

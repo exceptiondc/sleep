@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>酒店列表</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<link rel="stylesheet" type="text/css" href="weui/lib/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="weui/css/jquery-weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/hotel_details.css"/>
+	</head>
+	
+	<body>
+		<div class="headfix">
+			<header class="aui-bar aui-bar-nav headtop">
+		        <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		            <span class="aui-iconfont aui-icon-left"></span>
+		        </a>
+		        <div class="aui-title tit" >
+					酒店详情
+		        </div>
+		        <a class="aui-pull-right aui-btn share" id="share">
+		            <img src="img/share-icon.png"/>
+		        </a>
+		     <a class="aui-pull-right aui-btn collect" id="collect"> 
+		           <img src="img/collect-icon.png"/>
+		      </a>
+		    </header>
+
+			<div class="banner">
+				
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				     <!--  <div class="swiper-slide"><img src="img/banner-pic.png"/></div>
+				      <div class="swiper-slide"><img src="img/banner-pic.png"/></div>
+				      <div class="swiper-slide"><img src="img/banner-pic.png"/></div> -->
+				    </div>
+				    <!-- Add Pagination -->
+				    <!-- <div class="swiper-pagination"></div>-->
+				    <!-- Add Arrows -->
+				    <!--<div class="swiper-button-next"></div>
+				    <div class="swiper-button-prev"></div>-->
+				</div>
+				<div class="aui-content-padded hotel-name">
+					<!-- <p class="name">希尔顿酒店(小寨附近)</p>
+					<p class="distance">酒店位置(距离您当前位置2.4公里)</p> -->
+				</div>
+			</div>
+		</div>
+		<div class="aui-content hotel-address">
+			<div class="aui-list">
+				<div class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-text aui-col-xs-9 address">
+							自己当前位置酒店位置(距离您当前位置2.4公里)
+						</div>
+						<div class="aui-list-item-right view">
+							查看酒店位置
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content hotel-faci">
+			<div class="aui-list">
+				<div class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-col-xs-3 grade" id="pingfen">
+							
+						</div>
+						<div class="aui-list-item-text aui-col-xs-6" id="bili">
+							<!-- 高于57%同城舒适型酒店 -->
+						</div>
+						<div class="aui-list-item-right remark" id="dianping">
+							0条点评
+						</div>
+					</div>
+				</div>
+				<div class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-text aui-col-xs-9 faci">
+
+							 <div class="aui-row" id="sheshi">
+						        
+
+						   </div>
+						</div>
+						<div class="aui-list-item-right view" id="sheshis">
+							详情/设施
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content hotel-room">
+			<!-- <div class="aui-list">
+				<div class="aui-list-item">					
+		            <div class="aui-list-item-inner" id="firstSelect" style="height: 60px;">
+						<div class="aui-list-item-input aui-col-xs-4">
+		                	<p class="tip">入住</p>
+		                	<input class="weui-input" id="startDate" type="text" value="" readonly="readonly" placeholder="2018-3-4 20:20">
+					
+		                </div>
+		                <div class="aui-list-item-input aui-col-xs-4">
+		                	<p class="tip">离店</p>
+		                    <input id="endDate" type="text" placeholder="2018-12-30 10:30" style="" readonly>
+		                </div>
+		                
+		                <div class="aui-list-item-right aui-col-xs-4">
+		                    <div class="aui-label aui-label-info">
+		                    	<span class="span21">共<span class="NumDate">1</span>晚</span>
+		                    </div>
+		                </div>
+		            </div>		        
+				</div>
+			</div> -->
+
+			<div class="aui-list aui-media-list room" id="room">
+				
+
+			</div>
+		</div>
+		<div class="aui-mask"></div>
+		<div class="hotel-share">
+			<div class="aui-content">
+				<div class="aui-list-header">
+					分享
+				</div>
+				<div class="aui-list-item-inner">
+					<div class="aui-row">
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont weixin"></i>
+				            <div class="aui-grid-label">微信</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont pengyouquan"></i>
+				            <div class="aui-grid-label">朋友圈</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont qq"></i>
+				            <div class="aui-grid-label">QQ</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont weibo"></i>
+				            <div class="aui-grid-label">新浪微博</div>
+				        </div>
+				   </div>
+				</div>
+				<div class="aui-list-header cancel">
+					取消
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/fastclick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uC0793rpmWrTwO0l5NdD4gpXBPfjk2ri"></script>
+	
+	<script>
+	  $(function() {
+	    FastClick.attach(document.body);
+	  });
+	</script>
+	<script src="weui/js/jquery-weui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+var hotel;
+		if(queryString('hotelId')){
+
+			 layer.load(2,{offset:['50%','50%']});
+			base.jsonPost('/app/hotel/look/app/json',{id:queryString('hotelId'),userId:base.getUser().id ? base.getUser().id : ''},function(data){
+				layer.closeAll();
+				if(data.status=='success'){
+					hotel=data.data;
+						$('#sheshis').attr('onclick','javascript:location=\'hotel_facilities.html?hotelId='+hotel.id+'\' ');	
+					//轮播图
+					var imgHtml='';
+					var imgArr=hotel.img.split(';');
+					$.each(imgArr,function(i,o){
+						if(imgArr.length-1==i){
+							return false;
+						}
+						imgHtml+='<div class="swiper-slide swiper-slide-active" style="width: 414px;"><img src="'+imgArr[i]+'"></div>';
+					});
+					$('.swiper-wrapper').append(imgHtml);
+						 var swiper = new Swiper('.swiper-container', {
+		      navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		      },
+		    });
+					//酒店名称位置
+					$('.hotel-name').append('<p class="name">'+hotel.name+'('+hotel.addressDescr+')</p><p class="distance">酒店位置(加载中...)</p>');
+					//评分
+					$('#pingfen').append('<span>'+hotel.score+'</span>分&nbsp;很好');
+					$('#bili').append(hotel.scoreDescr);
+
+						if(hotel.collect==1){
+							$('#collect').addClass('ok');
+						}
+					//设施
+					var html='';
+					$.each(hotel.hotelFacilities,function(i,o){
+						//o.img
+						html+='<div class="aui-col-xs-3">';
+						html+='  <i class="aui-iconfont icon-faci wxsw"></i>';
+						html+='  <div class="aui-grid-label">'+o.name+'</div>';
+						html+=' </div>';
+
+					});
+					$('#sheshi').append(html);
+					//点评数量
+					$('#dianping').empty().append(hotel.commentNum+'条点评');
+
+					if (!isEmptyObject(_curLocation)) {
+                        var distance = new BMap.Map().getDistance(
+                               new BMap.Point(hotel.longitude, hotel.latitude), _currentLocation) / 1000;
+                        $('p.distance').html('酒店位置(距您当前位置' + distance + '公里)');
+                    }
+					//酒店房间
+					var hotelHouses=hotel.hotelHouses;
+					html='';
+					$.each(hotelHouses,function(i,o){
+						html+='<div class="aui-media-list-item-inner">';
+						html+='  <div class="aui-list-item-media">';
+						html+=' <img src="'+o.img+'"> </div>';
+						html+=' <div class="aui-list-item-inner aui-col-xs-6">';
+						html+=' <div class="aui-list-item-text  room-num">';
+						html+=' <div class="aui-list-item-title">'+o.houseName+'<span class="jiantou"></span><span class="fanghao">'+o.houseNumber+'室</span></div></div>';
+						html+='<div class="aui-list-item-text">	'+(o.isBreakFast==0 ? '无早餐':'有早餐')+'  '+o.area+'㎡'+o.bedType+o.orientation+'</div>';
+						html+=' <div class="aui-list-item-text biaoqian">  <span>天天特价</span><span>返12元券</span>  </div>';
+						html+='   <div class="aui-list-item-text"> 预定满意度93%  </div>   </div>';
+						html+=' <div class="aui-list-item-right aui-col-xs-4"> <div class="aui-list-item-inner">';
+						html+='	<div class="aui-list-item-text price">	￥<span>'+o.hourPrice+'</span> </div>';
+						html+='<div class="aui-list-item-text qd-btn" onclick="qiangding('+o.id+');"> 抢订 </div> 	</div>	</div>	</div>';
+
+					});		
+					$('#room').append(html);   
+				}
+			});
+		}
+
+
+        var _curLocation = {};
+	
+
+	/*	$("#startDate").datetimePicker({
+	        title: '入住时间',
+	        min: "1990-12-12",
+	        max: "2022-12-12 12:12",
+	        onChange: function (picker, values, displayValues) {
+	          console.log(values);
+	        }
+	      });
+	      	
+	      var startTime = $("#startDate").val().split(" ",2)[0];
+	       $("#endDate").datetimePicker({
+	        title: '离店时间',
+	        min: startTime,
+	        max: "2022-12-12 12:12",
+	        onChange: function (picker, values, displayValues) {
+	          console.log(values);
+	          
+			 
+	        }
+	      });*/
+	      
+	     /* 	$("body").delegate(".picker-button.close-picker","click",function(){
+	      		var startTime = $("#startDate").val().split(" ",2)[0];
+			    var endTime = $("#endDate").val().split(" ",2)[0];
+			    s1 = new Date(startTime.replace(/-/g, "/"));
+			    s2 = new Date(endTime.replace(/-/g, "/"));
+			    var days = s2.getTime() - s1.getTime();
+				var time = parseInt(days / (1000 * 60 * 60 * 24));
+	      		
+	      		if(time<0){
+	      			alert("离店时间不能小于入住时间！");
+	      		}else{
+					if(endTime!="")
+	      			$(".NumDate").text(time);
+	      		}
+	      	});
+	      	*/
+	      	
+	    //收藏
+	    $("#collect").on('click',function(){
+	    	var $this=$(this);
+	    	if(!base.getUser().id){
+	    		layer.alert('您还没有登录');
+	    		return;
+	    	}
+	    	if($("#collect").hasClass('ok')){
+
+
+	    		layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appUsers/favorite/json',{userId:base.getUser().id,hotelId:hotel.id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    				  $("#collect").removeClass('ok');
+	    				layer.msg('您已取消收藏')
+
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	    		
+	    	}else{
+
+	    		layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/appUsers/favorite/json',{userId:base.getUser().id,hotelId:hotel.id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			  $("#collect").addClass('ok');
+		    		layer.tips('酒店收藏成功！查看我的收藏', '#collect', {
+						tips: 3,
+					});
+					
+					
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	    		
+
+
+	    	
+				
+	    	}
+	    })
+
+	    $("body").delegate('.layui-layer-tips','click',function(){
+						location.href='myorder.html';
+					});
+	    function qiangding(hotelHousesId){
+	    	location.href='order_con.html?hotelHousesId='+hotelHousesId;
+
+
+	    	var startDate=$('#startDate').val();
+	    	var endDate=$('#endDate').val();
+	    /*	if(startDate==''){
+	    		layer.msg('请选择入住开始时间');
+	    		return false;
+	    	}
+	    	if(endDate==''){
+	    		layer.msg('请选择入住结束时间');
+	    		return false;
+	    	}*/
+	    	//,reservationStartTime:startDate+':00',reservationEndTime:endDate+':00'
+	    	
+	    }
+
+	    function wechatShare(data, success, fail) {
+            Wechat.share({
+                message: {
+                    title: data.title,
+                    description: data.desc,
+                    thumb: data.thumb,
+                    mediaTagName: "",
+                    messageExt: "测试",
+                    messageAction: "<action>dotalist</action>",
+                    media: {
+                        webpageUrl : data.url
+                    }
+                },
+                scene: data.scene
+            }, function () {
+                callFunction(success, this, []);
+            }, function (reason) {
+                callFunction(fail, this, [reason]);
+            });
+        }
+
+
+        function onShareSuccess() {
+	        showMsg('分享成功！');
+        }
+
+        function onShareFailure(msg) {
+	        showMsg('分享失败，原因为：' + msg);
+        }
+
+
+	    //分享
+	    $("#share").on('click',function(){
+	    	$('.aui-mask').addClass('aui-mask-in');
+	    	$(".hotel-share").addClass('active');
+	    });
+	    
+	    $("body").delegate('.aui-mask','click',function(){
+	    	$(this).removeClass('aui-mask-in');
+	    	$(".hotel-share").removeClass('active');
+	    })
+        .on('click', '.aui-row .aui-col-xs-3', function(data) {
+            var type = $(this).find('.aui-grid-label').html();
+            var content = '';
+
+            switch(type) {
+                case '微信':
+                case '朋友圈':
+                    wechatShare({
+                            url : location.href,
+                            title: 'abc',
+                            desc: 'desc',
+                            thumb: 'https://img.alicdn.com/imgextra/i3/1114511827/TB2RL9KiTtYBeNjy1XdXXXXyVXa_!!1114511827.jpg_430x430q90.jpg',
+                            scene : type == '微信'  ? Wechat.Scene.SESSION : Wechat.Scene.TIMELINE
+                        },
+                        onShareSuccess, onShareFailure
+                    );
+                    break
+                case 'QQ':
+                    break
+                case '新浪微博':
+                    break
+            }
+        });
+
+
+	    $("body").delegate('.cancel','click',function(){
+	    	$('.aui-mask').removeClass('aui-mask-in');
+	    	$(".hotel-share").removeClass('active');
+	    })
+
+        function handleLocateError(error) {
+            var msg = "";
+            switch(error.code) {
+                case 0:
+                    msg = "获取位置信息出错！";
+                    break;
+                case 1:
+                    msg = "您设置了阻止该页面获取位置信息！";
+                    break;
+                case 2:
+                    msg = "浏览器无法确定您的位置！";
+                    break;
+                case 3:
+                    msg = "获取位置信息超时！";
+                    break;
+            }
+
+            if (msg) {
+                layer.closeAll();
+                showMsg(msg);
+            }
+        }
+
+
+        function geoLocate(success) {
+            if (!"geolocation" in navigator) {
+                showMsg("您的浏览器不支持定位！");
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(success, handleLocateError, {
+                maximumAge : 60000,
+                timeout : 50000,
+                enableHighAccuracy : true
+            });
+        }
+
+
+        function covertPosition(lng, lat, callback) {
+            var convertor = new BMap.Convertor();
+            convertor.translate([new BMap.Point(lng, lat)], 1, 5,
+                callback && callback || function() {});
+        }
+
+
+        function locateCallback(pos, success, error) {
+            var point = new BMap.Point(pos.coords.longitude, pos.coords.latitude);
+            covertPosition(point.lng, point.lat, function(data) {
+                if (data.status == 0) {
+                   success && success(data.points[0]);
+                }
+                else {
+                    error && error();
+                    base.debug(data);
+                }
+            });
+        }
+
+
+        function locate(onSuccess) {
+            geoLocate(function(pos) {
+                locateCallback(pos, onSuccess);
+            });
+        }
+
+
+        function showMsg(msg, time) {
+            layer.open({ skin : 'msg', content : msg, time: time || 2, shadeClose: false });
+        }
+
+
+        locate(function(location) {
+            _curLocation = location;
+        })
+	    </script>
+</html>

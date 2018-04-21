@@ -1,0 +1,212 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/system/usersignhis/usersignhis.js"></script>
+
+<script type="text/javascript">
+    $('.date-picker').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        todayBtn: 'linked',
+        startDate:new Date(2014,10,27),
+        endDate:'+6000d',
+        startDate: '-6000d',
+    }).next().on(ace.click_event, function(){
+        $(this).prev().focus();
+    });
+function deleteUserSignHis(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/usersignhis/delete?id="+id;
+		var listurl="${ctx}/usersignhis/list";
+		mydelete(_url,listurl);
+	}
+}
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/usersignhis/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			 <label for="search_userName"><b>用户姓名:</b></label>
+			 <input type="text" id="search_userName"  name="userName"   value="${(returnDatas.queryBean.userName)!''}">
+			 <label for="search_phone"><b>用户手机号:</b></label>
+			 <input type="text" id="search_phone"  name="userPhone"   value="${(returnDatas.queryBean.userPhone)!''}">
+			<label for="search_isSend"><b>是否发放奖励:</b></label>
+			 <select id="search_isSend" name="isSend" class="col-10" >
+				 <option value="">全部</option>
+				<option <#if (((returnDatas.queryBean.isSend)!'') == '是')>selected</#if> value="是">是</option>
+				<option <#if (((returnDatas.queryBean.isSend)!'') == '否')>selected</#if> value="否">否</option>
+			</select>
+            <label for="search_createTime"><b>签到时间:</b></label>
+                <input name="createTime"  class="date-picker"  style="width:100px;" id="search_createTime" value="${(returnDatas.queryBean.createTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+            <label ><b></b></label>
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/usersignhis/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/usersignhis/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/usersignhis/update" >
+				  <button onclick="myhref('${ctx}/usersignhis/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/usersignhis/delete" >
+			    |
+				  <button onclick="deleteUserSignHis();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <!--<th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>
+                        <th>操作</th>-->
+                        <!--first_end_no_export-->
+						<th id="th_userName" >用户姓名</th>
+						<th id="th_userPhone" >用户手机号</th>
+						<th id="th_money" >金额</th>
+						<th id="th_isSend" >是否发奖励</th>
+						<th id="th_createTime" >签到时间</th>
+						<th id="th_type" >类型</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                                <!--<td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs btn-group">
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="myhref('${ctx}/usersignhis/update/pre?id=${(_data.id)!''}');">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </button>
+                                        <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/usersignhis/delete?id=${(_data.id)!''}','${ctx}/usersignhis/list');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+	                                          <li>
+													<a  href="javascript:myhref('${ctx}/usersignhis/look?id=${(_data.id)!''}');"  class="tooltip-info" data-rel="tooltip" title="View">
+														<span class="blue">
+															<i class="ace-icon fa fa-search-plus bigger-120"></i>
+														</span>
+													</a>
+											  </li>	
+                                                <li>
+                                                    <a data-original-title="Edit"
+                                                       href="javascript:myhref('${ctx}/usersignhis/update/pre?id=${(_data.id)!''}');"
+                                                       class="tooltip-success" data-rel="tooltip" title="">
+																		<span class="green">
+																			<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-original-title="Delete"
+                                                       href="javascript:mydelete('${ctx}/usersignhis/delete?id=${(_data.id)!''}','${ctx}/usersignhis/list');"
+                                                       class="tooltip-error" data-rel="tooltip" title="">
+																		<span class="red">
+																			<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>-->
+                                <!--end_no_export-->
+
+								<td >
+									${(_data.userName)!''}
+								</td>
+								<td >
+									${(_data.userPhone)!''}
+								</td>
+							<td >
+								${(_data.money)!0}
+							</td>
+							<td >
+								${(_data.isSend)!0}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.createTime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+                                <#if _data.type??>
+                                    <#if _data.type == 1>每日签到<#else>一周免签</#if>
+                                </#if>
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

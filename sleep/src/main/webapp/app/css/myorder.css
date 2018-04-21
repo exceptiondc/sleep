@@ -1,0 +1,124 @@
+.headtop{
+	background: #ffd13f;
+	position: fixed;
+}
+.aui-pull-right.aui-btn{
+	font-size: 0.7rem;
+}
+.main{
+	margin-top: 2.25rem;
+}
+.main .aui-list-header{
+	padding: 0.5rem 0;
+	background: #F2F2F2;
+	font-size: 0.7rem;
+	color: #666;
+}
+.main .aui-list-item-inner{
+	font-size: 14px;
+	min-height: 1.3rem;
+}
+.main .list-box{
+	padding: 0.5rem 0 0.5rem 0.5rem;
+}
+.main .list-box .status{
+	font-size: 13px;
+	margin-left: 10px;
+}
+.main .list-box .status.ruzhu{
+	color: #54c748;
+}
+.main .list-box .clear{
+	color: #ffc81c;
+	font-size: 15px;
+}
+.main .list-box i.bq{
+	/*display: inline-block;*/
+	font-style: normal;
+	color: #fff;
+	font-size: 12px;
+	background: #ffc81c;
+	padding: 2px 8px;
+	margin-left: 10px;
+	border-radius: 4px;
+}
+.main .list-box .money{
+	font-size: 15px;
+	color: #ffa200;
+	font-weight: bold;
+}
+.main .list-box+.list-box{
+	border-top: 1px solid #ddd;
+}
+
+
+/*------开发票------*/
+#orderList{
+	margin-bottom: 7rem;
+}
+.aui-list.invoice{
+	background-color: #f2f2f2;
+}
+.aui-list.invoice label.aui-list-item-inner{
+	padding-right: 0;
+	margin-bottom: 0.5rem;
+}
+.aui-list.invoice label.aui-list-item-inner .list-box{
+	background-color: #fff;
+    margin-left: -10px;
+    position: relative;
+    width: 90%;
+    border-radius: 6px;
+}
+.aui-list.invoice label.aui-list-item-inner .list-box .aui-list-item-inner{
+	padding-right: 0.2rem;
+}
+.aui-list.invoice label.aui-list-item-inner .list-box .time span{
+	font-size: 0.55rem;
+}
+.main .aui-list.invoice label.aui-list-item-inner .list-box i.bq{
+	background-color: #aaa;
+}
+.aui-radio:checked, .aui-radio.aui-checked, .aui-checkbox:checked, .aui-checkbox.aui-checked {
+    background-color: #ffc81c;
+    border: solid 1px #ffc81c;
+}
+.aui-content.fix-box{
+	position: fixed;
+	width: 100%;
+	height: auto;
+	bottom: 0;
+}
+.aui-content.fix-box .aui-list-item-title{
+	height: 2rem;
+	line-height: 2rem;
+	padding: 0 2.5rem;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	border-left: 0;
+	border-right: 0;
+}
+.aui-content.fix-box .aui-list-item-inner{
+	padding: 0.75rem;
+}
+.aui-content.fix-box .aui-list-item-inner label input{
+	margin-right: 0.3rem;
+}
+.aui-content.fix-box .aui-list-item-inner .next{
+	display: inline-block;
+	padding: 0.7rem 1.3rem;
+	background: #ddd;
+	border-radius: 6px;
+	color: #fff;
+	font-size: 0.8rem;
+}
+.aui-content.fix-box .aui-list-item-title .orderNum,.aui-content.fix-box .aui-list-item-title .orderTotal{
+	color: #FFA200;
+} 
+#orderList .over-tip{
+	text-align: center;
+	font-size: 0.6rem;
+}
+.dingdan{
+	border-bottom: 1px solid #DBD8D8;
+}

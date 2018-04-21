@@ -1,0 +1,152 @@
+.content .tit{
+	font-size: 0.7rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding-left: 1rem;
+}
+.content .aui-list{
+	margin:0 1rem;
+}
+.content .aui-list .paystyle-list{
+	height: 3.3rem;
+	padding-left: 0.5rem;
+}
+.content .aui-list .paystyle-list .aui-list-item-inner{
+	padding-right: 0;
+}
+.content .aui-list .paystyle-list .style-name{
+	width: 3.5rem;
+	text-align: center;
+}
+.content .aui-list .paystyle-list .style-name img{
+	width: 1.2rem;
+	margin: 0rem auto;
+}
+.content .aui-list .paystyle-list .style-name p{
+	font-size: 0.65rem;
+	color: #333;
+}
+/*.content .aui-list .paystyle-list input[type="radio"]{
+	width: 1.1rem;
+	height: 1.1rem;
+	background: none;
+}*/
+.content .aui-list .paystyle-list .aui-list-item-right{
+	width: 2rem;
+	text-align: center;
+}
+input[type="radio"]+label.paylist::before {
+    content: "\a0"; /*不换行空格*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 1em;
+    height: 1em;
+    margin-right: .4em;
+    border-radius: 50%;
+    border: 1px solid #FFD13F;
+    text-indent: .15em;
+    line-height: 1; 
+}
+input[type="radio"]:checked+label.paylist::before{
+    background-color: #FFD13F;
+    background-clip: content-box;
+    padding: .2em;
+    width: 0.6em;
+    height: 0.6em;
+}
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+input[type="radio"]#zfb+label.paylist::before{
+	border: 1px solid #5641fa;
+}
+input[type="radio"]#zfb:checked+label.paylist::before{
+	background-color: #5641fa;
+}
+input[type="radio"]#yhk+label.paylist::before{
+	border: 1px solid #1a4991;
+}
+input[type="radio"]#yhk:checked+label.paylist::before{
+	background-color: #1a4991;
+}
+.content .paystyle-list .pay-card{
+	height: 2.2rem;
+	line-height: 2.2rem;
+}
+.content .paystyle-list .aui-list-item-arrow.pay-card:before{
+	left: 65%;
+	border: 1px solid #ad9c9c;
+    border-top: none;
+    border-right: none;
+}
+.icon {
+  	width: 1.3em;
+  	height: 1.3em;
+  	vertical-align: middle;
+   	fill: currentColor;
+   	overflow: hidden;
+}
+.bank-card .aui-list .aui-list-item .bank{
+	font-size: 0.6rem;
+}
+.icon.add{
+	width: 1rem;
+	height: 1rem;
+	display: inline-block;
+	background: url(../img/add.png) no-repeat center;
+	background-size: cover;
+	vertical-align: middle;
+}
+.aui-list .aui-list-item:last-child{
+	background-image: none;
+}
+.aui-list.add-card .aui-list-item-title{
+	height: 2.25rem;
+	line-height: 2.25rem;
+	font-size: 0.7rem;
+	vertical-align: middle;
+}
+.aui-list.add-card{
+	margin-bottom: 2rem;
+}
+.bank-card{
+	width: 100%;
+	height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+   /* padding: 0 0.5rem;*/
+    z-index: 999;
+    opacity: 1;
+    -webkit-transition: opacity .3s,-webkit-transform .3s;
+    transition: opacity .3s,transform .3s;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+   margin: 0;
+  /* padding: 0.75rem;*/
+   background: #fff;
+}
+.bank-card.active{
+	opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.bank-card .aui-list-item.title{
+	height: 2.25rem;
+	line-height: 2.25rem;
+    text-align: center;
+}
+.bank-card .aui-list-item.title .aui-pull-left{
+	padding-left: 0.75rem;
+}
+.bank-card .aui-list-item.title .aui-pull-left span{
+	color: #000;
+}
+.bank-card .aui-list{
+	padding-left: 0.75rem;
+}
+.bind-card span{
+	font-size: 0.65rem;
+}

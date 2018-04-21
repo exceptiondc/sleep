@@ -1,0 +1,220 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/hotelHouse/hotelHouse.js"></script>
+
+<script type="text/javascript">
+
+function deletehotelHouse(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/hotelHouse/delete?id="+id;
+		var listurl="${ctx}/hotelHouse/list";
+		mydelete(_url,listurl);
+	}
+}
+</script>
+
+<style>
+	.ellipsis {
+		width: auto;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/hotelHouse/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+
+			<label for="search_state"><b>是否可用:</b></label>
+			<select id="search_state" name="status" class="col-10" >
+                <option value=""> 全部</option>
+				<option  <#if (((returnDatas.queryBean.status)!0) == 1001)>selected</#if> value="1001">可用</option>
+				<option  <#if (((returnDatas.queryBean.status)!0) == 1002)>selected</#if> value="1002">不可用</option>
+		</select>
+        <label for="search_state"><b>酒店名称:</b></label>
+   <input type="text" name="descr" id="descr" value="${(returnDatas.queryBean.descr)!''}"/>
+
+
+   
+		<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+        </form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/system/hotelHouse/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/system/hotelHouse/list/export');" class="btn  btn-sm  btn-primary">
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/system/hotelHouse/add" >
+				  <button onclick="myhref('${ctx}/system/hotelHouse/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			 
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <th>操作</th>
+                        <th id="">房间名称</th>
+						<th id="">酒店名称</th>
+						<th id="">房间号</th>
+                        <th id="">锁编号</th>
+                        <th id="">房间状态</th>
+						<th id="">房间朝向</th>
+                        <th id="">房间描述</th>
+                        <th id="">房间被预订时间段</th>
+                        <th id="">房间类型</th>
+                        <th id="">房间价格</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <tr class="">
+                                <!--start_no_export
+                                <td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>-->
+                                <td>
+                                    <div class="hidden-sm hidden-xs btn-group">
+
+                                <@shiro.hasPermission name="/system/hotelHouse/update" >
+                                                     <button class="btn btn-xs btn-info"
+                                                onclick="myhref('${ctx}/system/hotelHouse/update/pre?id=${(_data.id)!''}');">
+                                               <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                          </button>
+                                                </@shiro.hasPermission>
+
+                                            <@shiro.hasPermission name="/system/hotelHouse/delete" >
+                                                <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/system/hotelHouse/delete/json?id=${(_data.id)!''}','${ctx}/system/hotelHouse/list',null,'确认删除？');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                                </@shiro.hasPermission>
+                                     
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+	                                          <li>
+													<a  href="javascript:myhref('${ctx}/hotelHouse/look?id=${(_data.id)!''}');"  class="tooltip-info" data-rel="tooltip" title="View">
+														<span class="blue">
+															<i class="ace-icon fa fa-search-plus bigger-120"></i>
+														</span>
+													</a>
+											  </li>	
+											  
+                                                 <@shiro.hasPermission name="/system/hotelHouse/update" >
+                                                    <li>
+                                                    <a data-original-title="Edit"
+                                                       href="javascript:myhref('${ctx}/hotelHouse/update/pre?id=${(_data.id)!''}');"
+                                                       class="tooltip-success" data-rel="tooltip" title="">
+                                                                        <span class="green">
+                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                        </span>
+                                                    </a>
+                                                </li>
+                                                </@shiro.hasPermission>
+                                                 <@shiro.hasPermission name="/system/hotelHouse/delete" >
+                                                   <li>
+                                                    <a data-original-title="Delete"
+                                                       href="javascript:mydelete('${ctx}/hotelHouse/delete/json?id=${(_data.id)!''}','${ctx}/hotelHouse/list');"
+                                                       class="tooltip-error" data-rel="tooltip" title="">
+                                                                        <span class="red">
+                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                        </span>
+                                                    </a>
+                                                </li>
+                                                </@shiro.hasPermission>
+                                             
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!--end_no_export-->
+                              <td >
+                                ${(_data.houseName)!''}
+                            </td>  
+							<td >
+								${(_data.name)!''}
+							</td>
+							<td >
+						      	${(_data.houseNumber)!''}
+							</td>
+							<td >
+								${(_data.lockNumber)!''}
+							</td>
+
+                            <td >
+                                 ${(_data.statusName)!''}
+                            </td>
+                            <td class="ellipsis">
+                                ${(_data.orientation)!''}
+                            </td>
+                            <td >
+                                ${(_data.descr)!''}
+                            </td>
+                             <td class="ellipsis">
+                                ${(_data.reserveTime)!''}
+                            </td>
+                             <td >
+                                ${(_data.type)!''}
+                            </td>
+                              <td >
+                                ${(_data.price)!''}
+                            </td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

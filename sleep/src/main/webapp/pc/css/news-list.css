@@ -1,0 +1,131 @@
+.news-banner{
+    position: relative;
+}
+.news-banner img{
+    width: 100%;
+}
+.news-banner-title{
+    position: absolute;
+    top: 2.04rem;
+    right: 3.56rem;
+    text-align: right;
+    color: #fefefe;
+}
+.news-banner-title h1{
+    margin: 0 0 0.38rem 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: "Microsoft YaHei UI";
+}
+.news-banner-title h3{
+    margin: 0;
+    font-size: 0.38rem;
+    margin-bottom: 0.38rem;
+}
+.news-banner-title h3 span{
+    font-size: 0.45rem;
+}
+.sleep-news{
+    width: 100%;
+    background-color: #F5F5F7;
+}
+.sleep-news-list{
+    width: 14.2rem;
+    margin: 0 auto 0.6rem;
+}
+.sleep-news-list > li{
+    padding: 0;
+    margin-top: 0.4rem;
+    height: 4.26rem;
+    border: none;
+}
+.sleep-news-list > li:hover{
+    box-shadow: 6px 6px 6px #ccc;
+}
+.sleep-news-list > li:first-child{
+    margin-top: -0.5rem;
+}
+.sleep-news-list > li > a:hover{
+    text-decoration: none;
+}
+.sleep-news-list > li > a:focus{
+    text-decoration: none;
+}
+.sleep-news-img{
+    width: 6.3rem;
+    height: 100%;
+    /*margin-right: 0.8rem;*/
+}
+.sleep-news-content{
+    padding-right: 1.18rem;
+    margin-left: 7.1rem;
+    /*width: 50.4%;*/
+}
+.sleep-news-content > hr{
+    margin: 1rem 0 0 0;
+    height: 2px;
+    width: 0.5rem;
+    background-color: #F5F5F7;
+}
+.sleep-news-content > h2{
+    margin: 0.22rem 0 0.44rem 0;
+    color: #292c74;
+    font-size: 0.3rem;
+    line-height: 1.2;
+}
+.sleep-news-content > p{
+    margin-bottom: 0.3rem;
+    text-align: justify;
+    color: #333;
+    font-size: 0.16rem;
+}
+@media (max-width: 1500px) {
+    .sleep-news-content > hr{
+        margin: 0.8rem 0 0 0;
+    }
+}
+@media (max-width: 1024px) {
+    .sleep-news-content > hr{
+        margin: 0.5rem 0 0 0;
+    }
+}
+.sleep-news-content > span{
+    font-size: 0.14rem;
+    color: #999;
+}
+
+.more-news{
+    text-align: center;
+    cursor: pointer;
+}
+.more-news div{
+    padding: 0;
+    margin: 0 auto 0.6rem;
+    width: 1.98rem;
+    height: 0.46rem;
+    line-height: 0.46rem;
+    color: #fff;
+    background-color: #292c74;
+    border: none;
+}
+.more-news div:hover{
+    background-color: #383b92;
+}
+.more-news img{
+    margin-right: 0.1rem;
+    margin-top: 0.15rem;
+    width: 0.08rem;
+    height: 0.15rem;
+    vertical-align: middle;
+}
+
+@media (max-width: 1300px) {
+    .sleep-news-content > p {
+        margin-bottom: 0.3rem;
+    }
+}
+@media (max-width: 768px) {
+    .sleep-news-content > p {
+        margin-bottom: 0.1rem;
+    }
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>短信验证码登录</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login-new.css"/>
+	</head>
+	<body class="index_body">
+		<!--<header class="aui-bar aui-bar-nav aui-bar-light headtop">
+		    <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		   
+		    <a href="register.html" class="aui-pull-right aui-btn">
+		        	我要注册
+		    </a>
+		</header>-->
+		<div class="login-content">
+			<div class="aui-content">
+				<p class="go-watch"><a href="index.html">去逛逛</a></p>
+				<img class="logo" style="mmargin: 2;" src="img/login-logo.png"/>
+			</div>
+		<div class="aui-content aui-content-padded form-login">
+			<div class="aui-list-item-inner">		               
+                <div class="aui-list-item-input code-input">
+                    <span class="icon icon-shouji"></span><input type="tel" name="phone" placeholder="请输入您的手机号码">
+                </div>
+                <div class="aui-row">
+                	<div class="aui-col-xs-6">
+                		<div class="aui-list-item-input code-input">
+		                   <span class="icon icon-code-img"></span> <input type="text" name="img_code" placeholder="图形验证码">
+		                </div>
+                	</div>
+                	<div class="aui-col-xs-6">
+                		<div class="imgcode">
+                			<img onclick="refreshImg()" id="vaild-code-img" />
+                		</div>
+                	</div>
+                </div>
+                <div class="aui-row">
+                	<div class="aui-col-xs-6">
+                		<div class="aui-list-item-input code-input">
+		                    <span class="icon icon-code"></span><input type="text"  name="sms_code" placeholder="手机验证码">
+		                </div>
+                	</div>
+                	<div class="aui-col-xs-6">
+                		<input type="button" class="send" id="send" value="获取验证码" >
+                	</div>
+                </div>
+                
+            </div>
+            
+           
+		    <div class="aui-list-item-inner help-login">
+            	 <div class="aui-col-xs-6">
+            	 	<a href="retrieve_password.html" >忘记密码？</a>
+            	 </div>
+            	 <div class="aui-col-xs-6" style="text-align: right;">
+            	 	<a href="login.html">密码登录</a>
+            	 </div>
+            </div>  
+             <div class="aui-list-item-inner btn-login">
+            	 <p><div class="aui-btn aui-btn-warning aui-btn-block" id="login-btn">登录</div></p>
+            </div>
+            <p class="register"> <a href="register.html">我要注册</a></p>
+		</div>
+	</div>
+	
+		<!--<div class="aui-content aui-content-padded other-login">
+			<div class="aui-list-header">
+				<span class="line"></span>请选择其他方式登录<span class="line"></span>
+			</div>
+			<div class="aui-list-item-inner">
+				<div class="aui-row">
+			        <div class="aui-col-xs-3">
+			            <i class="aui-iconfont zhifubao"></i>-->
+			           <!-- <div class="aui-grid-label">支付宝</div>-->
+			        <!--</div>
+			        <div class="aui-col-xs-3">
+			            <i class="aui-iconfont weixin"></i>-->
+			           <!-- <div class="aui-grid-label">微信</div>-->
+			        <!--</div>
+			        <div class="aui-col-xs-3">
+			            <i class="aui-iconfont qq"></i>-->
+			           <!-- <div class="aui-grid-label">QQ</div>-->
+			        <!--</div>
+			        <div class="aui-col-xs-3">
+			            <i class="aui-iconfont weibo"></i>-->
+			            <!--<div class="aui-grid-label">微博</div>-->
+			        <!--</div>
+			   </div>
+			</div>-->
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('body').on('touchmove', function (event) {
+			    event.preventDefault();
+			});
+		});
+
+		enableAjaxLoading();
+		
+//		var headerStyle = getComputedStyle($('header')[0], null),
+//			formLoginStyle = getComputedStyle($('.form-login')[0], null),
+//			otherLoginStyle = getComputedStyle($('.other-login')[0], null);
+//		
+//		var trimPX = function(str) {
+//				return parseInt(str.replace('px', ''));
+//			},
+//			getRealHeight = function(style) {
+//				return trimPX(style.height) + trimPX(style.paddingTop) + trimPX(style.paddingBottom)
+//							+ trimPX(style.marginTop) + trimPX(style.marginBottom);
+//			};
+//			
+//		$('.other-login').css({ 
+//			marginTop : $(window).height() - getRealHeight(headerStyle) - getRealHeight(formLoginStyle)
+//								- getRealHeight(otherLoginStyle) + trimPX(otherLoginStyle.marginBottom)
+//										+ trimPX(otherLoginStyle.marginTop)
+//		});
+		
+		function throwError(msg) {
+			throw new Error(msg);
+		}
+		
+		
+		// 发送验证码
+		$('body').on('click', '#send', function(e) {
+			var msg = '',
+				phone = getInputValue('phone'),
+				code = getInputValue('img_code');
+			
+			if (!phone) {
+				msg = '请输入手机号！';
+			}
+			else if (!code) {
+				msg = '请输入图形验证码！';
+			}
+			
+			if (msg) {
+				showMsg(msg);
+				return;
+			}
+			
+			base.jsonGet('/app/appUsers/send_sms_code/json', { phone: phone, code : code, type : 7 }, function(data) {
+				if (data.status == 'success') {
+					countdown();
+					showMsg('验证码已发送到您的手机！');
+				}
+				else {
+					showAlert(data.message);
+					$('#vaild-code-img').click();
+				}
+			}, function() {
+				showAlert('获取短信验证码出错！');
+			});
+		});
+		
+		function countdown() {
+			var send=document.getElementById('send'),
+			timer=null;
+		   	var times=60,
+		   	   	timer = setInterval(function(){
+	    		send.value = times+"秒后重试";
+				send.setAttribute('disabled','disabled');
+				times--;
+				if(times <= 0){
+					send.value = "获取验证码";
+					send.removeAttribute('disabled');
+					times = 60;
+					clearInterval(timer);
+				}
+		    }, 1000);
+		}
+		
+		
+		// 登录
+		$('#login-btn').click(function() {
+			var phone = getInputValue('phone'),
+				password = getInputValue('password'),
+				smsPhone = getInputValue('sms_phone');
+				imgCode = getInputValue('img_code'),
+				smsCode = getInputValue('sms_code');
+			
+			try {
+				if (!phone) {
+					throwError('请输入手机号！');
+				}
+				if (!imgCode) {
+					throwError('请输入图形验证码！');
+				}
+				if (!smsCode) {
+					throwError('请输入短信验证码！');
+				}
+
+				base.userLogin(phone, smsCode, 'sms', function(user, data) {
+					if (user) {
+						base.storeUser(user);
+ 						location.href = 'index.html';
+					}
+					else {
+						showAlert(data.message || '登录失败，账号或密码不正确！');
+					}
+				}, function() {
+					showAlert('登录出现未知问题，请稍后再试！');
+				})
+			}
+			catch(err) {
+				showMsg(err.message);
+			}
+		});
+		
+		
+		function refreshImg() {
+            disableAjaxLoading();
+			base.jsonGet('/app/appUsers/getCaptcha/json', {}, function(data) {
+			    enableAjaxLoading();
+				if (data.data) {
+					$('#vaild-code-img').attr('src', 'data:image/jpeg;base64,' + data.data);
+				}
+			});
+		}
+		
+		$('.imgcode img').click();
+	</script>
+</html>

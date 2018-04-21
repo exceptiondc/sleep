@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的认证</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/identity.css"/>
+        <style>
+            input[type=button][disabled] {
+                background: #ccc;
+                color: #f0f0f0;
+            }
+            input[type=button].complete {
+                background: transparent;
+                border: 1px solid #0bb20c;
+                color: #0bb20c;
+            }
+            .disabled {
+                background: #cccccc;
+                color: #000;
+            }
+        </style>
+	</head>
+	<body class="index_body">
+		<header class="aui-bar aui-bar-nav aui-bar-light headtop">
+		    <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的认证</div>
+		</header>
+	    <div class="aui-content" style="margin-top: 2.3rem;">
+	    	<div class="identity realname">
+	    		<div class="tit">
+	    			实名认证
+	    		</div>
+	    		<div class="realform">
+	    			<label>
+	    				<img class="idimg" src=""/>
+	    				<p class="add">+</p>
+	    				<p class="des">身份证正面照片</p>
+	    				<div class="badge"></div>
+	    			</label>
+                    <input class="ide" type="file" accept="image/*" name="face"  value="" />
+	    			
+	    			<label>
+	    				<img class="idimg" src=""/>
+	    				<p class="add">+</p>
+	    				<p class="des">身份证背面照片</p>
+	    				<div class="badge"></div>
+	    			</label>
+                    <input class="ide" type="file" accept="image/*"  name="back" value="" />
+	    		</div>
+	    		<div class="identity-btn">
+	    			<input class="process success" type="button" id="idcard-submit" disabled="disabled" value="提交识别" />
+	    		</div>
+	    	</div>
+	    	<div class="identity-tip">
+	    		<p>*请您遵守相关法律法规，如实填写个人身份证信息！</p>
+	    	</div>
+	    </div>
+	    <div class="aui-content">
+	    	<div class="identity faceidenty">
+	    		<div class="tit">
+	    			人脸识别
+	    		</div>
+	    		<div class="realform faceform">
+	    			<label class="face-id">
+	    				<!--<input type="file" accept="video/*" capture="camcorder" name="" id="" value="" />-->
+	    				<div class="badge"></div>
+	    			</label>
+	    		</div>
+	    		<div class="identity-btn">
+	    			<input class="process success" type="button" disabled="disabled" id="face-submit" value="立即认证" />
+	    		</div>
+	    	</div>
+	    	<div class="identity-tip">
+	    		<p>*为了您的账户资金安全，请本人亲自完成所示动作。</p>
+	    	</div>
+	    </div>
+		<div class="aui-content" style="margin-bottom:  2.5rem;">
+	    	<div class="identity cashpay">
+	    		<div class="tit">
+	    			押金认证
+	    		</div>
+	    		<div class="identity-btn">
+	    			<input class="process success" type="button" id="" value="立即缴纳199元押金" />
+	    		</div>
+	    		<p>1、押金认证后，可享受“先入住、后支付”特权！</p>
+	    		<p>2、押金安全保障，可以全额退回</p>
+	    		<p><a href="#">押金使用说明？</a></p>
+	    	</div>
+	    </div>
+		
+		<div class="aui-row anniu" >
+			<div class="aui-col-xs-6">
+				<a href="index.html">
+				<div class="btn">
+					首页找房
+				</div>
+				</a>
+			</div>
+			<div class="aui-col-xs-6">				
+				<div class="btn next disabled" id="next-btn" onclick="nextStep()">
+					下一步
+				</div>
+			</div>
+		</div>
+		
+		<!--认证未完成提示-->
+		<div class="unfinished-tip" style="display: none;">
+			<p>您尚未完成相关认证！</p>
+			<p>轻松认证，即可入住宜睡好房！</p>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.ajaxfileupload.js"></script>
+	<script type="text/javascript">
+        var fileEle = null,
+            s = null,
+            sides = ['face', 'back'],
+            side = '',
+            idCardData = {},
+            step = 0,
+            isStartCertification = false;
+		
+		function nextStep(e){
+		    e = e || event;
+		    var $btn = $(e.target || e.srcElement);
+	    	if (!$btn.hasClass('disabled')) {
+
+            }
+	    }
+
+        function zhimaInitial(data, callback) {
+            base.jsonPost('/app/zhima_credit/zhima/certification/init', {
+                type : 'CERT_INFO',
+                name : data.name,
+                card : data.num,
+                userId : base.getUserId()
+            }, function(data) {
+                callFunction(callback, this, [data]);
+            });
+        }
+
+
+       function zhimaCertificate() {
+           base.jsonPost('/app/zhima_credit/zhima/certification/certify/json', {
+               userId : base.getUserId()
+           }, function(data) {
+               if (data.status == 'success') {
+                   cordova.InAppBrowser.open(data.data, '_system');
+                   isStartCertification = true;
+               }
+               else {
+                   showAlert(data.message);
+               }
+           });
+       }
+
+
+       function updateCertStatus() {
+           showLoading('正在查询认证结果...');
+           base.jsonGet('/app/zhima_credit/zhima/certification/query/json', {
+               userId : base.getUserId()
+           }, function(data) {
+                if (data.status == 'success') {
+                    queryCertStatus();
+                }
+                else {
+                    hideLoading();
+                    showMsg('查询认证结果失败！');
+                }
+           });
+       }
+
+
+       function queryCertStatus() {
+            base.jsonGet('/app/zhima_credit/status/query/json', {
+                userId : base.getUserId()
+            }, function(data) {
+                hideLoading();
+                var result = data.map || {};
+                if (result.isCertification == true) {
+                    $('#face-submit').addClass('complete').val('认证成功').attr('disabled', 'disabled');
+                    //$('.realform label').off('click');
+                    $('#next-btn').removeClass('disabled');
+                    base.refreshUser();
+                }
+                else {
+                    setTimeout(function() {
+                        hideLoading();
+                        showAlert('对不起，认证失败！');
+                        reset();
+                    }, 500);
+                }
+                isStartCertification = false;
+            });
+       }
+
+
+       function onLeaveApp() {
+
+       }
+
+
+       function onBackApp() {
+		   if (step && isStartCertification) {
+               updateCertStatus();
+           }
+       }
+
+
+        function reset(disable) {
+            step = 0;
+            $('#idcard-submit').parents('div.realname').removeClass('pass').end().val('提交识别')[
+                disable ? 'attr' : 'removeAttr'
+            ]('disabled', 'disabled');
+            $('#face-submit').removeClass('complete').val('立即认证').attr('disabled', 'disabled');
+        }
+
+
+        function upload() {
+            showLoading('正在上传...', 20000);
+            $.ajaxFileUpload({
+                fileElementObj: fileEle,    //需要上传的文件域的ID，即<input type="file">的ID。
+                url: base.getProjectURL() + '/adminFileUpload?userId=' + base.user.id, //后台方法的路径
+                type: 'post',   //当要提交自定义参数时，这个参数要设置成post
+                dataType: 'text',   //服务器返回的数据类型。可以为xml,script,json,html。如果不填写，jQuery会自动判断。
+                secureuri: false,   //是否启用安全提交，默认为false。
+                data: {
+                    side: side
+                },
+                async: true,   //是否是异步
+                success: function (data) {   //提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+                    layer.closeAll();
+                    if (data.indexOf('出错') != -1) {
+                        showAlert(data);
+                        return;
+                    }
+                    imgEle.attr('src', data).css('opacity', 1);
+                },
+                error: function (data, status, e) {  //提交失败自动执行的处理函数。
+                    showAlert(data);
+                },
+                complete : function() {
+                    var size = 0;
+                    $('#idcard-submit')[['attr', 'removeAttr'][
+                        size = $('.realform:eq(0) input[type=file]')
+                            .filter(function() { return !$(this).prop('value'); }).size() ? 0 : 1
+                    ]]('disabled', 'disabled');
+
+                    reset(size == 0);
+                }
+            });
+        }
+
+        $(".realform .ide").change(function () {
+            var $file = $(this);
+            var fileObj = $file;
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $(this).prev().find('.idimg');
+            fileEle = fileObj;
+            side = sides[$(this).parents('label').index()];
+            imgEle = $img;
+            idCardData = null;
+            if (fileEle[0].value) {
+                upload();
+            }
+        });
+
+
+       $('#idcard-submit').click(function() {
+            var files = $('.realform:eq(0) input[type=file]'),
+                data = {
+                    images : [],
+                    sides : []
+                };
+            if (files.filter(function() { return !this.value; }).size()) {
+                showAlert('提交认证前请上传身份证照片！')
+                return;
+            }
+
+            data.userId = base.user.id;
+            files.each(function(i, e) {
+                var pathArr = (files.parents('.realform').find('img:eq(' + i + ')')
+                        .attr('src') || '').split('/');
+                data.images.push(pathArr[pathArr.length - 1]);
+                data.sides.push(e.name);
+            });
+
+            var isSuccess = false;
+
+            showLoading('正在提交...', 100000);
+            base.jsonPost('/app/zhima_credit/idcard/recognition/json', data, function(data) {
+                layer.closeAll();
+                if (data.status == 'success') {
+                    idCardData = data.data;
+                    showLoading('正在识别...', 100000);
+
+                    zhimaInitial(data.data.face, function(data) {
+                        layer.closeAll();
+                        if (data.status == 'success') {
+                            $('#face-submit').removeAttr('disabled');
+                            $('#idcard-submit').parents('div.realname').addClass('pass').end().val('识别通过').attr('disabled', 'disabled');
+                            step++;
+                        }
+                        else {
+                            reset();
+                            showAlert(data.message);
+                        }
+                    });
+                }
+                else {
+                    step = 0;
+                    var msg = '身份证照片';
+                    msg += data.data.face ? '' : '正';
+                    msg += data.data.back ? '' : '、反';
+                    showAlert(msg + '面识别出错，请核对后再次提交！');
+                }
+            });
+       });
+
+        $('#face-submit').click(function() {
+            if (!isEmptyObject(idCardData.face)) {
+                zhimaCertificate();
+            }
+            else {
+                showMsg('请先进行身份证识别！');
+            }
+        });
+
+        showLoading('正在查询认证结果...');
+        base.jsonGet('/app/zhima_credit/status/query/json', { userId : base.getUserId() }, function(data) {
+            hideLoading();
+            var result = data.map || {},
+                data = data.data;
+            if (result.isCertification) {
+                //showMsg('您已经认证通过！');
+                var imgs = $('.realform:eq(0) img').css('opacity', '1');
+                imgs[0].src = data.idCardImgFace;
+                imgs[1].src = data.idCardImgBack;
+                $('#idcard-submit').parents('div.realname').addClass('pass').end().val('识别通过').attr('disabled', 'disabled');
+                $('#face-submit').addClass('complete').val('认证成功').attr('disabled', 'disabled');
+            }
+
+            $('.realform label').click(function() {
+                $(this).next().click();
+            });
+        });
+
+        base.onCordovaLoad(function() {
+            document.addEventListener('pause', onLeaveApp, false);
+            document.addEventListener('resume', onBackApp, false);
+        });
+
+	</script>
+</html>

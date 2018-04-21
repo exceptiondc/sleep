@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+
+		<title>订单列表</title>
+
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/myorder.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的订单</div>
+		    <a href="invoice.html" class="aui-pull-right aui-btn">
+		        	开发票
+		    </a>
+		</header>
+		
+		<div class="aui-content aui-content-padded main">
+		    <ul class="aui-list dingdan">
+		    	<li class="aui-list-header">
+		           	当前订单
+		        </li>
+		        <!--<li class="list-box" style="background: #F2F2F2;">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title"><span class="jiantou"></span><span class="status ruzhu"></span></div>
+				        <div class="aui-list-item-right">
+				            <div class="clear" style="position:relative;top:0; left:0"></div>
+				        </div>
+					</div>
+					<div class="aui-list-item-inner">
+						<div><span></span></div>
+					</div>
+					<div class="aui-list-item-inner">
+						<div><span></span></div>
+					</div>
+					<div class="aui-list-item-inner">
+					</div>
+				</li>-->
+		    </ul>
+		    <ul class="aui-list">
+		    	<li class="aui-list-header">
+		           	已完成订单
+		        </li>
+		    </ul>
+
+		</div>
+
+
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="tpl" id="list-item">
+		<li class="list-box" onclick="viewDetails($id)">
+			<div class="aui-list-item-inner" >
+				<div class="aui-list-item-title">$roomType <span class="jiantou">&gt;</span><span class="status ruzhu">$roomStatus</span></div>
+		        <div class="aui-list-item-right">
+		            <div class="clear" style="position:relative;top:0; left:0">一键无痕</div>
+		        </div>
+			</div>
+			<div class="aui-list-item-inner">
+				<div>下单时间：<span>$createTime</span></div>
+			</div>
+			<div class="aui-list-item-inner">
+				<div>入住酒店：<span>$hotelName</span></div>
+			</div>
+			<div class="aui-list-item-inner">
+				<div>消费金额：<span class="money">￥$amount</span><i class="bq tehui">特惠价</i><i class="bq quan">优惠券</i></div>
+				<div class="aui-list-item-right"><a href="html/mycomment.html?orderId=$id" style="color: #54c748;">评论</a></div>
+			</div>
+		</li>
+		</script>
+		
+		<script>
+			function viewDetails(id) {
+				location.href = 'close_order.html?orderId=' + id;
+			}
+		
+			var user = base.getUser();
+			base.jsonGet('/app/appOrders/list/app/json', 
+					{ userid: user.id, pageIndex: pageIndex, type: '' }, function(data) {
+				var tpl = $('#list-item').html(),
+				curOrder = (data.data || []).shift();
+				if(!data.data || !data.data.length && !curOrder){
+					$('.main').html('<p style="text-align:center;margin-top: 1.2rem;">目前没有订单</p>');
+					return false;
+				}
+
+				if (curOrder) {
+					curOrder.createTime = new Date(curOrder.createTime).Format("yyyy-MM-dd hh:mm:ss");
+					$('.aui-list:eq(0)').find('li:gt(0)').remove().end().append($(tpl.formatStr(curOrder)).fadeIn());
+				}
+
+                $('.aui-list:eq(1)').find('li:gt(0)').remove();
+				$.each(data.data || [], function(i, o) {
+					o.createTime = new Date(o.createTime).Format("yyyy-MM-dd hh:mm:ss");
+					$('.aui-list:eq(1)').append($(tpl.formatStr(o)).fadeIn());
+				});
+			});
+		
+		</script>
+	</body>
+</html>
+
+

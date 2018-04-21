@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的收藏</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mytracks.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mycollect.css"/>
+	</head>
+	
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的收藏</div>
+		</header>
+		<div class="aui-content" id="myTracks">
+			<!--<div class="tracks collect none">
+				<img src="img/mycollect-logo.png"/>
+				<p>没有收藏</p>
+				<p>好地方值得收藏</p>
+				<button onclick="window.location='hotel_lists.html'">去看看</button>
+			</div>-->
+			<div class="collect-lists" id="collectLists" style="display: none;">
+				<div class="aui-title nearly">
+					最近的收藏
+				</div>
+				<div class="tracks collect have">	
+					<ul class="aui-list aui-media-list">
+			            
+					</ul>
+				</div>
+				<p class="no-more">没有更多收藏了</p>
+			</div>
+		</div>
+		
+		<script type="tpl" id="collectNo"> 
+			<div class="tracks collect none">
+				<img src="img/mycollect-logo.png"/>
+				<p>没有收藏</p>
+				<p>好地方值得收藏</p>
+				<button onclick="window.location='hotel_lists.html'">去看看</button>
+			</div>
+		</script>
+			
+		<script type="tpl" id="collectHave">
+			
+			<li class="aui-list-item">
+				
+				<div class="aui-media-list-item-inner aui-swipe-handle" onclick="window.location.href='hotel_details.html?hotelId=$hotelId'">
+					
+	                <div class="aui-list-item-media">
+	                    <img src="$hotelImg">
+	                </div>
+	                <div class="aui-list-item-inner hotel">
+	                    <div class="aui-list-item-text">
+	                        <div class="aui-list-item-title">$name</div>
+	                       
+	                    </div>
+	                    <div class="aui-list-item-text">
+	                        <p>4.7分 舒适型</p>	                       
+	                    </div>
+	                    <div class="aui-list-item-text info">
+	                    	<div class="money"><span>￥499</span>起</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="aui-swipe-btn">
+                    <div class="aui-btn clear" onclick="deleteF($fid);" fid="$fid">删除</div>
+                </div>
+            </li>
+            
+		</script>
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-list-swipe.js"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	    // alert(document.body.offsetHeight)
+	    var swipe = new auiListSwipe(function(ret){
+	           //console.log(ret)
+	    });
+	    
+	    
+	    
+	    onLoadMore = function(){
+	    	layer.load(2,{offset:["50%","50%"]});
+	    	base.jsonPost('/app/appUsers/favorite/list/json',{userId:base.getUser().id,pageIndex:pageIndex,pageSize:8,isCancel:0},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			if(data.data.length<=0){
+	    				$('#myTracks').html($('#collectNo').html());
+	    			}else{
+	    				$("#collectLists").show();
+	    				$.each(data.data, function(i,o) {
+	    					$("#collectLists").find(".have ul").prepend($("#collectHave").html().formatStr({hotelId:o.hotelId,hotelImg:o.img,name:o.name,fid:o.id}));
+	    				});
+	    			}
+	    			pageIndex++;
+	    			loadComplete(data.page.hasNext);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}	    		
+	    	});
+	    }
+	    
+	    onLoadMore();
+//	    $('body').delegate('.clear','click',function(){
+//	    	$(this).parents('.aui-list-item').remove();
+//	    	$(this).attr('fid')
+//	    })
+//	    
+	 function deleteF(fid){
+	 	var $this=$(event.target);
+	    	base.jsonPost('/app/appUsers/favorite/cancel/json',{id:fid},function(data){
+	    		if(data.status=='success'){
+	    			//console.log(data);
+					$this.parents('.aui-list-item').remove();
+	    		}
+	    	})
+	    	
+	    }
+	</script>
+	
+</html>

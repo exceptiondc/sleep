@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>系统通知</title>
+    <link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/XMessage.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav headtop" style="background-color:#ffd13f;">
+    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title tit">订单消息</div>
+</header>
+<div class="aui-content aui-margin-b-15">
+	
+	<p style="text-align: center;margin-top: 2rem;">暂时没有订单消息</p>
+    <ul class="aui-list aui-media-list" id="noticeMsg">
+    	
+    	
+       <!-- <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">Ora Drake &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">5分钟前</div>
+                    </div>
+
+                    <div class="aui-info aui-margin-t-5" style="padding:0">
+                        <div class="aui-info-item">
+                            <img src="img/tupian1.png" /><span class="aui-margin-l-5">舒适 干净 整洁</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">Clyde &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">17分钟前</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">黄家驹 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">32分钟前</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">龙飞虎 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">32分钟前</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">小小小朋友 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">49分钟前</div>
+                    </div>
+                    <div class="aui-info aui-margin-t-5" style="padding:0">
+                        <div class="aui-info-item">
+                            <img src="img/tupian1.png" /><span class="aui-margin-l-5">舒适 干净 整洁</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">总是很误会 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">57分钟前</div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">海阔天空 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">1小时前</div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">你的信仰 &nbsp;<span>赞了</span>&nbsp;你的照片</div>
+                        <div class="aui-list-item-right">1小时前</div>
+                    </div>
+                </div>
+            </div>
+        </li>-->
+    </ul>
+</div>
+    <script type="tpl" id="notice">
+		<li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="img/touxiang1.png" class="aui-img-round">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">$content</div>
+                        <div class="aui-list-item-right">$createTime之前</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		function stampToDatetime(stamp) {
+			if (stamp) {
+			          var num, remain, unit;
+			
+			          remain = stamp / 1000;
+			    if (remain >= 86400) {
+			              num = Math.floor(remain / 86400);
+			              remain = remain % 86400;
+			              unit = '天';
+			          }
+			    else if (remain >= 3600) {
+			              num = Math.floor(remain / 3600);
+			              remain = remain % 3600;
+			              unit = '小时';
+			          }
+			    else if (remain >= 60) {
+			              num = Math.floor(remain / 60);
+			              remain = remain % 60;
+			              unit = '分钟';
+			          }
+			          else {
+			              num = remain;
+			              unit = '秒';
+			          }
+			
+			          return num + unit;
+			      }
+			
+			      return '';
+			  }
+			
+		onLoadMore=function(){
+			layer.load(2,{offset:['50%','50%']});
+			    	base.jsonPost('/app/message/list/json',{userId:base.getUser().id,pageIndex:pageIndex,pageSize:15,isRead:0},function(data){
+			    		layer.closeAll();
+			    		if(data.status=='success'){
+		    				if(data.data.length<=0){
+		    					$('#noticeMsg').html('<p style="text-align: center;height: 2.25rem;">目前没有系统消息</p>');
+		    				}else{
+	    						$.each(data.data,function(i,o){
+	    							$('#noticeMsg').append($('#notice').html().formatStr({content:o.content,createTime:stampToDatetime(new Date().getTime()-new Date(o.createTime).getTime())}));
+	    						});
+		    				}
+			    			pageIndex++;
+			    			loadComplete(data.page.hasNext);
+			    		}else{
+			    			layer.alert(data.message);
+			    		}
+			    	});
+				
+		}
+		
+
+//	    	onLoadMore();
+//		
+		
+	</script>
+</body>
+</html>
+
+

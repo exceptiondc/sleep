@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的钱包</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mywallet.css"/>
+		<style type="text/css">
+			.aui-list .aui-list-item-title{
+				font-size: 0.7rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的钱包</div>
+		</header>
+		<div class="" style="width: 100%;height: 10px;background: #f2f2f2;"></div>
+		<div class="aui-content aui-content-padded main">
+		    <ul class="aui-list" style="background: none;">
+		    	<a href="">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title"><span class="icon zhifu"></span>支付方式</div>
+		                <div class="aui-list-item-right">
+		                    <div class="" style="position:relative;top:0; left:0">我的账户</div>
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		        <a href="mybalance.html">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title"><span class="icon Balance"></span>我的余额</div>
+		                <div class="aui-list-item-right">
+		                    <div class="" style="position:relative;top:0; left:0" id="yue"></div>
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		        <a href="mycoupon.html">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title"><span class="icon youhuiquan"></span>我的优惠券</div>
+		                <div class="aui-list-item-right">
+		                    <div class="" style="position:relative;top:0; left:0" id="cardNum"></div>
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		        <a href="hotel_coupon.html">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title"><span class="icon presents"></span>店家有礼</div>
+		                <div class="aui-list-item-right">
+		                    <div class="" style="position:relative;top:0; left:0" id="hotelCardNum"></div>
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		        <a href="invoice.html">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-title"><span class="icon fapiao"></span>发票</div>
+		                <div class="aui-list-item-right">
+		                    <div class="" style="position:relative;top:0; left:0" id="invoiceNum"></div>
+		                </div>
+		            </div>
+		        </li>
+		        </a>
+		    </ul>
+		</div>
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		$('#yue').text((base.getUser().balance ? base.getUser().balance:0.00)+'元');
+		layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/userCard/count/json',{userId:base.getUser().id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    			$('#cardNum').text(data.data.cardNum+'张');
+	    			$('#hotelCardNum').text(data.data.hotelCardNum+'张');
+	    			$('#invoiceNum').text(data.data.invoiceNum+'张');
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+	</script>
+</html>

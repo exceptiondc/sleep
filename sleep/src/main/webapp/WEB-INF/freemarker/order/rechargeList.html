@@ -1,0 +1,261 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/system/order/order.js"></script>
+
+<script type="text/javascript">
+
+    $('.date-picker').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        todayBtn: 'linked',
+        startDate:new Date(2014,10,27),
+        endDate:'+6000d',
+        startDate: '-6000d',
+    }).next().on(ace.click_event, function(){
+        $(this).prev().focus();
+    });
+
+function deleteOrder(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/order/delete?id="+id;
+		var listurl="${ctx}/order/list";
+		mydelete(_url,listurl);
+	}
+}
+
+function daochu(formid,url){
+	$('#'+formid).attr('action',url).submit();
+
+
+}
+
+function myexportff(formId, _url) {
+	var _form = document.getElementById(formId);
+	var _action = _form.action;
+	_form.action = _url;
+	_form.submit();
+	//_form.action = _action;
+}
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/order/recharge/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			 <label for="search_userName"><b>用户姓名:</b></label>
+			 <input type="text" id="search_userName"  name="userName"   value="${(returnDatas.queryBean.userName)!''}">
+			 <label for="search_phone"><b>用户手机号:</b></label>
+			 <input type="text" id="search_phone"  name="userPhone"   value="${(returnDatas.queryBean.userPhone)!''}">
+			 <label for="search_status"><b>状态:</b></label>
+			 <select id="search_status" name="status" class="col-10" >
+				 <option value="">--</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 1)>selected</#if> value="1">处理中</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 2)>selected</#if> value="2">成功</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 3)>selected</#if> value="3">失败</option>
+			 </select>
+			<label for="search_tradeNo"><b>交易号:</b></label>
+	 			<input type="text" id="search_tradeNo"  name="tradeNo"   value="${(returnDatas.queryBean.tradeNo)!''}">
+			<label for="search_startTime"><b>交易时间:</b></label>
+	 			<input name="startTime"  class="date-picker"  style="width:100px;" id="search_startTime" value="${(returnDatas.queryBean.startTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 				-
+	 		<label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" id="search_endTime" value="${(returnDatas.queryBean.endTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 		<label ><b></b></label>
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+				<button onclick="myexportff('searchForm','${ctx}/system/order/recharge/export/json');" class="btn  btn-sm  btn-primary">
+                        导出
+                 </button>
+			 <label><b>总余额:</b></label>
+			 <span  style="display: inline-block;">
+					 ${(returnDatas.queryBean.money)!''}
+			 </span>
+			 <label><b>总手续费:</b></label>
+			 <span  style="display: inline-block;">
+					 ${(returnDatas.queryBean.totalFee)!''}
+			 </span>
+
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/order/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/order/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/order/update" >
+				  <button onclick="myhref('${ctx}/order/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/order/delete" >
+			    |
+				  <button onclick="deleteOrder();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <!--<th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>
+                        <th>操作</th>-->
+                        <!--first_end_no_export-->
+						<th id="th_userName" >用户姓名</th>
+						<th id="th_userPhone" >用户手机号</th>
+						<th id="th_type" >类型</th>
+						<th id="th_status" >状态</th>
+						<th id="th_money" >金额</th>
+						<th id="th_createTime" >时间</th>
+						<th id="th_ps" >备注</th>
+						<th id="th_tradeNo" >交易号</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+						 <tr class="">
+                               <!-- <td>
+                                    <div class="hidden-sm hidden-xs btn-group">
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="myhref('${ctx}/order/update/pre?id=${(_data.id)!''}');">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </button>
+                                        <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/order/delete?id=${(_data.id)!''}','${ctx}/order/list');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+	                                          <li>
+													<a  href="javascript:myhref('${ctx}/order/look?id=${(_data.id)!''}');"  class="tooltip-info" data-rel="tooltip" title="View">
+														<span class="blue">
+															<i class="ace-icon fa fa-search-plus bigger-120"></i>
+														</span>
+													</a>
+											  </li>
+                                                <li>
+                                                    <a data-original-title="Edit"
+                                                       href="javascript:myhref('${ctx}/order/update/pre?id=${(_data.id)!''}');"
+                                                       class="tooltip-success" data-rel="tooltip" title="">
+																		<span class="green">
+																			<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-original-title="Delete"
+                                                       href="javascript:mydelete('${ctx}/order/delete?id=${(_data.id)!''}','${ctx}/order/list');"
+                                                       class="tooltip-error" data-rel="tooltip" title="">
+																		<span class="red">
+																			<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>-->
+							 <!--end_no_export-->
+							 <!-- <td class="center">
+                                  <label class="position-relative">
+                                      <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                      <span class="lbl"></span>
+                                  </label>
+                              </td>-->
+
+							 <td >
+								 ${(_data.userName)!''}
+							 </td>
+							 <td >
+								 ${(_data.userPhone)!''}
+							 </td>
+							 <td >
+								<#if _data.type == 2>
+									投资人充值
+									<#else>
+										项目人充值
+								</#if>
+							</td>
+							 <td >
+								 <#if _data.status == 1>
+									 处理中
+									 <#elseif _data.status == 2>
+										 成功
+									 <#elseif _data.status == 3>
+										 失败
+								 </#if>
+							</td>
+							<td >
+								${(_data.money)!0}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.createTime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+								${(_data.ps)!''}
+							</td>
+							<td >
+								${(_data.tradeNo)!''}
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

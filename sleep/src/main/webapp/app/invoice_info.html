@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发票信息</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/invoice_info.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">电子发票</div>
+		</header>
+		
+		<div class="aui-content">
+			<div class="aui-content-padded aui-list-item-title">
+					发票详情
+			</div>
+			<ul class="aui-list aui-form-list">
+				
+				<li class="aui-list-item">
+		            <div class="aui-list-item-inner" id="invoStyle">
+		                <div class="aui-list-item-label">
+		                    抬头类型
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <label><input class="aui-radio" type="radio" id="company"  name="demo1" value="1" checked> 企业单位</label>
+		                    <label><input class="aui-radio" type="radio" id="person" name="demo1" value="2"> 个人/非企业单位</label>
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    发票抬头
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="填写发票抬头" id="taiTou">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item" id="shuihao">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   税号
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="填写纳税人识别号" id="shuiHao">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   发票内容
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="*住宿费" id="content">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   发票金额
+		                </div>
+		                <div class="aui-list-item-input money">
+		                    180.70元
+		                </div>
+		            </div>
+		        </li>
+			</ul>
+			<div class="aui-content-padded aui-list-item-title">
+				发票详情
+			</div>
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                   电子邮件
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="用于向您发送电子发票和住宿单" id="email">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item tip">
+		        	<p>*电子发票与纸质发票具有同等法律效力，可支持报销入账</p>
+		        </li>
+		  </ul>
+		</div>
+		<div class="aui-content-padded">
+			 <p><div class="aui-btn aui-btn-warning aui-btn-block" id="apply">提交申请</div></p>
+		</div>
+		
+		<div class="aui-mask"></div>
+		
+		<div class="confirm-box">
+			<header class="aui-bar aui-bar-nav">
+			    <a class="aui-pull-left" id="close">
+			        <span class="aui-iconfont aui-icon-close"></span>
+			    </a>
+			    <div class="aui-title">开具电子发票</div>
+			</header>
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    发票类型
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="电子发票" readonly="readonly">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    发票抬头
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="西安贾克斯软件科技有限公司" readonly="readonly" id="conTaitou">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    税号
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="9161 0131 MA6U 1DJK 0F" readonly="readonly" id="conShuihao">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    电子邮件
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="304164575@qq.com" readonly="readonly" id="conEmail">
+		                </div>
+		            </div>
+		        </li>
+		        <p class="tip">*请确认邮箱无误，电子发票将在系统开具后发送至您的邮箱，请注意查收</p>
+		        <p><div class="aui-btn aui-btn-warning aui-btn-block" id="conBtn">确认提交</div></p>
+			</ul>
+		</div>
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../layer-v3.0.3/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				taitouStyle ();
+				if(queryString('orderIds')){
+					$('.money').text(queryString('amount')+'元');
+				}
+			});
+			
+			function taitouStyle () {
+				$('#invoStyle').on('click','.aui-radio',function(){
+					if($("#company").is(':checked')){
+						$("#shuihao").show();
+						$("#conShuihao").parents('.aui-list-item').show();
+					}else if($("#person").is(':checked')){
+						$("#shuihao").hide();
+						$("#conShuihao").parents('.aui-list-item').hide();
+					}
+				})
+			}
+			
+			
+			$('#apply').on('click',function(){
+				$('.aui-mask').addClass('aui-mask-in')
+				$('.confirm-box').addClass('active');
+				$('#conTaitou').val($('#taiTou').val());
+				$('#conShuihao').val($('#shuiHao').val());
+				$('#conEmail').val($('#email').val());
+				taitouStyle ();
+			});
+			
+			$('body').on('click','.aui-mask.aui-mask-in',function(){
+				$('.aui-mask').removeClass('aui-mask-in')
+				$('.confirm-box').removeClass('active');
+			})
+			
+			$('#close').on('click',function(){
+				$('.aui-mask').removeClass('aui-mask-in');
+				$('.confirm-box').removeClass('active');
+			})
+			
+			$('#conBtn').on('click',function(){
+				var rise=$('#conTaitou').val();
+				var riseType=getInputValue('demo1');
+				var dutyparagraph=$('#conShuihao').val();
+				var rise=$('#conTaitou').val();
+				var params={
+					riseType:riseType,
+					rise:rise,
+					dutyparagraph:dutyparagraph,
+					content:$('#content').val(),
+					amount:queryString('amount'),
+					email:$('#conEmail').val(),
+					orderIds:queryString('orderIds'),
+					userId:base.getUser().id
+				};
+				layer.load(2,{offset:['50%','50%']});
+		    	base.jsonPost('/app/appOrders/invoice/json',params,function(data){
+		    		layer.closeAll();
+		    		if(data.status=='success'){
+		    			layer.open({
+					    content:'电子邮箱已发送至您的邮箱请注意查收，谢谢！',
+					    style:'width:75%',
+					    btn: '我知道了',
+					    yes:function(){
+					    	location.href='invoice_submited.html'
+					    }
+					});
+					$('.layui-m-layercont').css('padding','30px');
+		    		}else{
+		    			layer.alert(data.message);
+		    		}
+		    	});
+
+				
+			})
+		</script>
+		
+	</body>
+</html>
+
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>店家优惠券</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/hotel_coupon.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-light headtop">
+		    <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">店家优惠券</div>
+		</header>
+		<div class="aui-content" id="content">
+		<!-- 	<div class="aui-list green">
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<img class="hotel-img" src="img/hotel-pic2.png"/>
+						<div class="aui-list-item-title">
+							芭提雅酒店
+						</div>
+					</div>
+					<div class="aui-col-xs-6 right">
+						<div class="money">￥20</div>
+						<div class="tip">(可抵现金)</div>
+					</div>
+				</div>
+				<div class="coupon-des">
+					<p>活动时间：2018-2-10 至 2018-5-10</p>
+					<p>*此优惠券仅限于芭提雅酒店文艺路门店使用。</p>
+				</div>
+			</div>
+			<div class="aui-list purple">
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<img class="hotel-img" src="img/hotel-pic2.png"/>
+						<div class="aui-list-item-title">
+							芭提雅酒店
+						</div>
+					</div>
+					<div class="aui-col-xs-6 right">
+						<div class="money">￥20</div>
+						<div class="tip">(可抵现金)</div>
+					</div>
+				</div>
+				<div class="coupon-des">
+					<p>活动时间：2018-2-10 至 2018-5-10</p>
+					<p>*此优惠券仅限于芭提雅酒店文艺路门店使用。</p>
+				</div>
+			</div>
+			<div class="aui-list blue">
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<img class="hotel-img" src="img/hotel-pic2.png"/>
+						<div class="aui-list-item-title">
+							芭提雅酒店
+						</div>
+					</div>
+					<div class="aui-col-xs-6 right">
+						<div class="money">￥20</div>
+						<div class="tip">(可抵现金)</div>
+					</div>
+				</div>
+				<div class="coupon-des">
+					<p>活动时间：2018-2-10 至 2018-5-10</p>
+					<p>*此优惠券仅限于芭提雅酒店文艺路门店使用。</p>
+				</div>
+			</div> -->
+			
+		</div>
+		
+	</body>
+
+	<script type="te" id="tels">
+				<div class="aui-list green">
+				<div class="aui-row">
+					<div class="aui-col-xs-6">
+						<img class="hotel-img" src="$hotelImg"/>
+						<div class="aui-list-item-title">
+							$name
+						</div>
+					</div>
+					<div class="aui-col-xs-6 right">
+						<div class="money">￥$money</div>
+						<div class="tip">(可抵现金)</div>
+					</div>
+				</div>
+				<div class="coupon-des">
+					<p>活动时间：$startTime 至 $endTime</p>
+					<p>*此优惠券仅限于芭提雅酒店文艺路门店使用。</p>
+				</div>
+			</div>
+
+	</script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+				onLoadMore=function(){
+			layer.load(2,{offset:['50%','50%']});
+			    	base.jsonPost('/app/userCard/list/app/json',{userId:base.getUser().id,pageIndex:pageIndex,pageSize:8,status:1041,hotel:'hotel'},function(data){
+			    		layer.closeAll();
+			    		if(data.status=='success'){
+			    				if(data.data.length<=0){
+			    					
+			    				}else{
+			    						$.each(data.data,function(i,o){
+
+			    							$('#content').append($('#tels').html().formatStr({limitMoney:o.limitMoney,money:o.money,startTime:o.startTime,endTime:o.endTime,name:o.name}));
+			    						});
+			    				}
+			    
+			    			pageIndex++;
+			    			loadComplete(data.page.hasNext);
+			    		}else{
+			    			layer.alert(data.message);
+			    		}
+			    	});
+				
+		}
+		
+
+	    	onLoadMore();
+	</script>
+</html>

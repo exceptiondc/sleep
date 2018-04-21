@@ -1,0 +1,16 @@
+body{
+    background: #ffffff;
+}
+.aui-bar-nav{
+    background:#FFD961;
+}
+span{
+    font-size: 2rem;
+    color: #F4C225;
+}
+.fw{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 15rem;
+}

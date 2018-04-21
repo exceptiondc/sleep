@@ -1,0 +1,23 @@
+body{
+    background-color: #ffffff;
+}
+.aui-bar-nav{
+    background:#FFD961;
+}
+.aui-switch:checked {
+    border-color: #296DEB;
+    background-color: #296DEB;
+}
+.aui-list .aui-list-header{
+    background: #EFEFEF;
+    color: #ABABAB;
+}
+.aui-list.aui-list-in .aui-list-item.aui-list-item{
+    background-position:0 bottom;
+}
+.aui-list-item-right{
+    margin-left: 3.25px;
+}
+.aui-list .aui-list-item .aui-list-item-title {
+    font-size: 0.7rem;
+}

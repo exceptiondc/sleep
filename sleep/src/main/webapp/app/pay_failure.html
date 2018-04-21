@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>当前订单</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cur_order.css"/>
+	</head>
+	<style type="text/css">
+		body{
+			background: #fff;
+		}
+		.pay{
+			text-align: center;
+		}
+		.pay-success{
+			text-align: center;
+		}
+		.pay-success img{
+			width: 62px;
+			height: 75px;
+			margin: 5rem auto 0.75rem;
+		}
+		.pay-success p{
+			font-size: 18px;
+			color: #333;
+		}
+		.pay-tip{
+			font-size: 14px;
+			color: #fb500b;
+		} 
+		.btn{
+			margin-top: 1.5rem;
+		}
+		.btn a{
+			display: inline-block;
+			padding: 6px 20px;
+			background: #ffd75b;
+			font-size: 15px;
+			color: #fff;
+			border-radius: 4px;
+		}
+		.btn a+a{
+			margin-left: 30px;
+		}
+	</style>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">支付失败</div>
+		</header>
+		<div class="pay">
+			<div class="pay-success">
+				<img src="img/pay-s.png" alt="" />
+				<p>支付失败</p>
+			</div>
+			
+			<!--<p class="pay-tip">很抱歉支付失败，您的银行卡余额不足！</p>-->
+			<div class="btn">
+				<a href="">订单详情</a>
+				<a href="">重新支付</a>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="aui/script/aui-dialog.js" ></script>
+	<script type="text/javascript">
+		
+		
+	</script>
+</html>

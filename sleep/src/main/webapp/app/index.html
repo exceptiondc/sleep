@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>sleep定位页</title> 
+		<!--<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/> -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index2.css"/>
+		
+	</head>
+	<body>
+		    
+	    <div id="map" class="map">
+	    	
+	    </div>
+		<div id="shade" class="shade">
+			<header class="aui-bar aui-bar-nav aui-bar-light headtop clearfix">
+		        <a id="pCenter" class="aui-pull-left aui-btn per left">
+		            <img src="img/icon-per.png"/>
+		        </a>
+		        <div class="aui-title left">
+		        	<img src="img/sleep.png"/>
+		        	<span id="localCity"><span>西安</span><i class="pull"></i></span>
+		        </div>
+		        <a class="aui-pull-right aui-btn msg right" href="mymessage.html">
+		            <img src="img/icon-msg.png"/>
+		        </a>
+		    </header>
+		    
+		    <div id="" class="side-bar">
+		    	<div class="go-left">
+		    		《
+		    		<!--<img src="img/index-nav.png"/>-->
+		    	</div>
+		    	<ul>
+		    		<li>
+		    			<div class="aui-dot"></div>
+		    			<a href="mycoupon.html">
+		    				<img style="width: 1.6rem;margin-left: -3px;" src="img/hongbao.png"/>
+		    			</a>
+		    		</li>
+		    		<li>
+		    			<div class="aui-dot"></div>
+		    			<a href="javascript:void(0)" id="share">
+		    				<img src="img/app-share.png"/>
+		    			</a>
+		    		</li>
+		    		<li>
+		    			<div class="aui-dot"></div>
+		    			<a href="mytracks.html">
+		    				<img src="img/zuji.png"/>
+		    			</a>
+		    		</li>
+		    		<li>
+		    			<div class="aui-dot"></div>
+		    			<a href="activity.html">
+		    				<img style="height: 1rem;" src="img/news.png"/>
+		    			</a>
+		    		</li>		    		
+		    	</ul>
+		    </div>
+		    <div class="bottom-fuc">
+		    	<ul>
+		    		<li><a class="address"></a></li>
+		    		<li><a href="search.html" class="go-btn"></a></li>
+		    		<li><a onclick="openExternalUrl('http://p.qiao.baidu.com/cps/chat?siteId=11888217&userId=25438374')" class="kefu"></a></li>
+		    	</ul>
+		    </div>
+		   
+	    </div>
+	     
+	    <div class="aui-mask"></div>
+	    <!--左边面板-->
+	    <div id="slider" class="slider">
+	    	<div class="banner">
+    			<div class="toux"><a href="gerenxx.html"><img src="img/touxiang.png" key="user-avatar" alt="" /></a></div>
+    			<p><span key="user-name"></span> <a href="change_info.html"><span class="edit"></span></a></p>
+	    	</div>
+	    	
+	    	<section class="aui-grid aui-margin-b-15">
+			    <div class="aui-row clearfix">
+			        <div class="aui-col-xs-4">
+			        	<a href="myorder.html">
+				           <!-- <div class="aui-badge">88</div>-->
+				            <i class="aui-iconfont aui-icon-myorder"></i>
+				            <div class="aui-grid-label">我的订单</div>
+			            </a>
+			        </div>
+			        <div class="aui-col-xs-4">
+			        	<a href="mywallet.html">
+				            <i class="aui-iconfont aui-icon-mymoney"></i>
+				            <div class="aui-grid-label">我的钱包</div>
+				        </a>
+			        </div>
+			        <div class="aui-col-xs-4">
+			        	<a href="mysystem.html">
+			        		<!--<i class="icon iconfont">&#xe64b;</i>-->
+			            <i class="aui-iconfont aui-icon-safe"></i>
+			            <div class="aui-grid-label">系统设置</div>
+			            </a>
+			        </div>
+			        <div class="aui-col-xs-4">
+			        	<a href="help.html">
+			            <i class="aui-iconfont aui-icon-help"></i>
+			            <div class="aui-grid-label">客服中心</div>
+			            </a>
+			        </div>
+			        <div class="aui-col-xs-4">
+			           <!-- <div class="aui-badge"></div>-->
+			           <a href="myinvite.html">
+			            <i class="aui-iconfont aui-icon-visit"></i>
+			            <div class="aui-grid-label">邀请有礼</div>
+			            </a>
+			        </div>
+			        <div class="aui-col-xs-4">
+			        	<a href="activity.html">
+			           <!-- <div class="aui-dot"></div>-->
+			            <i class="aui-iconfont aui-icon-shop"></i>
+			            <div class="aui-grid-label">最新活动</div>
+			            </a>
+			        </div>
+			    </div>
+			    
+			</section>
+			<div class="rule">
+		    	<p class="law-rule"><a href="ServiceAgreement.html">法律条款与隐私政策</a></p>
+		    </div>
+	    </div>
+	   
+	   	<!--酒店信息-->
+	   	<div class="hotel-msg" >
+	   		<ul class="hotel-distance">
+                    <li class="refresh">
+
+                    </li>
+	   			<li class="address">
+                    <p><span></span>当前位置(距您当前距离<code key="hotel-distance"></code>)</p>
+	   				<p><span></span><code key="hotel-name"></code>..........</p>
+	   			</li>
+	   			<li class="location">
+	   				<img src="img/dingwei3.png"/>
+	   			</li>
+	   		</ul>
+	   		<div class="hotel-condition">
+	   			<div class="hotel-banner">
+					<div class="swiper-container">
+					    <div class="swiper-wrapper" key="hotel-img">
+					    </div>
+					    <!-- Add Pagination -->
+					    <!-- <div class="swiper-pagination"></div>-->
+					    <!-- Add Arrows -->
+					    <!--<div class="swiper-button-next"></div>
+					    <div class="swiper-button-prev"></div>-->
+					</div>
+					<div class="aui-content-padded hotel-name">
+						<p class="name"><span key="hotel-name">希尔顿酒店</span>(<span key="hotel-nearby"></span>)</p>
+						<p class="distance">酒店位置(距离您当前位置<span key="distance-of-hotel"></span>)</p>
+					</div>
+				</div>
+				
+				<div class="pingfen">
+					<ul class="clearfix">
+						<li class="left"><span key="hotel-score">0</span>分 很好</li>
+						<li class="left" key="hotel-desc"></li>
+						<li class="right"><a onclick="go('html/user_comment.html')"><span key="hotel-comment-count">0</span>条点评 </a>&gt;</li>
+					</ul>
+				</div>
+				
+				<div class="fangjia">
+					<ul class="clearfix">
+						<li class="left">今日房价：<span key="hotel-price">69</span>元/小时</li>
+						<li class="right"><a onclick="go('hotel_details.html')" key="yuding">立即预订</a></li>
+					</ul>
+				</div>
+				
+	   	    </div>
+	   	</div>
+	
+		<!--城市列表-->
+
+		<div class="city-list" id="cityList">
+			<div class="cur-city">
+				<p>当前城市：<span id="curCity">西安</span></p>
+			</div>
+			<ul>
+				<li class="city hot">北京<span class="hot"></span></li>
+				<li class="city hot">上海<span class="hot"></span></li>
+				<li class="city hot">南京<span class="hot"></span></li>
+				<li class="city hot">重庆</li>
+				<li class="city hot">西安</li>
+				<li class="city hot">武汉</li>
+			</ul>
+			<div class="bottom-tip">
+				<p>即将入驻更多城市，敬请期待！</p>
+			</div>
+		</div>
+	
+		<!--===============app分享=================-->
+		<div class="hotel-share">
+			<div class="aui-content">
+				<div class="aui-list-header">
+					分享
+				</div>
+				<div class="aui-list-item-inner">
+					<div class="aui-row">
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont weixin"></i>
+				            <div class="aui-grid-label">微信</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont pengyouquan"></i>
+				            <div class="aui-grid-label">朋友圈</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont qq"></i>
+				            <div class="aui-grid-label">QQ</div>
+				        </div>
+				        <div class="aui-col-xs-3">
+				            <i class="aui-iconfont weibo"></i>
+				            <div class="aui-grid-label">新浪微博</div>
+				        </div>
+				   </div>
+				</div>
+				<div class="aui-list-header cancel">
+					取消
+				</div>
+			</div>
+		</div>
+			
+		<!--第三方登录后提示用户设置登录密码，下方有遮罩层，确定后跳到注册页-->
+		<!--<div class="password-tip">
+			<div class="tip">
+				<p>设置登录密码可提高账号安全性，确认设置？</p>
+			</div>
+			<div class="btn">
+				<a onclick="$('.password-tip').hide()">取消</a>
+				<a href="register.html">确认</a>
+			</div>
+		</div>-->
+
+    <span id="text-container" style="padding: 5px 10px; display: none; font-size: 12px"></span>
+	</body>
+	<script src="js/jquery-1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.slidereveal.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uC0793rpmWrTwO0l5NdD4gpXBPfjk2ri"></script>
+	<!-- <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=91ea69fe1bacefdc828c25323b2679ec"></script> -->
+	<!-- <script type="text/javascript" src="//api.map.baidu.com/api?ak=uC0793rpmWrTwO0l5NdD4gpXBPfjk2ri&type=lite&v=1.0"></script> -->
+	<script type="tpl" id="hotel-info-tpl">
+		<h4 style='margin:0 0 5px 0;padding:0.2em 0'>$title</h4>
+		<div>
+			<img style='float:right;margin:4px' id='imgDemo' src='$img' width='139' height='104' title='$title'/>
+			<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>$desc</p> 
+		</div>
+	</script>
+	<script type="text/javascript">
+	
+		$(function(){
+			$("#map").height($(window).height());
+//			var sliderW = $(window).width()-70;
+//			$('#slider').slideReveal({
+//				push: false,
+//			    trigger: $("#pCenter"),
+//			    width: sliderW,
+//			    show: function(){
+//			    	console.log("1");
+//			    	$('.aui-mask').addClass('aui-mask-in');
+//			    	$('#cityList').hide();
+//			    },
+//			    hide: function(){
+//			    	$('.aui-mask').removeClass('aui-mask-in');
+//			    }
+//			});
+			$("#pCenter").on('click',function(){
+				$("#slider").css('left',0);
+				$('.aui-mask').addClass('aui-mask-in');
+			    	$('#cityList').hide();
+			})
+			$('.go-left').on('click',function(){
+				$(".side-bar").toggleClass('hide');
+				$(this).toggleClass('show');
+			});
+		});
+
+	
+	 $(function(){
+        //给body强制定义高度
+        var windowHeight = $(window).height(),
+                　　$body = $("body");
+                　　// console.log($(window).height()); //627
+                　　// console.log($('body').height()); //0
+                　　$body.css("height", windowHeight); //重要代码
+                
+        $("body").on("touchstart", function(e) {
+            　　　　//e.preventDefault();//会使所有的触屏都失效，不能用
+            　　　　   startX = e.originalEvent.changedTouches[0].pageX,
+          startY = e.originalEvent.changedTouches[0].pageY;
+            　　});
+            　　 $("body").on("touchmove", function(e) {
+            　　　　e.preventDefault();
+            　　　　     moveEndX = e.originalEvent.changedTouches[0].pageX,
+            　　　　  moveEndY = e.originalEvent.changedTouches[0].pageY,
+            　　　　X = moveEndX - startX,
+            　　　　Y = moveEndY - startY;
+            　　　　if ( Math.abs(X) > Math.abs(Y) && X > 0 ) {
+            　　　　　　//alert("right");
+            　　　　}
+            　　　　else if ( Math.abs(X) > Math.abs(Y) && X < 0 && Math.abs(X) > 50 ) {
+            　　　　　　//alert("left");
+            	$("#slider").css('left','-60%');
+            	$('.aui-mask').removeClass('aui-mask-in');
+            　　　　}
+            　　　　else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
+            　　　　　　//alert("bottom");
+            　　　　}
+            　　　　else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
+            　　　　　　//alert("top");
+            　　　　}
+            　　　　else{
+            　　　　　　//alert("just touch");
+            　　　　}
+            　　});
+    })
+
+
+		//城市选择
+		$('#localCity').on('click',function(){
+			$('.aui-mask').toggleClass('aui-mask-in');
+			$('#cityList').slideToggle('fast');
+		});
+		
+		$('#cityList').on('click','.city',function(){
+			$('#localCity').find('span').text($(this).text());
+			$("#curCity").text($(this).text());
+			_map.centerAndZoom($(this).text(), 14);
+			$('.aui-mask').removeClass('aui-mask-in');
+			$('#cityList').slideToggle('fast');
+		})
+		
+		$('body').on('click','.aui-mask.aui-mask-in',function(){
+			$(this).removeClass('aui-mask-in');
+			$('#cityList').slideUp('fast');
+			$(".hotel-share").removeClass('active');
+			$("#slider").css('left','-60%');
+		})
+		
+		
+		//分享app
+		 function wechatShare(data, success, fail) {
+            Wechat.share({
+                message: {
+                    title: data.title,
+                    description: data.desc,
+                    thumb: data.thumb,
+                    mediaTagName: "",
+                    messageExt: "测试",
+                    messageAction: "<action>dotalist</action>",
+                    media: {
+                        webpageUrl : data.url
+                    }
+                },
+                scene: data.scene
+            }, function () {
+                callFunction(success, this, []);
+            }, function (reason) {
+                callFunction(fail, this, [reason]);
+            });
+        }
+
+
+        function onShareSuccess() {
+	        showMsg('分享成功！');
+        }
+
+        function onShareFailure(msg) {
+	        showMsg('分享失败，原因为：' + msg);
+        }
+
+	    $("#share").on('click',function(){
+	    	$('.aui-mask').addClass('aui-mask-in');
+	    	$(".hotel-share").addClass('active');
+	    });
+	    
+	    $("body").delegate('.aui-mask','click',function(){
+	    	$(this).removeClass('aui-mask-in');
+	    	$(".hotel-share").removeClass('active');	    	
+	    })
+        .on('click', '.aui-row .aui-col-xs-3', function(data) {
+            var type = $(this).find('.aui-grid-label').html();
+            var content = '';
+
+            switch(type) {
+                case '微信':
+                case '朋友圈':
+                    wechatShare({
+                            url : location.href,
+                            title: 'abc',
+                            desc: 'desc',
+                            thumb: 'https://img.alicdn.com/imgextra/i3/1114511827/TB2RL9KiTtYBeNjy1XdXXXXyVXa_!!1114511827.jpg_430x430q90.jpg',
+                            scene : type == '微信'  ? Wechat.Scene.SESSION : Wechat.Scene.TIMELINE
+                        },
+                        onShareSuccess, onShareFailure
+                    );
+                    break
+
+                case 'QQ':
+                    break
+
+                case '新浪微博':
+                    break
+            }
+
+        });
+		
+		 $("body").delegate('.cancel','click',function(){
+	    	$('.aui-mask').removeClass('aui-mask-in');
+	    	$(".hotel-share").removeClass('active');
+	    })
+
+/* --------------------------------------------------------------------------- */
+
+		var _map = new BMap.Map('map'),
+			_currentGPSLocation = {},
+			_currentLocation = {},
+			_selfMarker = null,
+			_hotelMarkers = [],
+            _hotelId = 0;
+
+		
+		function handleLocateError(error) {
+			 var msg = "";
+			 switch(error.code) {
+		        case 0:
+		          msg = "获取位置信息出错！";
+		          break;
+		        case 1:
+		          msg = "您设置了阻止该页面获取位置信息！";
+		          break;
+		        case 2:
+		          msg = "浏览器无法确定您的位置！";
+		          break;
+		        case 3:
+		          msg = "获取位置信息超时！";
+		          break;
+		    }
+
+			if (msg) {
+				showMsg(msg);
+			}
+		}
+
+		
+		function geoLocate(success) {
+			if (!"geolocation" in navigator) {
+				showMsg("您的浏览器不支持定位！");
+				return;
+			}
+
+			navigator.geolocation.getCurrentPosition(success, handleLocateError, {
+				maximumAge : 60000,
+				timeout : 50000,
+				enableHighAccuracy : true
+			});
+		}
+		
+		
+		function covertPosition(lng, lat, callback) {
+			var convertor = new BMap.Convertor();
+	        convertor.translate([new BMap.Point(lng, lat)], 1, 5,
+	        		callback && callback || function() {});
+		}
+		
+		
+		function watchPosition(callback) {
+			if (!"geolocation" in navigator) {
+				showMsg("您的浏览器不支持定位！");
+				return;
+			}
+			
+			navigator.geolocation.getCurrentPosition(callback, handleLocateError, {
+				maximumAge : 60000,
+				timeout : 50000,
+				enableHighAccuracy : true
+			});
+		}
+		
+		
+		function createMarker(point, label, option){
+			var marker = new BMap.Marker(point, option);
+			if (label) {
+				marker.setLabel(label);
+			}
+			return marker;
+		}
+
+		
+		function createLabel(content, offset) {
+			return new BMap.Label(content, { offset : offset });
+		}
+		
+		
+		function createInfoWindow(content) {
+			return new BMap.InfoWindow(content);
+		}
+
+		
+		function locateCallback(pos, success, error) {
+			_currentGPSLocation = pos;
+			var point = new BMap.Point(pos.coords.longitude, pos.coords.latitude);
+			covertPosition(point.lng, point.lat, function(data) {
+				if (data.status == 0) {
+					onLocatingSuccess(data);
+					success && success();
+				}
+				else {
+					error && error();
+					base.debug(data);
+				}
+			});
+		}
+		
+		
+		function locate(onSuccess) {
+			geoLocate(function(pos) {
+				locateCallback(pos, onSuccess);
+			});
+		}
+
+
+        function onLocatingSuccess(data) {
+            if (_selfMarker) {
+                _map.removeOverlay(_selfMarker);
+            }
+
+            var width = 30, height = 30,
+                icon = new BMap.Icon('img/map-icon-local.png', new BMap.Size(width, height), {
+                    anchor : new BMap.Size(0, 0)
+                });
+
+            icon.setImageSize(new BMap.Size(width, height));
+            _selfMarker = createMarker(data.points[0], null, {
+                icon : icon,
+            });
+            _map.addOverlay(_selfMarker);
+            _map.centerAndZoom(data.points[0], 18);
+            _currentLocation = data.points[0];
+        }
+		
+		
+		function showHotelInfoWindow(hotel, marker) {
+			var infoTpl = $('#hotel-info-tpl').html(),
+				infoHtml = '',
+				infoParam = {};
+			
+			infoParam.title = hotel.name;
+			infoParam.img = hotel.img;
+			infoParam.desc = hotel.descr;
+			infoHtml = infoTpl.formatStr(infoParam);
+			marker.openInfoWindow(createInfoWindow(infoHtml));
+		}
+
+
+		function getDistanceWithKindUnit(distance) {
+		    if (!distance) {
+		        return '0米';
+            }
+
+		    var units = ['米', '千米'], i = 0;
+		    while(distance > 1000) {
+		        distance /= 1000;
+		        i++;
+		        break;
+            }
+
+            return (distance.toFixed(1) || '').replace('.0', '') + units[i];
+        }
+		
+		
+		function showHotelInfoPanel(hotel) {
+			var $panel = $('.hotel-msg'),
+				distance = getDistanceWithKindUnit(_map.getDistance(
+						new BMap.Point(hotel.longitude, hotel.latitude), _currentLocation));
+
+			$('[key=hotel-name]').html(hotel.name);
+			$('[key=hotel-score]').html(hotel.score);
+			$('[key=hotel-desc]').html(hotel.scoreDescr);
+			$('[key=hotel-price]').html(hotel.avgPrice);
+			$('[key=distance-of-hotel]').html(distance);
+			$('[key=hotel-nearby]').html(hotel.addressDescr);
+			$('[key=hotel-desc]').html(hotel.desc);
+			$('[key=hotel-score]').html(hotel.score);
+			$('[key=hotel-comment-count]').html(hotel.commentNum || 0);
+			$('[key=yuding]').attr('href','hotel_details.html?hotelId='+hotel.id);
+			$('[key=hotel-distance]').html(distance);
+			var imgHtml = '', imgs = (hotel.img || '').split(';');
+			for (var i in imgs) {
+			    imgHtml += '<div class="swiper-slide"><img src="' + imgs[i] + '"/></div>';
+            }
+
+			$('[key=hotel-img]').html(imgHtml);
+			$panel.animate({top : $(window).height() - $panel.height()});
+			_isPanelShown = true;
+            _hotelId = hotel.id;
+		}
+		
+		
+		function addHotelMarker(hotel, idx) {
+			if (!hotel || !hotel.longitude || !hotel.latitude) {
+				return;
+			}
+
+			var getTextWidth = function(txt) {
+                    var trimPX = function(str) {
+                            return parseInt(str.replace('px', ''));
+                        },
+                        ele = $('#text-container').html(txt)[0],
+                        style = getComputedStyle(ele, null);
+
+                    return $(ele).width() + trimPX(style.paddingLeft) + trimPX(style.paddingRight);
+                },
+                width = 20,
+                height = 20,
+                icon = new BMap.Icon('img/map-icon-hotel.png', new BMap.Size(width, height), {
+                    anchor : new BMap.Size(0, 0)
+                });
+
+            icon.setImageSize(new BMap.Size(width, height));
+			
+			var marker = createMarker(new BMap.Point(hotel.longitude, hotel.latitude), null, {
+			        icon : icon
+                }),
+				label = new BMap.Label(hotel.name, {
+				    offset : new BMap.Size(-(getTextWidth(hotel.name) - width) / 2, -(width + 5))
+                }),
+				headerHeight = $('header').height(),
+				panelHeight = $('.hotel-msg').height(),
+				remainHeight = ($(window).height() - headerHeight - panelHeight) / 2;
+
+			var onclick = function() {
+                _savedMapInfo = {
+                    center : _map.getCenter(),
+                    zoom : _map.getZoom()
+                };
+                _map.setViewport([marker.getPosition()], {
+                    margins : [0, 0, panelHeight - headerHeight, 0],
+                    enableAnimation : true,
+                    zoomFactor : 0,
+                    delay : 500
+                });
+// 				_map.panBy(0, -remainHeight);
+                showHotelInfoPanel(hotel);
+            };
+
+			marker.addEventListener('click', onclick);
+			label.addEventListener('click', onclick);
+			label.setStyle({
+                background: '#FFC81C', border: 'none', borderRadius: '10px',
+                padding: '5px 10px', color: '#fff'
+			});
+			marker.setLabel(label);
+			_map.addOverlay(marker);
+			_hotelMarkers.push(marker);
+		}
+		
+		
+		function loadHotels(center, callback) {
+			base.jsonGet('/app/hotel/list/app/json', {
+					range : 2000,
+					longitude : center.lng,
+					latitude : center.lat
+				}, function(data) {
+				$.each(_hotelMarkers, function(i, v) {
+					if (v) {
+						_map.removeOverlay(v);
+					}
+				});
+				
+				_hotelMarkers = [];
+				if (!data.data || !data.data.length) {
+				    showMsg('您附近暂时没有酒店，您可以继续搜索');
+                }
+
+				$.each(data.data || [], function(i, v) {
+					addHotelMarker(v, i + 1);
+				});
+				
+				callFunction(callback, this, [data]);
+			});
+		}
+		
+		
+		function showMsg(msg, time) {
+			layer.open({ skin : 'msg', content : msg, time: time || 2, shadeClose: false });
+		}
+		
+		var _zoomTimer;
+		function mapZoom(dstLv) {
+			if (_zoomTimer) {
+				clearInterval(_zoomTimer);
+			}
+			
+			var func = _map.getZoom() < dstLv ? _map.zoomIn : _map.zoomOut;
+			_zoomTimer = setInterval(function() {
+				if (_map.getZoom() != dstLv) {
+					func.call(_map);
+				}
+				else {
+					clearInterval(_zoomTimer);
+				}
+			}, 9);
+		}
+
+
+		function go(url) {
+		    location.href = url + '?hotelId=' + _hotelId;
+        }
+
+		
+		var _deferLoadTimer,
+			_deferLoadTime = 400,
+			_isMapMoved = false,
+			_isPanelShown = false,
+			_savedMapInfo = {};
+
+		_currentLocation = new BMap.Point(108.891013, 34.188659);
+		_map.centerAndZoom(_currentLocation, 15);
+// 		locate(function() {
+			loadHotels(_currentLocation);
+// 		});
+		
+		// 当地图移动开始时进行相关处理
+		_map.addEventListener('movestart', function(e) {
+			if (_deferLoadTimer) {
+				clearTimeout(_deferLoadTimer);
+			}
+		});
+		
+		// 当地图移动结束时进行相关处理
+		_map.addEventListener('moveend', function(e) {
+			_isMapMoved = false;
+			if (!_isPanelShown) {
+				_deferLoadTimer = setTimeout(function() {
+					loadHotels(_map.getCenter());
+				}, _deferLoadTime);
+			}
+		});
+		
+		// 当地图缩放结束时进行相关处理
+		_map.addEventListener('zoomend', function(e) {
+			//base.debug(_map.getCenter(), e);
+		});
+
+		// 定位按钮，点击进行定位当前位置
+		$('body').on('click', '.address', function(e) {
+			locate();
+		});
+		
+		$('#map')[0].addEventListener('touchstart', function() {
+			if (!_isPanelShown) {
+				return;
+			}
+
+			$('.hotel-msg').animate({top: $(window).height()});
+			_isPanelShown = false;
+			_map.setViewport({
+				center : _savedMapInfo.center,
+				zoom : _savedMapInfo.zoom
+			}, {
+				margins : [0, 0, 0, 0],
+				enableAnimation : true,
+				zoomFactor : 0,
+				delay : 500
+			});
+		}, true);
+		
+		
+		var swiper = new Swiper('.swiper-container', {
+	      	navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		      }
+		});
+
+
+		function openExternalUrl(url) {
+            if (base.isWeb()) {
+                location.href = url;
+            }
+            else {
+                var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no');
+            }
+        }
+
+        var user = base.getUser();
+        $('[key=user-name]').html(user.name || user.phone);
+        $('[key=user-avatar]').attr('src', user.header);
+
+
+		
+	</script>
+</html>

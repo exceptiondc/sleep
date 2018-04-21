@@ -1,0 +1,39 @@
+/*body{
+    background: #ffffff;
+}*/
+.aui-bar-nav{
+    background:#FFD961;
+}
+.aui-content{
+    position: relative;
+    top: 5px;
+}
+.aui-switch:checked {
+    border-color: #FF9800;
+    background-color: #FF9800;
+}
+.aui-list .aui-list-header{
+    background: #EFEFEF;
+    color: #ABABAB;
+    font-size: 1px;
+}
+.aui-list.aui-list-in .aui-list-item.aui-list-item{
+    background-position:0 bottom;
+}
+.aui-list .aui-list-item .aui-list-item-title {
+    font-size: 0.7rem;
+}
+.aui-list-in{
+    margin-top: 0px;
+}
+.li1{
+    line-height: 1.75rem;
+}
+.kunge{
+    width: 100%;
+    height: 10px;
+    background: #F5F5F5;
+}
+header .title{
+    font-size: 0.8rem;
+}

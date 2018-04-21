@@ -1,0 +1,239 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/js/system/useraccounthistory/useraccounthistory.js"></script>
+
+<script type="text/javascript">
+
+function deleteUserAccountHistory(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/useraccounthistory/delete?id="+id;
+		var listurl="${ctx}/useraccounthistory/list";
+		mydelete(_url,listurl);
+	}
+}
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/useraccounthistory/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+				 <label for="search_userName"><b>用户姓名:</b></label>
+			 <input type="text" id="search_userName"  name="userName"   value="${(returnDatas.queryBean.userName)!''}">
+			 <label for="search_phone"><b>用户手机号:</b></label>
+			 <input type="text" id="search_phone"  name="userPhone"   value="${(returnDatas.queryBean.userPhone)!''}">
+		<!-- 	 <label for="search_status"><b>状态:</b></label>
+			 <select id="search_status" name="status" class="col-10" >
+				 <option value="">--</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 1)>selected</#if> value="1">处理中</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 2)>selected</#if> value="2">成功</option>
+				 <option <#if (((returnDatas.queryBean.status)!0) == 3)>selected</#if> value="3">失败</option>
+			 </select> -->
+			<label for="search_tradeNo"><b>交易号:</b></label>
+	 			<input type="text" id="search_tradeNo"  name="tradeNo"   value="${(returnDatas.queryBean.tradeNo)!''}">
+			<label for="search_startTime"><b>交易时间:</b></label>
+	 			<input name="startTime"  class="date-picker"  style="width:100px;" id="search_startTime" value="${(returnDatas.queryBean.startTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 				-
+	 		<label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" id="search_endTime" value="${(returnDatas.queryBean.endTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 		<label ><b></b></label>
+	
+		<!-- 	 <label><b>总额:</b></label>
+			 <span  style="display: inline-block;">
+					 ${(returnDatas.queryBean.money)!''}
+			 </span> -->
+			<!--  <label><b>总手续费:</b></label>
+			 <span  style="display: inline-block;">
+					 ${(returnDatas.queryBean.totalFee)!''}
+			 </span> -->
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/useraccounthistory/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/useraccounthistory/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/useraccounthistory/update" >
+				  <button onclick="myhref('${ctx}/useraccounthistory/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/useraccounthistory/delete" >
+			    |
+				  <button onclick="deleteUserAccountHistory();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>
+                        <th>操作</th>
+                        <!--first_end_no_export-->
+						<th id="th_userId" >用户</th>
+						<th id="th_type" >类型</th>
+						<th id="th_money" >金额</th>
+						<th id="th_afterMoney" >剩余金额</th>
+						<th id="th_createtime" >时间</th>
+						<th id="th_poundage" >手续费</th>
+						<th id="th_status" >状态</th>
+						<th id="th_remarkers" >备注</th>
+					<!-- 	<th id="th_projectId" >项目Id</th> -->
+						<th id="th_orderId" >总记录id</th>
+						<!-- <th id="th_userProjectId" >用户投资项目id</th> -->
+						<th id="th_tradeNo" >交易号</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                                <td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                <!--     <div class="hidden-sm hidden-xs btn-group">
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="myhref('${ctx}/useraccounthistory/update/pre?id=${(_data.id)!''}');">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </button>
+                                        <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/useraccounthistory/delete?id=${(_data.id)!''}','${ctx}/useraccounthistory/list');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                    </div>
+                                    <div class="hidden-md hidden-lg">
+                                        <div class="inline position-relative">
+                                            <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" data-position="auto">
+                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+	                                          <li>
+													<a  href="javascript:myhref('${ctx}/useraccounthistory/look?id=${(_data.id)!''}');"  class="tooltip-info" data-rel="tooltip" title="View">
+														<span class="blue">
+															<i class="ace-icon fa fa-search-plus bigger-120"></i>
+														</span>
+													</a>
+											  </li>	
+                                                <li>
+                                                    <a data-original-title="Edit"
+                                                       href="javascript:myhref('${ctx}/useraccounthistory/update/pre?id=${(_data.id)!''}');"
+                                                       class="tooltip-success" data-rel="tooltip" title="">
+																		<span class="green">
+																			<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-original-title="Delete"
+                                                       href="javascript:mydelete('${ctx}/useraccounthistory/delete?id=${(_data.id)!''}','${ctx}/useraccounthistory/list');"
+                                                       class="tooltip-error" data-rel="tooltip" title="">
+																		<span class="red">
+																			<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																		</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div> -->
+                                </td>
+                                <!--end_no_export-->
+
+							<td >
+								${(_data.realName)!''}
+							</td>
+							<td >
+								${(_data.type)!0}
+							</td>
+							<td >
+								${(_data.money)!0}
+							</td>
+							<td >
+								${(_data.afterMoney)!0}
+							</td>
+							<td >
+								<!--日期型-->
+							${((_data.createtime)?string('yyyy-MM-dd HH:mm:ss'))!''}
+							</td>
+							<td >
+								${(_data.poundage)!0}
+							</td>
+							<td >
+								${(_data.status)!0}
+							</td>
+							<td >
+								${(_data.remarkers)!''}
+							</td>
+					<!-- 		<td >
+								${(_data.projectId)!0}
+							</td> -->
+							<td >
+								${(_data.orderId)!0}
+							</td>
+					<!-- 		<td >
+								${(_data.userProjectId)!0}
+							</td> -->
+							<td >
+								${(_data.tradeNo)!''}
+							</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

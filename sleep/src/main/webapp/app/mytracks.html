@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的足迹</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mytracks.css"/>
+	</head>
+	
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的足迹</div>
+		</header>
+		<div class="aui-content" id="myTracks">
+			
+			<!--<div class="tracks have">	
+				<ul class="aui-list aui-media-list">
+					<li class="aui-list-item">
+						<div class="aui-media-list-item-inner">
+			                <div class="aui-list-item-media">
+			                    <img src="img/hotel-img.png">
+			                </div>
+			                <div class="aui-list-item-inner hotel">
+			                    <div class="aui-list-item-text">
+			                        <div class="aui-list-item-title">香格里拉大酒店</div>
+			                       
+			                    </div>
+			                    <div class="aui-list-item-text info">
+			                    	<div class="">2018-04-03</div>
+			                    	<div class="aui-list-item-right">
+			                    		>210km
+			                    	</div>
+			                    </div>
+			                </div>
+			            </div>
+		           </li>
+				</ul>
+			</div>-->
+			
+		</div>
+		<script type="tpl" id="tracksNo">
+			<div class="tracks none">
+				<img src="img/mytracks.png"/>
+				<p>没有浏览记录哦</p>
+				<p>主人快去踩我一下吧</p>
+				<button onclick="window.location='hotel_lists.html'">去逛逛</button>
+			</div>
+		</script>
+		
+		<script type="tpl" id="tracksHave">
+			<div class="tracks have">	
+				<ul class="aui-list aui-media-list">
+					<a href="hotel_details.html?hotelId=$hotelId">
+					<li class="aui-list-item">
+						<div class="aui-media-list-item-inner">
+			                <div class="aui-list-item-media">
+			                    <img src="$hotelImg">
+			                </div>
+			                <div class="aui-list-item-inner hotel">
+			                    <div class="aui-list-item-text">
+			                        <div class="aui-list-item-title">$name</div>
+			                       
+			                    </div>
+			                    <div class="aui-list-item-text info">
+			                    	<div class="">$createTime</div>
+			                    	<div class="aui-list-item-right">
+			                    		>210km
+			                    	</div>
+			                    </div>
+			                </div>
+			            </div>
+		            </li>
+		            </a>
+				</ul>
+			</div>
+		</script>
+		
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/queryString.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function add0(m){return m<10?'0'+m:m }
+			//时间戳转化成时间格式
+			function timeFormat(timestamp){
+			  //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+			    var time = new Date(timestamp);
+			    var year = time.getFullYear();
+			    var month = time.getMonth()+1;
+			    var date = time.getDate();
+			    var hours = time.getHours();
+			    var minutes = time.getMinutes();
+			    var seconds = time.getSeconds();
+			    return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+			}
+		
+		onLoadMore=function(){
+			layer.load(2,{offset:['50%','50%']});
+			base.jsonPost('/app/appUsers/myTracks/list/json',{userId:base.getUser().id,pageIndex:pageIndex,pageSize:8},function(data){
+				layer.closeAll();
+				if(data.status=='success'){
+					if(data.data.length<=0){
+						$('#myTracks').html($("#tracksNo").html());
+					}else{
+						$.each(data.data,function(i,o){
+							$("#myTracks").append($("#tracksHave").html().formatStr({hotelId:o.hotelId,hotelImg:o.img,name:o.name,createTime:new Date(o.createTime).Format('yyyy-MM-dd hh:mm:ss')}))
+						});	
+					}
+					pageIndex++;
+			    	loadComplete(data.page.hasNext);
+				}else{
+			    	layer.alert(data.message);	
+				}
+			});
+		}
+		onLoadMore();	
+	</script>
+</html>

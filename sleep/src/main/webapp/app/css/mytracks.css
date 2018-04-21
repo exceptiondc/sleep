@@ -1,0 +1,130 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.aui-content{
+	width: 100%;
+	height: calc( 100% - 2.25rem );
+	background: #fff;
+}
+.aui-content .tracks{
+	text-align: center;
+}
+.aui-content .tracks.none img{
+	width: 6rem;
+	height: 6rem;
+	margin: 4rem auto 1rem;
+}
+.aui-content .tracks.none p{
+	font-size: 0.8rem;
+	color: #d4d4d4;
+	line-height: 1.25rem;
+}
+.aui-content .tracks.none button{
+	width: 9rem;
+	height: 2rem;
+	margin: 1rem auto;
+	border: 1px solid #FF9800;
+	text-align: center;
+	line-height: 2rem;
+	font-size: 0.8rem;
+	color: #ff9800;
+	border-radius: 6px;
+	background: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*=========版本更新==============*/
+.aui-content .version{
+	margin: 1.3rem auto;
+	text-align: center;
+}
+.aui-content .version img{
+	width: 5.8rem;
+	height: 2.5rem;
+	margin: 0 auto;
+}
+.aui-content .version-content{
+	margin: 0 2.2rem;
+	padding: 0.75rem;
+	background: #f4f4f4;
+	border-radius: 10px;
+	font-size: 0.75rem;
+	color: #43a3e7;
+}
+.aui-content .version-content .version-num{
+	padding: 0.5rem;
+}
+.aui-content .version-content .version-num span{
+	color: #FFA200;
+}
+.aui-content .version-content .version-num p{
+	font-size: 0.75rem;
+	color: #43a3e7;
+	line-height: 1.5rem;
+}
+.aui-content .version-content .version-updata{
+	padding: 0.5rem;
+}
+.aui-content .version-content .version-updata h4{
+	line-height: 2rem;
+}
+.aui-content .version-content .version-updata ul li{
+	line-height: 1.2rem;
+}
+.aui-content .version-content .version-updata .aui-row .aui-col-xs-6{
+	text-align: center;
+	margin-top: 1.5rem;
+	color: #fff;
+}
+.aui-content .version-content .version-updata .aui-row .aui-col-xs-6 .aui-btn{
+	padding: 0.2rem 1rem;
+	height: 1.9rem;
+}
+
+
+
+/*==============有浏览记录==================*/
+.tracks.have{
+	padding: 0.75rem 0.25rem;
+}
+.tracks.have .aui-list-item{
+	background: none;
+	margin-bottom: 0.75rem;
+}
+.tracks.have .aui-list-item-media{
+	width: 5.5rem;
+	height: 3.75rem;
+	overflow: hidden;
+	padding: 0;
+}
+.tracks.have .aui-list-item-media img{
+	width: 100%;
+	height: 100%;
+}
+.tracks.have .hotel{
+	padding-left: 1rem;
+}
+.tracks.have .hotel .aui-list-item-title{
+	font-size: 0.7rem;
+	color: #000;
+}
+.tracks.have .hotel .info{
+	margin-top: 0.75rem;
+	color: #000;
+	font-size: 0.65rem;
+}
+.tracks.have .hotel .info .aui-list-item-right{
+	color: #000;
+	font-size: 0.65rem;
+}

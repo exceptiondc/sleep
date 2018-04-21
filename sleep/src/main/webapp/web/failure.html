@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type='text/javascript' src="../images/base.js"></script>
+<script>
+function connectWebViewJavascriptBridge(callback) {
+	if (window.WebViewJavascriptBridge) {
+		callback(WebViewJavascriptBridge)
+	} else {
+		document.addEventListener('WebViewJavascriptBridgeReady', function() {
+			callback(WebViewJavascriptBridge)
+		}, false)
+	}
+}
+function appsend(data){
+data='{"type":28,"subtype":"","itemid":"400-927800","name":""}'
+           
+connectWebViewJavascriptBridge(function(bridge) {
+	/* Init your app here */
+	bridge.init(function(message, responseCallback) {
+		alert('Received message: ' + message)   
+		if (responseCallback) {
+			responseCallback("Right back atcha")
+		}
+	})
+	bridge.send(data)
+})
+	android.appsend(data)
+}
+</script>
+    <script type="text/javascript" src="jquery-1.4.min.js"></script>
+    <script language="javascript">
+        $(window).load(function() {
+            is_weixin();
+        });
+        function is_weixin()
+        {
+            var ua = navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i)=="micromessenger")
+            {
+                $('.tmc').show();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        var failureDesc = '' ;
+        jQuery(document).ready(function(){
+//            console.log(get_url_param("failureDesc")) ;
+            failureDesc = get_url_param("failureDesc") ;
+            $('#failureDesc').html(failureDesc) ;
+        }) ;
+
+        function get_url_param(name){
+            var reg = new RegExp( "(^|&)" + name + "=([^&]*)(&|$)", "i" );
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURIComponent(r[2]); return null;
+        }
+
+
+
+
+    </script>
+<style>
+body{margin:0; background:#eaeaea;font-size:small; font-family:"微软雅黑"; text-align:center}
+</style>
+</head>
+
+<body>
+<div style="background:#fff; height:10em; color:#696969; font-size:small; font-family:'微软雅黑'; margin:1em auto">
+<div style="height:10em; line-height:10em;text-align:center;">
+<img src="../images/2.png" style="vertical-align:middle ;width: 40px;" />&nbsp;&nbsp;&nbsp;&nbsp;失败,<span  id="failureDesc" name="failureDesc" value="" ></span>
+</div>
+</div>
+<div style="margin:2em auto; background:#F05151; height:4em; width:90%; color:#FFF;line-height:4em"  onclick="javascript: appsend('');">返回APP</div>
+
+</body>
+</html>
+

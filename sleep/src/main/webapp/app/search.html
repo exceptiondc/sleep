@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>sleep定位页</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui-slide.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="css/calendar.css"/>-->
+		<link rel="stylesheet" type="text/css" href="weui/lib/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="weui/css/jquery-weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.range.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="weui/css/jquery-weui.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/search.css"/>
+	</head>
+	<body>
+		<div class="banner">
+			<a class="pre" onclick="javascript:history.go(-1);"><img src="img/pre.png"/></a>
+			<div id="aui-slide3" style="height: 190px">
+				
+		        <div class="aui-slide-wrap" >
+		            <div class="aui-slide-node bg-dark">
+		                <img src="img/l1.png" />
+		            </div>
+		            <div class="aui-slide-node bg-dark">
+		                <img src="img/l2.png" />
+		            </div>
+		            <div class="aui-slide-node bg-dark">
+		                <img src="img/l3.png" />
+		            </div>
+		        </div>
+		        <div class="aui-slide-page-wrap"><!--分页容器--></div>
+		    </div>
+		</div>
+		
+	    
+	    <div class="aui-content aui-content-padded" style="margin-bottom: 0;">
+		    <ul class="aui-list aui-form-list">
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                
+		                <div class="aui-list-item-input">
+		                	<p class="tip">我要前往</p>
+		                    <input name="destination" type="text" placeholder="Name">
+		                </div>
+		                <div class="aui-list-item-right"><span class="dingwei"></span></div>
+		            </div>
+		        </li>
+		    <!--     <li class="aui-list-item">
+		            <div class="aui-list-item-inner" id="firstSelect" style="height: 60px;">
+						<div class="aui-list-item-input aui-col-xs-4">
+		                	<p class="tip">入住</p>
+		                	<input class="weui-input" name="startDate" type="text" value="" readonly="readonly" placeholder="2018-3-4 20:20">
+						
+		                </div>
+		                <div class="aui-list-item-input aui-col-xs-4">
+		                	<p class="tip">离店</p>
+		                    <input name="endDate" type="text" placeholder="2018-12-30 10:30" style="" readonly>
+		                </div>
+		                
+		                <div class="aui-list-item-right aui-col-xs-4">
+		                    <div class="aui-label aui-label-info">
+		                    	<span class="span21">共<span class="NumDate">1</span>晚</span>
+		                    </div>
+		                </div>
+		            </div>
+		        </li> -->
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-input">
+		                    <input name="keyword" type="text" placeholder="关键字/位置/品牌/酒店名">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="价格/星级" name="price_and_level" id="price" readonly tapmode onclick="openPrice()">  
+		                </div>
+		                <i class="aui-iconfont aui-icon-close" tapmode onclick="clearPrice()"></i>
+		            </div>
+		        </li>
+		    <!--     <li class="aui-list-item last">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+		                    房间类型
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <label><input class="aui-radio" type="radio" value="1" name="room_type" checked> 全日房</label>
+		                    <label><input class="aui-radio" type="radio" value="2" name="room_type"> 分时房</label>
+		                </div>
+		            </div>
+		        </li> -->
+		        
+		    </ul>
+		    
+		</div>
+		<div class="aui-content aui-content-padded chaxun">
+			<div class="aui-list" style="background: #f2f2f2;">
+		    	<div class="aui-list-item">
+			    	<div class="aui-list-item-inner">
+			    		<div class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm aui-col-xs-8 search">查询</div>
+				    	<div class="aui-col-xs-2">
+				    		<a href="index.html"><span class="dingwei dingwei2"></span></a>
+				    	</div>
+			    	</div>
+			    </div>
+		    </div>
+		</div>
+	    
+	    <div class="aui-content aui-content-padded project">
+			<div class="aui-list">
+		    	<div class="aui-list-item" style="padding-left: 8px;">
+			    	<div class="aui-list-item-inner">
+			    		<div class="aui-col-xs-6">
+			    			<a href="">
+			    				<p class="tit">我的·订单</p>
+			    				<p class="detail">下单/修改/取消/续费/退房</p>
+			    			</a>
+			    		</div>
+			    		<div class="aui-col-xs-5">
+			    			<a href="">
+			    				<p class="tit">心仪·好房</p>
+			    				<p class="detail">收藏/足迹/评论/交友</p>
+			    			</a>
+			    		</div>
+			    	</div>
+			    </div>
+			    <div class="aui-list-item" style="margin-top: 10px;padding-left: 8px;">
+			    	<div class="aui-list-item-inner">
+			    		<div class="aui-col-xs-6">
+			    			<a href="">
+			    				<p class="tit">立享·特价</p>
+			    				<p class="detail">特惠/一元专享/节日/红包</p>
+			    			</a>
+			    		</div>
+			    		<div class="aui-col-xs-5 ">
+			    			<a href="">
+			    				<p class="tit">发现·特色</p>
+			    				<p class="detail">主题/民宿/佳肴/趴</p>
+			    			</a>
+			    		</div>
+			    	</div>
+			    </div>			    
+		    </div>
+		</div>
+	    <!--日历插件-->
+		<div class="mask_calendar">
+			<div class="calendar"></div>
+		</div>
+		
+		<div class="aui-mask"></div>
+		<div class="price-xingji">
+			<div class="aui-content aui-content-padded priceC" id="priceC">
+				<div class="aui-list-inner">
+					 <p class="tit">价格：<span id="value-1">￥500以下</span></p>
+					 <div class="aui-row" style="padding: 0 5px;"> 
+					 	<p class="aui-col-xs-6" style="text-align: left;">￥0</p>
+					 	<p class="aui-col-xs-6" style="text-align: right;">￥500以上</p>
+					 </div>
+					 <div class="price-range">
+					 	<input type="hidden" name="price_range" class="single-slider" value="500" />
+					 </div>
+				</div>
+				<div class="aui-list-inner">
+					<p class="tit">星级</p>
+					<div class="xingji">
+						<label class="active">
+						<input class="aui-checkbox" value="2" type="checkbox"  name="star_level" checked="">经济型</label>
+	        			<label><input class="aui-checkbox" value="3" type="checkbox" name="star_level"> 三星/舒适</label>
+	        			<label><input class="aui-checkbox" value="4" type="checkbox" name="star_level"> 四星/高档</label>
+	        			<label><input class="aui-checkbox" value="5" type="checkbox" name="star_level"> 五星/豪华</label>
+					</div>
+				</div>
+				<div class="aui-list-inner">
+					<p class="tit">优选推荐</p>
+					<div class="shehuajiudian clearfix">
+						<img class="left" src="img/ad-px.png"/>
+						<img class="right" src="img/ad-px.png"/>
+						<!--<label class="clearfix active"><input class="aui-checkbox" type="checkbox" value="6" name="star_level" checked="">
+							<div class="left">
+								<span class="tb jinzuan"></span>
+							</div>
+							<div class="name">
+								<p>金钻酒店</p>
+								<p>超高品质酒店</p>
+							</div>
+						</label>-->
+	        			<!--<label class="tujia"><input class="aui-checkbox" value="7" type="checkbox" name="star_level"> 
+	        				<div class="left">
+								<span class="tb tujia"></span>
+							</div>
+							<div class="name">
+								<p>途家豪宅</p>
+								<p>高端奢华民宿</p>
+							</div>
+	        			</label>-->
+					</div>
+				</div>
+			</div>
+			<div class="aui-row anniu">
+				<div class="aui-col-xs-6">
+					<div class="btn clear" onclick="clearPricechose()">
+						清除
+					</div>
+				</div>
+				<div class="aui-col-xs-6">
+					<div class="btn confirm" onclick="confirmPrice()">
+						确定
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="js/date.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="weui/lib/fastclick.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	  $(function() {
+	    FastClick.attach(document.body);
+	  });
+	</script>
+	<script src="weui/js/jquery-weui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="aui/script/aui-slide.js" type="text/javascript" ></script>
+	<script src="js/jquery.range.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=uC0793rpmWrTwO0l5NdD4gpXBPfjk2ri"></script>
+	<script type="text/javascript">
+		
+		
+		apiready = function(){
+	        api.parseTapmode();
+	    }
+		var slide3 = new auiSlide({
+	        container:document.getElementById("aui-slide3"),
+	        // "width":300,
+	        "height":190,
+	        "speed":500,
+	        "autoPlay": 3000, //自动播放
+	        "loop":true,
+	        "pageShow":true,
+	        "pageStyle":'line',
+	        'dotPosition':'center'
+	   	})
+		
+
+	/*	  $("[name=startDate]").datetimePicker({
+	        title: '入住时间',
+	        min: "1990-12-12",
+	        max: "2022-12-12 12:12",
+	        onChange: function (picker, values, displayValues) {
+	          console.log(values);
+	        }
+	      });*/
+	      	
+	     /* var startTime = $("[name=startDate]").val().split(" ",2)[0];
+	       $("[name=endDate]").datetimePicker({
+	        title: '离店时间',
+	        min: startTime,
+	        max: "2022-12-12 12:12",
+	        onChange: function (picker, values, displayValues) {
+	          console.log(values);
+			 
+	        }
+	      });*/
+	      
+	      	$("body").delegate(".picker-button.close-picker","click",function(){
+	      		var startTime = $("[name=startDate]").val().split(" ",2)[0];
+			    var endTime = $("[name=endDate]").val().split(" ",2)[0];
+			    s1 = new Date(startTime.replace(/-/g, "/"));
+			    s2 = new Date(endTime.replace(/-/g, "/"));
+			    var days = s2.getTime() - s1.getTime();
+				var time = parseInt(days / (1000 * 60 * 60 * 24));
+	      		
+	      		if(time<0){
+	      			alert("离店时间不能小于入住时间！");
+	      		}else{
+					if(endTime!="")
+	      			$(".NumDate").text(time);
+	      		}
+	      	});
+		
+		
+		function openPrice(){
+			$(".aui-mask").addClass("aui-mask-in");
+			$(".price-xingji").addClass("active");
+		}
+		
+		$("body").delegate('.aui-mask.aui-mask-in','click',function(e){
+			$(this).removeClass("aui-mask-in");
+			$(".price-xingji").removeClass("active");
+			e.stopPropagation();   
+		})
+		
+		function confirmPrice(){
+			var priceR = $("#value-1").html();
+			var starR = $(".xingji label.active").map(function(index,elem){
+				return $(elem).text();
+			}).get().join(',');
+			var haohuaR = $(".shehuajiudian label.active").map(function(index,element){
+				return $(element).find('p').eq(0).text();
+			}).get().join(',');
+			$('.aui-mask.aui-mask-in').removeClass("aui-mask-in");
+			$(".price-xingji").removeClass("active");
+//			event.stopPropagation();
+			var str='';
+			if(priceR!=''){
+				str+=	priceR+',';	
+			}
+			if(starR!=''){
+				str+=	$.trim(starR)+',';	
+			}
+			if($.trim(haohuaR)!=''){
+				str+=	$.trim(haohuaR)+',';	
+			}
+			str=str.substring(0,str.lastIndexOf(',')) ;
+			$("#price").val(str)
+		}
+		
+		function clearPricechose(){
+			 $("#value-1").html("");
+			 $(".xingji label").removeClass('active');
+			 $(".shehuajiudian label").removeClass('active');
+			 $("#price").val("");
+		}
+		
+		function clearPrice(){
+			$("#price").val("");
+		}
+		//酒店价格
+		var widthRange = $(".price-range").width();
+		$('.single-slider').jRange({ 
+	        from: 0, //滑动范围的最小值，数字，如0 
+	        to: 600, //滑动范围的最大值，数字，如100 
+	        step: 50,//步长值，每次滑动大小 
+	        scale: [0, 600],//滑动条下方的尺度标签，数组类型，如[0,50,100] 
+	        format: '%s',//数值格式 
+	        width: widthRange, //滑动条宽度 
+	        showLabels: false,// 是否显示滑动条下方的尺寸标签 
+	        showScale: false, //是否显示滑块上方的数值标签 
+	        isRange: true //是否显示区间
+	    }); 
+	    
+		
+		$(".pointer").on("touchend",function (e) {
+			var priceRange = $(".single-slider").val();
+//			console.log(priceRange)
+			if(parseInt(priceRange.split(",",2)[0])>0){
+				$("#value-1").html("￥"+priceRange.split(",",2)[0]+"-"+"￥"+priceRange.split(",",2)[1]);
+			}else{
+				$("#value-1").html("￥"+priceRange.split(",",2)[1]+"以下");
+			}	
+	    });
+	    
+		//酒店星级选择
+	   $('#priceC label').each(function(){
+	   		var isClick = true;
+			$(this).on('touchstart', function(e){  
+			      isClick = true;  
+			});  
+			$(this).on('touchmove', function(e){  
+			      isClick = false;  
+			});  
+			$(this).on('touchend', function(e){  
+			      if (isClick == true){  
+			        console.log("触发点击事件");
+			        $(this).toggleClass('active');
+			      }
+			});
+	   });
+
+	/*   var getInputValue = function(name) {
+		   var $input = $('[name="' + name + '"]'),
+		   	   value = $input.val();
+		   
+		   switch($input[0].type) {
+		       case 'checkbox':
+		    	   value = $input.filter(function() {
+		    		   return this.checked;
+		    	   }).map(function(i, e) {
+		    		   return e.value;
+		    	   }).get().join(',');
+		    	   break;
+		    	   
+		       case 'radio':
+		    	   value = $input.filter(function() {
+		    		   return this.checked;
+		    	   }).val();
+		    	   break;
+		   }
+		   
+		   return value || '';
+	   }
+	   */
+	   
+	   function handleLocateError(error) {
+			 var msg = "";
+			 switch(error.code) {
+		        case 0:
+		          msg = "获取位置信息出错！";
+		          break;
+		        case 1:
+		          msg = "您设置了阻止该页面获取位置信息！";
+		          break;
+		        case 2:
+		          msg = "浏览器无法确定您的位置！";
+		          break;
+		        case 3:
+		          msg = "获取位置信息超时！";
+		          break;
+		    }
+
+			if (msg) {
+				layer.closeAll();
+				showMsg(msg);
+			}
+		}
+
+		
+		function geoLocate(success) {
+			if (!"geolocation" in navigator) {
+				showMsg("您的浏览器不支持定位！");
+				return;
+			}
+			
+			navigator.geolocation.getCurrentPosition(success, handleLocateError, {
+				maximumAge : 60000,
+				timeout : 50000,
+				enableHighAccuracy : true
+			});
+		}
+		
+		
+		function covertPosition(lng, lat, callback) {
+			var convertor = new BMap.Convertor();
+	        convertor.translate([new BMap.Point(lng, lat)], 1, 5,
+	        		callback && callback || function() {});
+		}
+		
+		
+		function locateCallback(pos, success, error) {
+			var point = new BMap.Point(pos.coords.longitude, pos.coords.latitude);
+			covertPosition(point.lng, point.lat, function(data) {
+				if (data.status == 0) {
+					new BMap.Geocoder().getLocation(data.points[0], function(data) {
+						var address = data.address;
+						$('[name=destination]').val(address);
+						setTimeout(function() {
+							layer.closeAll();
+						}, 500);
+				   });
+				}
+				else {
+					error && error();
+					base.debug(data);
+				}
+			});
+		}
+		
+		
+		function locate(onSuccess) {
+			geoLocate(function(pos) {
+				locateCallback(pos, onSuccess);
+			});
+		}
+		
+		
+		function showMsg(msg, time) {
+			layer.open({ skin : 'msg', content : msg, time: time || 2, shadeClose: false });
+		}
+	   
+		
+	   // 酒店搜索
+	   $('body').on('touchend', '.aui-list-item-inner .search', function(e) {
+			var destination 	= getInputValue('destination');
+			var startDate 		= getInputValue('startDate');
+			var endDate 		= getInputValue('endDate');
+			var keyword 		= getInputValue('keyword');
+			var priceAndLevel 	= getInputValue('price_and_level');
+			
+
+			var roomType 		= getInputValue('room_type');
+			var priceRange 		= getInputValue('price_range');
+			var starLevel 		= getInputValue('star_level');
+			var hotelType 		= getInputValue('hotel_type');
+			
+			/* if (!destination) {
+				showMsg('请输入国内/海外目的地！');
+				return;
+			}
+			if (new Date(startDate).getTime() >= new Date(endDate).getTime()) {
+				showMsg('请选择有效的住房时间！');
+				return;
+			} */
+
+			var params = {
+					destination 	: encodeURIComponent(encodeURIComponent(destination)),
+					keyword 		:  encodeURIComponent(encodeURIComponent(keyword)),
+					priceAndLevel 	: encodeURIComponent(encodeURIComponent(priceAndLevel)),
+					roomType 		: roomType,
+					priceRange 		: priceRange,
+					starLevel 		: starLevel,
+					hotelType 		: hotelType,
+					startTime 		: startDate,
+					endTime 		: endDate
+			};
+			location.href='hotel_lists.html?s='+encodeURIComponent(JSON.stringify(params));
+		/*	base.jsonGet('/app/hotel/list/app/json', params, function(data) {
+				console.log(data)
+			});*/
+	   })
+
+	   // 定位
+	   .on('touchend', '.dingwei', function(e) {
+		   layer.open({
+			   type: 2,
+			   content: '正在定位中', 
+			   time: 5,
+			   shadeClose: false,
+			   end: function() { }
+		   });
+
+		   locate();
+	   });
+
+
+	</script>
+</html>

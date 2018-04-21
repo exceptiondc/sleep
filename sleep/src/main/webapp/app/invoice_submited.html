@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>电子发票</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	
+		<style type="text/css">
+			body{
+				background-color: #fff;
+			}
+			.submit-status{
+				text-align: center;
+			}
+			.submit-status img{
+				width: 2.5rem;
+				height: 2.5rem;
+				margin: 4rem auto 0.5rem;
+			}
+			.submit-status p{
+				font-size: 0.9rem;
+				color: #333;
+				margin-bottom: 4rem;
+			}
+			.btn .aui-btn{
+				margin-bottom: 0.5rem;
+				color: #fff;
+				font-size: 0.85rem;
+			}
+			.btn .aui-btn.aui-btn-block{
+				background: #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title" style="font-size: 0.85rem;">电子发票</div>
+		    <!--<a href="invoice.html" class="aui-pull-right aui-btn">
+		        	开发票
+		    </a>-->
+		</header>
+		
+		<div class="aui-content aui-content-padded">
+		    <div class="submit-status">
+		    	<img src="img/ok-2.png"/>
+		    	<p>提交成功</p>
+		    </div>
+		    <div class="btn">
+		    	<p><div class="aui-btn aui-btn-warning aui-btn-block">发票与报销</div></p>
+		    	<p><div class="aui-btn aui-btn-block" onclick="location.href='invoice_record.html'">开票历史</div></p>
+		    </div>
+		</div>
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="tpl" id="list-item">
+		
+		</script>
+		
+	</body>
+</html>
+
+

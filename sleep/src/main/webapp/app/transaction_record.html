@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的余额</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/transaction.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">交易记录</div>
+		</header>
+		
+		<div class="aui-content">
+			<div class="aui-list" id="content">
+				
+			</div>
+		</div>
+		
+		
+		<script src="aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+
+var types=['账户充值' ,'账户提现','押金充值','押金退还','邀请奖励'];
+
+			onLoadMore =function(){
+				layer.load(2,{offset:['50%','50%']});
+	    	base.jsonPost('/app/userAccountHistory/list/app/json',{pageIndex:pageIndex,pageSize:10,userId:base.getUser().id},function(data){
+	    		layer.closeAll();
+	    		if(data.status=='success'){
+	    				var html='';
+	    				if(!data.data){
+	    					html='<h5>暂无更多</h5>';
+	    				}else{
+		    				$.each(data.data,function(i,o){
+		    					var str='transaction_details.html?datas='+1+'&money='+o.money+'&type='+o.type+'&time='+o.createtime+'&tradeNo='+o.tradeNo+'&remarkers='+encodeURIComponent(encodeURIComponent(o.remarkers))+'';
+		    					html+='<a href="'+str+'">';
+		    					html+='<div class="aui-list-item aui-row">';
+		    					html+='<div class="aui-col-xs-8">';
+		    					html+='<div class="aui-list-item-title">'+types[o.type-1]+'</div>';
+		    					html+='<p>'+timetrans(o.createtime)+'</p></div>';
+		    					html+='	<div class="aui-col-xs-4 plus">	'+o.money >0 ? '+':'-'+''+o.money+'</div></div></a>';
+
+		    				});
+	    			}
+	    				$('#content').append(html);
+	    				pageIndex++;
+	    				loadComplete(data.page.hasNext);
+
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+			}
+					onLoadMore();
+
+
+					function timetrans(date){
+				    var date = new Date(date);//如果date为13位不需要乘1000
+				    var Y = date.getFullYear() + '-';
+				    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+				    var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+				    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+				    var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+				    var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+				    return Y+M+D+h+m+s;
+				}
+		</script>
+	</body>
+</html>
+
+

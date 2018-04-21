@@ -1,0 +1,221 @@
+<#escape x as x?html>
+
+<script type="text/javascript" src="${ctx}/layer-v3.0.3/layer/layer.js"></script>
+
+<script type="text/javascript">
+
+function deleteActivity(){
+    var id=jQuery("#id").val();
+    if(!id||id==""){
+        myalert("请选择你要删除的记录");
+        return;
+    }else{
+        var _url="${ctx}/activity/delete?id="+id;
+        var listurl="${ctx}/activity/list";
+        mydelete(_url,listurl);
+    }
+}
+
+function daochu(formid,url){
+    var a = $('#'+formid).attr('action');
+    $('#' + formid).attr('action',url).submit();
+    setTimeout(function() {
+        $('#' + formid).attr('action', a);
+    }, 500);
+}
+
+
+$(function() {
+    $('.img-cell img[_src!=""]').each(function(i, e) {
+        var src = $(this).attr('_src');
+        $(this).attr('src', src.split(';')[0]);
+    });
+});
+
+$('#iconI').click(function(){
+   
+
+});
+function addfacility(id){
+    var html='<div> <li>设施名称:<input type="text" name="fname"/></li> ';
+    html+='<li>排序:<input type="text" name="showSort"/></li>';
+    html+='<li>显示图标:<img  width="100" height="100"  id="iconI" onclick=" $(\'#img\').click();"/><input type="file" name="xxx" style="display:none;"  id="img"/><input type="hidden" id="fimg"/></li>';
+    html+='</div>';
+
+        layer.open({'title':'添加设施服务','content':html,'btn':['确定','取消'],'yes':function(){
+                    var name =$('input[name="fname"]').val();
+                    var showSort =$('input[name="showSort"]').val();
+                    var fimg =$('#fimg').val();
+                    if(name==''){
+                        layer.alert('设施名称不能为空');
+                        return false;
+                    }
+
+                    $.post('/sleep/system/facility/update/json',{name:name,showSort:showSort,img:fimg,level:(id > 0 ? 1:0),parentId:id},function(data){
+                            if(data.status=='success'){
+                                layer.alert('添加成功',function(){
+                                    location.reload();
+                                });
+                            }else{
+                                layer.alert('添加失败');
+                            }
+                    });
+        }});
+}
+
+
+
+$(document).on("change", "#img", function() {
+    //...
+    var $this = $(this);
+    $.ajaxFileUpload({
+        url : '${ctx}/adminFileUpload',
+        secureuri : false,
+        fileElementId : $this.attr('id'),
+        dataType : 'text',
+        data : { },
+        success : (function(abc) {
+            return function(data, status) {
+               jQuery("#iconI").attr('src',data);
+                jQuery("#fimg").attr('value',data);
+            }
+        })($this.attr('id')),
+        error : function(data, status, e) {
+            myalert("上传出错");
+        }
+    })
+
+    return false;
+});
+
+function loadchild(id){
+       var $tr=$(event.target).parents('tr');
+
+       if($(event.target).html()=='+'){
+                $(event.target).html('-');
+       }else{
+              $(event.target).html('+');
+               $tr.nextAll('[child="child'+id+'"]').remove();
+
+               return false;    
+       }
+        $tr.nextAll('[child="child'+id+'"]').remove();
+     
+         $.post('/sleep/system/facility/list/json',{parentId:id},function(data){
+                            if(data.status=='success'){
+                                var html='';
+                                    $.each(data.data,function(i,o){
+                                        html+='<tr child="child'+id+'"><td>';
+                                        html+=' <div class="hidden-sm hidden-xs btn-group">';
+                                        html+='  <button class="btn btn-xs btn-danger" onclick="mydelete(\'/sleep/system/facility/delete/json?id='+o.id+'\',\'/sleep/system/facility/list\',null,\'确认删除？\');"><i class="ace-icon fa fa-trash-o bigger-120"></i> </button></div>';
+                                        html+='   <td>'+o.name+'  </td>';
+                                        html+=' <td> '+o.level+'   </td>';
+                                        html+=' <td>'+o.showSort+'   </td>';
+                                        html+='   <td class="img-cell">  <img _src="'+o.img+'" style="width: auto; height: 30px;" src="'+o.img+'">';
+                                        html+=' </td>    </tr>';
+
+                                    });
+
+                                    $tr.after(html);
+                            }else{
+                                layer.alert('添加失败');
+                            }
+                    });
+      
+
+}
+</script>
+
+<style>
+    .ellipsis {
+        width: auto;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+    
+
+<!-- /.page-header -->
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+    <div class="panel-body">
+        <div class="pull-left">
+                <button class="btn btn-xs btn-info" onclick="addfacility(0);">
+                                          添加设施服务
+                                        </button>
+        </div>
+        <div class="pull-right">
+           
+        </div>
+    </div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+                <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <th>操作</th>
+                         <!--first_end_no_export-->
+                        <th id="">设施服务名称</th>
+                        <th id="">等级</th>
+                        <th id="">显示排序</th>
+                        <th id="">图片</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+                    <!--start_export-->
+                    <tbody>
+           
+                   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+                     <#list returnDatas.data as _data>
+                     <tr>
+                            <td>
+                                 <div class="hidden-sm hidden-xs btn-group">
+                                     <button class="btn btn-xs btn-info"
+                                                onclick="loadchild('${(_data.id)!''}')">+</button>
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="addfacility('${(_data.id)!''}');">
+                                            添加子服务
+                                        </button>
+                                        <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/system/facility/delete/json?id=${(_data.id)!''}','${ctx}/system/facility/list',null,'确认删除？');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button>
+                                    </div>
+                            </td>
+                            <td >
+                                ${(_data.name)!''}
+                            </td>
+                                <td >
+                                ${(_data.level)!''}
+                            </td>
+                                <td >
+                                ${(_data.showSort)!''}
+                            </td>
+                            <td class="img-cell">
+                                <img _src="${(_data.img)!''}" style="width: auto; height: 30px;" />
+                            </td>
+                        </tr>
+                    </#list>
+                     </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

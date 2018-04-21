@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>个人信息</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gerenxx.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav" style="background-color:#FFD961;">
+			<a class="aui-pull-left" onclick="javascript:history.go(-1);">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">个人信息</div>
+		</header>
+
+				<div class="bgbanner" style="color: #fff;">
+						<p><img src="img/touxiang.png" alt="touxiang" id="headImg"/></p>
+						<p><span>我</span></p>
+					<div class="aui-label bq1"><i class="aui-dot"></i>会员</div>
+
+					<!-- <div class="aui-label bq2"><i class="aui-dot yq"></i>工作人员</div> -->
+
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						<i class="aui-iconfont" id="favoriteCount">0</i>
+						<div class="aui-grid-label">收藏</div>
+					</div>
+					<!-- <div class="aui-col-xs-4">
+						<i class="aui-iconfont">0</i>
+						<div class="aui-grid-label">积分</div>
+					</div>
+ 					-->
+					<div class="aui-col-xs-4 lc">
+						<i class="aui-iconfont" id="userCardCount">0</i>
+						<div class="aui-grid-label">优惠券</div>
+					</div>
+				</div>
+			</div>
+		<div class="aui-content">
+			<ul class="aui-list aui-list-in">
+				<li class="aui-list-header">
+					<div class="aui-btn dd">订单</div>
+				</li>
+			</ul>
+		</div>
+
+			<ul class="aui-list">
+				<a href="myorder.html">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">酒店订单</div>
+						</div>
+					</li>
+				</a>
+				<a href="">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">待评价订单</div>
+						</div>
+					</li>
+				</a>
+				<a href="mytracks.html">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">浏览记录</div>
+						</div>
+					</li>
+				</a>
+				<a href="mycollect.html">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">我的收藏</div>
+						</div>
+					</li>
+				</a>
+			</ul>
+		<div class="aui-content aui-content-padded">
+			<p><div class="aui-btn aui-btn-warning aui-btn-block" id="logout-btn">安全退出</div></p>
+		</div>
+        <img id="hidden-img" style="display:none" />
+	</body>
+
+			<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+            <script src="layer/mobile/layer.js"></script>
+			<script type="text/javascript">
+
+			$('#headImg').attr('src',base.getUser().header || '');
+				/*layer.load(2,{offset:['50%','50%']});*/
+	    	base.jsonPost('/app/appUsers/personal/statistics/json',{id:base.getUser().id},function(data){
+	    	/*	layer.closeAll();*/
+	    		if(data.status=='success'){
+	    			$('#favoriteCount').text(data.data.favoriteCount);
+	    			$('#userCardCount').text(data.data.userCardCount);
+	    		}else{
+	    			layer.alert(data.message);
+	    		}
+	    	});
+
+
+            function pickPic(success, error) {
+                ImagePicker.getPictures(success, error,
+                    { maximumImagesCount : 1, width : 1280, height : 720, quality : 100 });
+            }
+
+
+            function getBase64ImageData(img) {
+                var canvas = document.createElement("canvas");
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+                var dataURL = canvas.toDataURL("image/png");
+                return dataURL.split(',')[1];
+            }
+
+
+            function uploadImg(img) {
+                if (!!img) {
+                    showLoading('上传中');
+                    base.jsonPost('/app/appUsers/change_avatar/json', {
+                        userId : base.getUserId(),
+                        base64Image : img
+                    }, function(data) {
+                        hideLoading();
+                        if (data.status == 'success') {
+                            showMsg('更换头像成功！');
+                            $('#headImg').attr('src', data.data);
+                            base.refreshUser();
+                        }
+                        else {
+                            showAlert(data.message);
+                        }
+                    }, function(err) {
+                        showAlert('对不起更换头像失败！');
+                    })
+
+                }
+            }
+
+
+	    	$('#headImg').click(function() {
+                pickPic(function(uris) {
+                    if (uris.length) {
+                        var uri = uris[0];
+                        var $img = $('#headImg').attr('src', uri);
+                        setTimeout(function() {
+                            uploadImg(getBase64ImageData($img.get(0)));
+                        }, 100);
+                    }
+                }, function(err) {
+                    showAlert(err);
+                })
+            });
+
+            $('#logout-btn').click(function() {
+                base.userLogout();
+                location.href = 'login.html';
+            });
+			</script>
+</html>
+
+

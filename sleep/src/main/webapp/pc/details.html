@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.sleep-auto.com/web/page/news/news-180125.html -->
+<html lang="en" style="font-size: 70.2604px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>宜睡网，大学生都在用的分时酒店住宿平台</title>
+    <meta name="keywords" content="宜睡网,sleep,大学生,分时酒店,钟点房,酒店住宿,低价房,午夜房,特惠房,折扣房,高校周边酒店">   
+    <meta name="description" content="宜睡网通过“低价消费”、“共享房源”、“分时住宿”，让更多在校大学生享受到更便宜、更便捷、更私密的高校周边酒店住宿服务。">    
+    <meta name="baidu-site-verification" content="kFcacBPSIx">    
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link href="./css/normalize.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/common.css" rel="stylesheet">    
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="./css/news-list.css" rel="stylesheet">
+    <style type="text/css">
+    	.news-content p span{
+    		font-size: 14px;
+		    padding: 0.1rem 1.5rem;
+		    text-align: left;
+		    line-height: 2;
+		    display: block;
+    	}
+    </style>
+    <script src="./js/set-root-fontsize.js"></script>
+</head>
+<body style="display: block;">
+<nav class="navbar navbar-default sleep-nav" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left sleep-nav-header">
+            <a class="navbar-brand sleep-logo" href="index.html">
+                <img src="./images/logo.png"></a>
+        </div>
+        <div class="pull-right sleep-nav-list">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html" class="first-sleep-nav-list">首页</a></li>
+                <li><a href="use.html" class="first-sleep-nav-list">使用攻略</a></li>
+                <li class="active"><a href="news.html">新闻资讯</a></li>
+                <li><a href="aboutus.html">关于我们</a></li>
+                <li><a href="joinus.html">加入我们</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="background">
+    <div class="news-content">
+        <!--<h3 style="text-align: center;padding: 0.1rem 1.5rem;">高钰博士在【2018全球自动驾驶论坛】上说:“用无人驾驶去改变、重构这个世界的交通。”</h3>
+        <div class="news-content-time"><p>2018-01-25</p>
+            <p>&nbsp;</p></div>
+
+        <div class="news-content-img"><img src="./images/details/20180125-1.png" alt=""></div>
+        <p>1月25日至26日，2018全球自动驾驶论坛在武汉·中国光谷举行，盼达用车CEO高钰博士受邀参会并发表了主题演讲，代表应用出行端与政府、主机厂等其他领域嘉宾分享交流，共同探讨全球自动驾驶技术核心趋势，以及对未来世界交通格局可能带来的巨大影响。</p>
+        <div class="news-content-img"><img src="./images/details/20180125-2.png" alt=""></div>
+        <br>
+        <div class="news-content-img"><img src="./images/details/20180125-3.png" alt=""></div>
+        <p>本次论坛以“启发创新·开放共享”为主题，汇聚近40位国内外自动驾驶领域领军人物、500余位业界嘉宾及创新人士汇聚一堂，探讨包括无人驾驶场景应用等29个科技议题，深度解析自动驾驶产业的发展态势及趋势。</p>-->
+    </div>
+</div>
+
+<div class="container sleep-footer">
+    <div class="sleep-footer-container footer">
+        <div class="footer-phone flex1">
+            <img src="./images/footer-phone.png" alt="">
+        </div>
+        <div class="footer-sina flex1">
+            <img src="./images/footer-sina.png" id="footer-sina" alt="">
+        </div>
+        <div class="footer-wechat flex1">
+            <img src="./images/footer-wechat.png" id="footer-wechat" alt="">
+        </div>
+    </div>
+    <div class="footer-logo">
+        <img src="./images/logo.png" alt="">
+    </div>
+    <div class="sleep-copyright">
+        @2016&nbsp;西安贾克斯软件科技有限公司 陕ICP备17023787号-3
+    </div>
+</div>
+<img src="./images/top.png" class="back-to-top" id="back_to_top" style="display: none;">
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/common.js"></script>
+<!--<script src="./js/news.js"></script>-->
+<script type="text/javascript">
+	$(function(){
+		 function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                if (r != null) return unescape(r[2]);
+                return null; //返回参数值
+            }
+            //接收URL中的参数Id
+            var id = getUrlParam('id');
+            console.log('id:' + id);
+		
+		$.post('/sleep/pc/main/news-detail/json?id='+id,function(data){			
+			console.log(data.data);
+			var html='';
+//			$.each(data, function(i,o){
+				html+='<h3 style="text-align: center;padding: 0.1rem 1.5rem;">'+data.data.title+'</h3>';
+				html+='<div class="news-content-time"><p>'+data.data.postTime+'</p><p>&nbsp;</p></div>';
+				html+='<div><p>'+data.data.content+'</p></div>';
+//			});
+			
+		    $('.news-content').html(html);
+		});
+	})
+	
+	
+	
+</script>
+<!-- <script id="wappalyzer" src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script></body></html> -->
+	</body>
+</html>

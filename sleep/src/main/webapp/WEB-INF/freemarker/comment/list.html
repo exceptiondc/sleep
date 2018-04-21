@@ -1,0 +1,272 @@
+<#escape x as x?html>
+
+<script type="text/javascript">
+
+function deleteActivity(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/activity/delete?id="+id;
+		var listurl="${ctx}/activity/list";
+		mydelete(_url,listurl);
+	}
+}
+
+function daochu(formid,url){
+	var a = $('#'+formid).attr('action');
+	$('#' + formid).attr('action',url).submit();
+	setTimeout(function() {	
+		$('#' + formid).attr('action', a);
+	}, 500);
+}
+
+
+function go(url) {
+	location.href = location.href.replace(/#href=.*/, '#href=' + url);
+	location.reload();
+}
+
+
+function viewReply(pid) {
+	if (pid) {
+		var $tr = $(getEventSource()).parents('tr').next();
+		$.get('${ctx}/system/comment/list/json', {
+			parentid : pid
+		}, function(data) {
+			if (data.status == 'success') {
+				var tpl = $('#replay-list-item').html();
+				$tr.html('<td colspan="7">'+$('#reply-list-table').html()+'</td>');
+				$tr.find('table>tbody').empty();
+				$.each(data.data || [ ], function(i, v) {
+					$tr.find('table>tbody').append(
+							tpl.replace('$content', escapeHTMLEntity(v.content))
+										.replace('$id', v.id).replace('$pid', pid));
+				});
+				$tr.css('height', 0).fadeIn();
+				$tr.prev().find('.collapse-child').show().end().find('.expand-child').hide();
+			}
+		});
+	}
+}
+
+function getEventSource() {
+	return event.target || event.srcElement;
+}
+
+function collapseChildComment() {
+	var $tr = $(getEventSource()).parents('tr').next();
+	$tr.fadeOut();
+	$tr.prev().find('.expand-child').show().end().find('.collapse-child').hide();
+}
+
+
+function expand() {
+	var $td = $(getEventSource()).parent().parent();
+	$td.prev().find('.ellipsis2').addClass('ex').hide().slideDown();
+	$td.find('.expand').hide().end().find('.collapse').show(); 
+}
+
+
+function collapse() {
+	var $td = $(getEventSource()).parent().parent();
+	$td.prev().find('.ellipsis2').animate({ height : 20 }, function() {
+		$(this).removeClass('ex').removeAttr('style');
+	});
+	$td.find('.expand').show().end().find('.collapse').hide();
+}
+
+
+function edit(id, pid) {
+	myhref('${ctx}/system/comment/reply/view?parentid='+pid+'&cid='+id);
+}
+
+function escapeHTMLEntity(html) {
+	var entities = ['<', '>'],
+		escapedEntities = ['&lt;', '&gt;'];
+	for (var idx in entities) {
+		html = html.replace(new RegExp(entities[idx], 'g'), escapedEntities[idx]);
+	}
+	return html;
+}
+</script>
+
+<style>
+	.ellipsis {
+		width: auto;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.ellipsis2 {
+		margin: 0;
+		width: auto;
+		height: 20px;
+		max-width: 1000px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.ex {
+		height: auto;
+		text-overflow: ellipsis;
+		white-space: normal;
+	}
+</style>
+
+<script type="xtpl" id="reply-list-table">
+<table style="width: 100%;" class="table table-striped table-bordered table-hover">
+	<thead>
+		<th>回复内容</th>
+		<th>操作</th>
+	</thead>
+	<tbody></tbody>
+</table>
+</script>
+
+<script type="xtpl" id="replay-list-item">
+<tr>
+	<td><div class="ellipsis2">$content</div></td>
+	<td>
+		<a href="javascript:void(edit($id, $pid))">修改回复 </a> 
+		<span class="expand">| <a onclick="(expand())"> 展开 </a></span> 
+		<span class="collapse">| <a onclick="(collapse())"> 折叠 </a></span>
+	</td>
+</tr>
+</script>
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/comment/list" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			            		
+
+			<label for="hotelName"><b>酒店名称:</b></label>
+	 		<input type="text" id="hotelName"  name="hotelName" placeholder="请填写酒店名称"  value="${(returnDatas.map.hotelName)!''}">
+	 	<!-- 	
+			 <label for="phone"><b>联系电话:</b></label>
+	 		<input type="text" id="phone"  name="phone" placeholder="请填写联系电话"  value="${(returnDatas.map.phone)!''}"> -->
+	 			 		
+	 		<label for="startTime"><b>入驻时间:</b></label>
+	 			<input name="startTime"  class="date-picker"  style="width:100px;" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"
+	 			 id="search_startTime" value="${(returnDatas.map.startTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 				-
+	 		<label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" readonly="readonly"
+	 			 id="search_endTime" value="${(returnDatas.map.endTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 		<label ><b></b></label>
+	 		
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+				 <button onclick="daochu('searchForm','${ctx}/system/comment/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                       导出
+                   </button>
+
+</form>
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+						<th id="">评论用户</th>
+						<th id="">评论内容</th>
+                        <th id="">酒店名称</th>
+						<th id="">评分</th>
+                        <th id="">订单号</th>
+                        <th id="">评论时间</th>
+                        <!--first_start_no_export-->
+                        <th>操作</th>
+                         <!--first_end_no_export-->
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+
+                            <tr class="">
+<!--                                 <td> -->
+<!--                                     <div class="hidden-sm hidden-xs btn-group"> -->
+<!--                                         <button class="btn btn-xs btn-info" -->
+<!--                                                 onclick="myhref('${ctx}/system/comment/edit?id=${(_data.id)!''}');"> -->
+<!--                                             <i class="ace-icon fa fa-pencil bigger-120"></i> -->
+<!--                                         </button> -->
+<!--                                         <button class="btn btn-xs btn-danger" -->
+<!--                                                 onclick="mydelete('${ctx}/system/comment/delete?id=${(_data.id)!''}','${ctx}/system/draw/list',null,'确认删除？');"> -->
+<!--                                             <i class="ace-icon fa fa-trash-o bigger-120"></i> -->
+<!--                                         </button> -->
+<!--                                     </div> -->
+                                    
+<!--                                 </td> -->
+
+							<td >
+								${(_data.userName)!''}
+							</td>
+							<td >
+								${(_data.content)!''}
+							</td>
+
+                            <td >
+                                 ${(_data.hotelName)!''}
+                            </td>
+                            <td>
+                                ${(_data.score)!''}
+                            </td>
+                            <td class="ellipsis">
+                                ${(_data.orderNumber)!''}
+                            </td>
+                             <td >
+                                ${(_data.createTime)!''}
+                            </td>
+
+
+                            <!--start_no_export-->
+                             <td >
+                                <a href="javascript:void(myhref('${ctx}/system/comment/reply/view?parentid=${(_data.id)!0}'))">回复评论</a> 
+                                <span class="expand-child">| <a onclick="viewReply(${(_data.id)!0})">查看回复</a></span>
+                                <span class="collapse-child" style="display:none;">| <a onclick="collapseChildComment()">收起</a></span>
+                            </td>
+                            <!--end_no_export-->
+						</tr>
+						<tr style="display: none;">
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

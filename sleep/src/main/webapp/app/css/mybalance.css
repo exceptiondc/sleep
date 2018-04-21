@@ -1,0 +1,54 @@
+body{
+	width: 100%;
+	height: 100%;
+}
+.aui-content.balance{
+	background: #fff;
+	padding: 0.75rem 0.5rem;
+}
+.aui-content.balance .aui-list.card{
+	width: 100%;
+    height: 7.5rem;
+    background: url(../img/mybalance-bg1.png) no-repeat center;
+    background-size: cover;
+    padding: 0.75rem;
+    border-radius: 10px;
+}
+.aui-content.balance .aui-list.card .aui-list-item-title{
+	color: #fff;
+}
+.aui-content.balance .aui-list.card .aui-list-item-title.money{
+	font-size: 2.6rem;
+}
+.aui-content.balance .aui-list-item-arrow.aui-list-item-right{
+	min-width: 100%;
+}
+.aui-content.balance .aui-list-item-arrow.aui-list-item-right .record{
+	display: block;
+	padding-right: 1.3rem;
+	text-align: right;
+	color: #fff;
+}
+.aui-content.balance.cash{
+	margin-top: 0.5rem;	
+}
+.aui-content.balance.cash .aui-list.card{
+	background: url(../img/mybalance-bg2.jpg) no-repeat center;
+	background-size: cover;
+}
+.aui-content.balance.cash .aui-list.card .aui-list-item-title{
+	color: #666;
+}
+.aui-content.balance.cash .aui-list-item-arrow.aui-list-item-right .record{
+	color: #666;
+}
+.aui-content.balance.cash .question{
+	text-align: right;
+    padding-right: 0.5rem;
+    font-size: 0.7rem;
+    height: 1.5rem;
+    margin-top: 0.5rem;
+}
+.aui-content.balance.cash .question a{
+	color: #666;
+}

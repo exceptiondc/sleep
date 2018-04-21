@@ -1,0 +1,87 @@
+.tracks.collect.none img{
+	width: 8.725rem;
+	height: 3.85rem;
+	margin: 6rem auto 2rem;
+}
+.tracks.collect.have{
+	padding: 0;
+	margin-top: 0.5rem;
+}
+
+.aui-title.nearly{
+	height: 2rem;
+	line-height: 2rem;
+	padding-left: 1rem;
+	font-size: 0.7rem;
+	background: #f2f2f2;
+}
+.tracks.collect.have .aui-list-item-media{
+	height: 4rem;
+	margin-top: 0.4rem;
+}
+.tracks.collect.have .hotel .info{
+	margin-top: 1rem;
+}
+.tracks.collect.have .aui-list .aui-list-item{
+	padding-left: 1rem;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 0;
+}
+.tracks.collect.have .aui-list .aui-list-item-text p{
+	font-size: 0.60rem;
+}
+.aui-media-list .aui-list-item-inner{
+	padding-top: 0.3rem;
+}
+.aui-media-list-item-inner.aui-swipe-handle {
+            overflow-x: hidden;
+            position: relative;
+            z-index: 1;
+            background-color: #ffffff;
+        }
+        .aui-swipe-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 0;
+            height: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-flex: 1;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+                    justify-content: space-between;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                    align-items: center;
+        }
+        .aui-swipe-btn .aui-btn {
+            border-radius: 0;
+            height: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                    align-items: center;
+			color: #fff;
+        }
+        .donghua {
+            -webkit-transition-duration:300ms;
+            transition-duration:300ms;
+        }
+        
+.money span{
+	color: #FF8C00;
+	font-size: 0.8rem;
+}
+.no-more{
+	text-align: center;
+	font-size: 0.65rem;
+	margin-top: 0.3rem;
+}

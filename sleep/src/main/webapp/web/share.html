@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>营普金服分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <style type="text/css">
+        *{ margin:0px; padding:0px; border:0px; }
+        .bigdiv{text-align:center; width:100%; margin:0 auto}
+        .btndiv{text-align:center; padding:0spx 0px 0px 0px; width:100%; margin:0 auto}
+        .btnimg{ margin:0px auto;}
+        img{ display:block}
+        .image1{
+            margin-top:10px;
+            width:110px;
+            height:110px;
+            border-radius:200px;
+        }
+		.input{ position:relative; }
+		.bk{
+	border: 1px solid #ccc;
+	position: absolute;top:0px;
+	width: 80%;
+	height: 40px;}
+        .bk1{
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 50px;
+	width: 60%;
+	height: 40px;
+}
+	    .tu{position: absolute;top:50px; margin-left:55%; height:42px}
+		.bk2{border: 1px solid #ccc;
+	position: absolute;top:100px;width: 60%;
+	height: 40px;}
+	    .tu1{position: absolute;top:100px; margin-left:55%; height:42px}
+		.bk3{border: 1px solid #ccc;
+	position: absolute;top:150px;width: 80%; height:40px}
+	    .bk4{position: absolute;top:200px;width: 80%;}
+    </style>
+    <script type="text/javascript" src="jquery-1.4.min.js"></script>
+    <script language="javascript">
+        $(window).load(function() {
+            is_weixin();
+        });
+        function is_weixin()
+        {
+            var ua = navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i)=="micromessenger")
+            {
+                $('.tmc').show();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        var inviteCode = '' ;
+
+        jQuery(document).ready(function(){
+            inviteCode = get_url_param("inviteCode") ;
+            $('#inviteCode').val(inviteCode) ;
+        }) ;
+
+        function get_url_param(name){
+            var reg = new RegExp( "(^|&)" + name + "=([^&]*)(&|$)", "i" );
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+
+        //获取短信
+        function getsms(){
+            var  phone =  document.getElementById("phone").value;
+            if($.trim(phone)==''){
+                alert("请输入手机号码！") ;
+                return ;
+            }
+
+            $.ajax({
+//               url:'http://wap.yingpuwealth.com/yingpu/system/sms/send/json',
+//               url:'http://114.215.130.18:80/yingpu/system/sms/send/json',
+               url:'http://wap.yingpuwealth.com/yingpu/system/sms/send/json',
+               data:{type:1,
+                    phone:$.trim(phone)
+                } ,
+                type : "post",
+               success:function (result) {
+                   if(result.status == 'success'){
+                       alert("短信已下发！") ;
+                   }else {
+                       if('该用户已存在' == result.message){
+                           alert(result.message+",点击确定跳转下载页下载APP") ;
+                           window.location.href = "http://wap.yingpuwealth.com/yingpu/web/down.html" ;
+                       }
+
+//                       alert(result.message) ;
+//                       if('该用户已存在' == result.message){
+//                           alert(result.message+",点击确定跳转下载页下载APP") ;
+//                           window.location.href = "http://wap.yingpuwealth.com/yingpu/web/down.html" ;
+//                       }
+                   }
+               }
+
+            });
+        }
+
+        //提交表单
+        function sub(){
+            var phone = $.trim($('#phone').val());
+            var password = $.trim($('#password').val()) ;
+            var code = $.trim($('#code').val()) ;
+            var captcha = $.trim($('#captcha').val()) ;
+            var data = {phone:phone,
+                password:password,
+                code:code,
+                inviteCode:inviteCode,
+                captcha:captcha
+            }
+            console.log(data) ;
+            $.ajax({
+                url:'http://wap.yingpuwealth.com/yingpu/app/appuser/reHtml/json',
+//                url:'http://114.215.130.18:80/yingpu/app/appuser/reHtml/json',
+                data:data,
+                type : "post",
+                success:function (result) {
+                    if(result.status == 'success'){
+                        window.location.href = "http://wap.yingpuwealth.com/yingpu/web/down.html" ;
+                    }else {
+                        alert(result.message) ;
+                    }
+                }
+
+            });
+
+        }
+
+        //刷新验证码
+        function reloadValidateCode() {
+            document.getElementById("captchaImg").src="http://wap.yingpuwealth.com/yingpu/getCaptcha?date =" + new Date().getTime();
+            //$("#captchaImg").attr("src","${ctx}/getCaptcha?date = " + new Date() + Math.floor(Math.random()*24));
+        }
+
+        function skip(){
+//            document.getElementById("down").href= 'http://wap.yingpuwealth.com/yingpu/web/down.html';
+//            document.getElementById("down").
+            window.location.href =  'http://wap.yingpuwealth.com/yingpu/web/down.html';
+        }
+    </script>
+</head>
+
+<body style="background-color:#e41a40">
+<div class="bigdiv">
+  <img src="share1.jpg" width="100%" />
+ <img src="share2.jpg" width="100%" /></div>
+ <div class="input">
+ <img src="share8.jpg" width="100%" />
+ <div style="width:80%; margin:0 auto">
+     <!--<form action="http://wap.yingpuwealth.com/yingpu/app/appuser/reHtml/json" method="post" id="loginForm">-->
+ <input class="bk" name="telephone" id="phone" name="phone" placeholder="&nbsp;请输入您的手机号"datatype="m" type="text" >
+<input class="bk1" name="captcha" id="captcha" placeholder="&nbsp;请输入图形验证码" type="text" >
+<!--<img class="tu" id="captchaImg" src="http://wap.yingpuwealth.com/yingpu/getCaptcha" alt="" onclick="reloadValidateCode();">-->
+     <img id="captchaImg" class="tu" onclick="reloadValidateCode();" src="http://wap.yingpuwealth.com/yingpu/getCaptcha"  />
+         <input type="hidden" id="ValidateCodeNum" value="" />
+         <input type="hidden" id="inviteCode" name="inviteCode" value="" />
+ <input class="bk2" name="code"  id="code" placeholder="&nbsp;请输入您的手机验证码" type="text" >
+ <input class="bk3" name="password" id="password" placeholder="&nbsp;请输入您的密码" type="password" >
+ <img  class="tu1" src="button2.png" alt="" onclick="getsms();" >
+ <button id="sbtButton" type="submit" >
+             <!--<i class="ace-icon fa fa-key"></i>-->
+             <!--<span class="bigger-110">登陆</span>-->
+     <input class="bk4" type="image"  onclick="sub()" src="button1.png" alt="">
+     <input class="bk4" id="down" type="image" onclick="skip()"  src="button4.png" style="margin-top: 15%">
+ </button>
+     <!--<button id="skipButton" type="submit" >-->
+         <!--&lt;!&ndash;<i class="ace-icon fa fa-key"></i>&ndash;&gt;-->
+         <!--&lt;!&ndash;<span class="bigger-110">登陆</span>&ndash;&gt;-->
+         <!---->
+     <!--</button>-->
+     <!--</form>-->
+ </div>
+ </div>
+ <div>
+ <img src="share4.jpg" width="100%" />
+ <img src="share5.jpg" width="100%" />
+ <img src="share6.jpg" width="100%" />
+ <img src="share7.jpg" width="100%" />
+</div>
+</div>
+</script>
+</head>
+<body>
+</body>
+</html>

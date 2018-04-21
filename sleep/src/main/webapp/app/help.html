@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>客服帮助</title>
+		<link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/help.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-light headtop">
+		    <a class="aui-pull-left aui-btn" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">客服中心</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-list aui-collapse aui-border">
+	            <div class="aui-collapse-item">
+	            	<a href="help_FAQ.html">
+	                <li class="aui-list-item">
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-title"><span class="icon ques"></span>常见问题</div>
+	                        <div class="aui-list-item-right">
+	                            <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+	                        </div>
+	                    </div>
+	                </li>
+	                </a>
+	            </div> 
+	            <div class="aui-collapse-item">
+	                <li class="aui-list-item aui-collapse-header" tapmode>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-title"><span class="icon coop"></span>商务合作</div>
+	                        <div class="aui-list-item-right">
+	                            <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+	                        </div>
+	                    </div>
+	                </li>
+	                <div class="aui-collapse-content aui-padded-15 aui-padded-t-0 aui-border-b">
+	                  <p>联系人:郭经理15009261483</p>
+	                  <p>企业邮箱：yishui@yisleep.com</p>
+	                </div>
+	            </div>  
+	            <div class="aui-collapse-item">
+	                <li class="aui-list-item aui-collapse-header" tapmode>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-title"><span class="icon comp"></span>投诉建议</div>
+	                        <div class="aui-list-item-right">
+	                            <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+	                        </div>
+	                    </div>
+	                </li>
+	                <div class="aui-collapse-content aui-padded-15 aui-padded-t-0 aui-border-b">
+	                  <p>服务电话：400-001-0035</p>
+	                  <p>企业邮箱：peter@yisleep.com</p>
+	                </div>
+	            </div>
+	            <div class="aui-collapse-item" onclick="confirmCall('400-001-0035')">
+	                <li class="aui-list-item">
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-title"><span class="icon tel"></span>服务热线</div>
+	                        <div class="aui-list-item-right call" >
+	                            400-001-0035
+	                        </div>
+	                    </div>
+	                </li>
+	            </div>
+	            <div class="aui-collapse-item">
+	                
+	                <a onclick="openExternalUrl('http://p.qiao.baidu.com/cps/chat?siteId=11888217&userId=25438374')">
+	                	<li class="aui-list-item">
+		                    <div class="aui-list-item-inner">
+		                        <div class="aui-list-item-title"><span class="icon help"></span>在线客服</div>
+		                        <div class="aui-list-item-right">
+		                            <span class="icon msg"></span>
+		                        </div>
+		                    </div>
+		                    
+		                </li>
+	                </a>
+	            </div>
+	       </ul>
+		</div>
+	<script type="text/javascript" src="aui/script/api.js" ></script>
+	<script type="text/javascript" src="aui/script/aui-collapse.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.1.min.js" ></script>
+	<script type="text/javascript" src="js/base.js" ></script>
+	<script type="text/javascript" src="layer/mobile/layer.js" ></script>
+	<script type="text/javascript">
+	    apiready = function () {
+	        api.parseTapmode();
+	    }
+	    var collapse = new auiCollapse({
+	        autoHide:false //是否自动隐藏已经展开的容器
+	    });
+        function confirmCall(tel) {
+            showConfirm('是否拨打服务热线：' + tel + '？', ['是', '否'], function( ) {
+                layer.closeAll();
+                location.href = 'tel:' + tel;
+            }, function() {
+
+            })
+        }
+        
+        function openExternalUrl(url) {
+            if (base.isWeb()) {
+                location.href = url;
+            }
+            else {
+                var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no');
+            }
+        }
+	</script>	
+	</body>
+</html>

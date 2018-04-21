@@ -1,0 +1,493 @@
+<#escape x as x?html>
+	<script type="text/javascript" src="${ctx}/js/appuser/partner.js"></script>
+	<script type="text/javascript" src="${ctx}/layer-v3.0.3/layer/layer.js"></script>
+<script type="text/javascript">
+
+function deleteAppUser(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/appuser/delete?id="+id;
+		var listurl="${ctx}/appuser/list";
+		mydelete(_url,listurl);
+	}
+}
+
+//点击看大图
+$(document).unbind('click').on("click", ".sim", function() {
+    var me="<img style=\"height:1000px;width:1000px;\" alt=\"\" src=\""+$(this).attr("src")+"\">";
+    console.log(me);
+    //iframe层-多媒体
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '1000px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content:me
+        //content: "<img alt=\"\" class=\"sim\" width=\"200px\" height=\"200px\" src=\"http://layer.layui.com/images/tong.jpg\">"
+    });
+    layer.msg('点击任意处关闭');
+});
+
+initCity("localtion",null,"cityId");
+
+$(document).on("change", "#city", function() {
+    var cityId=jQuery("#city").val();
+    console.log(cityId);
+    jQuery("#search_cityId").val(cityId);
+
+});
+$('.date-picker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    language: 'zh-CN',
+    todayBtn: 'linked',
+    startDate:new Date(2014,10,27),
+    endDate:'+6000d',
+    startDate: '-6000d',
+}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+});
+
+var dialog  ;
+function showUsers(userId){
+
+    var index = layer.load(0, {    //0为加载样式  有 0  ，  1   2
+        shade: [0.1,'#fff'] //0.1透明度的白色背景
+    });
+
+    layer.open({
+        title:'所有下级用户',
+        type: 1,
+        anim: 2,
+        resize :true,
+        area: ['860px', '400px'],
+        shadeClose: false, //开启遮罩关闭
+        content: $('#userDialog'),
+        success:function (layero,index) {
+            dialog = $(layero) ;
+            dialog.find("#userDialog").show() ;
+            userAjax(userId,index,null,null,null) ;
+//            console.log(dialog) ;
+            dialog.find("#searchButton").unbind('click').on("click",function() {
+                $('#userDialog').find("tbody").empty() ;
+                var phone=jQuery("#search_userPhone").val();
+                var userName=jQuery("#search_userName").val();
+                var level=jQuery("#search_level").val();
+                userAjax(userId,index,phone,userName,level) ;
+            });
+            dialog.find("#userExportButton").on("click",function() {
+                var phone=jQuery("#search_userPhone").val();
+                var userName=jQuery("#search_userName").val();
+                var level=jQuery("#search_level").val();
+//                $.get('/yingpu/system/appuser/exportFenxiaoList/export', {'userId':userId,"phone":phone,"userName":userName,"level":level});
+//                myexport('/yingpu/system/appuser/exportFenxiaoList/export?userId='+userId);
+//  			  http://localhost:8080/yingpu/system/appuser/exportFenxiaoList/export?userId=130&phone=&userName=&level=
+				  location.href ="/yingpu/system/appuser/exportFenxiaoList/export?userId="+userId+"&phone="+phone+"&userName="+userName+"&level="+level;
+            });
+        },
+        end:function () {
+            clearUserDialog();
+        }
+    });
+    layer.close(index);
+}
+
+function clearUserDialog() {
+    $('#userDialog').find("tbody").empty() ;
+    $('#userDialog').find("#search_userPhone").val("") ;
+    $('#userDialog').find("#search_userName").val("");
+    $('#userDialog').find("#search_level").val("") ;
+}
+
+var tr = $('#tr').find("tr")[0] ;
+function userAjax(userId,index,phone,userName,level) {
+    var dIndex = layer.load() ;
+    $.ajax({
+        url:'/yingpu/system/appuser/fenxiaoList/json',
+        type: 'POST',
+        data:{'userId':userId,"phone":phone,"userName":userName,"level":level},
+        success:function (result) {
+//			console.log(result);
+//            console.log(1111);
+            layer.close(dIndex) ;
+            if (result.status == 'error'){
+                layer.msg("暂无下级用户");
+            }else{
+                if (result.data.length == 0){
+                    layer.msg("暂无下级用户");
+                    layer.close(index) ;
+                }else {
+                    for (var i=0;i<result.data.length;i++){
+                        var tbody = dialog.find('tbody')[0] ;
+                        var trIter = $(tr).clone(true) ;
+                        var td = $(trIter[0]).find("td") ;
+                        $(td[0]).html(result.data[i].realName);
+                        $(td[1]).html(result.data[i].phone);
+                        $(td[2]).html(result.data[i].level);
+                        $(td[3]).html(result.data[i].inviteNum);
+                        $(td[4]).css("display","none");
+                        $(td[5]).css("display","none");
+                        $(td[6]).css("display","none");
+                        $(tbody).append(trIter);
+                    }
+                }
+            }
+        }
+    });
+
+}
+var userProjectDialog  ;
+function showUsersProject(userId){
+
+    var index = layer.load(0, {    //0为加载样式  有 0  ，  1   2
+        shade: [0.1,'#fff'] //0.1透明度的白色背景
+    });
+
+    layer.open({
+        title:'所有下级用户投资列表',
+        type: 1,
+        anim: 2,
+        resize :true,
+        area: ['1260px', '400px'],
+        shadeClose: false, //开启遮罩关闭
+        content: $('#userProjectDialog'),
+        success:function (layero,index) {
+            userProjectDialog = $(layero) ;
+            userProjectDialog.find("#userProjectDialog").show() ;
+            userProjectAjax(userId,index,null,null,null) ;
+            userProjectDialog.find("#userProjectSearchButton").unbind('click').on("click",function() {
+                $('#userProjectDialog').find("tbody").empty() ;
+                var userName=jQuery("#search_userProjectName").val();
+                var level=jQuery("#search_userProjectlevel").val();
+                var startTime=jQuery("#search_startTime").val();
+                var endTime=jQuery("#search_endTime").val();
+                var deadLine=jQuery("#search_deadLine").val();
+                var phone=jQuery("#search_userProjectPhone").val();
+                userProjectAjax(userId,index,userName,level,startTime,endTime,deadLine,phone) ;
+            });
+            userProjectDialog.find("#userProjectExportButton").on("click",function() {
+                var userName=jQuery("#search_userProjectName").val();
+                var phone=jQuery("#search_userProjectPhone").val();
+                var level=jQuery("#search_userProjectlevel").val();
+                var startTime=jQuery("#search_startTime").val();
+                var endTime=jQuery("#search_endTime").val();
+                var deadLine=jQuery("#search_deadLine").val();
+//                userProjectAjax(userId,index,userName,level,startTime,endTime,deadLine) ;
+//					http://localhost:8080/yingpu/system/userproject/exportList/json?userId=130&userRealName=&level=&startTime=&endTime=&deadLine=
+                location.href = "/yingpu/system/userproject/exportList/json?userId="+userId+"&userRealName="+userName+"&phone="+phone+"&level="+level+"&startTime="+startTime+"&endTime="+endTime+"&deadLine="+deadLine  ;
+//
+            });
+        },
+        end:function () {
+            clearUserProjectDialog();
+        }
+    });
+    layer.close(index);
+}
+
+function clearUserProjectDialog() {
+    $('#userProjectDialog').find("tbody").empty() ;
+    $('#userProjectDialog').find("#search_userProjectName").val("") ;
+    $('#userProjectDialog').find("#search_userProjectPhone").val("");
+    $('#userProjectDialog').find("#search_userProjectlevel").val("") ;
+    $('#userProjectDialog').find("#search_startTime").val("") ;
+    $('#userProjectDialog').find("#search_endTime").val("");
+    $('#userProjectDialog').find("#search_deadLine").val("") ;
+}
+
+var tr = $('#userProjectTr').find("tr")[0] ;
+function userProjectAjax(userId,index,userName,level,startTime,endTime,deadLine,phone) {
+    var dIndex = layer.load() ;
+    $.ajax({
+        url:'/yingpu/system/userproject/findList/json',
+        type: 'POST',
+        data:{"userId":userId,"userRealName":userName,"level":level,"startTime":startTime,"endTime":endTime,"deadLine":deadLine,"phone":phone},
+        success:function (result) {
+            console.log(result);
+            layer.close(dIndex) ;
+            if (result.status == 'error'){
+                layer.msg("暂无下级用户投资");
+            }else{
+                if (result.data.length == 0){
+                    layer.msg("暂无下级用户投资");
+                    layer.close(index) ;
+                }else {
+                    $('#sum').html(result.queryBean.money)
+                    for (var i=0;i<result.data.length;i++){
+                        var userProjectbody = userProjectDialog.find('tbody')[0] ;
+                        var userProjectTrIter = $(tr).clone(true) ;
+                        var td = $(userProjectTrIter[0]).find("td") ;
+                        $(td[0]).html(result.data[i].userRealName);
+                        $(td[1]).html(result.data[i].phone);
+                        $(td[2]).html(result.data[i].level);
+                        $(td[3]).html(result.data[i].projectName);
+                        $(td[4]).html(result.data[i].money);
+                        $(td[5]).html(result.data[i].createTime);
+                        $(td[6]).html(result.data[i].deadLine);
+                        $(userProjectbody).append(userProjectTrIter);
+                    }
+                }
+            }
+        }
+    });
+
+}
+
+
+
+
+
+
+</script>
+
+
+	
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/appuser/partnerList" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+			<label for="search_phone"><b>手机号:</b></label>
+	 			<input type="text" id="search_phone"  name="phone" placeholder="请填写手机号"  value="${(returnDatas.queryBean.phone)!''}">
+	 		<label for="search_realName"><b>真实姓名:</b></label>
+	 			<input type="text" id="search_realName"  name="realName"   value="${(returnDatas.queryBean.realName)!''}">
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+
+
+</form>
+		</div>
+		<div class="pull-right">
+
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row" >
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover"  >
+                    <!--end_no_export-->
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                       <!-- <th class="center">
+                            <label class="position-relative">
+                                <input class="ace" type="checkbox">
+                                <span class="lbl"></span>
+                            </label>
+                        </th>-->
+                        <!----><th>操作</th>
+                        <!--first_end_no_export-->
+						<th id="th_realName" >真实姓名</th>
+						<th id="th_phone" >手机号</th>
+						<th id="th_inviteNum" >邀请人数</th>
+						<th id="th_money" >本月应发放金额</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <!--start_no_export-->
+                            <tr class="">
+                                <!--<td class="center">
+                                    <label class="position-relative">
+                                        <input name="check_li" value="${_data.id}" class="ace" type="checkbox">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>-->
+						   <td>
+							   <div class="hidden-sm hidden-xs btn-group hidden-lg">
+
+							   </div>
+							   <div class="hidden-md ">
+								   <div class="inline position-relative">
+
+								   <li>
+									   <button class="btn btn-mini  btn-info" onclick="showUsers(${(_data.id)!''});">
+										   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+										   查看所有下级用户
+									   </button>
+								   </li>
+								   <li>
+									   <button class="btn btn-mini  btn-success" onclick="showUsersProject(${(_data.id)!''});">
+										   <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+										   查看所有下级用户投资列表
+									   </button>
+								   </li>
+								   </div>
+							   </div>
+						   </td>
+                                <!--end_no_export-->
+								<td >
+									${(_data.realName)!''}
+								</td>
+							<td >
+								${(_data.phone)!''}
+							</td>
+							<td >
+								${(_data.inviteNum)!0}
+							</td>
+								<td >
+									${(_data.money)!0}
+								</td>
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+
+	<!--下级用户列表弹窗-->
+	<div style="display: none;" id="userDialog" >
+		<!--<form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/appuser/list" role="form">-->
+		<label for='search_userPhone'style='margin-left: 20px'><b>手机号:</b></label>
+		<input type='text' id='search_userPhone'  name='phone' placeholder='请填写手机号'  >
+		<label for='search_userName'><b>姓名:</b></label>
+		<input type='text' id='search_userName'  name='userName' placeholder='请填写姓名'  >
+		<label for='search_level'><b>等级:</b></label>
+		<select id='search_level' name='level' class='col-10' >
+			<option  value=''>全部</option>
+			<option  value='1'>第1级</option>
+			<option  value='2'>第2级</option>
+			<option  value='3'>第3级</option>
+			<option  value='4'>第4级</option>
+			<option  value='5'>第5级</option>
+			<option  value='6'>第6级</option>
+		</select>
+		<button class='btn btn-mini  btn-info' id = 'searchButton'>查询</button>
+		<button class='btn btn-mini  btn-info' id = 'userExportButton'>导出</button>
+		<table  border="1" style="margin: 5px;width: 840px;" class="table table-striped table-bordered table-hover">
+			<thead>
+			<tr>
+				<th >真实姓名</th>
+				<th >手机号</th>
+				<th >级别</th>
+				<th >邀请人数</th>
+			</tr>
+			</thead>
+			<!--first_end_export-->
+			<!--start_export-->
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<!--用户列表的tr区域-->
+	<div style="display: none;" id="tr">
+		<table>
+			<tr >
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<!--下级用户列表弹窗-->
+	<div style="display: none;" id="userProjectDialog" >
+		<label for='search_userProjectPhone'style='margin-left: 20px'><b>手机号:</b></label>
+		<input type='text' id='search_userProjectPhone'  name='phone' placeholder='请填写手机号'  >
+		<label for='search_userProjectName'><b>姓名:</b></label>
+		<input type='text' id='search_userProjectName'  name='userName' placeholder='请填写姓名'  >
+		<label for='search_userProjectlevel'><b>等级:</b></label>
+		<select id='search_userProjectlevel' name='level' class='col-10' >
+			<option  value=''>全部</option>
+			<option  value='1'>第1级</option>
+			<option  value='2'>第2级</option>
+			<option  value='3'>第3级</option>
+			<option  value='4'>第4级</option>
+			<option  value='5'>第5级</option>
+			<option  value='6'>第6级</option>
+		</select>
+		<label for=‘search_startTime'><b>交易时间:</b></label>
+		<input name='startTime'  class='date-picker'  style='width:100px;' id='search_startTime'  type='text'/>
+		-<label for='search_endTime'><b></b></label>
+		<input name='endTime'  class='date-picker'  style='width:100px;' id='search_endTime'   type='text'/>
+		<label for='search_deadLine'><b>投资期限:</b></label>
+		<select id='search_deadLine' name='deadLine' class='col-10' >
+			<option  value=''>全部</option>
+			<option  value='3'>3</option>
+			<option  value='6'>6</option>
+			<option  value='9'>9</option>
+		</select>
+		<button class='btn btn-mini  btn-info' id = 'userProjectSearchButton'>查询</button>
+		<button class='btn btn-mini  btn-info' id = 'userProjectExportButton'>导出</button>
+		总计：<span id="sum"></span>
+		<table  border="1" style="margin: 5px;width: 1240px;" class="table table-striped table-bordered table-hover">
+			<thead>
+			<tr>
+				<th >真实姓名</th>
+				<th >手机号</th>
+				<th >级别</th>
+				<th >投资项目名称</th>
+				<th >投资金额</th>
+				<th >投资时间</th>
+				<th >投资期限</th>
+			</tr>
+			</thead>
+			<!--first_end_export-->
+			<!--start_export-->
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<!--用户列表的tr区域-->
+	<div style="display: none;" id="userProjectTr">
+		<table>
+			<tr >
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+				<td >
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</#escape>

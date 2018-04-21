@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>我的评论</title>
+		<link rel="stylesheet" type="text/css" href="../aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mycomment.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav headtop" style="">
+		    <a class="aui-pull-left" onclick="javascript:history.go(-1);">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title tit">我的评价</div>
+		</header>
+		
+		<div class="aui-content">
+			 <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img id="room-img" src="../img/hotel-pic2.png">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title hotel-name">加载中...</div>
+                    </div>
+                    <div class="aui-list-item-text">
+                        <p>入住: <span id="ruzhu">加载中...</span> <br/> 离店: <span id="tuifang">加载中...</span></p>
+                    <!--  <p>离店: 2018-04-06 16:32 </p>-->
+                      <p><span id="hotelDe">加载中...</span> | 共<span id="shichang">加载中...</span></p>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="aui-content" id="score">
+			 <div class="aui-list-item-title">
+                 <span class="hotel-name">加载中...</span><span>(0-5分)</span>
+			 </div>
+			 <ul class="scoreList">
+				<li>
+					<span>综合印象</span>
+					<nav>
+						<a href="javascript:;" class="active"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+					</nav>
+					<input class="fenshu" name="impressionScore" value="1分" readonly="readonly"/>
+				</li>
+				<li>
+					<span>环境卫生</span>
+					<nav>
+						<a href="javascript:;" class="active"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+					</nav>
+					<input class="fenshu" value="1分" name="environmentScore" readonly="readonly"/>
+				</li>
+				<li>
+					<span>满意程度</span>
+					<nav>
+						<a href="javascript:;" class="active"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+					</nav>
+					<input class="fenshu" value="1分" readonly="readonly" name="satisficingScore"/>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="aui-content pinglun">
+			<div class="aui-list">
+				<img src="../img/xiaolian.png"/>
+			</div>
+			<div class="aui-list" style="background: none;border-bottom: 0;">
+				<div class="aui-list-item">
+					<textarea name="content" rows="" cols="" onfocus="$(this).empty();" placeholder="说说你对这家酒店的评论，您的意见对其他住客有很大帮助！"></textarea>
+				</div>
+			</div>
+			<div class="aui-row">
+				<label class="aui-col-xs-2 anniu" id="img-upload-btn">
+					上传照片
+					<!--<input class="" type="file" accept="image/*" name="image-input"  value="" />-->
+				</label>
+				<div class="aui-col-xs-10 tupian" id="image-container">
+				</div>
+                <input type="hidden" name="images" />
+			</div>
+			<div class="aui-title">
+                上传了<span id="image-num">0</span>张照片
+			</div>
+			<div class="tijiao">
+				<div class="aui-btn aui-btn-warning" id="submit">
+					提交评论
+				</div>
+			</div>
+		</div>
+
+
+
+
+        <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../aui/script/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../aui/script/aui-toast.js" ></script>
+	    <script src="../layer/mobile/layer.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/queryString.js" type="text/javascript" charset="utf-8"></script>
+
+	    <script type="text/javascript">
+	    	var orderId = queryString('orderId'),
+                hotelId = 0;
+
+	    	$('body').height($(window).height());
+	    	function bind(obj,ev,fn){
+			    if(obj.addEventListener){
+			        obj.addEventListener(ev,fn,false);
+			    }else{
+			        obj.attachEvent("on"+ev,function(){
+			            fn.call(obj);  
+			        });
+			    }
+			}
+			
+			function view() {   
+			    return{
+			        w:document.documentElement.clientWidth,
+			        h:document.documentElement.clientHeight
+			    };   
+			}
+			
+			
+			function addClass(obj,sClass){
+			    var aClass = obj.className.split(" ");
+			    if(!obj.className){
+			        obj.className = sClass;
+			        return;
+			    }
+			    for (var i = 0; i < aClass.length; i++) {
+			        if(aClass[i] === sClass)
+			            return;
+			    }
+			    obj.className += " "+sClass;
+			}
+
+			function removeClass(obj,sClass){
+			    var aClass = obj.className.split(" ");
+			    if(!obj.className) return;
+			    for (var i = 0; i < aClass.length; i++) {
+			        if(aClass[i] === sClass){
+			            aClass.splice(i,1);       //splice() 方法用于插入、删除或替换数组的元素。i代表从第i个开始，删除1个
+			            obj.className = aClass.join(" ");
+			            break;
+			        }
+			    }
+			}
+
+	    	function score(){
+			   var oScore = $("#score");
+			   var aLi = $("#score li");
+			   var arr = ["1分","2分","3分","4分","5分"];
+			
+			   for (var i = 0; i < aLi.length; i++) {        
+			        fn(aLi[i]);
+			    }
+			
+			    function fn(aLi){
+			        var oNav = aLi.getElementsByTagName('a');
+			        var oInput = aLi.getElementsByTagName('input')[0];
+			        for (var i = 0; i < oNav.length; i++) {
+			            oNav[i].index = i;
+			            bind(oNav[i],"touchstart",function(){
+			                for (var i = 0; i < oNav.length; i++) {
+			                    if(i<=this.index){
+			                        addClass(oNav[i],"active")
+			                    }else{
+			                        removeClass(oNav[i],"active")
+			                    }
+			                }
+			                oInput.value = arr[this.index];               
+			            })
+			        }
+			
+			    }
+			   
+			}
+	    	
+	    	score();
+
+
+	    	function pickPic(success, error) {
+                ImagePicker.getPictures(success, error,
+                    { maximumImagesCount : 6, width : 1280, height : 720, quality : 100 });
+            }
+
+
+            function getBase64ImageData(img) {
+                var canvas = document.createElement("canvas");
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+                var dataURL = canvas.toDataURL("image/png");
+                return dataURL.split(',')[1];
+            }
+
+
+            function loadHotel(hId) {
+                base.jsonPost('/app/appOrders/AppOrdersLook/json',{id:orderId},function(data){
+                    if (data.status == 'success') {
+                        var appOrders = data.data,
+                            hotel = appOrders.hotel;
+                        $('.hotel-name').html(hotel.name);
+                        $('#ruzhu').empty().append(appOrders.hotelUser.checkTime ? appOrders.hotelUser.checkTime : '尚未入住');
+                        $('#tuifang').empty().append(appOrders.hotelUser.checkOutTime ? appOrders.hotelUser.checkOutTime : appOrders.hotelUser.checkTime ? '入住中' : '尚未入住');
+                        $('#shichang').empty().append(stampToDatetime(new Date(appOrders.hotelUser.checkOutTime).getTime() - new Date(appOrders.hotelUser.checkTime).getTime()));
+                        $('#hotelDe').empty().append(appOrders.hotelHouse.houseName);
+                        $('#room-img').attr('src',appOrders.hotel.img.split(';')[0]);
+
+                        hotelId = hotel.id;
+                    }
+                });
+            }
+
+
+            function stampToDatetime(stamp) {
+	    	    if (stamp) {
+                    var num, remain, unit;
+
+                    remain = stamp / 1000;
+	    	        if (remain >= 86400) {
+                        num = Math.floor(remain / 86400);
+                        remain = remain % 86400;
+                        unit = '天';
+                    }
+	    	        else if (remain >= 3600) {
+                        num = Math.floor(remain / 3600);
+                        remain = remain % 3600;
+                        unit = '小时';
+                    }
+	    	        else if (remain >= 60) {
+                        num = Math.floor(remain / 60);
+                        remain = remain % 60;
+                        unit = '分钟';
+                    }
+                    else {
+                        num = remain;
+                        unit = '秒';
+                    }
+
+                    return num + unit;
+                }
+
+                return '';
+            }
+	    	
+	    	
+	    	$(document).on('click', '#submit', function(){
+	    		var param = {
+                        impressionScore : getInputValue('impressionScore').replace('分', ''),
+                        environmentScore : getInputValue('environmentScore').replace('分', ''),
+                        satisficingScore : getInputValue('satisficingScore').replace('分', ''),
+                        content : getInputValue('content'),
+                        images : '',
+                        hotelId : hotelId,
+                        userId : base.getUserId()
+                    },
+                    imgs = $('#image-container>img');
+
+	    		$.each(imgs, function(i, img) {
+                    param.images += getBase64ImageData(img) + ';';
+                });
+
+	    		param.images = param.images.substring(0, param.images.length - 1);
+	    		if (!param.content) {
+	    		    showMsg('请输入评论内容！');
+	    		    return;
+                }
+                /*if (!param.images) {
+	    		    showMsg('请选择图片！');
+	    		    return;
+                }*/
+
+                base.jsonPost('/app/comment/add/json', param, function(result) {
+                    if (result.status == 'success') {
+                        showMsg('评论成功！');
+                    }
+                    else {
+                        showAlert(result.message);
+                    }
+                });
+
+	    	})
+            .on('click', '#img-upload-btn', function(e) {
+                pickPic(function(imgs) {
+                    var $imgBox = $('#image-container').empty(),
+                        size = 0;
+
+                    $.each(imgs, function(i, uri) {
+                        $imgBox.append('<img src="' + uri + '"/>');
+                    });
+
+                    size = $imgBox.children('img').size();
+                    $('[name=images]').val($imgBox.children('img').map(function(i, e) {
+                        return $(e).attr('src');
+                    }).get().join(';'));
+
+                    $('#image-num').html(size);
+
+                }, function(msg) {
+                    showAlert(msg);
+                });
+            });
+
+	    	loadHotel(orderId || 0);
+
+	    </script>
+	</body>
+</html>

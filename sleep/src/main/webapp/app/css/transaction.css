@@ -1,0 +1,60 @@
+.aui-list .aui-row{
+	padding: 0.5rem 0.75rem;
+}
+.aui-list .aui-row .aui-col-xs-8 .aui-list-item-title{
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.aui-list .aui-row .aui-col-xs-4{
+	text-align: right;
+	height: 2.3rem;
+    line-height: 2.5rem;
+}
+.aui-list .aui-row .aui-col-xs-4.plus{
+	color: #FFA200;
+}
+.aui-list .aui-row .aui-col-xs-4.minus{
+	color: #000;
+}
+
+/*-----交易明细------*/
+.aui-list .transaction{
+	padding: 0.5rem 0 0.5rem 0.75rem;
+}
+.aui-list .transaction .aui-list-item-title{
+	color: #666;
+	font-size: 0.75rem;
+}
+.aui-list .transaction .aui-list-item-right{
+	font-size: 1.3rem;
+	color: #000;
+	padding: 0.5rem 0;
+	max-width: 75%;
+}
+.aui-list .details{
+	padding-top: 1rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid #ddd;
+}
+.aui-list .details .aui-list-item{
+	background-image: none;
+	min-height: 1.5rem;
+}
+.aui-list .details .aui-list-item .aui-list-item-inner{
+	min-height: 1.5rem;
+}
+.aui-list .details .aui-list-item-title{
+	width: 3.2rem;
+    text-align: justify;
+    text-align-last: justify;
+    color: #666;
+	font-size: 0.75rem;
+}
+.aui-list .details .aui-list-item-right{
+	max-width: 75%;
+	font-size: 0.75rem;
+	color: #000;
+}
+    

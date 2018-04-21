@@ -1,0 +1,124 @@
+.aui-content{
+	margin-bottom: 0.5rem;
+}
+.hotel-grade .aui-list{
+	padding: 0.5rem;
+}
+.hotel-grade .aui-list .aui-list-item-inner{
+	padding-right: 0;
+}
+.hotel-grade .aui-list .aui-list-item-label{
+	background: #fff1de;
+	color: #ff8c00;
+	font-size: 0.7rem;
+	text-align: center;
+	width: 25%;
+	height: 1.5rem;
+	display: block;
+	line-height: 1.5rem;
+	padding-right: 0;
+	margin-right: 5px;
+}
+.hotel-des{
+	width: 73%;
+}
+.hotel-des p{
+	line-height: 1rem;
+	font-size: 0.6rem;
+	color: #FF8C00;
+}
+.hotel-des p:last-child{
+	font-size: 0.5rem;
+	color: #666;
+}
+
+.menu .aui-tab{
+	padding: 0.25rem 0.5rem 0.5rem;
+}
+.menu .aui-tab .aui-tab-item{
+	margin: 0 10px;
+}
+.menu .aui-tab .aui-tab-item.aui-active{
+	color: #FFA200;
+    border-bottom: 2px solid #FFA200;
+}
+.menu .aui-list{
+	background-image: none;
+	padding-bottom: 0.3rem;
+}
+.menu .aui-row{
+	padding: 0 0.5rem;
+	text-align: center;
+}
+.menu .aui-row .aui-col-xs-4{
+	height: 1.5rem;
+	line-height: 1.5rem;
+	padding: 0rem 0.5rem;
+	margin-bottom: 0.5rem ;
+}
+.menu .aui-row .aui-col-xs-4 a{
+	display: block;
+	background: #ddd;
+	color: #fb500b;
+	font-size: 0.65rem;
+	border-radius: 4px;
+}
+.menu .aui-row .aui-col-xs-4 a.selected{
+    background: #f5ce41;
+    color: #fff;
+}
+
+
+/*-----评论区-----*/
+.comments .aui-card-list-user-avatar{
+	width: 1rem;
+}
+.comments .aui-card-list-header{
+	padding: 0.5rem 0.75rem 0.2rem;
+	min-height: 1rem;
+}
+.aui-card-list-content, .aui-card-list-content-padded{
+	text-align: justify;
+	padding: 0 0.75rem;
+}
+.comments .aui-row .aui-col-xs-3{
+	height: 4rem;
+}
+.comments .aui-row .aui-col-xs-3 img{
+	width: 100%;
+	height: 100%;
+}
+.comments .aui-text-info {
+    color: #FFA200 !important;
+}
+.comments-fuc span{
+	display: inline-block;
+    padding: 0px 10px;
+    border: 1px solid #ddd;
+    border-radius: 32px;
+    font-size: 0.6rem;
+}
+.comments-fuc span .aui-iconfont{
+	font-size: 0.7rem;
+}
+
+.comments-list {
+    font-size: 0px;
+    position: relative;
+    width: auto;
+    display: block;
+    overflow: hidden;
+}
+
+.comments-list>div {
+    display: block;
+    float: left;
+}
+
+.orange { color : orange; }
+
+.aui-card-list-content, .aui-card-list-content-padded {
+    white-space: normal;
+}
+
+html, body { overflow-x: hidden; }

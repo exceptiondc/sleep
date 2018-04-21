@@ -1,0 +1,368 @@
+<#-- 全局变量 -->
+	<#global ctx="${(ctp.contextPath)!''}">
+
+		<#macro head>
+			<!DOCTYPE html>
+			<html lang="zh-CN">
+			<head>
+				<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+				<meta name="viewport"
+					  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+				<meta charset="utf-8" />
+				<script type="text/javascript">
+                    var ctx="${ctx}";
+				</script>
+		</#macro>
+
+		<#macro ace>
+			<@head />
+			<!-- bootstrap & fontawesome -->
+			<link rel="stylesheet" href="${ctx}/ace/css/bootstrap.min.css" />
+			<link rel="stylesheet" href="${ctx}/ace/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+			<!-- page specific plugin styles -->
+
+			<!-- text fonts -->
+			<link rel="stylesheet" href="${ctx}/ace/css/fonts.googleapis.com.css" />
+
+			<!-- ace styles -->
+			<link rel="stylesheet" href="${ctx}/ace/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+			<!--[if lte IE 9]>
+			<link rel="stylesheet" href="${ctx}/ace/css/ace-part2.min.css" class="ace-main-stylesheet" />
+			<![endif]-->
+			<link rel="stylesheet" href="${ctx}/ace/css/ace-skins.min.css" />
+			<link rel="stylesheet" href="${ctx}/ace/css/ace-rtl.min.css" />
+
+			<!--[if lte IE 9]>
+			<link rel="stylesheet" href="${ctx}/ace/css/ace-ie.min.css" />
+			<![endif]-->
+
+			<!-- inline styles related to this page -->
+
+			<!-- ace settings handler -->
+			<script src="${ctx}/ace/js/ace-extra.min.js"></script>
+
+			<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+			<!--[if lte IE 8]>
+			<script src="${ctx}/ace/js/html5shiv.min.js"></script>
+			<script src="${ctx}/ace/js/respond.min.js"></script>
+			<![endif]-->
+		</#macro>
+
+		<#macro aceplugin>
+			<@ace/>
+			<@basicScript/>
+
+		</#macro>
+
+		<#macro basicScript>
+
+			<!-- basic scripts -->
+
+			<!--[if !IE]> -->
+			<script src="${ctx}/ace/js/jquery-2.1.4.min.js"></script>
+
+			<!-- <![endif]-->
+
+			<!--[if IE]>
+			<script src="${ctx}/ace/js/jquery-1.11.3.min.js"></script>
+			<![endif]-->
+			<script type="text/javascript">
+                if('ontouchstart' in document.documentElement) document.write("<script src='${ctx}/ace/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			</script>
+			<script src="${ctx}/ace/js/bootstrap.min.js"></script>
+			<script src="${ctx}/ace/js/bootstrap-datepicker.min.js"></script>
+			<script src="${ctx}/ace/js/bootstrap-datetimepicker.min.js"></script>
+			<script src="${ctx}/ace/js/bootstrap-timepicker.min.js"></script>
+
+			<!-- page specific plugin scripts -->
+
+
+			<!-- ace scripts -->
+
+			<!--
+            <script src="${ctx}/ace/js/ace-elements.min.js"></script>
+             -->
+
+			<script src="${ctx}/ace/js/ace.min.js"></script>
+
+
+
+
+
+			<!--custom scripts   -->
+			<script src="${ctx}/js/coms/common/ajaxmenu.js"></script>
+			<script src="${ctx}/js/coms/common/common.js"></script>
+			<script src="${ctx}/js/coms/common/messager.js"></script>
+			<script src="${ctx}/js/coms/common/pagetoolbar.js"></script>
+			<script src="${ctx}/js/coms/common/image.js"></script>
+
+			<script src="${ctx}/js/jquery/jquery.form.js"></script>
+			<script src="${ctx}/js/jquery/ajaxfileupload.js"></script>
+
+			<script src="${ctx}/js/coms/common/fileUploadPlugIn.js"></script>
+
+
+			<link rel="stylesheet" href="${ctx}/js/coms/layer/skin/layer.css" />
+			<script  type="text/javascript" src="${ctx}/js/coms/layer/layer.js"></script>
+
+
+			<script type="text/javascript">
+                window.UEDITOR_HOME_URL="${ctx}/";
+			</script>
+
+			<script type="text/javascript" src="${ctx}/js/ueditor/ueditor.config.js"></script>
+			<script type="text/javascript" src="${ctx}/js/ueditor/ueditor.all.min.js"></script>
+
+			<link rel="stylesheet" href="${ctx}/layui/css/global.css" media="all">
+			<link rel="stylesheet" href="${ctx}/css/custom/common/common.css" media="all">
+			<link rel="stylesheet" href="${ctx}/css/custom/common/personal.css" media="all">
+			<script src="${ctx}/js/jquery/jquery.min.js"></script>
+			<script src="${ctx}/js/cache/locache.min.js"></script>
+			<script type="text/javascript" src="${ctx}/js/cookie/jquery.cookie.js"></script>
+
+
+
+			<link rel="stylesheet" href="${ctx}/js/coms/select2/css/select2.min.css"  type="text/css"/>
+			<link rel="stylesheet" href="${ctx}/js/coms/select2/css/select2-bootstrap.min.css"  type="text/css" />
+			<script src="${ctx}/js/coms/select2/js/select2.min.js"></script>
+			<script src="${ctx}/js/coms/select2/js/i18n/zh-CN.js"></script>
+
+
+			<script src="${ctx}/js/coms/select2/js/select2.ajax.js"></script>
+
+			<link rel="stylesheet" href="${ctx}/js/validate/validate.css" />
+			<script src="${ctx}/js/validate/Validform_v5.3.2_min.js"></script>
+
+			<script type="text/javascript" src="${ctx}/js/laydate/laydate.js"></script>
+
+			<!-- ztree -->
+			<link rel="stylesheet" href="${ctx}/js/coms/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+			<script type="text/javascript" src="${ctx}/js/coms/ztree/js/jquery.ztree.all-3.5.js"></script>
+			<script type="text/javascript" src="${ctx}/js/coms/common/ztreeUtils.js"></script>
+			<script type="text/javascript" src="${ctx}/js/coms/common/localtion.js"></script>
+			<script src="${ctx}/js/My97DatePicker/WdatePicker.js"></script>
+
+
+
+			<script src="${ctx}/layer-v3.0.3/layer/layer.js"></script>
+			<script src="${ctx}/layer-v3.0.3/layer/mobile/layer.js"></script>
+			<script src="${ctx}/layer-v3.0.3/layer/layer.js"></script>
+
+
+
+
+			<link rel="stylesheet" href="${ctx}/layui/css/layui.css" media="all"/>
+
+
+			<style type="text/css">
+
+				.site-demo-upload,
+				.site-demo-upload img{width: 200px; height: 200px; border-radius: 100%;}
+				.site-demo-upload{position: relative; background: #e2e2e2;}
+				.site-demo-upload .site-demo-upbar{position: absolute; top: 50%; left: 50%; margin: -18px 0 0 -56px;}
+				.site-demo-upload .layui-upload-button{background-color: rgba(0,0,0,.2); color: rgba(255,255,255,1);}
+
+				.addgoods_photo{width:97%;overflow:hidden;margin:0 auto;margin-top:8px;margin-left:38px}
+				.addgoods_photo li{float:left}
+				.addgoods_photo .addgoods_photo_a{width:100px;height:150px;border:1px solid #e6e6e6;padding:0px 16px 0px 16px;margin-right:20px}
+				.addgoods_photo_img {width:100px;height:100px;margin-left: -8px;margin-top: -15px;}
+				.addgoods_photo_img img{width:100px;height:100px;margin-left: -8px;margin-top: -8px;}
+				.move_Box {width:81px;height:12px;overflow:hidden;margin:0 auto;margin-bottom:5px;}
+				.move_left, .move_right {display:block;width:40px;overflow:hidden;float:left;color:#7a7a7a;line-height:12px;margin-left: -8px;margin-top: -8px;}
+				.move_left {border-right:1px solid #d5d5d5;text-indent:12px;background:url(../images/button_03.png) no-repeat 4px 2px;margin-left: -8px;margin-top: -8px;}
+				.move_left:hover {color:#4a4a49}
+				.move_right {text-indent:4px;background:url(../images/button_02.png) no-repeat 31px 2px}
+				.move_right:hover {color:#4a4a49}
+				.addgoods_photo_button{width:90px;height:22px;margin-top:5px;cursor: pointer;margin-left: -8px;}
+				.addgoods_photo_button input{width:40px;height:22px;cursor: pointer;margin-left: -8px}
+				.addgoods_photo_button .button_float{float:right;cursor: pointer;margin-left: -8px;}
+
+			</style>
+
+
+
+		</#macro>
+
+		<#macro navbar>
+			<div id="navbar" class="navbar navbar-default">
+				<script type="text/javascript">
+                    try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+				</script>
+
+				<div class="navbar-container" id="navbar-container">
+
+					<div class="navbar-header pull-left">
+						<a href="${ctx}" class="navbar-brand">
+							<small>
+								<i class="fa fa-comments"></i>
+								<div id="photoTmpel" style="display:none;">
+
+									<li class="addgoods_photo_a" style="float:left;width:100px;height:150px;border:1px solid #e6e6e6;padding:5px 16px 0px 16px;margin-right:20px">
+										<div class="move_Box" style="width:40px;"></div>
+										<div class="addgoods_photo_img">
+											<img  class="photoImgsVal"  />
+										</div>
+										<ul class="addgoods_photo_button">
+											<li><div class="layui-btn layui-btn-primary layui-btn-mini promise_edit1" photo_no="1" style="float: left;width:46px;height:25px;line-height:25px;font-size:12px;margin-left: -8px;">上传</div>
+											</li>
+											<li class="button_float promise_deleteBt1"><div class="layui-btn layui-btn-primary layui-btn-mini promise_delete" photo_no="1" style="float: left;width:46px;height:25px;line-height:25px;font-size:12px;background:#ccc;margin-left: -12px;">删除</div></li>
+										</ul>
+									</li>
+								</div>
+								贾克斯管理系统
+							</small>
+						</a>
+					</div>
+
+					<div class="navbar-buttons navbar-header pull-right" role="navigation">
+						<ul class="nav ace-nav">
+							<li class="green">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<i class="ace-icon fa fa-envelope "></i>
+									<span class="badge badge-success">0</span>
+								</a>
+
+								<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+									<li class="dropdown-header">
+										<i class="ace-icon fa fa-envelope-o"></i>
+										0信息
+									</li>
+								</ul>
+							</li>
+
+							<li class="light-blue">
+								<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+									<img class="nav-user-photo" src="${ctx}/ace/images/avatars/user.jpg"  />
+									<span class="user-info">
+							<small>欢迎,</small>
+							<@shiro.principal property="name" />
+						</span>
+
+									<i class="ace-icon fa fa-caret-down"></i>
+								</a>
+
+								<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+									<!-- <li>
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-cog"></i>
+                                            设置
+                                        </a>
+                                    </li>-->
+
+									<li>
+										<a href="javascript:myhref('${ctx}/system/user/modifiypwd/pre');">
+											<i class="ace-icon fa fa-user"></i>
+											修改密码
+										</a>
+									</li>
+
+									<li class="divider"></li>
+
+									<li>
+										<a href="${ctx}/logout">
+											<i class="ace-icon fa fa-power-off"></i>
+											退出
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div><!-- /.navbar-container -->
+			</div>
+		</#macro>
+		<#macro sidebar>
+			<script type="text/javascript">
+                try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar responsive">
+				<script type="text/javascript">
+                    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+				</script>
+
+				<ul class="nav nav-list" id="module">
+
+				</ul><!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+
+				<script type="text/javascript">
+                    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+				</script>
+			</div>
+
+		</#macro>
+
+		<#macro pagetoolbar page,formId>
+			<#if (page.pageIndex >= page.pageCount) && (page.pageCount != 0)>
+				<#assign index = page.pageCount />
+				<#else>
+					<#assign index = page.pageIndex />
+			</#if>
+			<div class="row">
+				<div class="col-xs-12 pagination pull-left">
+					<div class="dataTables_paginate paging_bootstrap">
+						<ul class="pagination pull-left">
+							<#if page.firstPage != true>
+								<li class="prev"><a href="javascript:startPage('${formId}');"><i class="fa fa-angle-double-left"></i></a></li>
+								<#else>
+									<li  class="prev disabled"><a href="javascript:void(0);"><i class="fa fa-angle-double-left"></i></a></li>
+							</#if>
+
+							<#assign _start=1 />
+							<#if (index>3)>
+								<#assign _start=index-2 />
+							</#if>
+							<#assign _end=1 />
+							<#if (page.pageCount-index>=2)>
+								<#assign _end=index+2 />
+								<#else>
+									<#assign _end=page.pageCount />
+							</#if>
+							<#if (_end<1)>
+							<#assign _end=1 />
+							</#if>
+
+							<#list _start.._end as t>
+								<#if t==index>
+									<li class="active"><a href="javascript:void(0);">${t}</a></li>
+									<#else>
+										<li><a href="javascript:toPage('${formId}','${t}');">${t}</a></li>
+								</#if>
+							</#list>
+
+							<#if page.lastPage != true>
+								<li class="next"><a href="javascript:endPage('${formId}','${page.pageCount}');"><i class="fa fa-angle-double-right"></i></a></li>
+								<#else>
+									<li class="next disabled"><a href="javascript:void(0);"><i class="fa fa-angle-double-right"></i></a></li>
+							</#if>
+							<li class="disabled"><a href="javascript:void(0);">共${page.pageCount}页${page.totalCount}条</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+		</#macro>
+		<#macro footer>
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+				<span class="bigger-120">
+					<span class="blue bolder"><a class="blue bolder" href="http://www.wgkjapp.com/">西安贾克斯科技</a></span>
+					&copy; 2017
+				</span>
+					</div>
+				</div>
+			</div>
+		</#macro>
+
+
+
+

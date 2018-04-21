@@ -1,0 +1,234 @@
+<#escape x as x?html>
+<style>
+	.ellipsis {
+		width: auto;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+<script type="text/javascript" src="${ctx}/js/userproject/userproject.js"></script>
+
+<script type="text/javascript">
+
+function deleteUserProject(){
+	var id=jQuery("#id").val();
+	if(!id||id==""){
+		myalert("请选择你要删除的记录");
+		return;
+	}else{
+		var _url="${ctx}/userproject/delete?id="+id;
+		var listurl="${ctx}/userproject/list";
+		mydelete(_url,listurl);
+	}
+}
+
+$('.date-picker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    language: 'zh-CN',
+    todayBtn: 'linked',
+    startDate:new Date(2014,10,27),
+    endDate:'+6000d',
+    startDate: '-6000d',
+}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+});
+
+function daochu(formid,url){
+	var a = $('#'+formid).attr('action');
+	$('#' + formid).attr('action',url).submit();
+	setTimeout(function() {
+		$('#' + formid).attr('action', a);
+	}, 500);
+}
+
+var gId;
+function edit(id, content) {
+	if (!!id) {
+		gId = id;
+		
+		layer.open({
+			title : '修改备注',
+			type : 1,
+			content : '<div style="width: 100%; height: 100%;"><div style="width: 80%; height: 60%; margin: 0px 10%; padding: 50px 0;">'
+					+ '<textarea style="width: 100%; height: 100%;" onkeyup="recordInput(this)" name="edit_desc" maxLength="255">' + content + '</textarea></div>'
+					+ '<div style="width: 80%; padding: 20px 10%;" margin: 20px 0;>'
+					+ '<button style="background: #438EB9; border: none; margin-left: 60%; color: #fff; padding: 8px 25px;" value="提交" onclick="submit()">提交</button></div></div>',
+			area : ['30%', '50%']
+		});
+	}
+}
+
+
+function submit() {
+	$.post('${ctx}/system/draw/history/update/json', { descr : recordedInput || undefined, id : gId }, function(data) {
+		if (data.status == 'success') {
+			layer.msg('添加备注成功!');
+			setTimeout(function() {
+				location.reload();
+			}, 500);
+		} else {
+			layer.msg('添加备注失败!');
+			setTimeout(function() {
+				location.reload();
+			}, 500);
+		}
+	}, 'json')
+}
+
+var recordedInput = '';
+function recordInput(ele) {
+	recordedInput = $(ele).val();
+}
+</script>
+<script type="text/tpl" id="abc">
+<div>
+	<div><textarea clos="20" rows="15" onkeyup="recordInput(this)"></textarea></div>
+	<div><button value="提交" onlick="submit()"></button></div>
+</div>
+</script>
+
+<!-- /.page-header -->
+
+<div class="row">
+    <div class="col-xs-12">
+<div class="operate panel panel-default" style="height:65px;">
+	<div class="panel-body">
+		<div class="pull-left">
+ <form class="form-horizontal" name="searchForm" id="searchForm" action="${ctx}/system/draw/acquire_prize/list/json" role="form">
+            <input type="hidden" name="pageIndex" id="pageIndex" value="${(returnDatas.page.pageIndex)!'1'}"/>
+            <input type="hidden" name="sort" id="page_sort" value="${(returnDatas.page.sort)!'desc'}"/>
+            <input type="hidden" name="order" id="page_order" value="${(returnDatas.page.order)!'id'}"/>
+	 		<label for="search_userName"><b>用户名称:</b></label>
+	 		<input type="text" id="search_userName"  name="userName" placeholder="请填写用户名称"  value="${(returnDatas.queryBean.userName)!''}">
+			 <label for="search_projectName"><b>奖品名称:</b></label>
+	 		<input type="text" id="search_prizeName"  name="prizeName" placeholder="请填写项目名称"  value="${(returnDatas.queryBean.prizeName)!''}">
+	 	<!-- 	<label for="type_invest"><b>投资方式:</b></label>
+	 		<select id="type_invest" name="type_invest" class="col-10" >
+				<option value="">全部</option>
+				<option value="1" <#if (((returnDatas.map.type_invest)!'') == '1')>selected</#if> value="1">投资1</option>
+		 		<option value="2" <#if (((returnDatas.map.type_invest)!'') == '2')>selected</#if> value="2">投资2</option>
+	 		</select> -->
+	 		
+	 		<label for="search_startTime"><b>交易时间:</b></label>
+	 			<input name="startTime"  class="date-picker"  style="width:100px;" id="search_startTime" value="${(returnDatas.queryBean.startTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 				-
+	 		<label for="search_endTime"><b></b></label>
+	 			<input name="endTime"  class="date-picker"  style="width:100px;" id="search_endTime" value="${(returnDatas.queryBean.endTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  type="text"/>
+	 		<label ><b></b></label>
+	 		
+			<a  href="javascript:mySubmitForm('searchForm');"
+				class="btn btn-purple btn-sm">
+					查询 <i class="ace-icon fa fa-search icon-on-right bigger-10"></i>
+				</a>
+				 <button onclick="daochu('searchForm','${ctx}/system/draw/acquire_prize/list/export/json');" class="btn  btn-sm  btn-primary">
+                      
+                       导出
+                   </button>
+	<!--  <label><b>总余额:</b></label>
+	 <span  style="display: inline-block;">
+	 ${(returnDatas.queryBean.money)!''}
+	 </span> -->
+</form>
+		</div>
+		<div class="pull-right">
+			    <@shiro.hasPermission name="/userproject/list/export" >
+				  <button onclick="myexport('searchForm','${ctx}/userproject/list/export');" class="btn  btn-sm  btn-primary">
+                      
+                        导出
+                    </button>
+		    	</@shiro.hasPermission>
+			    <@shiro.hasPermission name="/system/userproject/update" >
+				  <button onclick="myhref('${ctx}/userproject/update/pre');" class="btn  btn-sm  btn-primary">
+                        添加
+                    </button>
+			    </@shiro.hasPermission>
+			    <@shiro.hasPermission name="/userproject/delete" >
+			    |
+				  <button onclick="deleteUserProject();" class="btn btn-sm btn-danger">
+                        删除
+                    </button>
+			    </@shiro.hasPermission>
+			
+		</div>
+	</div>
+</div>
+
+   <div class="row">
+            <div class="col-xs-12">
+	            <!--start_export-->
+                <table id="listDataTable" border="1" class="table table-striped table-bordered table-hover">
+                    
+                    <!--first_start_export-->
+                    <thead>
+                    <tr>
+                        <!--first_start_no_export-->
+                        <th>操作</th>
+                        <!--first_end_no_export-->
+						<th id="th_userId" >中奖人</th>
+						<th id="th_userId" >手机号</th>
+						<th id="th_projectId" >奖品</th>
+						<th id="th_money" >流水号</th>
+						<th id="th_payType" >中奖时间</th>
+						<th id="th_status" >备注</th>
+                    </tr>
+                    </thead>
+                    <!--first_end_export-->
+
+                    <!--start_export-->
+                    <tbody>
+           
+				   <#if (returnDatas.data??)&&(returnDatas.data?size>0)>
+					 <#list returnDatas.data as _data>
+                            <tr class="">
+                             <!--first_start_no_export-->
+							<td >
+								 <div class="hidden-sm hidden-xs btn-group">
+                                        <button class="btn btn-xs btn-info"
+                                                onclick="edit(${(_data.id)}, '<#if (_data.descr)??>${(_data.descr)?replace('\n', '')}</#if>')">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </button>
+                                      <!--   <button class="btn btn-xs btn-danger"
+                                                onclick="mydelete('${ctx}/system/draw/delete?id=${(_data.id)!''}','${ctx}/system/draw/list',null,'确认删除？');">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </button> -->
+                                    </div>
+							</td>
+							<!--first_end_no_export-->
+							<td >
+								${(_data.userName)!''}
+							</td>
+							<td >
+								${(_data.phone)!''}
+							</td>
+							<td >
+								${(_data.prizeName)!''}
+							</td>
+							<td >
+								${(_data.number)!0}
+							</td>
+							<td >
+								${(_data.createTime)!''}
+							</td>
+							<td class="ellipsis">
+								${(_data.descr)!''}
+							</td>
+
+						</tr>
+					</#list>
+					 </#if>
+                    </tbody>
+                </table>
+                <!--end_export-->
+            </div>
+            <!-- /.span -->
+        </div>
+        <#if returnDatas.page??>	
+            <@h.pagetoolbar page=returnDatas.page formId='searchForm' />
+         </#if>
+    </div>
+</div>
+<!-- /.main-container -->
+</#escape>

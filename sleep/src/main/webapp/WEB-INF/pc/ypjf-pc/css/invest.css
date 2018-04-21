@@ -1,0 +1,282 @@
+.invest-main{
+	width: 100%;
+}
+.invest-banner{
+	width: 100%;
+	height:375px;
+	background: url(../img/images/invest-banner_02.jpg) no-repeat center;
+	position: relative;
+}
+.banner-text{
+	width: 160px;
+	height: 300px;
+	position: absolute;
+	top: 40px;
+	right: 114px;
+	background: url(../img);
+}
+
+/*投资筛选列表*/
+
+.invest-choice{
+	margin: 30px auto 16px;
+	width: 100%;
+	border-left: 1px solid #85b8f9;
+	padding:16px 22px;
+}
+.invest-choice h4{
+	font-size: 16px;
+	margin-bottom: 16px;
+}
+.invest-choice .list{
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 12px;
+}
+.invest-choice .list dt{
+	float: left;
+	width: 58px;
+}
+.invest-choice .list dd{
+	float: left;
+	/*width: 86px;*/
+	margin-right: 30px;
+}
+.invest-choice .list .item-buxian{
+	display: inline-block;
+	width: 42px;
+	height: 30px;
+	background: #f44336;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	margin:0 20px 0 20px;
+}
+.invest-choice .list a{
+	display: block;
+	padding: 5px;
+	line-height: 22px;
+	text-align: center;	
+}
+.invest-choice .list a:hover{
+	background: #F44336;
+	color: #fff;
+}
+
+.invest-main-l{
+	width: 840px;
+}
+
+.invest-main-r{
+	width: 340px;
+	margin-left: 20px;
+}
+
+/*项目明细种类*/
+
+
+.invest-project{
+	width: 792px;
+	height: 132px;
+	border: 1px solid #ddd;
+	padding: 24px;
+	margin-bottom: 40px;
+}
+.invest-project:hover{
+	box-shadow: 2px 2px 6px 0px #aaa;
+}
+
+.invest-project .project-title{
+	font-size: 18px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #ddd;
+}
+.invest-project .project-title .project-func{
+	margin-left: 110px;
+	margin-right: 30px;
+}
+.project-func span{
+	display: inline-block;
+	width: 72px;
+	height: 24px;
+	background: #677e9e;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+	line-height: 24px;
+	margin-right: 10px;
+}
+.project-icon span{
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+}
+.project-icon .jian{
+	background: url(../img/project-jian.png) no-repeat center;
+}
+.project-icon .quan{
+	background: url(../img/project-quan.png) no-repeat center;
+}
+.project-icon .che{
+	background: url(../img/project-che.png) no-repeat center;
+}
+.project-icon .fang{
+	background: url(../img/project-fang.png) no-repeat center;
+}
+
+.project-icon .qi{
+	background: url(../img/project-qi.png) no-repeat center;
+}
+
+.invest-project .project-item{
+	width: 100%;
+}
+.invest-project .project-list li{
+	float: left;
+	width: 16%;
+	font-size: 14px;
+	margin-top: 32px;
+	text-align: center;
+	padding-right: 10px;
+}
+.invest-project .project-list li p{
+	line-height: 30px;
+}
+.invest-project .project-list li .large{
+	font-size: 26px;
+	color: #ff7f01;
+}
+.invest-project .project-list li .progress-bar{
+	width: 90px;
+}
+.invest-project .project-list li .progress-bar .progressbar{
+	margin-top: 10px;
+	border: 1px solid #aaa;
+}
+.invest-project .project-list li .progress-bar .percentCount{
+	 margin-top: -20px;
+	 margin-right: -38px;
+}
+.invest-project .project-list li .invest-btn{
+	display:inline-block;
+	width: 122px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background: #ffad2c;
+	border-radius: 8px;
+	margin-top: 14px;
+	margin-left: 10px;
+}
+.invest-project .project-list li .invest-btn.orange{
+	background: #ff7200;
+}
+.invest-project .project-list li .invest-btn.green{
+	background: #1ac64e;
+}
+.invest-project .project-list li .invest-btn.gray{
+	background: #aaa;
+}
+
+.invest-project .project-list li .project-false{
+	display: inline-block;
+	width: 98px;
+	height: 99px;
+	margin-top: -80px;
+    margin-right: -106px;
+}
+.invest-project .project-list li .project-false.ysk{
+	background: url(../img/project-yishoukong.png) no-repeat center;	
+}
+.invest-project .project-list li .project-false.yhk{
+	background: url(../img/project-yihuankuan.png) no-repeat center;
+}
+
+
+/*页码*/
+.invest-page-list{
+	width: 840px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.invest-page-list a{
+	display: inline-block;
+	padding: 10px 14px;
+	font-size: 14px;
+	border: 1px solid #aaa;
+	margin-left: 10px;
+}
+.invest-page-list a.active{
+	background: #ff7200;
+	border: none;
+	padding: 11px 15px;
+	color: #fff;
+}
+.invest-page-list a.on{
+	color: #aaa;
+}
+.invest-page-list a:hover{
+	background: #FF7200;
+	border: none;
+	padding: 11px 15px;
+	color: #fff;
+}
+
+
+/*右边部分*/
+
+.investors-box{
+	width: 320px;
+	height: 810px;
+	margin-top: 24px;
+	background: #f9f9f9;
+	overflow: hidden;
+	padding: 10px;	
+}
+.investors-box h5{
+	font-size: 20px;
+	height: 60px;
+	line-height: 60px;
+	margin-left: 10px;
+	font-weight: normal;
+}
+.investors-list{
+	background: #fff;
+	position: relative;
+	height: 748px;
+	overflow: hidden;
+}
+/*#investors-list{
+	position: absolute;
+	z-index: 10;
+}*/
+.investors-list ul{
+	position: absolute;
+    border-left: 1px solid #ddd;
+    margin-left: 26px;
+    margin-top: 16px;
+    z-index: 11;
+}
+.investors-list li{
+	font-size: 14px;
+    line-height: 24px;
+    margin-top: -2px;
+    padding-bottom: 24px;
+    margin-left: -33px;
+}
+.investors-list li .invester-icon{
+	display: inline-block;
+	float: left;
+	width: 36px;
+	height: 36px;
+	background: url(../img/investors-icon.png) no-repeat center;
+	vertical-align: middle;
+	margin:0 14px;
+}
+.slimScrollBar{
+	height: 60px;
+}

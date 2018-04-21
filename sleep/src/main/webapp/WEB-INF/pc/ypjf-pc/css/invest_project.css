@@ -1,0 +1,444 @@
+.invest-main{
+	margin: 30px auto 40px;
+}
+.invest-project{
+	width: 766px;
+	height: 378px;
+	border: 1px solid #ddd;
+}
+.invest-operation{
+	width: 410px;
+	height: 378px;
+	border: 1px solid #ddd;
+	margin-left: 20px;
+}
+.invest-project h3{
+	margin: 16px;
+	font-size: 18px;
+	font-weight: normal;
+}
+.invest-project img{
+	margin: 60px 16px;
+	float: left;
+}
+.project-msg{
+	margin-left: 20px;
+	font-size: 16px;
+}
+.project-msg ul{
+	width: 438px;
+	overflow: hidden;
+}
+.project-msg ul li{
+	width: 26%;
+	float: left;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+}
+.project-msg ul li+li{
+	margin-left: 48px;
+} 
+.project-msg ul li .large{
+	font-size: 20px;
+	color: #FF7F01;
+	font-weight: bold;
+}
+.project-msg .progress{
+	margin-top: 40px;
+	    	
+}
+.progress-bar{
+	width: 274px;
+	margin-left: 30px;
+	margin-top: -5px;
+}
+.percentCount{
+	margin-top: -15px;
+    margin-right: -44px;
+}
+
+.project-txt{
+	margin-top: 20px;
+	width: 460px;
+}
+.project-txt p{
+	width: 230px;
+	float: left;
+	line-height: 40px;
+}
+
+/*右上边投资框*/
+.invest-operation ul{
+	margin: 30px 30px 0 35px;
+	font-size: 16px;
+	position: relative;
+	z-index: 10;
+}
+.invest-operation ul li{
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 16px;
+}
+.invest-operation ul li p{
+	float: left;
+}
+.invest-operation ul li span{
+	float: right;
+	vertical-align: middle;
+}
+.invest-operation ul li .invest-money{
+	width: 300px;
+	height: 36px;
+	border: 1px solid #aaa;
+	border-radius: 6px;
+	vertical-align: middle;	
+	padding-left: 10px;
+}
+.invest-operation ul li .invest-money:focus {
+	outline:none;
+}
+/*优惠券使用情况*/
+.coupon-use{
+	/*position: relative;*/
+}
+.coupon-use p{
+	height: 30px;
+	line-height: 30px;
+}
+.coupon-use p span{
+	display: inline-block;
+	width: 226px;
+	height: 28px;
+	border: 1px solid #ddd;
+	text-align: center;
+	line-height: 28px;
+	margin-left: 10px;
+	border-radius: 3px;
+	display: none;
+}
+.coupon-box{
+	position: absolute;
+	width: 336px;
+	height: 104px;
+	border: 1px solid #ddd;
+	background: #f5faff;
+	top: 182px;
+	left: 16px;
+	z-index: 11;
+}
+.coupon-box-t{
+	padding:7px 5px 0 5px;
+	font-size: 14px;
+	color: #333;
+}
+.coupon-box-t input{
+	vertical-align: -2px;
+	margin-right: 6px;
+}
+.coupon-box-t input:nth-child(1),.coupon-box-t input:nth-child(2){
+	width: 15px;
+	height: 15px;
+}
+.coupon-box-t input:nth-child(3),.coupon-box-t input:nth-child(4){
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 12px;
+}
+.coupon-box-t input:nth-child(3){
+	margin-left: 96px;
+}
+.coupon-box-list{
+	padding: 5px;
+	font-size: 12px;
+	color: #666;
+	/*display: block;*/
+	line-height: 20px;
+	height: 20px;
+	
+}
+.coupon-box-list input{
+	vertical-align: -2px;
+	margin-right: 4px;
+}
+
+.invest-operation ul li .invest-btn{
+	display: block;
+	width: 335px;
+	height: 52px;
+	background: url(../img/invest-btn-bg.png) no-repeat center;
+	line-height: 52px;
+	text-align: center;
+	color: #fff;
+	margin-left: 3px;
+	font-size: 20px;
+}
+.invest-operation ul li.agree{
+	font-size: 14px;
+}
+.invest-operation ul li.agree input{
+	width: 16px;
+    height: 16px;
+    /* vertical-align: middle; */
+    display: block;
+    float: left;
+    margin-top: 3px;
+}
+.invest-operation ul li.agree lable{
+	line-height: 28px;
+    display: block;
+    float: left;
+    width: 310px;
+    margin-left: 4px;
+    margin-top: -4px;
+    line-height: 28px;
+}
+.invest-operation ul li.lr{
+	text-align: right;
+}
+.invest-operation ul li.lr a{
+	text-decoration: underline;
+}
+.invest-operation ul li.lr a:hover{
+	text-decoration: none;
+	color: #FF7F01;
+}
+.invest-operation ul li.lr a.on{
+	text-decoration: none;
+	color: #FF7F01;
+}
+/*项目信息，安全保障，投资信息tab选项*/
+
+.project-tab{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 40px;
+}
+.project-tab .tab-menu{
+	width: 100%;
+	height: 60px;
+	margin-top: 5px;
+}
+.project-tab .tab-menu ul{
+	width: 100%;
+	border-bottom: 2px solid #ff9935;
+	height: 50px;
+}
+.project-tab .tab-menu ul li{
+	float: left;
+	margin-right: 24px;
+	font-size: 16px;
+	padding: 16px 46px 17px;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	cursor: pointer;
+}
+.project-tab .tab-menu ul li.active{
+	background: #FF9935;
+	border: none;
+	color: #fff;
+	padding: 17px 46px;
+}
+
+/*.project-tab .tab-menu ul li a{
+	display: block;
+	font-size: 16px;
+	padding: 16px 46px 17px;
+	border: 1px solid #ddd;
+	border-bottom: none;
+}*/
+.tab-main{
+	width: 1200px;
+}
+
+/*项目信息*/
+.tab-main .project-info{
+	padding-bottom: 10px;
+}
+.project-info .info-one,.project-info .info-two,.project-info .info-three,.project-info .info-four{
+	margin-top: 27px;
+	width: 1200px;
+}
+.project-info h3{
+	font-size: 16px;
+	color: #FF7F01;
+	margin-left: 20px;
+}
+
+.project-info .info-one .info,.project-info .info-two .borrow,.project-info .info-three .banner,.project-info .info-four .protection{	
+	width: 1163px;
+	margin-top: 10px;
+	padding: 24px 16px;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	line-height: 22px;
+}
+.project-info .info-one .info:hover,.project-info .info-two .borrow:hover,
+.project-info .info-three .banner:hover,.project-info .info-four .protection:hover{
+	box-shadow: 3px 3px 3px 0px #ddd;
+}
+
+.info-one .info ul{
+	width: 100%;
+}
+.info-one .info ul li{
+	width: 25%;
+	float: left;
+	line-height: 24px;
+}
+
+/*轮播图*/
+.banner{
+	position: relative;
+}
+.banner .swiper-container{
+	height: 225px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.banner .swiper-button-prev{
+	left: 26px;
+}
+.banner .swiper-button-next{
+	right: 26px;
+}
+.swiper-slide{
+	text-align: center;
+}
+
+
+/*---安全保障---*/
+
+.project-insur{
+	width: 100%;
+	margin-top: 20px;
+}
+.project-insur ul{
+	width: 100%;
+}
+.project-insur ul li{
+	float: left;
+	width: 520px;
+	padding: 33px;
+	border: 1px solid #ddd;
+	margin-bottom: 30px;
+}
+.project-insur ul li:nth-child(5),.project-insur ul li:nth-child(6){
+	margin-bottom: 5px;
+}
+.project-insur ul li:nth-of-type(even){
+	margin-left: 20px;
+}
+.project-insur ul li p{
+	float: left;
+	width: 400px;
+	line-height: 24px;
+	font-size: 13px;	
+}
+.project-insur ul li p.pic{
+	width: 80px;
+	text-align: center;
+	margin-right: 32px;
+	font-size: 16px;
+}
+
+.project-insur ul li p.des{
+	margin-top: 18px;
+}
+.project-insur ul li p.pic span{
+	display: block;
+	width: 77px;
+	height: 77px;	
+	margin-left: 1px;	
+}
+.project-insur ul li:hover{
+	box-shadow: 5px 5px 3px 0 #ddd;
+}
+.project-insur ul li:nth-of-type(1) p.pic span{
+	background: url(../img/insur-1.png) no-repeat center;
+}
+.project-insur ul li:nth-of-type(2) p.pic span{
+	background: url(../img/insur-2.png) no-repeat center;
+}
+.project-insur ul li:nth-of-type(3) p.pic span{
+	background: url(../img/insur-3.png) no-repeat center;
+}
+.project-insur ul li:nth-of-type(4) p.pic span{
+	background: url(../img/insur-4.png) no-repeat center;
+}
+.project-insur ul li:nth-of-type(5) p.pic span{
+	background: url(../img/insur-5.png) no-repeat center;
+}
+.project-insur ul li:nth-of-type(6) p.pic span{
+	background: url(../img/insur-6.png) no-repeat center;
+}
+
+/*投资记录*/
+
+.project-record table{
+	width: 100%;
+	margin: 30px auto;
+	font-size: 16px;
+}
+.project-record table tr{
+	height: 50px;
+	line-height: 50px;
+	color: #666666;
+}
+.project-record table tr th{
+	font-weight: normal;
+}
+
+.project-record table tr:nth-of-type(odd){
+	background: #f8f8f8;
+}
+.project-record table tr.title{
+	background: #eee;
+	color: #333;
+}
+.project-record table tr td{
+	width: 56px;
+	text-align: center;
+}
+.project-record table tr td.yuan5 span,.project-record table tr td.yuan3 span{
+	display: block;
+	width: 104px;
+	height: 30px;
+	background: #ff7c7c;
+    margin: 0 auto;
+    line-height: 30px;
+    border-radius: 4px;
+    color: #fff;
+}
+.project-record table tr td.yuan3 span{
+	background: #fbc12d;
+}
+
+/*翻页*/
+.record-page-list{
+	width: 100%;
+	text-align: center;
+}
+.record-page-list a{
+	display: inline-block;
+	padding: 10px 14px;
+	font-size: 14px;
+	border: 1px solid #aaa;
+	margin-left: 10px;
+}
+.record-page-list a.active{
+	background: #ff7200;
+	border: none;
+	padding: 11px 15px;
+	color: #fff;
+}
+.record-page-list a.on{
+	color: #aaa;
+}
+.record-page-list a:hover{
+	background: #FF7200;
+	border: none;
+	padding: 11px 15px;
+	color: #fff;
+}

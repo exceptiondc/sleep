@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>安全设置</title>
+    <link rel="stylesheet" type="text/css" href="aui/css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/safe.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav" style="background-color:#ffd13f;">
+    <a class="aui-pull-left" onclick="safe();">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title title">安全设置</div>
+</header>
+
+<div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-list-in">
+        <div style="width: 100%;height: 0.5rem;background: #f5f5f5"></div>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">实名认证</div>
+                <div class="aui-list-item-right" id="renzheng"><a href="identity.html">未认证</a></div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">手机绑定</div>
+                <div class="aui-list-item-right" style="color: #72C172" id="shouji">189****2120</div>
+            </div>
+        </li>
+       <!--  <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">设置交易密码</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">找回交易密码</div>
+            </div>
+        </li> -->
+        <div style="width: 100%;height: 0.5rem;background:#f5f5f5"></div>
+        <li class="aui-list-item" onclick="window.location.href='changePassword.html'">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">修改登录密码</div>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- <div class="aui-content aui-content-padded" style="padding-top:8.4rem;">
+    <p><div class="aui-btn aui-btn-warning aui-btn-block">安全退出</div></p>
+</div> -->
+</body>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function safe(){
+        window.location.href='mysystem.html';
+    }
+    if(base.getUser().isIdCard&&base.getUser().isIdCard=='是'){
+        $('#renzheng a').html('已认证');
+    }
+    $('#shouji').html(base.getUser().phone);
+</script>
+</html>
+
+

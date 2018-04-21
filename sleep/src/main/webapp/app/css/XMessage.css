@@ -1,0 +1,21 @@
+.aui-img-round{
+    width: 1rem;
+}
+.aui-list .aui-list-item-media {
+    width: 2.5rem;
+}
+.aui-list .aui-list-item-media img{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+span{
+    color: #C742E8;
+}
+.aui-margin-l-5{
+    color: #1E1E1E;
+    font-size: 0.7rem;
+}
+.aui-list .aui-list-item-title{
+    font-size: 0.7rem;
+}
