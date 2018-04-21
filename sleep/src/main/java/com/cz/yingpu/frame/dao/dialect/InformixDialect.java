@@ -10,7 +10,7 @@ public class InformixDialect implements IDialect {
 
 	@Override
 	public String getPageSql(String sql, String orderby, Page page) {
-		// 设置分页参数
+		// 设置分页参数的
 	int pageSize = page.getPageSize();
 	int pageNo = page.getPageIndex();
 	
